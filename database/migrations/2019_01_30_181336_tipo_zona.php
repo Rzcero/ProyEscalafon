@@ -16,10 +16,10 @@ class TipoZona extends Migration
         Schema::create('tipo_zona', function (Blueprint $table) {
             $table->increments('id_tipo_zona');
             $table->string('denominacion',45);
-            $table->rememberToken();
+            //$table->rememberToken();
             $table->timestamps();
-    }
-
+    });
+ }
     /**
      * Reverse the migrations.
      *

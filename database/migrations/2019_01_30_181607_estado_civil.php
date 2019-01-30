@@ -16,10 +16,10 @@ class EstadoCivil extends Migration
       Schema::create('estado_civil', function (Blueprint $table) {
             $table->increments('id_estado_civil');
             $table->string('denominacion',45);
-            $table->rememberToken();
+            //$table->rememberToken();
             $table->timestamps();
-    }
-
+    });
+ }
     /**
      * Reverse the migrations.
      *

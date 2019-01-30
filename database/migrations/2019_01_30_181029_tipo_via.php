@@ -17,9 +17,10 @@ class TipoVia extends Migration
             $table->increments('id_tipo_via');
             $table->string('abreviatura',10);
             $table->string('denominacion',45);
-            $table->rememberToken();
+            //$table->rememberToken();
             $table->timestamps();
-    }
+    });
+         }
 
     /**
      * Reverse the migrations.

@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TipoDocumento extends Migration
+class Nacionalidad extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+ public function up()
     {
-        Schema::create('tipo_documento', function (Blueprint $table) {
-            $table->increments('id_tipo_documento');
+        Schema::create('nacionalidad', function (Blueprint $table) {
+            $table->increments('id_nacionalidad');
             $table->string('denominacion',45);
             //$table->rememberToken();
             $table->timestamps();
@@ -27,6 +27,6 @@ class TipoDocumento extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_documento');
+        Schema::dropIfExists('nacionalidad');
     }
 }

@@ -16,10 +16,10 @@ class TipoDocumento extends Migration
         Schema::create('tipo_documento', function (Blueprint $table) {
             $table->increments('id_tipo_documento');
             $table->string('denominacion',45);
-            $table->rememberToken();
+            //$table->rememberToken();
             $table->timestamps();
-    }
-
+    });
+ }
     /**
      * Reverse the migrations.
      *

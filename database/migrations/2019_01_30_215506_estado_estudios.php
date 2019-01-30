@@ -18,8 +18,9 @@ class EstadoEstudios extends Migration
             $table->string('denominacion',45);
             //$table->rememberToken();
             $table->timestamps();
-    }
-
+  
+});
+ }
     /**
      * Reverse the migrations.
      *
