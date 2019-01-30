@@ -25,11 +25,23 @@ class Persona extends Migration
             $table->string('celular',15);
             $table->string('telefono',15);
             $table->string('email',55);
-            
+
+// foreing key 
+            $table->unsignedInteger('id_tipo_doc');
+            $table->foreign('id_tipo_doc')->references('id_tipo_doc')->on('tipo_documento');
+
+            $table->unsignedInteger('id_estado_civil');
+            $table->foreign('id_estado_civil')->references('id_estado_civil')->on('estado_civil');
+
+            $table->unsignedInteger('id_tipo_via');
+            $table->foreign('id_tipo_via')->references('id_tipo_via')->on('tipo_via');
+
+            $table->unsignedInteger('id_tipo_zona');
+            $table->foreign('id_tipo_zona')->references('id_tipo_zona')->on('tipo_zona');
+
             $table->string('pdf_partida_nacimiento',25);
 
-            //$table->timestamp('email_verified_at')->nullable();
-           //$table->string('password');
+            
             $table->rememberToken();
             $table->timestamps();
     }
@@ -41,6 +53,6 @@ class Persona extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('persona');
     }
 }
