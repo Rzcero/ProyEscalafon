@@ -11,16 +11,22 @@ class OtrosEstudios extends Migration
      *
      * @return void
      */
- public function up()
+public function up()
     {
         Schema::create('otros_estudios', function (Blueprint $table) {
-            $table->increments('id_otros_documentos');
+            $table->increments('id_otro_estudio');
+            $table->integer('id_tipo_estudio');
+            $table->string('nombre_estudio',225);
+            $table->string('centro_estudio',225);
+            $table->string('participacion',45);
+            $table->date('fecha_inicio');
+            $table->date('fecha_termino');
+            $table->integer('num_horas');
+            $table->integer('num_creditos');
             $table->integer('id_persona');
             $table->integer('id_tipo_documento');
-            $table->string('num_documento',100);
-            $table->string('detalle',225);
-            $table->date('fecha_emision');
-            $table->string('pdf_otros_documentos',25);
+            $table->string('pdf_estudio',45);
+            
             //$table->rememberToken();
             $table->timestamps();
     });
