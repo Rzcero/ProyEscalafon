@@ -13,7 +13,7 @@ class TipoIdioma extends Model
 
 // de 1 tipo_idioma puede tener muchos idiomas
     public function idioma(){
-        return $this->hasMany('App\Idioma','id_idioma','id_idioma');
+        return $this->hasMany('App\Idioma','id_tipo_idioma','id_tipo_idioma');
 
     }
 }

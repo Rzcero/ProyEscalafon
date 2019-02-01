@@ -17,4 +17,10 @@ class CategoriaDocente extends Model
         return $this->hasMany("App\CategoriaRegimen","id_categ_doc","id_categ_doc");
 
     }
+     //  1 categoria_docente puede estar contenida en muchos contratos
+     public function contrato(){
+        return $this->hasMany("App\Contrato","id_categ_doc","id_categ_doc");
+
+    }
+    
 }

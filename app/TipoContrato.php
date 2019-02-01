@@ -13,7 +13,7 @@ class TipoContrato extends Model
 //  1 tipo_contrato puede estar contenido en muchos contratos
      public function contrato(){
 
-        return $this->hasMany("App\Contrato","id_tipo_contrato","id_tipo_contrato");
+        return $this->hasMany("App\Contrato","id_tipo_contratocontrato","id_tipo_contrato");
 
     }
 }
