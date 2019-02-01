@@ -11,6 +11,15 @@ class Regimen extends Model
     protected $fillable = ["id_regimen",
     "descripcion"];
 
+<<<<<<< HEAD
+    //Relacion 1 a muchos con la tabla docente
+    public function docente(){
+
+        return $this->hasMany('App/Docente','id_regimen','id_regimen');
+
+    }
+
+=======
     //  1 regimen puede estar contenido en muchos categoria_regimen
      public function categoria_regimen(){
 
@@ -23,4 +32,5 @@ class Regimen extends Model
         return $this->hasMany("App\Contrato","id_regimen","id_regimen");
 
     }
+>>>>>>> ed91d80eaec4d4186015a23b5bbf9daa89038322
 }

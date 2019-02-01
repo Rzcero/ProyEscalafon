@@ -10,6 +10,15 @@ class TipoDocumento extends Model
     protected $primaryKey = "id_tipo_documento";
     protected $fillable = ["id_tipo_documento","denominacion"];
 
+<<<<<<< HEAD
+    //Relacion 1 a Muchos con la tabla otros_estudios
+    public function otroestudio(){
+
+        return $this->hasMany('App\OtroEstudio','id_tipo_documento','id_tipo_documento');
+
+    }
+
+=======
      //  1 tipo_documento puede estar contenido en muchos idiomas
      public function idioma(){
 
@@ -58,4 +67,5 @@ class TipoDocumento extends Model
         return $this->hasMany("App\OtroDocumento","id_tipo_documento","id_tipo_documento");
 
     }
+>>>>>>> ed91d80eaec4d4186015a23b5bbf9daa89038322
 }

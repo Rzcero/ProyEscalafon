@@ -11,6 +11,13 @@ class CategoriaDocente extends Model
     protected $fillable = ["id_categ_doc",
     "descripcion"];
 
+    //Relacion 1 a muchos con la tabla docente
+    public function docente(){
+
+        return $this->hasMany('App/Docente','id_categ_doc','id_categ_doc');
+
+    }
+
 
     //  1 categoria_docente puede estar contenida en muchas categoria_regimen
      public function categoria_regimen(){
