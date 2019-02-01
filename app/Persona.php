@@ -34,8 +34,11 @@ class Persona extends Model
     }
     //  1 persona puede tener muchos idiomas
      public function idioma(){
+        
+        return $this->hasMany('App\Idioma','id_persona','id_persona');
 
-<<<<<<< HEAD
+     }
+
     //Relacion 1 a 1 con la tabla administrativo
     public function administrativo(){
 
@@ -91,91 +94,94 @@ class Persona extends Model
         return $this->hasMany('App\OtroEstudio','id_persona','id_persona');
 
     }
-
-=======
-        return $this->hasMany("App\Idioma","id_persona","id_persona");
-
-    }
-
- //  1 persona puede estar contenido en muchos categoria_regimen
+   
+    //  1 persona puede estar contenido en muchos categoria_regimen
      public function categoria_regimen(){
 
         return $this->hasMany("App\CategoriaRegimen","id_persona","id_persona");
 
     }
- //  1 persona puede estar contenido en muchos contratos
+    //  1 persona puede estar contenido en muchos contratos
      public function contrato(){
 
         return $this->hasMany("App\Contrato","id_persona","id_persona");
 
     }
-     //  1 persona puede tener en muchos pagos
+
+    //  1 persona puede tener en muchos pagos
      public function pagos(){
 
         return $this->hasMany("App\Pago","id_persona","id_persona");
 
     }
-      //  1 persona puede tener en muchas experiencias laborales
+
+    //  1 persona puede tener en muchas experiencias laborales
      public function experiencia_laboral(){
 
         return $this->hasMany("App\ExperienciaLaboral","id_persona","id_persona");
 
     }
 
-       //  1 persona puede tener en cargos desempeniados
+    //  1 persona puede tener en cargos desempeniados
      public function cargos_desempeniado(){
 
         return $this->hasMany("App\CargosDesempeniado","id_persona","id_persona");
 
     }
 
-   //  1 persona puede tener muchos meritos
+    //  1 persona puede tener muchos meritos
      public function merito(){
 
         return $this->hasMany("App\Merito","id_persona","id_persona");
 
     }
+
     //  1 persona puede tener muchos demeritos
      public function demerito(){
 
         return $this->hasMany("App\Demerito","id_persona","id_persona");
 
     }
+
      //  1 persona puede tener muchos licencias_vacaciones
-     public function licencia_vacion(){
+     public function licencia_vacacion(){
 
         return $this->hasMany("App\LicenciaVacacion","id_persona","id_persona");
 
     }
+
        //  1 persona puede tener muchas partidas_defuncion
      public function partida_defuncion(){
 
         return $this->hasMany("App\PartidaDefuncion","id_persona","id_persona");
 
     }
-  //  1 persona puede tener muchas tiempos de servicios
+
+    //  1 persona puede tener muchas tiempos de servicios
      public function tiempo_servicio(){
 
         return $this->hasMany("App\TiempoServicio","id_persona","id_persona");
 
     }
- //  1 persona puede tener muchas declaraciones juradas
+
+    //  1 persona puede tener muchas declaraciones juradas
      public function declaracion_jurada(){
 
         return $this->hasMany("App\DeclaracionJurada","id_persona","id_persona");
 
     }
+
     //  1 persona puede estar contenido en varias tablas otros documentos
      public function otro_documento(){
 
         return $this->hasMany("App\OtroDocumento","id_persona","id_persona");
 
     }
+
     //  1 persona puede tener varias producciones intelectuales
      public function produccion_intelectual(){
 
         return $this->hasMany("App\ProduccionIntelectual","id_persona","id_persona");
 
     }
->>>>>>> ed91d80eaec4d4186015a23b5bbf9daa89038322
 }
