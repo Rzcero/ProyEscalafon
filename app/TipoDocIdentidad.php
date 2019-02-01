@@ -16,4 +16,12 @@ class TipoDocIdentidad extends Model
         return $this->hasMany('App\Persona','id_tipo_doc','id_tipo_doc');
 
     }
+
+    //Relacion 1 a Muchos con la tabla habiente
+    public function habiente(){
+
+        return $this->hasMany('App\Habiente','id_tipo_doc','id_tipo_doc');
+
+    }
+
 }
