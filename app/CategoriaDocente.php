@@ -11,7 +11,6 @@ class CategoriaDocente extends Model
     protected $fillable = ["id_categ_doc",
     "descripcion"];
 
-<<<<<<< HEAD
     //Relacion 1 a muchos con la tabla docente
     public function docente(){
 
@@ -19,7 +18,6 @@ class CategoriaDocente extends Model
 
     }
 
-=======
 
     //  1 categoria_docente puede estar contenida en muchas categoria_regimen
      public function categoria_regimen(){
@@ -32,5 +30,4 @@ class CategoriaDocente extends Model
 
     }
     
->>>>>>> ed91d80eaec4d4186015a23b5bbf9daa89038322
 }
