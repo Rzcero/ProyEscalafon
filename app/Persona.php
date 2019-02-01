@@ -32,5 +32,24 @@ class Persona extends Model
         return $this->hasOne("App\Empleado","id_persona","id_persona");
 
     }
+    //  1 persona puede tener muchos idiomas
+     public function idioma(){
+
+        return $this->hasMany("App\Idioma","id_idioma","id_idioma");
+
+    }
+
+ //  1 persona puede estar contenido en muchos categoria_regimen
+     public function categoria_regimen(){
+
+        return $this->hasMany("App\CategoriaRegimen","id_regimen","id_regimen");
+
+    }
+ //  1 persona puede estar contenido en muchos contratos
+     public function contrato(){
+
+        return $this->hasMany("App\Contrato","id_contrato","id_contrato");
+
+    }
 
 }

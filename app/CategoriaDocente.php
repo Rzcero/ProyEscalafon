@@ -10,4 +10,11 @@ class CategoriaDocente extends Model
     protected $primaryKey = "id_categ_doc";
     protected $fillable = ["id_categ_doc",
     "descripcion"];
+
+
+    //  1 categoria_docente puede estar contenida en muchas categoria_regimen
+     public function categoria_regimen(){
+        return $this->hasMany("App\CategoriaRegimen","id_categ_doc","id_categ_doc");
+
+    }
 }
