@@ -17,4 +17,11 @@ class CategoriaRegimen extends Model
     "fecha_emision",
     "fecha_inicio",
     "pdf_categ_reg"];
+
+    //  1 categoria_regimen puede estar contenido en muchos contratos
+     public function contrato(){
+
+        return $this->hasMany("App\Contrato","id_contrato","id_contrato");
+
+    }
 }
