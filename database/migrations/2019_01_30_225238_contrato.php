@@ -21,7 +21,7 @@ public function up()
             $table->string('motivo',100);
             $table->integer('id_categ_doc');
             $table->integer('id_regimen');
-            $table->string('lugar_servicio',100);
+            $table->integer('id_facultad');
             $table->date('fecha_emision_contrato');
             $table->date('fecha_inicio_contrato');
             $table->date('fecha_termino_contrato');

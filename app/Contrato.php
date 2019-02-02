@@ -15,7 +15,7 @@ class Contrato extends Model
     "motivo",
     "id_categ_doc",
     "id_regimen",
-    "lugar_servicio",
+    "id_facultad",
     "fecha_emision_contrato",
     "fecha_inicio_contrato",
     "fecha_termino_contrato",
