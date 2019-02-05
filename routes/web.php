@@ -14,7 +14,20 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('/EstudiosBasicos', 'EstudiosBasicosController');
+/*
+Route::get('/estudiosbasicos', 'EstudiosBasicosController@index');
+Route::get('/crearestudiosbasicos', 'EstudiosBasicosController@create');
+Route::get('/insertarestudiosbasicos', 'EstudiosBasicosController@store');
+Route::get('/actualizarestudiosbasicos', 'EstudiosBasicosController@update');
+Route::get('/borrarestudiosbasicos', 'EstudiosBasicosController@destroy');
+
+*/
+
+
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

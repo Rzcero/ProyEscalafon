@@ -15,8 +15,8 @@ class EstudiosBasicos extends Migration
     {
         Schema::create('estudios_basicos', function (Blueprint $table) {
             $table->increments('id_estudios_bas');
-            $table->integer('ie_primaria');
-            $table->string('anio_egreso_primaria',45);
+            $table->string('ie_primaria',100);
+            $table->integer('anio_egreso_primaria');
             $table->string('pdf_primaria',45);
             $table->string('pais_primaria',45);
             $table->string('ubi_primaria',45);
