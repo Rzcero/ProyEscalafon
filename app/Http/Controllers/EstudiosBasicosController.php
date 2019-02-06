@@ -14,7 +14,7 @@ class EstudiosBasicosController extends Controller
      */
     public function index()  
     {
-        return ("");
+        return view("EstudiosBasicos.index");
     }
 
     /**
@@ -39,7 +39,7 @@ class EstudiosBasicosController extends Controller
  
         $estudiobasico=new EstudioBasico;
 
-        $estudiobasico->ie_primaria=$request->post('ie_primaria');
+        $estudiobasico->ie_primaria=$request->ie_primaria;
         $estudiobasico->anio_egreso_primaria=$request->anio_egreso_primaria;
         $estudiobasico->pais_primaria=$request->pais_primaria;
         $estudiobasico->ubi_primaria=$request->ubi_primaria;
@@ -47,9 +47,9 @@ class EstudiosBasicosController extends Controller
         $estudiobasico->prov_primaria=$request->prov_primaria;
         $estudiobasico->dist_primaria=$request->dist_primaria;
         
-        $estudiobasico->ie_secundaria=$request->anio_egreso_secundaria;
+        $estudiobasico->ie_secundaria=$request->ie_secundaria;
         $estudiobasico->anio_egreso_secundaria=$request->anio_egreso_secundaria;
-        $estudiobasico->pais_primaria=$request->pais_psecundaria;
+        $estudiobasico->pais_secundaria=$request->pais_secundaria;
         $estudiobasico->ubi_secundaria=$request->ubi_secundaria;
         $estudiobasico->dep_secundaria=$request->dep_secundaria;
         $estudiobasico->prov_secundaria=$request->prov_secundaria;

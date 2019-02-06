@@ -14,7 +14,7 @@
                                     
                     <!--  Inicio contenedor del Formulario -->
                     <div class="container1 px-0" id="tabla1">
-                        @yield("EstSupe")
+                        
                         
                         <!-- Inicio Formulario -->
                         <form id="formulario1">
@@ -633,5 +633,6 @@
             </div>
         </div>
     </div>
+
 
 @endsection
