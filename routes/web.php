@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('/EstudiosBasicos', 'EstudiosBasicosController');
+Route::resource('/EstudiosSuperiores', 'EstudiosSuperioresController');
+Route::resource('/OtrosEstudios', 'OtrosEstudiosController');
 /*
 Route::get('/estudiosbasicos', 'EstudiosBasicosController@index');
 Route::get('/crearestudiosbasicos', 'EstudiosBasicosController@create');
