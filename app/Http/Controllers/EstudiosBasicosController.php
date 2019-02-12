@@ -14,8 +14,8 @@ class EstudiosBasicosController extends Controller
      */
     public function index()  
     {
-        $esbasico=EstudioBasico::all();  // se hizo para pruebas
-        return view("EstudiosBasicos.index",compact("esbasico"));
+        //$esbasico=EstudioBasico::all();  // se hizo para pruebas
+        //return view("EstudiosBasicos.index",compact("esbasico"));
     }
 
     /**
