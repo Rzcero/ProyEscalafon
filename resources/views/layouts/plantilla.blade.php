@@ -6,7 +6,11 @@
   <title>Escalafon_UNPRG</title>
 
   <!-- CSRF Token -->
+<<<<<<< HEAD
   <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
+=======
+   <meta name="csrf-token" content="{{ csrf_token() }}"> 
+>>>>>>> 111fa53aa521bb39f92b2f7f4026c3e6d16b69f7
   
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,6 +39,11 @@
   <link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -523,8 +532,13 @@
 </div>
 <!-- ./wrapper -->
 
+<<<<<<< HEAD
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+=======
+
+        
+>>>>>>> 111fa53aa521bb39f92b2f7f4026c3e6d16b69f7
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -564,5 +578,10 @@
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 111fa53aa521bb39f92b2f7f4026c3e6d16b69f7
 </body>
 </html>
