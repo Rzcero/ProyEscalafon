@@ -17,4 +17,11 @@ class Idioma extends Model
     "num_horas",
     "num_creditos",
     "pdf_idioma_persona"];
+    
+    public function tipoidioma(){
+
+        return $this->belongsTo("App\TipoIdioma","id_tipo_idioma","id_tipo_idioma");
+
+    }
+
 }
