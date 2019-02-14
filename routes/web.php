@@ -19,6 +19,9 @@ Route::resource('/Estudios', 'EstudiosController');
 
 
 Route::get('/listarnivel', 'EstudiosController@listarnivel')->name('estudios.listarnivel');
+Route::get('/listarmodalidad', 'EstudiosController@listarmodalidad')->name('estudios.listarmodalidad');
+Route::get('/listartipoestudios', 'EstudiosController@listartipoestudios')->name('estudios.listartipoestudios');
+Route::get('/listartipodocumentos', 'EstudiosController@listartipodocumentos')->name('estudios.listartipodocumentos');
 
 
 /*

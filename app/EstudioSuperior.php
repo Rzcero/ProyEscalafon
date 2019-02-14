@@ -29,4 +29,22 @@ class EstudioSuperior extends Model
         return $this->belogsTo('App\EstudioSuperior','id_nivel','id_nivel');
 
     }
+
+    public function estudiosuperior(){
+
+        return $this->belogsTo('App\EstudioSuperior','id_modalidad','id_modalidad');
+
+    }
+
+     public function otroestudio(){
+
+        return $this->belogsTo('App\OtroEstudio','id_tipo_estudio','id_tipo_estudio');
+
+    }
+
+    public function otroestudio(){
+
+        return $this->belogsTo('App\OtroEstudio','id_tipo_documento','id_tipo_documento');
+
+    }
 }

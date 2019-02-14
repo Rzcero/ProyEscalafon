@@ -1,11 +1,26 @@
 $(document).ready(function() 
    {
 
-
+// tabla de estudios basicos
  $("#formularioestudiosbasicos").submit(function(e){
                 
         var dato = $("#ie_primaria").val();  // # se recepcionan de create.blade -> formulario
         var dato2 = $("#anio_egreso_primaria").val();
+        var dato3 = $("#pais_primaria").val();  // # se recepcionan de create.blade -> formulario
+        var dato4 = $("#ubi_primaria").val();
+        var dato5= $("#dep_primaria").val();  // # se recepcionan de create.blade -> formulario
+        var dato6 = $("#prov_primaria").val();
+        var dato7 = $("#dist_primaria").val();  // # se recepcionan de create.blade -> formulario
+        var dato8 = $("#ie_secundaria").val();
+        var dato9 = $("#anio_egreso_secundaria").val();  // # se recepcionan de create.blade -> formulario
+        var dato10 = $("#pais_secundaria").val();
+        var dato11 = $("#ubi_secundaria").val();  // # se recepcionan de create.blade -> formulario
+        var dato12 = $("#dep_secundaria").val();
+        var dato13 = $("#prov_secundaria").val();  // # se recepcionan de create.blade -> formulario
+        var dato14 = $("#dist_secundaria").val();
+
+
+
 
         var route = "/escalafon/ProyEscalafon/public/Estudios";
         var token = $("#token").val();
@@ -18,7 +33,69 @@ $(document).ready(function()
             dataType: 'json',
             data: {
                 ie_primaria: dato,
-                anio_egreso_primaria: dato2
+                anio_egreso_primaria: dato2,
+                pais_primaria: dato3,
+                ubi_primaria: dato4,
+                dep_primaria: dato5,
+                prov_primaria: dato6,
+                dist_primaria: dato7,
+                ie_secundaria: dato8,
+                anio_egreso_secundaria: dato9,
+                pais_secundaria: dato10,
+                ubi_secundaria: dato11,
+                dep_secundaria: dato12,
+                prov_secundaria: dato13,
+                dist_secundaria: dato14
+
+
+
+            }
+            
+        });         
+        
+        e.preventDefault();
+    
+    });
+/*
+// tabla de otros estudios
+$("#formulariootrosestudios").submit(function(e){
+                
+        var dato = $("#tipo_estudios").val();  // # se recepcionan de create.blade -> formulario
+        var dato2 = $("#nom_estudios").val();
+        var dato3 = $("#participacion").val();  // # se recepcionan de create.blade -> formulario
+        var dato4 = $("#centro_estudio").val();
+        var dato5= $("#tipo_doc").val();  // # se recepcionan de create.blade -> formulario
+        var dato6 = $("#fech_inicio").val();
+        var dato7 = $("#fech_termino").val();  // # se recepcionan de create.blade -> formulario
+        var dato8 = $("#horas").val();
+        var dato9 = $("#creditos").val();  // # se recepcionan de create.blade -> formulario
+       
+
+
+        var route = "/escalafon/ProyEscalafon/public/Estudios";
+        var token = $("#token").val();
+        
+        $.ajax({
+            
+            url: route,
+            headers: {'X-CSRF-TOKEN': token},
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                id_tipo_estudio: dato,
+                nombre_estudio: dato2,
+                participacion: dato3,
+                centro_estudio: dato4,
+                id_tipo_documento: dato5
+                fecha_inicio: dato6,
+                fecha_termino: dato7,
+                num_horas: dato8,
+                num_creditos: dato9,
+              
+              
+
+
+
             }
             
         });         
@@ -27,11 +104,12 @@ $(document).ready(function()
     
     });
 
+*/
 
 
 
 
-//Para llenar el Select de nivel de estudios
+//Para llenar el Select de listar nivel
         
     $.ajax({
         
@@ -54,7 +132,82 @@ $(document).ready(function()
             
         }
    });
+
+
+    //Para llenar el Select de listar modalidad
+        
+    $.ajax({
+        
+        url: '/escalafon/ProyEscalafon/public/listarmodalidad',
+        type: 'GET',
+        success: function(respuesta){
+                                    
+            let registro = '';
+            
+            respuesta.forEach(obj_json =>{
+                obj_json.forEach(obj_json => {
+
+                  
+                    registro += `<option value='${obj_json.id}'>${obj_json.nombre_modalidad}</option>`
+
+                });
+            });
+            
+            $("#modalidad").append(registro);
+            
+        }
+   });
+
+        //Para llenar el Select de listar tipo de estudio
+        
+    $.ajax({
+        
+        url: '/escalafon/ProyEscalafon/public/listartipoestudios',
+        type: 'GET',
+        success: function(respuesta){
+                                    
+            let registro = '';
+            
+            respuesta.forEach(obj_json =>{
+                obj_json.forEach(obj_json => {
+
+                  
+                    registro += `<option value='${obj_json.id}'>${obj_json.denominacion}</option>`
+
+                });
+            });
+            
+            $("#tipo_estudios").append(registro);
+            
+        }
+   });
+        
          
+
+                //Para llenar el Select de listar tipo de documento
+        
+    $.ajax({
+        
+        url: '/escalafon/ProyEscalafon/public/listartipodocumentos',
+        type: 'GET',
+        success: function(respuesta){
+                                    
+            let registro = '';
+            
+            respuesta.forEach(obj_json =>{
+                obj_json.forEach(obj_json => {
+
+                  
+                    registro += `<option value='${obj_json.id}'>${obj_json.denominacion}</option>`
+
+                });
+            });
+            
+            $("#tipo_doc").append(registro);
+            
+        }
+   });
+        
 
    })
 

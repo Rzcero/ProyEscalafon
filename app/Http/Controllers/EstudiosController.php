@@ -7,8 +7,9 @@ use App\NivelEstudio;
 use App\EstudioBasico;
 use App\EstudioSuperior;
 use App\OtroEstudio;
-
-
+use App\Modalidad;
+use App\TipoEstudio;
+use App\TipoDocumento;
 
 class EstudiosController extends Controller
 {
@@ -39,7 +40,7 @@ class EstudiosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-        public function listarnivel(){
+public function listarnivel(){
             
          $niveles = NivelEstudio::all();
         
@@ -57,7 +58,68 @@ class EstudiosController extends Controller
             $matriz
              
         ]);
+        }
+
+ public function listarmodalidad(){
+            
+         $modalidades = Modalidad::all();
+        
+        $matriz = array();
+        
+        foreach($modalidades as $modalidad){
+        
+            $matriz[] = array('id_modalidad' => $modalidad->id_modalidad,  // 'id_modalidad' -> se puede coloar diferente al nombre de la tabla 
+                              'nombre_modalidad' => $modalidad->nombre);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
 }
+
+public function listartipoestudios(){
+            
+         $tiposestudios = TipoEstudio::all();
+        
+        $matriz = array();
+        
+        foreach($tiposestudios as $tipoestudio){
+        
+            $matriz[] = array('id_tipo_estudio' => $tipoestudio->id_tipo_estudio,  // 'id_modalidad' -> se puede coloar diferente al nombre de la tabla 
+                              'denominacion' => $tipoestudio->denominacion);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+}
+
+public function listartipodocumentos(){
+            
+         $tipodocumentos = TipoDocumento::all();
+        
+        $matriz = array();
+        
+        foreach($tipodocumentos as $tipodocumento){
+        
+            $matriz[] = array('id_tipo_documento' => $tipodocumento->id_tipo_documento,  // 'id_modalidad' -> se puede coloar diferente al nombre de la tabla 
+                              'denominacion' => $tipodocumento->denominacion);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+}
+
 
     public function store(Request $request)
     {
@@ -65,9 +127,22 @@ class EstudiosController extends Controller
             if($request->ajax()){
            
            //Persona::create($request->all());
-           $estudio_basico = new EstudioBasico;
-           $estudio_basico->ie_primaria = $request->ie_primaria;
-           $estudio_basico->anio_egreso_primaria = $request->anio_egreso_primaria;
+        $estudio_basico = new EstudioBasico;
+        $estudio_basico->ie_primaria = $request->ie_primaria;
+        $estudio_basico->anio_egreso_primaria = $request->anio_egreso_primaria;
+        $estudio_basico->pais_primaria=$request->pais_primaria;
+        $estudio_basico->ubi_primaria=$request->ubi_primaria;
+        $estudio_basico->dep_primaria=$request->dep_primaria;
+        $estudio_basico->prov_primaria=$request->prov_primaria;
+        $estudio_basico->dist_primaria=$request->dist_primaria;
+        
+        $estudio_basico->ie_secundaria=$request->ie_secundaria;
+        $estudio_basico->anio_egreso_secundaria=$request->anio_egreso_secundaria;
+        $estudio_basico->pais_secundaria=$request->pais_secundaria;
+        $estudio_basico->ubi_secundaria=$request->ubi_secundaria;
+        $estudio_basico->dep_secundaria=$request->dep_secundaria;
+        $estudio_basico->prov_secundaria=$request->prov_secundaria;
+        $estudio_basico->dist_secundaria=$request->dist_secundaria;
            
            $estudio_basico->save();
            
@@ -76,26 +151,37 @@ class EstudiosController extends Controller
 //            ]);
            
        }
+/*
+
+     if($request->ajax()){
+           
+           //Persona::create($request->all());
+        $otros_estudios = new OtroEstudio;
+        $otros_estudio->id_tipo_estudio = $request->id_tipo_estudio;
+        $otros_estudio->nombre_estudio = $request->nombre_estudio;
+        $otros_estudio->participacion=$request->participacion;
+        $otros_estudio->centro_estudio=$request->centro_estudio;
+        $otros_estudio->id_tipo_documento=$request->id_tipo_documento;
+        $otros_estudio->fecha_inicio=$request->fecha_inicio;
+        $otros_estudio->fecha_termino=$request->fecha_termino;
+        $otros_estudio->num_horas=$request->num_horas;
+        $otros_estudio->num_creditos=$request->num_creditos;
+
+           
+           $estudio_basico->save();
+           
+//            return response()->json([
+//                "mensaje" => $request->all()
+//            ]);
+           
+       }
+*/
 
 
-            /* $estudiobasico=new EstudioBasico;
 
-        $estudiobasico->ie_primaria=$request->ie_primaria;
-        $estudiobasico->anio_egreso_primaria=$request->anio_egreso_primaria;
-        $estudiobasico->pais_primaria=$request->pais_primaria;
-        $estudiobasico->ubi_primaria=$request->ubi_primaria;
-        $estudiobasico->dep_primaria=$request->dep_primaria;
-        $estudiobasico->prov_primaria=$request->prov_primaria;
-        $estudiobasico->dist_primaria=$request->dist_primaria;
-        
-        $estudiobasico->ie_secundaria=$request->ie_secundaria;
-        $estudiobasico->anio_egreso_secundaria=$request->anio_egreso_secundaria;
-        $estudiobasico->pais_secundaria=$request->pais_secundaria;
-        $estudiobasico->ubi_secundaria=$request->ubi_secundaria;
-        $estudiobasico->dep_secundaria=$request->dep_secundaria;
-        $estudiobasico->prov_secundaria=$request->prov_secundaria;
-        $estudiobasico->dist_secundaria=$request->dist_secundaria;
-      $estudiobasico-> save();*/
+
+
+     
     }
 
     /**

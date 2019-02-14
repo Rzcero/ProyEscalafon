@@ -389,7 +389,7 @@
                                         <label for="modalidad">Modalidad:</label>
                                         <select id="modalidad" class="form-control form-control-sm">
                                             <option selected>--Selecciona--</option>
-                                            <option>PERU</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -535,7 +535,9 @@
                     <!--     *************       -->
                     <div class="container px-3">
                         <!-- Inicio Formulario -->
-                        <form id="formulario1">
+                        <form id="formulariootrosestudios">
+                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+
                             <!--    -->
                             <div class="form-row my-2">
                                 <div class="col">  
@@ -543,7 +545,7 @@
                                         <label for="tipo_estudios">Tipo de Estudios:</label>
                                         <select id="tipo_estudios" class="form-control form-control-sm">
                                             <option selected>--Selecciona--</option>
-                                            <option>PERU</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -582,7 +584,7 @@
                                         <label for="tipo_doc">Tipo de Documento:</label>
                                         <select id="tipo_doc" class="form-control form-control-sm">
                                             <option selected>--Selecciona--</option>
-                                            <option>PERU</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
