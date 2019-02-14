@@ -1,6 +1,13 @@
-@extends('../layouts.plantilla')
+@extends('layouts.plantilla')
+
+@section('titulo')
+    Estudios 
+@endsection
 
 @section('contenedor')
+
+
+
     <div class="container">
         <div class="card-group">
             <!-- Tarjeta 1 -->
@@ -9,47 +16,30 @@
                 <div class="card-body">
                                     
                     <!--  Inicio contenedor del Formulario -->
-                    <div class="container px-0" id="tabla1">
+                    <div class="container1 px-0" id="tabla1">
+                        
                         
                         <!-- Inicio Formulario -->
-                        <form id="formulario1" method="post" action="{{url('/datos')}}">
-                            {{csrf_field()}}
-                            <!--  Titulo  -->
+                        <form id="formularioestudiosbasicos">
+                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                            <!--  I.E. Primaria  -->
+
+
+
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-header p-0 text-center">
-                                            <h4>Datos Personales del Servidor y Familiares</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- fin Titulo -->
-
-                            <!--  D.N.I  -->
-                            <div class="form-row my-1">
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="card-header p-0 text-center">Tipo de Documento</div>
-
-                                        <div class="card-body p-1">
-                                            <select id="pais_primaria" class="form-control form-control-sm">
-                                                <option selected>--Selecciona--</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="card">
-                                        <div class="card-header p-0 text-center">
-                                            N°
+                                            I.E. Estudios Primarios
                                         </div>
 
                                         <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="num_docIdentidad" name="num_docIdentidad" placeholder="" value="">
+                                            <input type="text" name="ie_primaria" class="form-control form-control-sm" id="ie_primaria" placeholder="Institución Educativa Primaria" value="IE.SAN JOSE">
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="col-2">
                                     <div class="card">
                                         <div class="card-body p-0">
@@ -58,176 +48,26 @@
 
                                     </div>
                                 </div>
-                                
-                            </div>
-                            <!-- fin D.N.I  -->
-
-                            <!--  Apellidos  -->
-                            <div class="form-row my-1">
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="card-header p-0 text-center">
-                                            Apellido Paterno
-                                        </div>
-
-                                        <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="apellidoPaterno" name="apellidoPaterno" placeholder="" value="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="card-header p-0 text-center">
-                                            Apellido Materno
-                                        </div>
-
-                                        <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="apellidoMaterno" name="apellidoMaterno" placeholder="" value="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- fin Apellido  -->
-
-                            <!-- Bloque de dos columnas  -->
-                            <div class="form-row my-1">
-                                <!-- Inicio Bloque Imagen -->
                                 <div class="col-3">
                                     <div class="card">
-
-                                    </div>
-                                </div>
-                                <!-- Fin Bloque Imagen -->
-                                
-                                <!-- Inicio Segundo Bloque  --> 
-                                <div class="col">
-                                    <!--  Nombres  -->
-                                    <div class="form-row my-1">
-                                        <div class="col">
-                                            <div class="card">
-                                                <div class="card-header p-0 text-center">
-                                                    Nombres
-                                                </div>
-
-                                                <div class="card-body p-1">
-                                                    <input type="text" class="form-control form-control-sm" id="nomb" name="nomb" placeholder="" value="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- fin Nombres  -->
-                                    
-                                    <!--  Inicio Sexo, Fecha Nacimiento, Estado Civil  -->
-                                    <div class="form-row my-1">
-                                        <div class="col-4">
-                                            <div class="card">
-                                                <div class="card-header p-0 text-center">
-                                                    Sexo
-                                                </div>
-
-                                                <div class="card-body p-1">
-                                                    
-                                                        <fieldset class="form-group mb-1">
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="estado" id="concluido" value="masculino">
-                                                                <label class="form-check-label" for="concluido">M</label>
-                                                            </div>
-
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="estado" id="no_concluido" value="femenino">
-                                                                <label class="form-check-label" for="no_concluido">F</label>
-                                                            </div>
-                                                        </fieldset>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="card">
-                                                <div class="card-header p-0 text-center">
-                                                    Fecha Nacim.
-                                                </div>
-
-                                                <div class="card-body p-1">
-                                                    <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="card">
-                                                <div class="card-header p-0 text-center">
-                                                    Estado Civil
-                                                </div>
-                                                <div class="card-body p-1">
-                                                    <select id="pais_primaria" class="form-control form-control-sm">
-                                                        <option selected>--Selecciona--</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- fin Sexo, Fecha Nacimiento, Estado Civil  -->
-
-                                    <!--  Inicio Tipo de Vía, Tipo de Zona  -->
-                                    <div class="form-row my-1">
-                                        <div class="col">
-                                            <div class="card">
-                                                <div class="card-header p-0 text-center">
-                                                    Tipo de Vía
-                                                </div>
-                                                <div class="card-body p-1">
-                                                    <select id="pais_primaria" class="form-control form-control-sm">
-                                                        <option selected>--Selecciona--</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col">
-                                            <div class="card">
-                                                <div class="card-header p-0 text-center">
-                                                    Tipo de Zona
-                                                </div>
-                                                <div class="card-body p-1">
-                                                    <select id="pais_primaria" class="form-control form-control-sm">
-                                                        <option selected>--Selecciona--</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- fin Tipo de Vía, Tipo de Zona  -->
-                                </div>
-                                <!-- Fin Segundo Bloque  -->
-                            </div>
-                            <!-- Fin Bloque de dos columnas  -->
-
-                            <!--  Direccion  -->
-                            <div class="form-row my-1">
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="card-header p-0 text-center">
-                                            Dirección
-                                        </div>
+                                        <div class="card-header p-0 text-center">Año de Egreso</div>
 
                                         <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
+                                            <input type="text" name="anio_egreso_primaria" class="form-control form-control-sm" id="anio_egreso_primaria" placeholder="ej: 1990">
                                         </div>
                                     </div>
                                 </div>
-                                 
                             </div>
-                            <!-- fin Direccion  -->
+                            <!-- fin I.E. Primaria  -->
 
-                            <!-- Pais Residencia -->
-                            <div class="form-row my-1">
+                            <!-- Pais y Ubigeo de la I.E. Primaria -->
+                            <div class="form-row my-2">
                                 <div class="col">
                                     <div class="card">
-                                        <div class="card-header p-0 text-center">País de Residencia</div>
+                                        <div class="card-header p-0 text-center">País de la I.E. Primaria</div>
 
                                         <div class="card-body p-1">
-                                            <select id="pais_primaria" class="form-control form-control-sm">
+                                            <select id="pais_primaria" name="pais_primaria" class="form-control form-control-sm">
                                                 <option selected>--Selecciona--</option>
                                                 <option>PERU</option>
                                             </select>
@@ -237,11 +77,11 @@
                                 <div class="col-4">
                                     <div class="card">
                                         <div class="card-header p-0 text-center">
-                                            Ubigeo Residencia
+                                            Ubigeo de la I.E.
                                         </div>
 
                                         <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ubi_primaria" placeholder="000000">
+                                            <input type="text" name="ubi_primaria" class="form-control form-control-sm" id="ubi_primaria" placeholder="000000">
                                         </div>
                                     </div>
                                 </div>
@@ -251,26 +91,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- fin Pais de Residencia-->
+                            <!-- fin -->
 
-                            <!-- Departamento/Provincia/Distrito de Residencia -->
-                            <div class="form-row my-1">
+                            <!-- Departamento/Provincia/Distrito I.E. Primaria -->
+                            <div class="form-row my-2">
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-header p-0 text-center">
-                                            Departamento / Provincia / Distrito de Residencia
+                                            Departamento / Provincia / Distrito de I.E.
                                         </div>
 
                                         <div class="card-body p-1">
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <input type="text" class="form-control form-control-sm" id="dep_primaria" placeholder="NO DEFINIDO">
+                                                    <input type="text" name="dep_primaria" class="form-control form-control-sm" id="dep_primaria" placeholder="NO DEFINIDO">
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" class="form-control form-control-sm"  id="prov_primaria" placeholder="NO DEFINIDO">
+                                                    <input type="text" name="prov_primaria" class="form-control form-control-sm"  id="prov_primaria" placeholder="NO DEFINIDO">
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" class="form-control form-control-sm"  id="dist_primaria" placeholder="NO DEFINIDO">
+                                                    <input type="text" name="dist_primaria"" class="form-control form-control-sm"  id="dist_primaria" placeholder="NO DEFINIDO">
                                                 </div>
                                             </div>
                                         </div>
@@ -279,14 +119,45 @@
                             </div>
                             <!--  fin  -->
 
-                            <!-- Pais de Nacimiento -->
-                            <div class="form-row my-1">
+                            <!--   I.E. Secundaria         -->
+                            <div class="form-row my-2">
                                 <div class="col">
                                     <div class="card">
-                                        <div class="card-header p-0 text-center">País de Nacimiento</div>
+                                        <div class="card-header p-0 text-center">I.E. Estudios Secundarios</div>
 
                                         <div class="card-body p-1">
-                                            <select id="pais_primaria" class="form-control form-control-sm">
+                                            <input type="text" name="ie_secundaria" class="form-control form-control-sm" id="ie_secundaria" placeholder="Institución Educativa Secundaria">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-2">
+                                    <div class="card">
+                                        <div class="card-body p-0">
+                                            <button class="btn btn-primary btn-block text-center">pdf</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-header p-0 text-center">Año de Egreso</div>
+
+                                        <div class="card-body p-1">
+                                            <input type="text" name="anio_egreso_secundaria" class="form-control form-control-sm" id="anio_egreso_secundaria" placeholder="ej: 1990">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- fin I.E. Secundaria  -->
+
+                            <!--   Pais  y Ubigeo de la I.E. Secundaria         -->
+                            <div class="form-row my-2">
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-header p-0 text-center">País de la I.E.</div>
+
+                                        <div class="card-body p-1">
+                                            <select id="pais_secundaria" class="form-control form-control-sm" name="pais_secundaria">
                                                 <option selected>--Selecciona--</option>
                                                 <option>PERU</option>
                                             </select>
@@ -296,11 +167,11 @@
                                 <div class="col-4">
                                     <div class="card">
                                         <div class="card-header p-0 text-center">
-                                            Ubigeo Nacimiento
+                                            Ubigeo de la I.E.
                                         </div>
 
                                         <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ubi_primaria" placeholder="000000">
+                                            <input type="text" name="ubi_secundaria" class="form-control form-control-sm" id="ubi_secundaria" placeholder="000000">
                                         </div>
                                     </div>
                                 </div>
@@ -310,26 +181,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- fin Pais de Nacimiento-->
-                            
-                            <!-- Departamento/Provincia/Distrito de Residencia -->
-                            <div class="form-row my-1">
+                            <!-- fin -->
+
+                            <!-- Departamento/Provincia/Distrito I.E. Secundaria -->
+                            <div class="form-row my-3">
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-header p-0 text-center">
-                                            Departamento / Provincia / Distrito de Nacimiento
+                                            Departamento / Provincia / Distrito de I.E. Secundaria
                                         </div>
 
                                         <div class="card-body p-1">
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <input type="text" class="form-control form-control-sm" id="dep_primaria" placeholder="NO DEFINIDO">
+                                                    <input type="text" name="dep_secundaria" class="form-control form-control-sm" id="dep_secundaria" placeholder="NO DEFINIDO">
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" class="form-control form-control-sm"  id="prov_primaria" placeholder="NO DEFINIDO">
+                                                    <input type="text" name="prov_secundaria" class="form-control form-control-sm"  id="prov_secundaria" placeholder="NO DEFINIDO">
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" class="form-control form-control-sm"  id="dist_primaria" placeholder="NO DEFINIDO">
+                                                    <input type="text" name="dist_secundaria" class="form-control form-control-sm"  id="dist_secundaria" placeholder="NO DEFINIDO">
                                                 </div>
                                             </div>
                                         </div>
@@ -337,54 +208,47 @@
                                 </div>
                             </div>
                             <!--  fin  -->
-
-                            <!--  Inicio Tel. Fijo, Tel. Movil y correo  -->
-                            <div class="form-row my-1">
-                                <div class="col-3">
-                                    <div class="card">
-                                        <div class="card-header p-0 text-center">
-                                            Telf. Fijo
-                                        </div>
-
-                                        <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-3">
-                                    <div class="card">
-                                        <div class="card-header p-0 text-center">
-                                            Telf. Movil
-                                        </div>
-
-                                        <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="card-header p-0 text-center">
-                                            Correo Electrónico
-                                        </div>
-                                        
-                                        <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- fin Tel. Fijo, Tel. Movil y correo  -->
-                            
-                            <button type="submit" class="btn btn-primary">Registrar</button>
-
+                            <button type="submit" name="enviar" class="btn btn-primary">Registrar</button>
+                                                      
+     
                         </form>
                         <!-- Fin Formulario -->
-                        
-                    </div>
+
+                        </div>
                     <!-- Fin del Contenedor del Formulario -->
+                        
+                        
+                    <!--  Inicio contenedor Estudios Superiores  -->
+                    <div class="container my-3 px-0" id="tabla2">
+                         
+                        <div class="card">
+                            <div class="card-header p-0 text-center">
+                                Estudios Superiores
+                            </div>
+
+                            <div class="card-body p-1">
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <td>Grado</td>
+                                            <td>Centro de Estudios</td>
+                                            <td>Nivel</td>
+                                            <td>Opciones</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="est_superiores"></tbody>
+                                </table>
+
+                                <caption>
+                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#modalEstudiosSuperiores">
+                                        Agregar Nuevo <span><i class="material-icons">add</i></span>
+                                    </button>
+                                </caption>
+                            </div>
+                        </div>
+  
+                    </div>
+                    <!--  Fin Estudios Superiores  -->
                     
                 </div>
                 <!-- Fin del Cuerpo Tarjeta 1 -->
@@ -396,12 +260,12 @@
                 <!-- Inicio Cuerpo Tarjeta 2 -->
                 <div class="card-body">
                     
-                    <!--  Inicio contenedor Idiomas  -->
+                    <!--  Inicio contenedor Otros Estudios  -->
                     <div class="container my-3 px-0">
                                                 
                         <div class="card">
                             <div class="card-header p-0 text-center">
-                                Idiomas
+                                Otros Estudios
                             </div>
 
                             <div class="card-body p-1">
@@ -409,61 +273,11 @@
                                     <table class="table table-bordered table-sm">
                                         <thead>
                                             <tr>
-                                                <td>Idioma</td>
-                                                <td>Dominio</td>
+                                                <td>Tipo</td>
+                                                <td>Denominación</td>
+                                                <td>Horas</td>
+                                                <td>Creditos</td>
                                                 <td>Opciones</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody id=otros>
-                                            @foreach($idiomas as $idioma)
-                                                <tr class="{{$idioma->id_idioma}}">
-                                                    <td>{{$idioma->id_tipo_idioma}}</td>
-                                                    <td>{{$idioma->dominio}}</td>
-                                                    <td>
-                                                        <a href="#" class="show-modal btn btn-info btn-sm" data-id="{{$idioma->id_idioma}}">
-                                                            <i class="fa fa-eye"></i>
-                                                        </a>
-                                                        <a href="#" class="edit-modal btn btn-warning btn-sm" data-id="{{$idioma->id_idioma}}">
-                                                            <i class="glyphicon glyphicon-pencil">editar</i>
-                                                        </a>
-                                                        <a href="#" class="delete-modal btn btn-danger btn-sm" data-id="{{$idioma->id_idioma}}">
-                                                            <i class="glyphicon glyphicon-trash">borrar</i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <caption>
-                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#modalOtrosEstudios">
-                                        Agregar Nuevo <span><i class="material-icons">add</i></span>
-                                    </button>
-                                </caption>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <!--  Fin Idiomas  -->
-                    
-                    <!--  Inicio Derecho Habientes  -->
-                    <div class="container my-3 px-0">
-                                                
-                        <div class="card">
-                            <div class="card-header p-0 text-center">
-                            Derecho Habientes
-                            </div>
-
-                            <div class="card-body p-1">
-                                <div id="div_tabla2">
-                                    <table class="table table-bordered table-sm">
-                                        <thead>
-                                            <tr>
-                                            <td>Parentesco</td>
-                                            <td>N° Doc.</td>
-                                            <td>Apellidos y Nombres</td>
-                                            <td>F. Nacim.</td>
                                             </tr>
                                         </thead>
                                         <tbody id=otros></tbody>
@@ -478,8 +292,31 @@
                         </div>
                         
                     </div>
-                    <!--  Fin Derecho Habientes  -->
+                    <!--  Fin Otros Estudios  -->
                     
+                    <!--  Produccion Intelectual y Cultural  -->
+                    <div class="container my-3 px-0">
+                        <div class="card">
+                            <div class="card-header p-0 text-center">
+                                Producción Intelectual y Cultural
+                            </div>
+
+                            <div class="card-body p-1">
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <td>Medio</td>
+                                            <td>Nombre de la Publicación</td>
+                                            <td>Año</td>
+                                            <td>Opciones</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id=pro_intelec></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  Fin Produccion Intelectual  -->
                 </div>
                 <!-- Fin Cuerpo Tarjeta 2 -->
             </div>
@@ -488,6 +325,10 @@
         </div>
     
     </div>
+
+
+
+
     
     <!-- Modal para Estudios Superiores nuevos -->
     
@@ -505,7 +346,8 @@
                     <!--     *************       -->
                     <div class="container px-3">
                         <!-- Inicio Formulario -->
-                        <form id="formularioModal1">
+                        <form id="formularioestudiossuperiores">
+                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                             <!--  I.E. Primaria  -->
                             <div class="form-row my-2">
                                 <div class="col">  
@@ -513,7 +355,7 @@
                                         <label for="nivel_estudio">Nivel de Estudio:</label>
                                         <select id="nivel_estudio" class="form-control form-control-sm">
                                             <option selected>--Selecciona--</option>
-                                            <option>PERU</option>
+                                           
                                         </select>
                                     </div>
                                 </div>
@@ -693,7 +535,7 @@
                     <!--     *************       -->
                     <div class="container px-3">
                         <!-- Inicio Formulario -->
-                        <form id="formularioModal2">
+                        <form id="formulario1">
                             <!--    -->
                             <div class="form-row my-2">
                                 <div class="col">  
@@ -803,4 +645,6 @@
         </div>
     </div>
 
-@endsection
+
+
+    @endsection

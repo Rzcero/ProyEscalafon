@@ -3,19 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use  App\EstudioBasico;
+use App\NivelEstudio;
+use App\EstudioBasico;
+use App\EstudioSuperior;
+use App\OtroEstudio;
 
-class EstudiosBasicosController extends Controller
+
+
+class EstudiosController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()  
+    public function index()
     {
-        //$esbasico=EstudioBasico::all();  // se hizo para pruebas
-        //return view("EstudiosBasicos.index",compact("esbasico"));
+        
     }
 
     /**
@@ -25,7 +29,8 @@ class EstudiosBasicosController extends Controller
      */
     public function create()
     {
-        return view('EstudiosBasicos.create');
+        return view('Estudios.create');
+
     }
 
     /**
@@ -34,11 +39,46 @@ class EstudiosBasicosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+        public function listarnivel(){
+            
+         $niveles = NivelEstudio::all();
+        
+        $matriz = array();
+        
+        foreach($niveles as $nivelestudio){
+        
+            $matriz[] = array('id_nivel' => $nivelestudio->id_nivel,  // 'id_nivel' -> se puede coloar diferente al nombre de la tabla 
+                              'nombre_nivel' => $nivelestudio->nombre);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+}
+
     public function store(Request $request)
     {
-        //return view('EstudiosBasicos.insert');
- 
-        $estudiobasico=new EstudioBasico;
+
+            if($request->ajax()){
+           
+           //Persona::create($request->all());
+           $estudio_basico = new EstudioBasico;
+           $estudio_basico->ie_primaria = $request->ie_primaria;
+           $estudio_basico->anio_egreso_primaria = $request->anio_egreso_primaria;
+           
+           $estudio_basico->save();
+           
+//            return response()->json([
+//                "mensaje" => $request->all()
+//            ]);
+           
+       }
+
+
+            /* $estudiobasico=new EstudioBasico;
 
         $estudiobasico->ie_primaria=$request->ie_primaria;
         $estudiobasico->anio_egreso_primaria=$request->anio_egreso_primaria;
@@ -55,32 +95,7 @@ class EstudiosBasicosController extends Controller
         $estudiobasico->dep_secundaria=$request->dep_secundaria;
         $estudiobasico->prov_secundaria=$request->prov_secundaria;
         $estudiobasico->dist_secundaria=$request->dist_secundaria;
-      $estudiobasico-> save();
-
-        /*
-            class EstudioBasico extends Model
-{
-
-
-ie_primaria VARCHAR(100),
-anio_egreso_primaria INT,
-pdf_primaria VARCHAR(45),
-pais_primaria VARCHAR(45),
-ubi_primaria VARCHAR(45),
-dep_primaria VARCHAR(45),
-prov_primaria VARCHAR(45),
-dist_primaria VARCHAR(45),
-
-ie_secundaria VARCHAR(100),
-anio_egreso_secundaria INT,
-pdf_secundaria VARCHAR(45),
-pais_secundaria VARCHAR(45),
-ubi_secundaria VARCHAR(45),
-dep_secundaria VARCHAR(45),
-prov_secundaria VARCHAR(45),
-dist_secundaria VARCHAR(45),
-
-        */
+      $estudiobasico-> save();*/
     }
 
     /**
@@ -114,7 +129,7 @@ dist_secundaria VARCHAR(45),
      */
     public function update(Request $request, $id)
     {
-         return view('EstudiosBasicos.update');
+        //
     }
 
     /**
@@ -126,6 +141,5 @@ dist_secundaria VARCHAR(45),
     public function destroy($id)
     {
         //
-         return view('EstudiosBasicos.delete');
     }
 }

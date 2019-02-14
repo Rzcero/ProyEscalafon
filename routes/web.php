@@ -14,9 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('/EstudiosBasicos', 'EstudiosBasicosController');
-Route::resource('/EstudiosSuperiores', 'EstudiosSuperioresController');
-Route::resource('/OtrosEstudios', 'OtrosEstudiosController');
+Route::resource('/Estudios', 'EstudiosController');
+
+
+
+Route::get('/listarnivel', 'EstudiosController@listarnivel')->name('estudios.listarnivel');
+
+
 /*
 Route::get('/estudiosbasicos', 'EstudiosBasicosController@index');
 Route::get('/crearestudiosbasicos', 'EstudiosBasicosController@create');
@@ -25,7 +29,8 @@ Route::get('/actualizarestudiosbasicos', 'EstudiosBasicosController@update');
 Route::get('/borrarestudiosbasicos', 'EstudiosBasicosController@destroy');
 
 
-
-
-
+Route::resource('/datos','DatosController');
+Route::get('/listarIdiomas', 'DatosController@listarIdiomas')->name('datos.listarIdiomas');
+Route::get('/listarHabientes', 'DatosController@listarHabientes')->name('datos.listarHabientes');
+Route::get('/listarTipoIdioma', 'DatosController@listarTipoIdiomas')->name('datos.listarTipoIdiomas');
 

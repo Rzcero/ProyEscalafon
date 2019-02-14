@@ -23,4 +23,10 @@ class EstudioSuperior extends Model
     "entidad",
     "pdf",
     "id_persona"];
+
+     public function nivelestudio(){
+
+        return $this->belogsTo('App\EstudioSuperior','id_nivel','id_nivel');
+
+    }
 }
