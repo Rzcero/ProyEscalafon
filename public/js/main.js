@@ -102,7 +102,8 @@ $(document).ready(function(){
             }
 
         });
-        
+    }  
+    
     //Para llenar el Select de tipo de Idioma
         
     $.ajax({
@@ -126,9 +127,5 @@ $(document).ready(function(){
         }
         
     });
-    
-    }
-    
-    
-    
+
 })
