@@ -110,7 +110,7 @@
                                                     <input type="text" name="prov_primaria" class="form-control form-control-sm"  id="prov_primaria" placeholder="NO DEFINIDO">
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" name="dist_primaria"" class="form-control form-control-sm"  id="dist_primaria" placeholder="NO DEFINIDO">
+                                                    <input type="text" name="dist_primaria" class="form-control form-control-sm"  id="dist_primaria" placeholder="NO DEFINIDO">
                                                 </div>
                                             </div>
                                         </div>

@@ -34,3 +34,4 @@ Route::get('/listarIdiomas', 'DatosController@listarIdiomas')->name('datos.lista
 Route::get('/listarHabientes', 'DatosController@listarHabientes')->name('datos.listarHabientes');
 Route::get('/listarTipoIdioma', 'DatosController@listarTipoIdiomas')->name('datos.listarTipoIdiomas');
 
+*/

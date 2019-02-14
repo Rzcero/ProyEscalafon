@@ -7,7 +7,7 @@ $(document).ready(function()
         var dato = $("#ie_primaria").val();  // # se recepcionan de create.blade -> formulario
         var dato2 = $("#anio_egreso_primaria").val();
 
-        var route = "/ProyEscalafon/public/Estudios";
+        var route = "/escalafon/ProyEscalafon/public/Estudios";
         var token = $("#token").val();
         
         $.ajax({
@@ -35,7 +35,7 @@ $(document).ready(function()
         
     $.ajax({
         
-        url: '/ProyEscalafon/public/listarnivel',
+        url: '/escalafon/ProyEscalafon/public/listarnivel',
         type: 'GET',
         success: function(respuesta){
                                     
