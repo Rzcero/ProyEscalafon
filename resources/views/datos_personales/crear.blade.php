@@ -34,8 +34,8 @@
                                         <div class="card-header p-0 text-center">Tipo de Documento</div>
 
                                         <div class="card-body p-1">
-                                            <select id="pais_primaria" class="form-control form-control-sm">
-                                                <option selected>--Selecciona--</option>
+                                            <select id="tipoDocIdentidad" class="form-control form-control-sm">
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -115,35 +115,34 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- fin Nombres  -->
-                                    
-                                    <!--  Inicio Sexo, Fecha Nacimiento, Estado Civil  -->
-                                    <div class="form-row my-1">
-                                        <div class="col-4">
+                                        
+                                        <div class="col-3.5">
                                             <div class="card">
                                                 <div class="card-header p-0 text-center">
                                                     Sexo
                                                 </div>
 
                                                 <div class="card-body p-1">
-                                                    
-                                                        <fieldset class="form-group mb-1">
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="estado" id="concluido" value="masculino">
-                                                                <label class="form-check-label" for="concluido">M</label>
-                                                            </div>
+                                                    <fieldset class="form-group mb-1">     
+                                                        <div class="form-check form-check-inline ">
+                                                            <input class="form-check-input" type="radio" name="estado" id="masc" value="masculino">
+                                                            <label class="form-check-label" for="masc">M</label>
+                                                        </div>
 
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="estado" id="no_concluido" value="femenino">
-                                                                <label class="form-check-label" for="no_concluido">F</label>
-                                                            </div>
-                                                        </fieldset>
-                                                    
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="estado" id="fem" value="femenino">
+                                                            <label class="form-check-label" for="fem">F</label>
+                                                        </div>
+                                                    </fieldset>
                                                 </div>
                                             </div>
                                         </div>
 
+                                    </div>
+                                    <!-- fin Nombres  -->
+                                    
+                                    <!--  Inicio Sexo, Fecha Nacimiento, Estado Civil  -->
+                                    <div class="form-row my-1">
                                         <div class="col">
                                             <div class="card">
                                                 <div class="card-header p-0 text-center">
@@ -151,18 +150,19 @@
                                                 </div>
 
                                                 <div class="card-body p-1">
-                                                    <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
+                                                    <input type="date" class="form-control form-control-sm" id="fech_nac" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="col">
                                             <div class="card">
                                                 <div class="card-header p-0 text-center">
                                                     Estado Civil
                                                 </div>
                                                 <div class="card-body p-1">
-                                                    <select id="pais_primaria" class="form-control form-control-sm">
-                                                        <option selected>--Selecciona--</option>
+                                                    <select id="est_civil" class="form-control form-control-sm">
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -178,8 +178,8 @@
                                                     Tipo de Vía
                                                 </div>
                                                 <div class="card-body p-1">
-                                                    <select id="pais_primaria" class="form-control form-control-sm">
-                                                        <option selected>--Selecciona--</option>
+                                                    <select id="via" class="form-control form-control-sm">
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -191,8 +191,8 @@
                                                     Tipo de Zona
                                                 </div>
                                                 <div class="card-body p-1">
-                                                    <select id="pais_primaria" class="form-control form-control-sm">
-                                                        <option selected>--Selecciona--</option>
+                                                    <select id="zona" class="form-control form-control-sm">
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -213,7 +213,7 @@
                                         </div>
 
                                         <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
+                                            <input type="text" class="form-control form-control-sm" id="direc" placeholder="" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -228,9 +228,8 @@
                                         <div class="card-header p-0 text-center">País de Residencia</div>
 
                                         <div class="card-body p-1">
-                                            <select id="pais_primaria" class="form-control form-control-sm">
-                                                <option selected>--Selecciona--</option>
-                                                <option>PERU</option>
+                                            <select id="pais_residencia" class="form-control form-control-sm">
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -242,7 +241,7 @@
                                         </div>
 
                                         <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ubi_primaria" placeholder="000000">
+                                            <input type="text" class="form-control form-control-sm" id="ubi_residencia" placeholder="000000">
                                         </div>
                                     </div>
                                 </div>
@@ -488,7 +487,7 @@
                     <div class="container px-3">
                         <!-- Inicio Formulario -->
                         <form id="formularioModal1">
-                            <!--    -->
+                            <input type="hidden" name="_token" id="token2" value="{{ csrf_token() }}">
                             {{csrf_field()}}
                             <div class="form-row my-2">
                                 <div class="col">  

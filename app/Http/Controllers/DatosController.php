@@ -7,6 +7,10 @@ use App\Persona;
 use App\Idioma;
 use App\TipoIdioma;
 use App\Habiente;
+use App\TipoDocIdentidad;
+use App\EstadoCivil;
+use App\TipoVia;
+use App\TipoZona;
 
 
 class DatosController extends Controller
@@ -22,6 +26,94 @@ class DatosController extends Controller
 //        $idiomas = Idioma::all();
 //        return view('datos_personales.index', compact('idiomas'));
         
+    }
+    
+    //Para mostrarlo en el select de Tipo de Documento de Identidad
+    public function listarTipoDocIdentidad()
+    {
+        
+        $tipodocidentidad = TipoDocIdentidad::all();
+        
+        $matriz = array();
+        
+        foreach($tipodocidentidad as $tipoidentidad){
+        
+            $matriz[] = array('id' => $tipoidentidad->id_tipo_doc,
+                              'nombre' => $tipoidentidad->denominacion);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+    
+    //Para mostrarlo en el select de Estado civil
+    public function listarEstadoCivil()
+    {
+        
+        $estados = EstadoCivil::all();
+        
+        $matriz = array();
+        
+        foreach($estados as $estado){
+        
+            $matriz[] = array('id' => $estado->id_estado_civil,
+                              'nombre' => $estado->denominacion);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+    
+    //Para mostrarlo en el select de Tipo Via
+    public function listarTipoVia()
+    {
+        
+        $vias = TipoVia::all();
+        
+        $matriz = array();
+        
+        foreach($vias as $via){
+        
+            $matriz[] = array('id' => $via->id_tipo_via,
+                              'nombre' => $via->denominacion);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+    
+    //Para mostrarlo en el select de Tipo Zona
+    public function listarTipoZona()
+    {
+        
+        $zonas = TipoZona::all();
+        
+        $matriz = array();
+        
+        foreach($zonas as $zona){
+        
+            $matriz[] = array('id' => $zona->id_tipo_zona,
+                              'nombre' => $zona->denominacion);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
     }
     
     public function listarIdiomas()
@@ -115,9 +207,18 @@ class DatosController extends Controller
             
             //Persona::create($request->all());
             $persona = new Persona;
+            $persona->id_tipo_doc = $request->tipoDocIdent;
+            $persona->num_doc_identidad = $request->numDocIdent;
             $persona->ape_paterno = $request->apellPaterno;
             $persona->ape_materno = $request->apellMaterno;
-            
+            $persona->nombres = $request->nombres;
+            $persona->sexo = $request->sexo;
+            $persona->fecha_nacimiento = $request->fecha;
+            $persona->id_estado_civil = $request->estadoCivil;
+            $persona->id_tipo_via = $request->via;
+            $persona->id_tipo_zona = $request->zona;
+            $persona->direccion = $request->direccion;
+                        
             $persona->save();
             
 //            return response()->json([
@@ -136,6 +237,21 @@ class DatosController extends Controller
 //        $persona->save();
     
     }
+    
+    public function agregarIdioma(Request $request)
+    {
+        
+        if($request->ajax()){
+            
+            $idioma = new Idioma;
+            $idioma->entidad = $request->centro;
+                        
+            $idioma->save();
+            
+        }
+     
+    }
+    
     
     public function storeIdioma(Request $request)
     {
