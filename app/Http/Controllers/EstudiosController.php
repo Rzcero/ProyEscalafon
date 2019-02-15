@@ -151,38 +151,33 @@ public function listartipodocumentos(){
 //            ]);
            
        }
-/*
 
-     if($request->ajax()){
+    }
+
+     public function guardar_otros_estudios(Request $request){
+
+
+ if($request->ajax()){
            
-           //Persona::create($request->all());
+           
         $otros_estudios = new OtroEstudio;
         $otros_estudio->id_tipo_estudio = $request->id_tipo_estudio;
         $otros_estudio->nombre_estudio = $request->nombre_estudio;
-        $otros_estudio->participacion=$request->participacion;
+        /*$otros_estudio->participacion=$request->participacion;
         $otros_estudio->centro_estudio=$request->centro_estudio;
         $otros_estudio->id_tipo_documento=$request->id_tipo_documento;
         $otros_estudio->fecha_inicio=$request->fecha_inicio;
         $otros_estudio->fecha_termino=$request->fecha_termino;
         $otros_estudio->num_horas=$request->num_horas;
-        $otros_estudio->num_creditos=$request->num_creditos;
+        $otros_estudio->num_creditos=$request->num_creditos;*/
 
            
            $estudio_basico->save();
            
-//            return response()->json([
-//                "mensaje" => $request->all()
-//            ]);
            
        }
-*/
 
-
-
-
-
-     
-    }
+     }
 
     /**
      * Display the specified resource.
@@ -190,6 +185,9 @@ public function listartipodocumentos(){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function show($id)
     {
         //

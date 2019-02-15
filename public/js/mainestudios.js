@@ -23,7 +23,7 @@ $(document).ready(function()
 
 
         var route = "/escalafon/ProyEscalafon/public/Estudios";
-        var token = $("#token").val();
+        var token = $("#token_est_bas").val();
         
         $.ajax({
             
@@ -56,13 +56,13 @@ $(document).ready(function()
         e.preventDefault();
     
     });
-/*
+
 // tabla de otros estudios
-$("#formulariootrosestudios").submit(function(e){
+$("#guardarOtrosEstudios").click(function(e){
                 
         var dato = $("#tipo_estudios").val();  // # se recepcionan de create.blade -> formulario
         var dato2 = $("#nom_estudios").val();
-        var dato3 = $("#participacion").val();  // # se recepcionan de create.blade -> formulario
+       /* var dato3 = $("#participacion").val();  // # se recepcionan de create.blade -> formulario
         var dato4 = $("#centro_estudio").val();
         var dato5= $("#tipo_doc").val();  // # se recepcionan de create.blade -> formulario
         var dato6 = $("#fech_inicio").val();
@@ -71,9 +71,11 @@ $("#formulariootrosestudios").submit(function(e){
         var dato9 = $("#creditos").val();  // # se recepcionan de create.blade -> formulario
        
 
-
-        var route = "/escalafon/ProyEscalafon/public/Estudios";
-        var token = $("#token").val();
+*/
+console.log(dato);
+console.log(dato2);
+        var route = "/escalafon/ProyEscalafon/public/guardar_otros_estudios";
+        var token = $("#token_otr_est").val();
         
         $.ajax({
             
@@ -83,14 +85,14 @@ $("#formulariootrosestudios").submit(function(e){
             dataType: 'json',
             data: {
                 id_tipo_estudio: dato,
-                nombre_estudio: dato2,
-                participacion: dato3,
+                nombre_estudio: dato2
+                /*participacion: dato3,
                 centro_estudio: dato4,
                 id_tipo_documento: dato5
                 fecha_inicio: dato6,
                 fecha_termino: dato7,
                 num_horas: dato8,
-                num_creditos: dato9,
+                num_creditos: dato9,*/
               
               
 
@@ -104,7 +106,7 @@ $("#formulariootrosestudios").submit(function(e){
     
     });
 
-*/
+
 
 
 

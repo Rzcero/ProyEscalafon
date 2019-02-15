@@ -21,7 +21,7 @@
                         
                         <!-- Inicio Formulario -->
                         <form id="formularioestudiosbasicos">
-                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                             <input type="hidden" name="_token" id="token_est_bas" value="{{ csrf_token() }}">
                             <!--  I.E. Primaria  -->
 
 
@@ -347,7 +347,7 @@
                     <div class="container px-3">
                         <!-- Inicio Formulario -->
                         <form id="formularioestudiossuperiores">
-                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                             <input type="hidden" name="_token" id="token_est_sup" value="{{ csrf_token() }}">
                             <!--  I.E. Primaria  -->
                             <div class="form-row my-2">
                                 <div class="col">  
@@ -536,7 +536,7 @@
                     <div class="container px-3">
                         <!-- Inicio Formulario -->
                         <form id="formulariootrosestudios">
-                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="_token" id="token_otr_est" value="{{ csrf_token() }}">
 
                             <!--    -->
                             <div class="form-row my-2">
@@ -640,7 +640,7 @@
                                          
                 </div>
                 <div class="modal-footer py-1">
-                    <button type="button" class="btn btn-primary" id="guardarnuevo" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-primary" id="guardarOtrosEstudios" data-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
