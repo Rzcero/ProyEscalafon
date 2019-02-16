@@ -22,7 +22,7 @@ $(document).ready(function()
 
 
 
-        var route = "/escalafon/ProyEscalafon/public/Estudios";
+        var route = "/ProyEscalafon/public/Estudios";
         var token = $("#token_est_bas").val();
         
         $.ajax({
@@ -62,19 +62,19 @@ $("#guardarOtrosEstudios").click(function(e){
                 
         var dato = $("#tipo_estudios").val();  // # se recepcionan de create.blade -> formulario
         var dato2 = $("#nom_estudios").val();
-       /* var dato3 = $("#participacion").val();  // # se recepcionan de create.blade -> formulario
+        var dato3 = $("#participacion").val();  // # se recepcionan de create.blade -> formulario
         var dato4 = $("#centro_estudio").val();
         var dato5= $("#tipo_doc").val();  // # se recepcionan de create.blade -> formulario
-        var dato6 = $("#fech_inicio").val();
-        var dato7 = $("#fech_termino").val();  // # se recepcionan de create.blade -> formulario
+        var dato6 = $("#fech_inicio_otros_estudios").val();
+        var dato7 = $("#fech_termino_otros_estudios").val();  // # se recepcionan de create.blade -> formulario
         var dato8 = $("#horas").val();
         var dato9 = $("#creditos").val();  // # se recepcionan de create.blade -> formulario
        
 
-*/
-console.log(dato);
-console.log(dato2);
-        var route = "/escalafon/ProyEscalafon/public/guardar_otros_estudios";
+/*
+console.log(dato);  para ver por consola los datos que estas recibiendo
+console.log(dato2);*/
+        var route = "/ProyEscalafon/public/guardar_otros_estudios";
         var token = $("#token_otr_est").val();
         
         $.ajax({
@@ -85,18 +85,15 @@ console.log(dato2);
             dataType: 'json',
             data: {
                 id_tipo_estudio: dato,
-                nombre_estudio: dato2
-                /*participacion: dato3,
+                nombre_estudio: dato2,
+                participacion: dato3,
                 centro_estudio: dato4,
-                id_tipo_documento: dato5
-                fecha_inicio: dato6,
+                id_tipo_documento: dato5,
+                 fecha_inicio: dato6,
                 fecha_termino: dato7,
                 num_horas: dato8,
-                num_creditos: dato9,*/
+                num_creditos: dato9
               
-              
-
-
 
             }
             
@@ -115,7 +112,7 @@ console.log(dato2);
         
     $.ajax({
         
-        url: '/escalafon/ProyEscalafon/public/listarnivel',
+        url: '/ProyEscalafon/public/listarnivel',
         type: 'GET',
         success: function(respuesta){
                                     
@@ -125,7 +122,7 @@ console.log(dato2);
                 obj_json.forEach(obj_json => {
 
                   
-                    registro += `<option value='${obj_json.id}'>${obj_json.nombre_nivel}</option>`
+                    registro += `<option value='${obj_json.id_nivel}'>${obj_json.nombre_nivel}</option>`
 
                 });
             });
@@ -140,7 +137,7 @@ console.log(dato2);
         
     $.ajax({
         
-        url: '/escalafon/ProyEscalafon/public/listarmodalidad',
+        url: '/ProyEscalafon/public/listarmodalidad',
         type: 'GET',
         success: function(respuesta){
                                     
@@ -150,7 +147,7 @@ console.log(dato2);
                 obj_json.forEach(obj_json => {
 
                   
-                    registro += `<option value='${obj_json.id}'>${obj_json.nombre_modalidad}</option>`
+                    registro += `<option value='${obj_json.id_modalidad}'>${obj_json.nombre_modalidad}</option>`
 
                 });
             });
@@ -164,7 +161,7 @@ console.log(dato2);
         
     $.ajax({
         
-        url: '/escalafon/ProyEscalafon/public/listartipoestudios',
+        url: '/ProyEscalafon/public/listartipoestudios',
         type: 'GET',
         success: function(respuesta){
                                     
@@ -174,7 +171,7 @@ console.log(dato2);
                 obj_json.forEach(obj_json => {
 
                   
-                    registro += `<option value='${obj_json.id}'>${obj_json.denominacion}</option>`
+                    registro += `<option value='${obj_json.id_tipo_estudio}'>${obj_json.denominacion}</option>` // jala el id_tipo_estudio}
 
                 });
             });
@@ -190,7 +187,7 @@ console.log(dato2);
         
     $.ajax({
         
-        url: '/escalafon/ProyEscalafon/public/listartipodocumentos',
+        url: '/ProyEscalafon/public/listartipodocumentos',
         type: 'GET',
         success: function(respuesta){
                                     
@@ -200,7 +197,7 @@ console.log(dato2);
                 obj_json.forEach(obj_json => {
 
                   
-                    registro += `<option value='${obj_json.id}'>${obj_json.denominacion}</option>`
+                    registro += `<option value='${obj_json.id_tipo_documento}'>${obj_json.denominacion}</option>`
 
                 });
             });

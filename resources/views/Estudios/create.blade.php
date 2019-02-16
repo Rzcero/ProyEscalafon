@@ -406,7 +406,7 @@
                                 <div class="col">  
                                     <div class="form-group mb-1">
                                         <label for="centro_estudio">Centro de Estudios:</label>
-                                        <select id="centro_estudio" class="form-control form-control-sm">
+                                        <select id="centro_estudio_superior" class="form-control form-control-sm">
                                             <option selected>--Selecciona--</option>
                                             <option>PERU</option>
                                         </select>
@@ -602,14 +602,14 @@
                                 <div class="col">
                                     <div class="form-group mb-1">
                                         <label for="fech_inicio">Fecha de Inicio:</label>
-                                        <input type="date" class="form-control form-control-sm" id="fech_inicio" placeholder="">
+                                        <input type="date" class="form-control form-control-sm" id="fech_inicio_otros_estudios" placeholder="">
                                     </div>
                                 </div>
 
                                 <div class="col">  
                                     <div class="form-group mb-1">
                                         <label for="fech_termino">Fecha de Termino:</label>
-                                        <input type="date" class="form-control form-control-sm" id="fech_termino" placeholder="">                             
+                                        <input type="date" class="form-control form-control-sm" id="fech_termino_otros_estudios" placeholder="">                             
                                     </div>
                                 </div>
 

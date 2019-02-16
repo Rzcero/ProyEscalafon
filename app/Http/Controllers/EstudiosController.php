@@ -88,7 +88,7 @@ public function listartipoestudios(){
         
         foreach($tiposestudios as $tipoestudio){
         
-            $matriz[] = array('id_tipo_estudio' => $tipoestudio->id_tipo_estudio,  // 'id_modalidad' -> se puede coloar diferente al nombre de la tabla 
+            $matriz[] = array('id_tipo_estudio' => $tipoestudio->id_tipo_estudio,  // 'id_modalidad' -> se puede coloar diferente al nombre de la tabla -> jala a mainestudios id_tipo_estudio
                               'denominacion' => $tipoestudio->denominacion);
         
         }
@@ -160,19 +160,19 @@ public function listartipodocumentos(){
  if($request->ajax()){
            
            
-        $otros_estudios = new OtroEstudio;
+        $otros_estudio = new OtroEstudio;
         $otros_estudio->id_tipo_estudio = $request->id_tipo_estudio;
         $otros_estudio->nombre_estudio = $request->nombre_estudio;
-        /*$otros_estudio->participacion=$request->participacion;
+        $otros_estudio->participacion=$request->participacion;
         $otros_estudio->centro_estudio=$request->centro_estudio;
         $otros_estudio->id_tipo_documento=$request->id_tipo_documento;
         $otros_estudio->fecha_inicio=$request->fecha_inicio;
         $otros_estudio->fecha_termino=$request->fecha_termino;
         $otros_estudio->num_horas=$request->num_horas;
-        $otros_estudio->num_creditos=$request->num_creditos;*/
+        $otros_estudio->num_creditos=$request->num_creditos;
 
            
-           $estudio_basico->save();
+           $otros_estudio->save();
            
            
        }
