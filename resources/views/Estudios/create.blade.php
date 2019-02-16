@@ -302,6 +302,7 @@
                             </div>
 
                             <div class="card-body p-1">
+                                <div id="div_tabla3">
                                 <table class="table table-bordered table-sm">
                                     <thead>
                                         <tr>
@@ -314,8 +315,18 @@
                                     <tbody id=pro_intelec></tbody>
                                 </table>
                             </div>
+
+                            <caption>
+                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#modalProduccionIntelectual">
+                                        Agregar Nuevo <span><i class="material-icons">add</i></span>
+                                    </button>
+                                </caption>
+
+
+                             </div>
                         </div>
                     </div>
+
                     <!--  Fin Produccion Intelectual  -->
                 </div>
                 <!-- Fin Cuerpo Tarjeta 2 -->
@@ -643,9 +654,107 @@
                     <button type="button" class="btn btn-primary" id="guardarOtrosEstudios" data-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
+
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- Modal para Produccion intelectual -->
+    
+    <div class="modal fade" id="modalProduccionIntelectual" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h5 class="modal-title" id="exampleModalLabel">Produccion Intelectual</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body py-0">
+                           
+                    <!--     *************       -->
+                    <div class="container px-2">
+                        <!-- Inicio Formulario -->
+                        <form id="formularioproduccionintelectual">
+                            <input type="hidden" name="_token" id="token_pro_int" value="{{ csrf_token() }}">
+
+                            <!--    -->
+
+                               <div class="form-row my-2">
+                                <div class="col">  
+                                    <div class="form-group mb-1">
+                                        <label for="tipomedio">Tipo de Medio:</label>
+                                        <select id="tipomedio" class="form-control form-control-sm">
+                                            <option selected>--Selecciona--</option>
+                                           
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col">  
+                                    <div class="form-group mb-1">
+                                        <label for="medio">Medio:</label>
+                                        <select id="medio" class="form-control form-control-sm">
+                                            <option selected>--Selecciona--</option>
+                                           
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                       <div class="form-row my-2">
+                                <div class="col">  
+                                    <div class="form-group mb-1">
+                                        <label for="nom_publicacion">Nombre de la Publicación:</label>
+                                        <input type="text" class="form-control form-control-sm" id="nom_publicacion" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+
+                        
+                            
+                            <div class="form-row my-2">
+
+                                <div class="col">
+                                    <div class="form-group mb-1">
+                                        <label for="fech_publicacion">Fecha de Publicación:</label>
+                                        <input type="date" class="form-control form-control-sm" id="fech_publicacion" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-5">
+                                    <div class="form-group mb-1">
+                                        <label for="pdf_otros_estudios">PDF</label>
+                                        <input type="file" class="form-control-file" id="pdf_otros_estudios">
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                     
+
+                        </form>
+                    </div>
+                         
+                    <!--   ********************    -->
+                                         
+                </div>
+                <div class="modal-footer py-1">
+                    <button type="button" class="btn btn-primary" id="guardarProduccionIntelectual" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
+
 
 
 

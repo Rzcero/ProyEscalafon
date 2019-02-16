@@ -22,7 +22,12 @@ Route::get('/listarnivel', 'EstudiosController@listarnivel')->name('estudios.lis
 Route::get('/listarmodalidad', 'EstudiosController@listarmodalidad')->name('estudios.listarmodalidad');
 Route::get('/listartipoestudios', 'EstudiosController@listartipoestudios')->name('estudios.listartipoestudios');
 Route::get('/listartipodocumentos', 'EstudiosController@listartipodocumentos')->name('estudios.listartipodocumentos');
+Route::get('/listartipomedio', 'EstudiosController@listartipomedio')->name('estudios.listartipomedio');
+Route::get('/listarmedio', 'EstudiosController@listarmedio')->name('estudios.listarmedio');
+
 Route::post('/guardar_otros_estudios','EstudiosController@guardar_otros_estudios')->name('estudios.guardar_otros_estudios');
+Route::post('/guardar_produccion_intelectual','EstudiosController@guardar_produccion_intelectual')->name('estudios.guardar_produccion_intelectual');
+
 
 
 /*

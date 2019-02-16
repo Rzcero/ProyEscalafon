@@ -10,6 +10,9 @@ use App\OtroEstudio;
 use App\Modalidad;
 use App\TipoEstudio;
 use App\TipoDocumento;
+use App\TipoMedio;
+use App\Medio;
+use App\ProduccionIntelectual;
 
 class EstudiosController extends Controller
 {
@@ -120,6 +123,46 @@ public function listartipodocumentos(){
         ]);
 }
 
+public function listartipomedio(){
+            
+         $tipomedios = TipoMedio::all();
+        
+        $matriz = array();
+        
+        foreach($tipomedios as $tipomedio){
+        
+            $matriz[] = array('id_tipo_medio' => $tipomedio->id_tipo_medio,  // 
+                              'descripcion' => $tipomedio->descripcion);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+}
+
+public function listarmedio(){
+            
+         $medios = Medio::all();
+        
+        $matriz = array();
+        
+        foreach($medios as $medio){
+        
+            $matriz[] = array('id_medio' => $medio->id_medio,  // 
+                              'descripcion' => $medio->descripcion);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+}
+
 
     public function store(Request $request)
     {
@@ -178,6 +221,26 @@ public function listartipodocumentos(){
        }
 
      }
+
+        public function guardar_produccion_intelectual(Request $request){
+
+
+ if($request->ajax()){
+           
+           
+        $produccion_intelectual = new ProduccionIntelectual;
+        $produccion_intelectual->id_tipo_medio = $request->id_tipo_medio;
+        $produccion_intelectual->id_medio = $request->id_medio;
+        $produccion_intelectual->nombre=$request->nombre;
+        $produccion_intelectual->fecha_publicacion=$request->fecha_publicacion;
+        
+           $produccion_intelectual->save();
+           
+           
+       }
+
+     }
+     
 
     /**
      * Display the specified resource.

@@ -104,6 +104,43 @@ console.log(dato2);*/
     });
 
 
+// tabla de produccion intelectual
+$("#guardarProduccionIntelectual").click(function(e){
+                
+        var dato = $("#tipomedio").val();  // # se recepcionan de create.blade -> formulario
+        var dato2 = $("#medio").val();
+        var dato3 = $("#nom_publicacion").val();  // # se recepcionan de create.blade -> formulario
+        var dato4 = $("#fech_publicacion").val();
+        
+       
+
+
+console.log(dato);  
+console.log(dato2);
+console.log(dato3);
+        var route = "/ProyEscalafon/public/guardar_produccion_intelectual";
+        var token = $("#token_pro_int").val();
+        
+        $.ajax({
+            
+            url: route,
+            headers: {'X-CSRF-TOKEN': token},
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                id_tipo_medio: dato,
+                id_medio: dato2,
+                nombre: dato3,
+                fecha_publicacion: dato4
+                
+
+            }
+            
+        });         
+        
+        e.preventDefault();
+    
+    });
 
 
 
@@ -206,6 +243,52 @@ console.log(dato2);*/
             
         }
    });
+
+      $.ajax({
+        
+        url: '/ProyEscalafon/public/listartipomedio',
+        type: 'GET',
+        success: function(respuesta){
+                                    
+            let registro = '';
+            
+            respuesta.forEach(obj_json =>{
+                obj_json.forEach(obj_json => {
+
+                  
+                    registro += `<option value='${obj_json.id_tipo_medio}'>${obj_json.descripcion}</option>`
+
+                });
+            });
+            
+            $("#tipomedio").append(registro);
+            
+        }
+   });
+
+            $.ajax({
+        
+        url: '/ProyEscalafon/public/listarmedio',
+        type: 'GET',
+        success: function(respuesta){
+                                    
+            let registro = '';
+            
+            respuesta.forEach(obj_json =>{
+                obj_json.forEach(obj_json => {
+
+                  
+                    registro += `<option value='${obj_json.id_medio}'>${obj_json.descripcion}</option>`
+
+                });
+            });
+            
+            $("#medio").append(registro);
+            
+        }
+   });
+        
+        
         
 
    })

@@ -15,4 +15,15 @@ class ProduccionIntelectual extends Model
     "nombre",
     "fecha_publicacion",
     "pdf_prod_intele"];
+
+    public function produccion_intelectual1(){
+        return $this->belogsTo("App\ProduccionIntelectual","id_tipo_medio","id_tipo_medio");
+
+    }
+
+
+      public function produccion_intelectual(){
+        return $this->belogsTo("App\ProduccionIntelectual","id_medio","id_medio");
+
+    }
 }
