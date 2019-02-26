@@ -68,8 +68,7 @@
 
                                         <div class="card-body p-1">
                                             <select id="pais_primaria" name="pais_primaria" class="form-control form-control-sm">
-                                                <option selected>--Selecciona--</option>
-                                                <option>PERU</option>
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -158,8 +157,7 @@
 
                                         <div class="card-body p-1">
                                             <select id="pais_secundaria" class="form-control form-control-sm" name="pais_secundaria">
-                                                <option selected>--Selecciona--</option>
-                                                <option>PERU</option>
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -280,7 +278,7 @@
                                                 <td>Opciones</td>
                                             </tr>
                                         </thead>
-                                        <tbody id=otros></tbody>
+                                        <tbody id=otros_estudios></tbody>
                                     </table>
                                 </div>
                                 <caption>
@@ -365,7 +363,7 @@
                                     <div class="form-group mb-1">
                                         <label for="nivel_estudio">Nivel de Estudio:</label>
                                         <select id="nivel_estudio" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
+                                            
                                            
                                         </select>
                                     </div>
@@ -399,7 +397,7 @@
                                     <div class="form-group mb-1">
                                         <label for="modalidad">Modalidad:</label>
                                         <select id="modalidad" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
+                                            
                                             
                                         </select>
                                     </div>
@@ -418,8 +416,7 @@
                                     <div class="form-group mb-1">
                                         <label for="centro_estudio">Centro de Estudios:</label>
                                         <select id="centro_estudio_superior" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
-                                            <option>PERU</option>
+                                          
                                         </select>
                                     </div>
                                 </div>
@@ -430,8 +427,7 @@
                                     <div class="form-group mb-1">
                                         <label for="grado">Mención del Grado o Título:</label>
                                         <select id="grado" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
-                                            <option>PERU</option>
+                                           
                                         </select>
                                     </div>
                                 </div>
@@ -440,8 +436,7 @@
                                     <div class="form-group mb-1">
                                         <label for="carrera">Carrera:</label>
                                         <select id="carrera" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
-                                            <option>PERU</option>
+                                          
                                         </select>
                                     </div>
                                 </div>
@@ -494,8 +489,7 @@
                                     <div class="form-group mb-1">
                                         <label for="EntidadRegist">Entidad del Registro del Título:</label>
                                         <select id="EntidadRegist" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
-                                            <option>PERU</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -555,7 +549,7 @@
                                     <div class="form-group mb-1">
                                         <label for="tipo_estudios">Tipo de Estudios:</label>
                                         <select id="tipo_estudios" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
+                                          
                                             
                                         </select>
                                     </div>
@@ -594,7 +588,7 @@
                                     <div class="form-group mb-1">
                                         <label for="tipo_doc">Tipo de Documento:</label>
                                         <select id="tipo_doc" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
+                                            
                                             
                                         </select>
                                     </div>
@@ -690,7 +684,7 @@
                                     <div class="form-group mb-1">
                                         <label for="tipomedio">Tipo de Medio:</label>
                                         <select id="tipomedio" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
+                                           
                                            
                                         </select>
                                     </div>
@@ -700,7 +694,7 @@
                                     <div class="form-group mb-1">
                                         <label for="medio">Medio:</label>
                                         <select id="medio" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
+                                            
                                            
                                         </select>
                                     </div>

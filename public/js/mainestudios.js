@@ -1,6 +1,9 @@
 $(document).ready(function() 
    {
 
+
+    mostrarOtrosEstudios();
+
 // tabla de estudios basicos
  $("#formularioestudiosbasicos").submit(function(e){
                 
@@ -99,8 +102,10 @@ console.log(dato2);*/
             
         });         
         
-        e.preventDefault();
+       // e.preventDefault();
+         mostrarOtrosEstudios();
     
+
     });
 
 
@@ -288,7 +293,43 @@ console.log(dato3);
         }
    });
         
-        
+       //para mostrar otros estudios en el formulario
+function mostrarOtrosEstudios(){
+
+$.ajax({
+
+url: '/ProyEscalafon/public/listarotrosestudios',
+type: 'GET',
+success: function(respuesta){
+
+console.log(respuesta);
+
+let registro = '';
+
+respuesta.forEach(obj_json =>{
+obj_json.forEach(obj_json =>{
+registro += `<tr>
+<td>${obj_json.tipo}</td>  
+<td>${obj_json.denominacion}</td>
+<td>${obj_json.hora}</td>
+<td>${obj_json.credito}</td>
+
+<td>
+<button class='elim_estSuperior btn btn-danger'>Borrar</button>
+</td>
+</tr>`
+
+});
+});
+
+// console.log(registro);
+$("#otros_estudios").html(registro); // se jala del create  <tbody id=otros_estudios></tbody>
+
+}
+
+});
+
+}
         
 
    })

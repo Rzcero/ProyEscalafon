@@ -20,4 +20,11 @@ class OtroEstudio extends Model
     "id_persona",
     "id_tipo_documento",
     "pdf_estudio"];
+
+    public function tipootroestudio(){
+
+        return $this->belongsTo('App\TipoEstudio','id_tipo_estudio','id_tipo_estudio');
+
+    }
+
 }

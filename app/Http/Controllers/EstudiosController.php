@@ -151,7 +151,7 @@ public function listarmedio(){
         
         foreach($medios as $medio){
         
-            $matriz[] = array('id_medio' => $medio->id_medio,  // 
+            $matriz[] = array('id_medio' => $medio->id_medio,  //
                               'descripcion' => $medio->descripcion);
         
         }
@@ -162,6 +162,34 @@ public function listarmedio(){
              
         ]);
 }
+
+public function listarotrosestudios(){
+
+$listar_otros_estudios = OtroEstudio::all();
+
+ $matriz = array();
+        
+        foreach($listar_otros_estudios as $lista_otro_estudio){
+        
+            $matriz[] = array('tipo' => $lista_otro_estudio->tipootroestudio->denominacion ,  //  tipo, denominacion,horas,creditos,  // opciones
+                              'denominacion' => $lista_otro_estudio->nombre_estudio,
+                             'hora' => $lista_otro_estudio->num_horas,
+                             'credito' => $lista_otro_estudio->num_creditos
+
+
+                         );
+
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+
+}
+
 
 
     public function store(Request $request)
