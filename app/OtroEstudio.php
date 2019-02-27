@@ -21,10 +21,14 @@ class OtroEstudio extends Model
     "id_tipo_documento",
     "pdf_estudio"];
 
-    public function tipootroestudio(){
+    public function tipootroestudio(){   // esta sentencia se usa en el estudioscontrolador
 
         return $this->belongsTo('App\TipoEstudio','id_tipo_estudio','id_tipo_estudio');
 
     }
 
+
+   
+
 }
+

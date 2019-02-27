@@ -190,6 +190,34 @@ $listar_otros_estudios = OtroEstudio::all();
 
 }
 
+public function listarproduccion(){
+
+$listar_producciones = ProduccionIntelectual::all();
+
+ $matriz = array();
+        
+        foreach($listar_producciones as $listar_produccion){
+        
+            $matriz[] = array('medio' => $listar_produccion->medio_produccion_intelectual->descripcion,  //  estos 3 se mandan a mainestudios
+                              'nombre_publicacion' => $listar_produccion->nombre,
+                             'anio' => $listar_produccion->fecha_publicacion
+                            
+
+
+                         );
+
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+
+}
+
+
 
 
     public function store(Request $request)
@@ -244,6 +272,7 @@ $listar_otros_estudios = OtroEstudio::all();
 
            
            $otros_estudio->save();
+           return response()->json(["mensaje"=>"creado"]);
            
            
        }

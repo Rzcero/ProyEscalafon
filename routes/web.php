@@ -30,6 +30,8 @@ Route::post('/guardar_produccion_intelectual','EstudiosController@guardar_produc
 
 
 Route::get('/listarotrosestudios', 'EstudiosController@listarotrosestudios')->name('estudios.listarotrosestudios');
+Route::get('/listarproduccion', 'EstudiosController@listarproduccion')->name('estudios.listarproduccion');
+
 
 /*
 Route::get('/estudiosbasicos', 'EstudiosBasicosController@index');

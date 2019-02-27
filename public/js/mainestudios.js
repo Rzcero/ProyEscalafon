@@ -3,6 +3,7 @@ $(document).ready(function()
 
 
     mostrarOtrosEstudios();
+    mostrarProduccionIntelectual();
 
 // tabla de estudios basicos
  $("#formularioestudiosbasicos").submit(function(e){
@@ -98,12 +99,22 @@ console.log(dato2);*/
                 num_creditos: dato9
               
 
-            }
+
+
+            }, //paso2 se modifica
+
+            success: function(respuesta){
+
+mostrarOtrosEstudios();
+
+// 
+$("#formulariootrosestudios").trigger('reset');
+
+}
             
         });         
         
-       // e.preventDefault();
-         mostrarOtrosEstudios();
+      
     
 
     });
@@ -139,11 +150,22 @@ console.log(dato3);
                 fecha_publicacion: dato4
                 
 
-            }
+            },
+
+         //paso2 se modifica
+
+            success: function(respuesta){
+
+mostrarProduccionIntelectual();
+
+// 
+$("#formularioproduccionintelectual").trigger('reset');
+
+}
             
         });         
         
-        e.preventDefault();
+        //e.preventDefault(); // para no llevar a otra pagina etiquetas tipo submit y <a> ya no se usa porque se imprime en el formulario para que se vea
     
     });
 
@@ -294,7 +316,7 @@ console.log(dato3);
    });
         
        //para mostrar otros estudios en el formulario
-function mostrarOtrosEstudios(){
+function mostrarOtrosEstudios(){   //paso1 se crea mostrar y se coloca al inicio
 
 $.ajax({
 
@@ -324,6 +346,46 @@ registro += `<tr>
 
 // console.log(registro);
 $("#otros_estudios").html(registro); // se jala del create  <tbody id=otros_estudios></tbody>
+
+}
+
+});
+
+}
+
+
+
+//para mostrar produccion intelectual   
+function mostrarProduccionIntelectual(){
+
+$.ajax({
+
+url: '/ProyEscalafon/public/listarproduccion',
+type: 'GET',
+success: function(respuesta){
+
+console.log(respuesta);
+
+let registro = '';
+
+respuesta.forEach(obj_json =>{
+obj_json.forEach(obj_json =>{
+registro += `<tr>
+<td>${obj_json.medio}</td>  
+<td>${obj_json.nombre_publicacion}</td>
+<td>${obj_json.anio}</td>
+
+
+<td>
+<button class='elim_estSuperior btn btn-danger'>Borrar</button>
+</td>
+</tr>`
+
+});
+});
+
+// console.log(registro);
+$("#pro_intelec").html(registro); // se jala del create  <tbody id=otros_estudios></tbody>
 
 }
 
