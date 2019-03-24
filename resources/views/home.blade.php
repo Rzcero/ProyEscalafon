@@ -316,7 +316,7 @@
     </div>
     
     <!-- Modal para Estudios Superiores nuevos -->
-    
+    <!-- ESTO ES HOME.BLADE -->
     <div class="modal fade" id="modalEstudiosSuperiores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
