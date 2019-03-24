@@ -292,6 +292,7 @@ $listar_producciones = ProduccionIntelectual::all();
         $produccion_intelectual->fecha_publicacion=$request->fecha_publicacion;
         
            $produccion_intelectual->save();
+            return response()->json(["mensaje"=>"creado"]);
            
            
        }

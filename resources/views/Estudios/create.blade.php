@@ -310,7 +310,7 @@
                                             <td>Opciones</td>
                                         </tr>
                                     </thead>
-                                    <tbody id=pro_intelec></tbody>
+                                    <tbody id="pro_intelec"></tbody>
                                 </table>
                             </div>
 

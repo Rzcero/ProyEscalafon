@@ -33,6 +33,7 @@ Route::get('/listarotrosestudios', 'EstudiosController@listarotrosestudios')->na
 Route::get('/listarproduccion', 'EstudiosController@listarproduccion')->name('estudios.listarproduccion');
 
 
+
 /*
 Route::get('/estudiosbasicos', 'EstudiosBasicosController@index');
 Route::get('/crearestudiosbasicos', 'EstudiosBasicosController@create');

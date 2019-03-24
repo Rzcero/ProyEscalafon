@@ -134,6 +134,7 @@ $("#guardarProduccionIntelectual").click(function(e){
 console.log(dato);  
 console.log(dato2);
 console.log(dato3);
+
         var route = "/ProyEscalafon/public/guardar_produccion_intelectual";
         var token = $("#token_pro_int").val();
         
