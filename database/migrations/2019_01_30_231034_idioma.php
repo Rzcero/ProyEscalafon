@@ -20,8 +20,8 @@ class Idioma extends Migration
             $table->string('dominio',45);
             $table->string('entidad',225);
             $table->integer('id_tipo_documento');
-            $table->integer('num_horas');
-            $table->integer('num_creditos');
+            $table->integer('num_horas')->nullable();
+            $table->integer('num_creditos')->nullable();
             $table->string('pdf_idioma_persona',45);  
             //$table->rememberToken();
             $table->timestamps();

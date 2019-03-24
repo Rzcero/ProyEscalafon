@@ -8,13 +8,13 @@ class TipoIdioma extends Model
 {
     protected $table = "tipo_idioma";
     protected $primaryKey = "id_tipo_idioma";
-    protected $fillable = ["id_tipo_idioma","nombre"];
-
-
-// de 1 tipo_idioma puede tener muchos idiomas
+    protected $fillable = ["id_tipo_idioma",
+                           "nombre"];
+    
     public function idioma(){
+
         return $this->hasMany('App\Idioma','id_tipo_idioma','id_tipo_idioma');
 
     }
+     
 }
-

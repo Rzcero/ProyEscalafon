@@ -14,7 +14,7 @@
                         <!-- Inicio Formulario -->
                         <form id="formulario1">
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                            {{csrf_field()}}
+                            
                             <!--  Titulo  -->
                             <div class="form-row my-2">
                                 <div class="col">
@@ -34,8 +34,8 @@
                                         <div class="card-header p-0 text-center">Tipo de Documento</div>
 
                                         <div class="card-body p-1">
-                                            <select id="pais_primaria" class="form-control form-control-sm">
-                                                <option selected>--Selecciona--</option>
+                                            <select id="tipoDocIdentidad" class="form-control form-control-sm">
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -115,35 +115,34 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- fin Nombres  -->
-                                    
-                                    <!--  Inicio Sexo, Fecha Nacimiento, Estado Civil  -->
-                                    <div class="form-row my-1">
-                                        <div class="col-4">
+                                        
+                                        <div class="col-3.5">
                                             <div class="card">
                                                 <div class="card-header p-0 text-center">
                                                     Sexo
                                                 </div>
 
                                                 <div class="card-body p-1">
-                                                    
-                                                        <fieldset class="form-group mb-1">
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="estado" id="concluido" value="masculino">
-                                                                <label class="form-check-label" for="concluido">M</label>
-                                                            </div>
+                                                    <fieldset class="form-group mb-1">     
+                                                        <div class="form-check form-check-inline ">
+                                                            <input class="form-check-input" type="radio" name="estado" id="masc" value="masculino">
+                                                            <label class="form-check-label" for="masc">M</label>
+                                                        </div>
 
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="estado" id="no_concluido" value="femenino">
-                                                                <label class="form-check-label" for="no_concluido">F</label>
-                                                            </div>
-                                                        </fieldset>
-                                                    
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="estado" id="fem" value="femenino">
+                                                            <label class="form-check-label" for="fem">F</label>
+                                                        </div>
+                                                    </fieldset>
                                                 </div>
                                             </div>
                                         </div>
 
+                                    </div>
+                                    <!-- fin Nombres  -->
+                                    
+                                    <!--  Inicio Sexo, Fecha Nacimiento, Estado Civil  -->
+                                    <div class="form-row my-1">
                                         <div class="col">
                                             <div class="card">
                                                 <div class="card-header p-0 text-center">
@@ -151,18 +150,19 @@
                                                 </div>
 
                                                 <div class="card-body p-1">
-                                                    <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
+                                                    <input type="date" class="form-control form-control-sm" id="fech_nac" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="col">
                                             <div class="card">
                                                 <div class="card-header p-0 text-center">
                                                     Estado Civil
                                                 </div>
                                                 <div class="card-body p-1">
-                                                    <select id="pais_primaria" class="form-control form-control-sm">
-                                                        <option selected>--Selecciona--</option>
+                                                    <select id="est_civil" class="form-control form-control-sm">
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -178,8 +178,8 @@
                                                     Tipo de Vía
                                                 </div>
                                                 <div class="card-body p-1">
-                                                    <select id="pais_primaria" class="form-control form-control-sm">
-                                                        <option selected>--Selecciona--</option>
+                                                    <select id="via" class="form-control form-control-sm">
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -191,8 +191,8 @@
                                                     Tipo de Zona
                                                 </div>
                                                 <div class="card-body p-1">
-                                                    <select id="pais_primaria" class="form-control form-control-sm">
-                                                        <option selected>--Selecciona--</option>
+                                                    <select id="zona" class="form-control form-control-sm">
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -213,7 +213,7 @@
                                         </div>
 
                                         <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
+                                            <input type="text" class="form-control form-control-sm" id="direc" placeholder="" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -228,9 +228,8 @@
                                         <div class="card-header p-0 text-center">País de Residencia</div>
 
                                         <div class="card-body p-1">
-                                            <select id="pais_primaria" class="form-control form-control-sm">
-                                                <option selected>--Selecciona--</option>
-                                                <option>PERU</option>
+                                            <select id="pais_residencia" class="form-control form-control-sm">
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -242,13 +241,13 @@
                                         </div>
 
                                         <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ubi_primaria" placeholder="000000">
+                                            <input type="text" class="form-control form-control-sm" id="ubi_residencia" placeholder="000000">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-1">
                                     <div class="card">
-
+                                        <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#modalUbigeo"><span><i class="fas fa-search"></i></span></button>  
                                     </div>
                                 </div>
                             </div>
@@ -288,8 +287,7 @@
 
                                         <div class="card-body p-1">
                                             <select id="pais_primaria" class="form-control form-control-sm">
-                                                <option selected>--Selecciona--</option>
-                                                <option>PERU</option>
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -348,7 +346,7 @@
                                         </div>
 
                                         <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
+                                            <input type="text" class="form-control form-control-sm" id="fijo" placeholder="" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -360,7 +358,7 @@
                                         </div>
 
                                         <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
+                                            <input type="text" class="form-control form-control-sm" id="celular" placeholder="" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -372,7 +370,7 @@
                                         </div>
                                         
                                         <div class="card-body p-1">
-                                            <input type="text" class="form-control form-control-sm" id="ie_primaria" placeholder="" value="">
+                                            <input type="text" class="form-control form-control-sm" id="email" placeholder="" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -380,7 +378,7 @@
                             <!-- fin Tel. Fijo, Tel. Movil y correo  -->
                             
                             <button type="submit" id="regi" class="btn btn-primary">Registrar</button>
-
+                            
                         </form>
                         <!-- Fin Formulario -->
                         
@@ -415,14 +413,26 @@
                                                 <td>Opciones</td>
                                             </tr>
                                         </thead>
-                                        <tbody id="otros"></tbody>
+                                        <tbody id="registroIdiomas">
+                                        
+                                        </tbody>
                                     </table>
                                 </div>
                                 <caption>
-                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#modalIdioma">
-                                        Agregar Nuevo <span><i class="material-icons">add</i></span>
+                                    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalIdioma" id="agregarNuevoIdioma">
+                                        Agregar Nuevo <span><i class="fas fa-plus"></i></span>
                                     </button>
                                 </caption>
+                                                                
+                                <form action="/ProyEscalafon/public/eliminarIdioma/:IDIOMA_ID" method="post" id="form_deleteIdioma">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token3" id="token3" value="{{ csrf_token() }}">
+                                </form>
+
+                                <form action="/ProyEscalafon/public/datos/:IDIOMA_ID" method="post" id="form_updateIdioma">
+                                    <input type="hidden" name="_method2" value="PUT">
+                                    <input type="hidden" name="_token4" id="token4" value="{{ csrf_token() }}">
+                                </form>
                             </div>
                         </div>
                         
@@ -438,22 +448,25 @@
                             </div>
 
                             <div class="card-body p-1">
-                                <div id="div_tabla2">
+                                <div id="div_tabla3">
                                     <table class="table table-bordered table-sm">
                                         <thead>
                                             <tr>
-                                            <td>Parentesco</td>
-                                            <td>N° Doc.</td>
-                                            <td>Apellidos y Nombres</td>
-                                            <td>F. Nacim.</td>
+                                                <td>Parentesco</td>
+                                                <td>N° Doc.</td>
+                                                <td>Apellidos y Nombres</td>
+                                                <td>F. Nacim.</td>
+                                                <td>Opciones</td>
                                             </tr>
                                         </thead>
-                                        <tbody id=otros_habientes></tbody>
+                                        <tbody id=otros_habientes>
+                                        
+                                        </tbody>
                                     </table>
                                 </div>
                                 <caption>
-                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#modalOtrosEstudios">
-                                        Agregar Nuevo <span><i class="material-icons">add</i></span>
+                                    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalHabiente">
+                                        Agregar Nuevo <span><i class="fas fa-plus"></i></span>
                                     </button>
                                 </caption>
                             </div>
@@ -473,11 +486,11 @@
     
     <!-- Modal para Idioma nuevos -->
 <!--    Estoy en create-->
-    <div class="modal fade" id="modalIdioma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalIdioma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelIdioma" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header py-2">
-                    <h5 class="modal-title" id="exampleModalLabel">Agregar Idioma</h5>
+                    <h5 class="modal-title" id="exampleModalLabelIdioma"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -488,14 +501,21 @@
                     <div class="container px-3">
                         <!-- Inicio Formulario -->
                         <form id="formularioModal1">
-                            <!--    -->
-                            {{csrf_field()}}
+                            <input type="hidden" name="_token2" id="token2" value="{{ csrf_token() }}">
+                            <div class="form-row my-2">
+                                <div class="col">  
+                                    <div class="form-group mb-1">
+                                        <input type="hidden" id="id_idioma">
+                                    </div>
+                                </div>
+                            </div>
+                                                        
                             <div class="form-row my-2">
                                 <div class="col">  
                                     <div class="form-group mb-1">
                                         <label for="tipo_idioma">Idioma:</label>
                                         <select id="tipo_idioma" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -507,12 +527,12 @@
                                     
                                     <fieldset class="form-group mb-1">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="dominio" id="basico" value="basico">
+                                            <input class="form-check-input" type="radio" name="dominio" id='basico' value="basico" checked>
                                             <label class="form-check-label" for="basico">Básico</label>
                                         </div>
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="dominio" id="intermedio" value="intermedio">
+                                            <input class="form-check-input" type="radio" name="dominio" id='intermedio' value="intermedio">
                                             <label class="form-check-label" for="intermedio">Intermedio</label>
                                         </div>
 
@@ -544,8 +564,7 @@
                                     <div class="form-group mb-1">
                                         <label for="tipo_doc">Tipo de Documento:</label>
                                         <select id="tipo_doc" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
-                                            <option>PERU</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -583,20 +602,117 @@
                                          
                 </div>
                 <div class="modal-footer py-1">
-                    <button type="button" class="btn btn-primary" id="guardarNuevoIdioma" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn_idioma btn-primary" data-dismiss="modal"></button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
-    
+  
+    <!-- Modal para ver idiomas -->
+    <div class="modal fade" id="modalIdioma2" tabindex="-1" role="dialog" aria-labelledby="exampleModalIdioma2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalIdioma2">Ver Idioma</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            
+            <div class="form-group row">
+                <label for="tipo_idiomaM2" class="col-sm-3 col-form-label">Idioma:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="tipo_idiomaM2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="dominioM2" class="col-sm-3 col-form-label">Dominio:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="dominioM2" value="">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="centroEstudioM2" class="col-sm-3 col-form-label">Entidad:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="centroEstudioM2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="tipo_docM2" class="col-sm-4 col-form-label">Tipo Documento:</label>
+                <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="tipo_docM2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="horasM2" class="col-sm-3 col-form-label">Horas:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="horasM2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="creditosM2" class="col-sm-3 col-form-label">Creditos:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="creditosM2" value="">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- Fin del Modal ver idioma -->
+
+    <!-- Modal para Eliminar idiomas -->
+    <div class="modal fade" id="modalIdioma3" tabindex="-1" role="dialog" aria-labelledby="exampleModalIdioma3" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalIdioma3">Eliminar Idioma</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+
+            <div class="form-group mb-1">
+                <input type="hidden" id="id_modal2">
+            </div>
+
+            <div class="form-group row">
+                <h5>¿Estas seguro de eliminar este registro?</h5>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn_eliminarIdioma btn-danger" data-dismiss="modal"><span><i class="fas fa-trash"></i></spna> Eliminar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- Fin Modal eliminar idioma -->
+
     <!-- Modal para Derecho Habientes nuevos -->
     
-    <div class="modal fade" id="modalOtrosEstudios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalHabiente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelNuevoHabiente" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header py-2">
-                    <h5 class="modal-title" id="exampleModalLabel">Otros Estudios</h5>
+                    <h5 class="modal-title" id="exampleModalLabelNuevoHabiente">Otros Estudios</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -613,8 +729,7 @@
                                     <div class="form-group mb-1">
                                         <label for="tipo_estudios">Tipo de Estudios:</label>
                                         <select id="tipo_estudios" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
-                                            <option>PERU</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -652,8 +767,7 @@
                                     <div class="form-group mb-1">
                                         <label for="tipo_doc">Tipo de Documento:</label>
                                         <select id="tipo_doc" class="form-control form-control-sm">
-                                            <option selected>--Selecciona--</option>
-                                            <option>PERU</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -709,7 +823,88 @@
                                          
                 </div>
                 <div class="modal-footer py-1">
-                    <button type="button" class="btn btn-primary" id="guardarnuevo" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-primary" id="guardarNuevoHabiente">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+           
+        </div>
+        
+    </div>
+
+    <!-- Modal para Ubigeo -->
+    
+    <div class="modal fade" id="modalUbigeo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelUbigeo" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h5 class="modal-title" id="exampleModalLabelUbigeo">Ubigeo de Nacimiento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body py-0">
+                           
+                    <!--     *************       -->
+                    <div class="container px-3">
+                        <!-- Inicio Formulario -->
+                        <form id="formularioModal2">
+                            <!--    -->
+                            
+                            <div class="form-row my-2">
+                                <div class="col">  
+                                    <div class="form-group mb-1">
+                                        <label for="codigo">Código UBIGEO:</label>
+                                    </div>
+                                </div>
+                                                                
+                                <div class="col">
+                                    <div class="form-group mb-1">
+                                        <input type="text" class="form-control form-control-sm" id="codigo" placeholder="">
+                                    </div>
+                                </div>
+                                                            
+                            </div>
+                                                                                
+                            <div class="form-row my-2">
+
+                                <div class="col">  
+                                    <div class="form-group mb-1">
+                                        <label for="depart">Departamento:</label>
+                                        <select id="depart" class="form-control form-control-sm">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col">  
+                                    <div class="form-group mb-1">
+                                        <label for="provinc">Provincia:</label>
+                                        <select id="provinc" class="form-control form-control-sm">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col">  
+                                    <div class="form-group mb-1">
+                                        <label for="distri">Distrito:</label>
+                                        <select id="distri" class="form-control form-control-sm">
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </div>
+                         
+                    <!--   ********************    -->
+                                         
+                </div>
+                <div class="modal-footer py-1">
+                    <button type="button" class="btn btn-primary" id="guardarnuevo">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>

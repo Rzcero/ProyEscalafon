@@ -42,8 +42,16 @@
 
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+
     
     <script src="{{ asset('js/mainestudios.js') }}"></script>
+
+    <script src="{{ asset('js/main.js') }}"></script>
+  
+  <!-- Para Fuente Awesome -->
+  <script defer src="{{ asset('js/all.js') }}"></script>
+
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
