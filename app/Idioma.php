@@ -6,17 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Idioma extends Model
 {
+    
     protected $table = "idioma";
     protected $primaryKey = "id_idioma";
     protected $fillable = ["id_idioma",
-    "id_persona",
-    "id_tipo_idioma",
-    "dominio",
-    "entidad",
-    "id_tipo_documento",
-    "num_horas",
-    "num_creditos",
-    "pdf_idioma_persona"];
+                            "id_persona",
+                            "id_tipo_idioma",
+                            "dominio",
+                            "entidad",
+                            "id_tipo_documento",
+                            "num_horas",
+                            "num_creditos",
+                            "pdf_idioma_persona"];
     
     public function tipoidioma(){
 
@@ -24,4 +25,10 @@ class Idioma extends Model
 
     }
 
+    public function tipodocumento(){
+
+        return $this->belongsTo("App\TipoDocumento","id_tipo_documento","id_tipo_documento");
+
+    }
+    
 }

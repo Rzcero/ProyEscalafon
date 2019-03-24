@@ -11,22 +11,34 @@
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();*/
+//Route::get('/', 'Auth\LoginController@showLoginForm');
+
+// Auth::routes();
+//Route::get('dashboard','DashboardController@lindex');
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+//$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+/*$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+$this->post('register', 'Auth\RegisterController@register');*/
+
+// Password Reset Routes...
+/*$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+$this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');*/
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Rutas para Datos Personales:
-//Route::get('/datos/listar', 'DatosPersonalesController@index');
-/*Route::get('/datos', 'DatosPersonalesController@index');
-Route::get('/crear', 'DatosPersonalesController@create');
-Route::get('/actualizar', 'DatosPersonalesController@update');
-Route::get('/insertar', 'DatosPersonalesController@insert');
-Route::get('/eliminar', 'DatosPersonalesController@delete');*/
 
+//Rutas de Datos
 Route::resource('/datos','DatosController');
 Route::get('/listarIdiomas', 'DatosController@listarIdiomas')->name('datos.listarIdiomas');
 Route::get('/listarHabientes', 'DatosController@listarHabientes')->name('datos.listarHabientes');
@@ -35,7 +47,16 @@ Route::get('/listarEstadoCivil', 'DatosController@listarEstadoCivil')->name('dat
 Route::get('/listarTipoVia', 'DatosController@listarTipoVia')->name('datos.listarTipoVia');
 Route::get('/listarTipoZona', 'DatosController@listarTipoZona')->name('datos.listarTipoZona');
 Route::get('/listarTipoIdioma', 'DatosController@listarTipoIdiomas')->name('datos.listarTipoIdiomas');
-
+Route::get('/listarTipoDocumento', 'DatosController@listarTipoDocumento')->name('datos.listarTipoDocumento');
+Route::get('/listarDepartamentoUbigeo', 'DatosController@listarDepartamentoUbigeo')->name('datos.listarDepartamentoUbigeo');
+Route::get('/listarProvinciaUbigeo', 'DatosController@listarProvinciaUbigeo')->name('datos.listarProvinciaUbigeo');
+Route::get('/listarDistritoUbigeo', 'DatosController@listarDistritoUbigeo')->name('datos.listarDistritoUbigeo');
+Route::post('/editarIdioma', 'DatosController@editarIdioma')->name('datos.editarIdioma');
 Route::post('/agregarIdioma', 'DatosController@agregarIdioma')->name('datos.agregarIdioma');
+Route::post('/verIdioma', 'DatosController@verIdioma')->name('datos.verIdioma');
+
+//ruta eliminar idioma
+Route::DELETE('/eliminarIdioma/{id}','DatosController@destroyIdioma')->name('datos.destroyIdioma');
+
 //Route::get('/datos/listar','DatosController@listarIdiomas')->name('datos.listarIdiomas');
 //Route::resource('/idioma','IdiomaController');

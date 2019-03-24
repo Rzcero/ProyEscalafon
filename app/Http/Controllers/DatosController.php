@@ -6,11 +6,15 @@ use Illuminate\Http\Request;
 use App\Persona;
 use App\Idioma;
 use App\TipoIdioma;
+use App\TipoDocumento;
 use App\Habiente;
 use App\TipoDocIdentidad;
 use App\EstadoCivil;
 use App\TipoVia;
 use App\TipoZona;
+use App\Departamento;
+use App\Provincia;
+use App\Distrito;
 
 
 class DatosController extends Controller
@@ -23,8 +27,75 @@ class DatosController extends Controller
     public function index()
     {
         return view('datos_personales.crear');
-//        $idiomas = Idioma::all();
-//        return view('datos_personales.index', compact('idiomas'));
+        
+    }
+    
+    //para listar Ubigeo
+    public function listarDepartamentoUbigeo()
+    {
+        
+        $departamentos = Departamento::all();
+        
+        $matriz = array();
+        
+        foreach($departamentos as $departamento){
+        
+            $matriz[] = array('id' => $departamento->id_dpto,
+                              'nombre' => $departamento->nom_dpto);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+        
+    }
+    
+    public function listarProvinciaUbigeo(Request $request)
+    {
+        
+        $provincias = Provincia::where('id_dpto',$request->idDpto)->get();
+        
+        $matriz = array();
+        
+        foreach($provincias as $provincia){
+        
+            $matriz[] = array('id' => $provincia->id_prov,
+                              'nombre' => $provincia->nom_prov,
+                              'ubi' => $provincia->departamento->ubi_dpto);
+        
+        }
+              
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+        
+    }
+    
+    public function listarDistritoUbigeo(Request $request)
+    {
+        
+        $distritos = Distrito::where('id_prov',$request->idProv)->get();
+        
+        $matriz = array();
+        
+        foreach($distritos as $distrito){
+        
+            $matriz[] = array('id' => $distrito->id_dist,
+                              'nombre' => $distrito->nom_dist,
+                              'ubi' => $distrito->provincia->ubi_prov);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
         
     }
     
@@ -125,7 +196,8 @@ class DatosController extends Controller
         
         foreach($idiomas as $idioma){
         
-            $matriz[] = array('idioma' => $idioma->tipoidioma->nombre,
+            $matriz[] = array('id' => $idioma->id_idioma,
+                              'idioma' => $idioma->tipoidioma->nombre,
                               'dominio' => $idioma->dominio);
         
         }
@@ -149,6 +221,81 @@ class DatosController extends Controller
         
             $matriz[] = array('id' => $tipoidioma->id_tipo_idioma,
                               'idioma' => $tipoidioma->nombre);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+
+    //Para mostrarlo en el Modal
+    public function listarTipoDocumento()
+    {
+        
+        $tipodocumentos = TipoDocumento::all();
+        
+        $matriz = array();
+        
+        foreach($tipodocumentos as $tipodocumento){
+        
+            $matriz[] = array('id' => $tipodocumento->id_tipo_documento,
+                              'tipoDoc' => $tipodocumento->denominacion);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+
+    //Para editar el Modal Idioma
+    public function editarIdioma(Request $request)
+    {
+        
+        $editarIdiomas = Idioma::where('id_idioma',$request->id)->get();
+        
+        $matriz = array();
+        
+        foreach($editarIdiomas as $editarIdioma){
+        
+            $matriz[] = array('id' => $editarIdioma->id_idioma,
+                              'idioma' => $editarIdioma->id_tipo_idioma,
+                              'dominio' => $editarIdioma->dominio,
+                              'entidad' => $editarIdioma->entidad,
+                              'tipo_documento' => $editarIdioma->id_tipo_documento,
+                              'horas' => $editarIdioma->num_horas,
+                              'creditos' => $editarIdioma->num_creditos);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+
+    //Para Ver los Idiomas al pulsar el boton ver
+    public function verIdioma(Request $request)
+    {
+        
+        $verIdioma = Idioma::where('id_idioma',$request->id)->get();
+        
+        $matriz = array();
+        
+        foreach($verIdioma as $ver){
+        
+            $matriz[] = array('idioma' => $ver->tipoidioma->nombre,
+                              'dominio' => $ver->dominio,
+                              'entidad' => $ver->entidad,
+                              'tipo_documento' => $ver->tipodocumento->denominacion,
+                              'horas' => $ver->num_horas,
+                              'creditos' => $ver->num_creditos);
         
         }
         
@@ -244,26 +391,30 @@ class DatosController extends Controller
         if($request->ajax()){
             
             $idioma = new Idioma;
+            $idioma->id_tipo_idioma = $request->idioma;
+            $idioma->dominio = $request->dominio;
             $idioma->entidad = $request->centro;
+            $idioma->id_tipo_documento = $request->tipo_documento;
+            $idioma->num_horas = $request->horas;
+            $idioma->num_creditos = $request->creditos;
                         
             $idioma->save();
             
-        }
-     
-    }
-    
-    
-    public function storeIdioma(Request $request)
-    {
-        
-    }
+            return response()->json([
 
+            ]);
+            
+        }
+            
+    }
+    
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function show($id)
     {
 //        $idiomas = Idioma::findOrFail($id);
@@ -276,6 +427,7 @@ class DatosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function edit($id)
     {
         //
@@ -288,9 +440,21 @@ class DatosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request, $id)
     {
-//        return view('datos_personales.actualizar');
+        
+        if($request->ajax()){
+
+            $idioma = Idioma::find($id);
+            $idioma->update($request->all());
+            
+            return response()->json([
+                
+            ]);
+
+        }
+
     }
 
     /**
@@ -299,6 +463,22 @@ class DatosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+            
+    public function destroyIdioma(Request $request, $id)
+    {
+                
+        if($request->ajax()){
+            
+            $borrar_idioma = Idioma::find($id);
+            $borrar_idioma->delete();
+            
+            return response()->json([
+
+            ]);
+            
+        }
+    }
+    
     public function destroy($id)
     {
 //        return view('datos_personales.eliminar');
