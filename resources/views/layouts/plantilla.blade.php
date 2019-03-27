@@ -17,6 +17,7 @@
 
   <!-- Styles -->
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/estilos2.css') }}" rel="stylesheet">  <!-- creado 26/03/2019 para redireccionar la plantilla de estilos creado-->
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}">

@@ -267,7 +267,7 @@
                             </div>
 
                             <div class="card-body p-1">
-                                <div id="div_tabla2">
+                                <div id="div_tabla_otros_estudios">
                                     <table class="table table-bordered table-sm">
                                         <thead>
                                             <tr>
