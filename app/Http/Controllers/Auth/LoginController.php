@@ -58,19 +58,20 @@ class LoginController extends Controller
      */
     public function login()
     {
-        $credenciles = $this->validateLogin(request(),[
-            'email' => 'email required|string',
+        $credenciles = $this->validate(request(),[
+            'email' => 'email|required|string',
             'password' => 'required|string'
         ]);
 
-        return $credenciles;
+        //return $credenciles;
 
         if(Auth::attempt($credenciles)){
 
-            return 'Has iniciado secion';
+            return redirect()->route('datos.index');
 
         } //verdadero o falso
-        return 'HAY UN ERRROR';
+        return back()->withErrors(['email' => trans('auth.failed')])
+                     ->withInput(request(['email']));
         //return back()->withErrors(['email' => trans('auth.failed')])
                      //->withInput(request(['email']));
 
