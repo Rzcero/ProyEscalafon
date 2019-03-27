@@ -53,6 +53,7 @@ Route::post('/guardar_produccion_intelectual','EstudiosController@guardar_produc
 
 Route::get('/listarotrosestudios', 'EstudiosController@listarotrosestudios')->name('estudios.listarotrosestudios');
 Route::get('/listarproduccion', 'EstudiosController@listarproduccion')->name('estudios.listarproduccion');
+Route::get('/listartipogrado', 'EstudiosController@listartipogrado')->name('estudios.listartipogrado');
 
 
 
@@ -63,8 +64,7 @@ Route::get('/insertarestudiosbasicos', 'EstudiosBasicosController@store');
 Route::get('/actualizarestudiosbasicos', 'EstudiosBasicosController@update');
 Route::get('/borrarestudiosbasicos', 'EstudiosBasicosController@destroy');
 
-=======
->>>>>>> a24597d927d69bb259866a0acb5b17d542ff7944
+
 
 //Rutas de Datos
 Route::resource('/datos','DatosController');
@@ -75,7 +75,7 @@ Route::get('/listarEstadoCivil', 'DatosController@listarEstadoCivil')->name('dat
 Route::get('/listarTipoVia', 'DatosController@listarTipoVia')->name('datos.listarTipoVia');
 Route::get('/listarTipoZona', 'DatosController@listarTipoZona')->name('datos.listarTipoZona');
 Route::get('/listarTipoIdioma', 'DatosController@listarTipoIdiomas')->name('datos.listarTipoIdiomas');
-<<<<<<< HEAD
+
 
 */
 

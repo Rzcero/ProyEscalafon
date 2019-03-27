@@ -272,6 +272,33 @@ $("#formularioproduccionintelectual").trigger('reset');
         }
    });
 
+
+               //Para llenar el Select de listar tipo de grado
+        
+    $.ajax({
+        
+        url: '/ProyEscalafon/public/listartipogrado',
+        type: 'GET',
+        success: function(respuesta){
+                                    
+            let registro = '';
+            
+            console.log(respuesta);
+            respuesta.forEach(obj_json =>{
+                obj_json.forEach(obj_json => {
+
+                  
+                    registro += `<option value='${obj_json.id_grado}'>${obj_json.tipogrado}</option>`
+
+                });
+            });
+            
+            $("#grado").append(registro);
+            
+
+        }
+   });
+
       $.ajax({
         
         url: '/ProyEscalafon/public/listartipomedio',
@@ -339,11 +366,11 @@ registro += `<tr>
 
 <td>
 
-                                            <button class='ver_otros_estudios btn btn-warning' data-toggle="modal" data-target="#modalIdioma2" value='${obj_json.id}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
+<button class='ver_otros_estudios btn btn-warning' data-toggle="modal" data-target="#modalIdioma2" value='${obj_json.id}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
 
-                                            <button class='update_otros_estudios btn btn-success' data-toggle="modal" data-target="#modalOtrosEstudios" value='${obj_json.id}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
+<button class='update_otros_estudios btn btn-success' data-toggle="modal" data-target="#modalOtrosEstudios" value='${obj_json.id}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
 
-                                            <button class='elim_otros_estudios btn btn-danger' data-toggle="modal" data-target="#modalIdioma3" value='${obj_json.id}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
+<button class='elim_otros_estudios btn btn-danger' data-toggle="modal" data-target="#modalIdioma3" value='${obj_json.id}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
 </td>
 </tr>`
 
@@ -394,6 +421,49 @@ registro += `<tr>
 $("#pro_intelec").html(registro); // se jala del create  <tbody id=otros_estudios></tbody>
 
 }
+
+});
+
+
+
+
+
+
+
+// para oculatr alguno select del formulario de estudios superiores 29/03/2019
+
+$("#tip_doc").change(function(){
+
+var tipo_documento = $(this).val();
+
+if(tipo_documento == 6){
+
+$("#div_dias").attr("hidden",false);
+$("#div_fechInicio").attr("hidden",false);
+$("#div_fechTermino").attr("hidden",false);
+$("#tipMov").attr("hidden",false);
+$("#detMov").text("Detalle del Movimiento:");
+$("#numDoc").text("Número de Decreto:");
+
+} else if(tipo_documento == 5){
+
+$("#div_dias").attr("hidden",false);
+$("#div_fechInicio").attr("hidden",false);
+$("#div_fechTermino").attr("hidden",false);
+$("#tipMov").attr("hidden",false);
+$("#detMov").text("Detalle del Movimiento:");
+$("#numDoc").text("Número de Resolución:");
+
+} else if(tipo_documento == 7){
+
+$("#div_dias").attr("hidden",true);
+$("#div_fechInicio").attr("hidden",true);
+$("#div_fechTermino").attr("hidden",true);
+$("#tipMov").attr("hidden",true);
+$("#detMov").text("Asunto:");
+$("#numDoc").text("Número de Oficio:");
+
+} 
 
 });
 

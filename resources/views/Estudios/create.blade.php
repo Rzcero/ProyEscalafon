@@ -402,22 +402,24 @@
                                         </select>
                                     </div>
                                 </div>
-
-                                <div class="col-2">  
+            <!--
+                                <div class="col-2">  ELIMINAMOS EL CICLO 27/03/2019
                                     <div class="form-group mb-1">
                                         <label for="ciclo">Ciclo:</label>
                                         <input type="text" class="form-control form-control-sm" id="ciclo" placeholder="">
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="form-row my-2">
                                 <div class="col">  
                                     <div class="form-group mb-1">
                                         <label for="centro_estudio">Centro de Estudios:</label>
-                                        <select id="centro_estudio_superior" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" id="centro_estudio_superior" placeholder="">
+                                        
+                                      <!--  <select id="centro_estudio_superior" class="form-control form-control-sm"> 
                                           
-                                        </select>
+                                        </select>-->
                                     </div>
                                 </div>
                             </div>
@@ -435,9 +437,11 @@
                                 <div class="col">  
                                     <div class="form-group mb-1">
                                         <label for="carrera">Carrera:</label>
-                                        <select id="carrera" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" id="carrera" placeholder="">
+                                         
+                                       <!-- <select id="carrera" class="form-control form-control-sm">
                                           
-                                        </select>
+                                        </select>-->
                                     </div>
                                 </div>
 
@@ -488,9 +492,11 @@
                                 <div class="col">
                                     <div class="form-group mb-1">
                                         <label for="EntidadRegist">Entidad del Registro del Título:</label>
-                                        <select id="EntidadRegist" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" id="EntidadRegist" placeholder="">
+                                       
+                                   <!--     <select id="EntidadRegist" class="form-control form-control-sm"> 
                                             
-                                        </select>
+                                        </select>-->
                                     </div>
                                 </div>
 
