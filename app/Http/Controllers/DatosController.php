@@ -15,7 +15,7 @@ use App\TipoZona;
 use App\Departamento;
 use App\Provincia;
 use App\Distrito;
-use App\TipoGrado;
+
 
 
 class DatosController extends Controller
@@ -254,27 +254,6 @@ class DatosController extends Controller
         ]);
     }
 
-  //Para mostrarlo en el Modal tipogrado
-    public function listartipogrado()
-    {
-        
-        $tipogrados= TipoGrado::all();
-        
-        $matriz = array();
-        
-        foreach($tipogrados as $tipogrado){
-        
-            $matriz[] = array('id_grado' => $tipogrado->id_tipo_grado,
-                              'tipogrado' => $tipogrado->nombre);
-        
-        }
-        
-        return response()->json([
-              
-            $matriz
-             
-        ]);
-    }
 
 
 

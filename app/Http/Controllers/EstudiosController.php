@@ -13,6 +13,7 @@ use App\TipoDocumento;
 use App\TipoMedio;
 use App\Medio;
 use App\ProduccionIntelectual;
+use App\TipoGrado;
 
 class EstudiosController extends Controller
 {
@@ -142,6 +143,29 @@ public function listartipomedio(){
              
         ]);
 }
+
+  //Para mostrarlo en el Modal tipogrado
+    public function listartipogrados()
+    {
+        
+        $tipogrados= TipoGrado::all();
+        
+        $matriz = array();
+        
+        foreach($tipogrados as $tipogrado){
+        
+            $matriz[] = array('id_grado' => $tipogrado->id_tipo_grado,
+                              'tipogrado' => $tipogrado->nombre);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+
 
 public function listarmedio(){
             

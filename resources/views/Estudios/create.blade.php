@@ -216,7 +216,7 @@
                     <!-- Fin del Contenedor del Formulario -->
                         
                         
-                    <!--  Inicio contenedor Estudios Superiores  -->
+                    <!--  Inicio contenedor Estudios f  -->
                     <div class="container my-3 px-0" id="tabla2">
                          
                         <div class="card">
@@ -374,7 +374,7 @@
                                         <legend class="col-form-label">Estado de los Estudios:</legend>
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="estado" id="concluido" value="concluidos">
+                                            <input class="form-check-input" type="radio" name="estado" id="concluido" value="concluidos" checked>
                                             <label class="form-check-label" for="concluido">Concluidos</label>
                                         </div>
 
@@ -471,6 +471,7 @@
                                     </div>
                                 </div>
 
+
                                 <div class="col">  
                                     <div class="form-group mb-1">
                                         <label for="fech_emision">Fecha de Emisión:</label>
@@ -480,7 +481,7 @@
 
                                 <div class="col">  
                                     <div class="form-group mb-1">
-                                        <label for="num_reg_titulo">Número de Registro del Título:</label>
+                                        <label for="num_reg_titulo" id="nom_reg_titulo">Número de Registro del Título:</label>
                                         <input type="text" class="form-control form-control-sm" id="num_reg_titulo" placeholder="">
                                     </div>
                                 </div>

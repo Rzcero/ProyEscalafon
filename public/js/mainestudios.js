@@ -277,7 +277,7 @@ $("#formularioproduccionintelectual").trigger('reset');
         
     $.ajax({
         
-        url: '/ProyEscalafon/public/listartipogrado',
+        url: '/ProyEscalafon/public/listartipogrados',
         type: 'GET',
         success: function(respuesta){
                                     
@@ -432,18 +432,29 @@ $("#pro_intelec").html(registro); // se jala del create  <tbody id=otros_estudio
 
 // para oculatr alguno select del formulario de estudios superiores 29/03/2019
 
-$("#tip_doc").change(function(){
+$("#no_concluido").click(function(){
 
-var tipo_documento = $(this).val();
+var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
 
-if(tipo_documento == 6){
+//alert(btn_radio );
+if(btn_radio == "no concluidos"){
 
-$("#div_dias").attr("hidden",false);
-$("#div_fechInicio").attr("hidden",false);
-$("#div_fechTermino").attr("hidden",false);
-$("#tipMov").attr("hidden",false);
-$("#detMov").text("Detalle del Movimiento:");
-$("#numDoc").text("Número de Decreto:");
+$("#grado").attr("hidden",true);
+$("#detalle").attr("hidden",true);
+$("#fech_consejo").attr("hidden",true);
+$("#num_reg_titulo").attr("hidden",true);
+$("#EntidadRegist").attr("hidden",true);
+$("#nro_colegiatura").attr("hidden",true);
+$("#nom_colegio").attr("hidden",true);
+//$("#nom_reg_titulo").text("");
+$("#nom_reg_titulo").attr("hidden",true);
+
+
+
+
+
+
+
 
 } else if(tipo_documento == 5){
 
