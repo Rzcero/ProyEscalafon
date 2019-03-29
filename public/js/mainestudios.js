@@ -424,7 +424,7 @@ $("#pro_intelec").html(registro); // se jala del create  <tbody id=otros_estudio
 
 });
 
-
+}
 
 
 
@@ -436,49 +436,127 @@ $("#no_concluido").click(function(){
 
 var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
 
-//alert(btn_radio );
+//alert(btn_radio);
 if(btn_radio == "no concluidos"){
 
+
+
+$("#archivo_grado_titulo").attr("hidden",true);
+$("#lblarchivo_grado_titulo").attr("hidden",true);
+
 $("#grado").attr("hidden",true);
+$("#lblgrado").attr("hidden",true);
+
+$("#lbldetalle").attr("hidden",true);
 $("#detalle").attr("hidden",true);
+
 $("#fech_consejo").attr("hidden",true);
-$("#num_reg_titulo").attr("hidden",true);
-$("#EntidadRegist").attr("hidden",true);
-$("#nro_colegiatura").attr("hidden",true);
-$("#nom_colegio").attr("hidden",true);
+$("#lblfech_consejo").attr("hidden",true);
+
+$("#lblfech_emision").attr("hidden",true);
+$("#fech_emision").attr("hidden",true);
 //$("#nom_reg_titulo").text("");
-$("#nom_reg_titulo").attr("hidden",true);
+$("#lblnum_reg_titulo").attr("hidden",true);
+$("#num_reg_titulo").attr("hidden",true);
 
+$("#lblnom_colegio").attr("hidden",true);
+$("#nom_colegio").attr("hidden",true);
 
+$("#lblnro_colegiatura").attr("hidden",true);
+$("#nro_colegiatura").attr("hidden",true);
 
-
-
-
-
-
-} else if(tipo_documento == 5){
-
-$("#div_dias").attr("hidden",false);
-$("#div_fechInicio").attr("hidden",false);
-$("#div_fechTermino").attr("hidden",false);
-$("#tipMov").attr("hidden",false);
-$("#detMov").text("Detalle del Movimiento:");
-$("#numDoc").text("Número de Resolución:");
-
-} else if(tipo_documento == 7){
-
-$("#div_dias").attr("hidden",true);
-$("#div_fechInicio").attr("hidden",true);
-$("#div_fechTermino").attr("hidden",true);
-$("#tipMov").attr("hidden",true);
-$("#detMov").text("Asunto:");
-$("#numDoc").text("Número de Oficio:");
+$("#lblEntidadRegist").attr("hidden",true);
+$("#EntidadRegist").attr("hidden",true);
 
 } 
 
 });
 
-}
+$("#concluido").click(function(){
+
+var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
+
+//alert(btn_radio);
+if(btn_radio == "concluidos"){
+
+
+
+$("#archivo_grado_titulo").attr("hidden",false);
+$("#lblarchivo_grado_titulo").attr("hidden",false);
+
+$("#grado").attr("hidden",false);
+$("#lblgrado").attr("hidden",false);
+
+$("#lbldetalle").attr("hidden",false);
+$("#detalle").attr("hidden",false);
+
+$("#fech_consejo").attr("hidden",false);
+$("#lblfech_consejo").attr("hidden",false);
+
+$("#lblfech_emision").attr("hidden",false);
+$("#fech_emision").attr("hidden",false);
+//$("#nom_reg_titulo").text("");
+$("#lblnum_reg_titulo").attr("hidden",false);
+$("#num_reg_titulo").attr("hidden",false);
+
+$("#lblnom_colegio").attr("hidden",false);
+$("#nom_colegio").attr("hidden",false);
+
+$("#lblnro_colegiatura").attr("hidden",false);
+$("#nro_colegiatura").attr("hidden",false);
+
+$("#lblEntidadRegist").attr("hidden",false);
+$("#EntidadRegist").attr("hidden",false);
+} 
+
+});
+
+$("#egresado").click(function(){
+
+var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
+
+//alert(btn_radio);
+if(btn_radio == "egresado"){
+
+
+
+$("#archivo_grado_titulo").attr("hidden",true);
+$("#lblarchivo_grado_titulo").attr("hidden",true);
+
+$("#grado").attr("hidden",true);
+$("#lblgrado").attr("hidden",true);
+
+$("#lbldetalle").attr("hidden",true);
+$("#detalle").attr("hidden",true);
+
+$("#fech_consejo").attr("hidden",true);
+$("#lblfech_consejo").attr("hidden",true);
+
+$("#lblfech_emision").attr("hidden",true);
+$("#fech_emision").attr("hidden",true);
+//$("#nom_reg_titulo").text("");
+$("#lblnum_reg_titulo").attr("hidden",true);
+$("#num_reg_titulo").attr("hidden",true);
+
+$("#lblnom_colegio").attr("hidden",true);
+$("#nom_colegio").attr("hidden",true);
+
+$("#lblnro_colegiatura").attr("hidden",true);
+$("#nro_colegiatura").attr("hidden",true);
+
+$("#lblEntidadRegist").attr("hidden",true);
+$("#EntidadRegist").attr("hidden",true);
+
+} 
+
+});
+
+
+
+
+
+
+
         
 
    })

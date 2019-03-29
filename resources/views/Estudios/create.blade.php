@@ -427,7 +427,7 @@
                             <div class="form-row my-2">
                                 <div class="col">  
                                     <div class="form-group mb-1">
-                                        <label for="grado">Mención del Grado o Título:</label>
+                                        <label for="grado" id="lblgrado">Mención del Grado o Título:</label>
                                         <select id="grado" class="form-control form-control-sm">
                                            
                                         </select>
@@ -447,7 +447,7 @@
 
                                 <div class="col">
                                     <div class="form-group mb-1">
-                                        <label for="archivo_grado_titulo">PDF</label>
+                                        <label for="archivo_grado_titulo" id="lblarchivo_grado_titulo">PDF</label>
                                         <input type="file" class="form-control-file" id="archivo_grado_titulo">
                                     </div>
                                 </div>
@@ -456,7 +456,7 @@
                             <div class="form-row my-2">
                                 <div class="col">
                                     <div class="form-group mb-1">
-                                        <label for="detalle">Detalle del Título:</label>
+                                        <label for="detalle"id="lbldetalle">Detalle del Título:</label>
                                         <input type="text" class="form-control form-control-sm" id="detalle" placeholder="">
                                     </div>
                                 </div>
@@ -466,22 +466,22 @@
 
                                 <div class="col">
                                     <div class="form-group mb-1">
-                                        <label for="fech_consejo">Fecha de Consejo:</label>
+                                        <label for="fech_consejo" id="lblfech_consejo">Fecha de Consejo:</label>
                                         <input type="date" class="form-control form-control-sm" id="fech_consejo" placeholder="">
                                     </div>
                                 </div>
 
-
-                                <div class="col">  
+                                    <div class="col">
                                     <div class="form-group mb-1">
-                                        <label for="fech_emision">Fecha de Emisión:</label>
-                                        <input type="date" class="form-control form-control-sm" id="fech_emision" placeholder="">                             
+                                        <label for="fech_emision" id="lblfech_emision">Fecha de Emisión:</label>
+                                        <input type="date" class="form-control form-control-sm" id="fech_emision" placeholder="">
                                     </div>
                                 </div>
 
+
                                 <div class="col">  
                                     <div class="form-group mb-1">
-                                        <label for="num_reg_titulo" id="nom_reg_titulo">Número de Registro del Título:</label>
+                                        <label for="num_reg_titulo" id="lblnum_reg_titulo">Número de Registro del Título:</label>
                                         <input type="text" class="form-control form-control-sm" id="num_reg_titulo" placeholder="">
                                     </div>
                                 </div>
@@ -492,7 +492,7 @@
 
                                 <div class="col">
                                     <div class="form-group mb-1">
-                                        <label for="EntidadRegist">Entidad del Registro del Título:</label>
+                                        <label for="EntidadRegist" id="lblEntidadRegist"">Entidad del Registro del Título:</label>
                                         <input type="text" class="form-control form-control-sm" id="EntidadRegist" placeholder="">
                                        
                                    <!--     <select id="EntidadRegist" class="form-control form-control-sm"> 
@@ -503,14 +503,14 @@
 
                                 <div class="col">  
                                     <div class="form-group mb-1">
-                                        <label for="nro_colegiatura">Número de Colegiatura:</label>
+                                        <label for="nro_colegiatura" id="lblnro_colegiatura">Número de Colegiatura:</label>
                                         <input type="text" class="form-control form-control-sm" id="nro_colegiatura" placeholder="">                            
                                     </div>
                                 </div>
 
                                 <div class="col">  
                                     <div class="form-group mb-1">
-                                        <label for="nom_colegio">Nombre del Colegio:</label>
+                                        <label for="nom_colegio" id="lblnom_colegio">Nombre del Colegio:</label>
                                         <input type="text" class="form-control form-control-sm" id="nom_colegio" placeholder="">
                                     </div>
                                 </div>
