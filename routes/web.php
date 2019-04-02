@@ -49,10 +49,13 @@ Route::get('/listarmedio', 'EstudiosController@listarmedio')->name('estudios.lis
 
 Route::post('/guardar_otros_estudios','EstudiosController@guardar_otros_estudios')->name('estudios.guardar_otros_estudios');
 Route::post('/guardar_produccion_intelectual','EstudiosController@guardar_produccion_intelectual')->name('estudios.guardar_produccion_intelectual');
-
+Route::post('/guardar_estudios_superiores','EstudiosController@guardar_estudios_superiores')->name('estudios.guardar_estudios_superiores');
+               //(/ruta que va en el navegador, controlador@funcion) ->
 
 Route::get('/listarotrosestudios', 'EstudiosController@listarotrosestudios')->name('estudios.listarotrosestudios');
 Route::get('/listarproduccion', 'EstudiosController@listarproduccion')->name('estudios.listarproduccion');
+Route::get('/listarestudiossuperiores', 'EstudiosController@listarestudiossuperiores')->name('estudios.listarestudiossuperiores');
+
 Route::get('/listartipogrados', 'EstudiosController@listartipogrados')->name('estudios.listartipogrados');
 
 

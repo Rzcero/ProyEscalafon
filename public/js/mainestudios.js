@@ -4,6 +4,7 @@ $(document).ready(function()
 
     mostrarOtrosEstudios();
     mostrarProduccionIntelectual();
+    mostrarEstudiosSuperiores();
 
 // tabla de estudios basicos
  $("#formularioestudiosbasicos").submit(function(e){
@@ -60,6 +61,8 @@ $(document).ready(function()
         e.preventDefault();
     
     });
+
+
 
 // tabla de otros estudios
 $("#guardarOtrosEstudios").click(function(e){
@@ -118,6 +121,84 @@ $("#formulariootrosestudios").trigger('reset');
     
 
     });
+
+
+    //botones tipo ratio del formulario 1
+    $("#formularioestudiossuperiores :radio").click(function(){
+        
+        dato3 = $(this).val();
+            console.log(dato3);
+    });
+
+// tabla de estudios superiores
+$("#guardarEstudiosSuperiores").click(function(e){
+                
+        var dato = $("#nivel_estudio").val();  // # se recepcionan de create.blade -> formulario
+       var dato3 = 1;
+        var dato4 = $("#modalidad").val();  // # se recepcionan de create.blade -> formulario
+        var dato5 = $("#centro_estudio_superior").val();
+        var dato6= $("#grado").val();  // # se recepcionan de create.blade -> formulario
+        var dato7 = $("#carrera").val();
+        var dato8 = $("#detalle").val();  // # se recepcionan de create.blade -> formulario
+        var dato9 = $("#fech_consejo").val();
+        var dato10 = $("#fech_emision").val();  // # se recepcionan de create.blade -> formulario
+       var dato11 = $("#num_reg_titulo").val(); 
+       var dato12 = $("#EntidadRegist").val(); 
+         var dato13 = $("#nro_colegiatura").val(); 
+         var dato14 = $("#nom_colegio").val(); 
+
+
+//console.log(dato);  para ver por consola los datos que estas recibiendo
+//console.log(dato2);
+        var route = "/ProyEscalafon/public/guardar_estudios_superiores";
+        var token = $("#token_est_sup").val();
+        
+        $.ajax({
+            
+            url: route,
+            headers: {'X-CSRF-TOKEN': token},
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                id_nivel: dato,
+           
+                id_estado: dato3,
+                id_modalidad: dato4,
+                centro_estudios: dato5,
+                 id_tipo_grado: dato6,
+                carrera: dato7,
+                detall_grado: dato8,
+                fecha_consejo: dato9,
+                fecha_emision: dato10,
+                num_registro: dato11,
+                entidad: dato12,
+                num_colegiatura:dato13,
+                nom_colegio:dato14
+
+               
+              
+
+
+            }, //paso2 se modifica
+
+         success: function(respuesta){
+
+mostrarEstudiosSuperiores();
+
+
+$("#formularioestudiossuperiores").trigger('reset');
+
+}
+ //e.preventDefault();
+            
+        });         
+        
+      
+    
+
+    });
+
+
 
 
 // tabla de produccion intelectual
@@ -430,6 +511,47 @@ $("#pro_intelec").html(registro); // se jala del create  <tbody id=otros_estudio
 
 
 
+function mostrarEstudiosSuperiores(){
+
+$.ajax({
+
+url: '/ProyEscalafon/public/listarestudiossuperiores',
+type: 'GET',
+success: function(respuesta){
+
+console.log(respuesta);
+
+let registro = '';
+
+respuesta.forEach(obj_json =>{
+obj_json.forEach(obj_json =>{
+registro += `<tr>
+<td>${obj_json.tipo}</td>  
+<td>${obj_json.centro_estudios}</td>
+<td>${obj_json.nivel}</td>
+
+
+<td>
+<button class='elim_estSuperior btn btn-danger'>Borrar</button>
+</td>
+</tr>`
+
+});
+});
+
+// console.log(registro);
+$("#est_superiores").html(registro); // se jala del create  <tbody id=otros_estudios></tbody>
+
+}
+
+});
+
+}
+
+
+
+
+
 // para oculatr alguno select del formulario de estudios superiores 29/03/2019
 
 $("#no_concluido").click(function(){
@@ -437,7 +559,7 @@ $("#no_concluido").click(function(){
 var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
 
 //alert(btn_radio);
-if(btn_radio == "no concluidos"){
+if(btn_radio == "2"){
 
 
 
@@ -477,7 +599,7 @@ $("#concluido").click(function(){
 var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
 
 //alert(btn_radio);
-if(btn_radio == "concluidos"){
+if(btn_radio == "1"){
 
 
 
@@ -516,7 +638,7 @@ $("#egresado").click(function(){
 var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
 
 //alert(btn_radio);
-if(btn_radio == "egresado"){
+if(btn_radio == "3"){
 
 
 

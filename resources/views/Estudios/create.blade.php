@@ -374,17 +374,17 @@
                                         <legend class="col-form-label">Estado de los Estudios:</legend>
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="estado" id="concluido" value="concluidos" checked>
+                                            <input class="form-check-input" type="radio" name="estado" id="concluido" value="1" checked>
                                             <label class="form-check-label" for="concluido">Concluidos</label>
                                         </div>
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="estado" id="no_concluido" value="no concluidos">
+                                            <input class="form-check-input" type="radio" name="estado" id="no_concluido" value="2">
                                             <label class="form-check-label" for="no_concluido">No Concluidos</label>
                                         </div>
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="estado" id="egresado" value="egresado">
+                                            <input class="form-check-input" type="radio" name="estado" id="egresado" value="3">
                                             <label class="form-check-label" for="egresado">Egresado</label>
                                         </div>
                                     </fieldset>
@@ -524,7 +524,7 @@
                                          
                 </div>
                 <div class="modal-footer py-1">
-                    <button type="button" class="btn btn-primary" id="guardarnuevo" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-primary" id="guardarEstudiosSuperiores" data-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>

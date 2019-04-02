@@ -214,6 +214,41 @@ $listar_otros_estudios = OtroEstudio::all();
 
 }
 
+
+/*
+public function listarestudiossuperiores(){
+
+$listar_estudios_superiores = EstudioSuperior::all();
+
+ $matriz = array();
+        
+        foreach($listar_estudios_superiores as $lista_estudio_superior){
+        
+            $matriz[] = array('tipo' => $lista_estudio_superior->tipo_grado->nombre ,  //  tipo, denominacion,horas,creditos,  // opciones
+                              'centro_estudios' => $lista_estudio_superior->centro_estudios,
+                             'nivel' => $lista_estudio_superior->nivel_estudio->nombre,
+                             
+
+
+                         );
+
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+
+}
+
+
+*/
+
+
+
+
 public function listarproduccion(){
 
 $listar_producciones = ProduccionIntelectual::all();
@@ -276,6 +311,38 @@ $listar_producciones = ProduccionIntelectual::all();
        }
 
     }
+
+ public function guardar_estudios_superiores(Request $request){ // despues del @
+
+
+ if($request->ajax()){
+           
+           
+        $estudio_superior = new EstudioSuperior;
+        $estudio_superior->id_nivel = $request->id_nivel;   //  $estudio_superior->id_nivel(base) = $request->id_nivel(main);
+        $estudio_superior->id_estado = $request->id_estado;
+        $estudio_superior->id_modalidad=$request->id_modalidad;
+        //$estudio_superior->ciclo=$request->ciclo;
+        $estudio_superior->centro_estudios=$request->centro_estudios;
+        $estudio_superior->id_tipo_grado=$request->id_tipo_grado;
+        $estudio_superior->carrera=$request->carrera;
+        $estudio_superior->detall_grado=$request->detall_grado;
+        $estudio_superior->fecha_consejo=$request->fecha_consejo;
+        $estudio_superior->fecha_emision=$request->fecha_emision;
+        $estudio_superior->num_registro=$request->num_registro;
+        $estudio_superior->entidad=$request->entidad;
+        $estudio_superior->num_colegiatura=$request->num_colegiatura;
+        $estudio_superior->nom_colegio=$request->nom_colegio;
+
+
+
+           $estudio_superior->save();
+           return response()->json(["mensaje"=>"creado"]);
+           
+           
+       }
+
+     }
 
      public function guardar_otros_estudios(Request $request){
 
