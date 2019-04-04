@@ -225,6 +225,7 @@
                             </div>
 
                             <div class="card-body p-1">
+                                <div id="div_tabla_estudios_superiores">
                                 <table class="table table-bordered table-sm">
                                     <thead>
                                         <tr>
@@ -236,6 +237,7 @@
                                     </thead>
                                     <tbody id="est_superiores"></tbody>
                                 </table>
+                            </div>
 
                                 <caption>
                                     <button class="btn btn-primary"  data-toggle="modal" data-target="#modalEstudiosSuperiores">
@@ -300,7 +302,8 @@
                             </div>
 
                             <div class="card-body p-1">
-                                <div id="div_tabla3">
+                                <div id="div_produccion_intelectual">
+                                    
                                 <table class="table table-bordered table-sm">
                                     <thead>
                                         <tr>

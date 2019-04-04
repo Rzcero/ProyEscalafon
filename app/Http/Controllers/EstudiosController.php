@@ -215,7 +215,7 @@ $listar_otros_estudios = OtroEstudio::all();
 }
 
 
-/*
+
 public function listarestudiossuperiores(){
 
 $listar_estudios_superiores = EstudioSuperior::all();
@@ -226,7 +226,7 @@ $listar_estudios_superiores = EstudioSuperior::all();
         
             $matriz[] = array('tipo' => $lista_estudio_superior->tipo_grado->nombre ,  //  tipo, denominacion,horas,creditos,  // opciones
                               'centro_estudios' => $lista_estudio_superior->centro_estudios,
-                             'nivel' => $lista_estudio_superior->nivel_estudio->nombre,
+                             'nivel' => $lista_estudio_superior->nivel_estudio->nombre
                              
 
 
@@ -244,7 +244,7 @@ $listar_estudios_superiores = EstudioSuperior::all();
 }
 
 
-*/
+
 
 
 

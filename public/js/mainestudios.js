@@ -491,7 +491,11 @@ registro += `<tr>
 
 
 <td>
-<button class='elim_estSuperior btn btn-danger'>Borrar</button>
+<button class='ver_otros_estudios btn btn-warning' data-toggle="modal" data-target="#modalIdioma2" value='${obj_json.id}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
+
+<button class='update_otros_estudios btn btn-success' data-toggle="modal" data-target="#modalOtrosEstudios" value='${obj_json.id}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
+
+<button class='elim_otros_estudios btn btn-danger' data-toggle="modal" data-target="#modalIdioma3" value='${obj_json.id}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
 </td>
 </tr>`
 
@@ -532,7 +536,11 @@ registro += `<tr>
 
 
 <td>
-<button class='elim_estSuperior btn btn-danger'>Borrar</button>
+<button class='ver_otros_estudios btn btn-warning' data-toggle="modal" data-target="#modalIdioma2" value='${obj_json.id}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
+
+<button class='update_otros_estudios btn btn-success' data-toggle="modal" data-target="#modalOtrosEstudios" value='${obj_json.id}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
+
+<button class='elim_otros_estudios btn btn-danger' data-toggle="modal" data-target="#modalIdioma3" value='${obj_json.id}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
 </td>
 </tr>`
 

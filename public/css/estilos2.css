@@ -1,4 +1,5 @@
-#div_tabla_otros_estudios {
+#div_tabla_otros_estudios, #div_tabla_estudios_superiores, #div_produccion_intelectual {
 height: 380px;
 overflow-x: auto;
 }
+

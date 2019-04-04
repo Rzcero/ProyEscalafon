@@ -26,30 +26,30 @@ class EstudioSuperior extends Model
 
      public function nivel_estudio(){
 
-        return $this->belogsTo('App\NivelEstudio','id_nivel','id_nivel');
+        return $this->belongsTo('App\NivelEstudio','id_nivel','id_nivel');
 
     }
 
     public function estudiosuperior(){
 
-        return $this->belogsTo('App\EstudioSuperior','id_modalidad','id_modalidad');
+        return $this->belongsTo('App\EstudioSuperior','id_modalidad','id_modalidad');
 
     }
 
      public function tipo_estudio(){
 
-        return $this->belogsTo('App\TipoEstudio','id_tipo_estudio','id_tipo_estudio');
+        return $this->belongsTo('App\TipoEstudio','id_tipo_estudio','id_tipo_estudio');
 
     }
 
     public function otroestudio(){
 
-        return $this->belogsTo('App\OtroEstudio','id_tipo_documento','id_tipo_documento');
+        return $this->belongsTo('App\OtroEstudio','id_tipo_documento','id_tipo_documento');
 
     }
 
     public function tipo_grado(){
-        return $this->belogsTo('App\TipoGrado','id_tipo_grado','id_tipo_grado');
+        return $this->belongsTo('App\TipoGrado','id_tipo_grado','id_tipo_grado');
 
     }
 }
