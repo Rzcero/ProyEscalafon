@@ -195,17 +195,13 @@ $listar_otros_estudios = OtroEstudio::all();
         
         foreach($listar_otros_estudios as $lista_otro_estudio){
         
-            $matriz[] = array('tipo' => $lista_otro_estudio->tipootroestudio->denominacion ,  //  tipo, denominacion,horas,creditos,  // opciones
+            $matriz[] = array('id_otro_estudio'=> $lista_otro_estudio->id_otro_estudio,
+                                'tipo' => $lista_otro_estudio->tipootroestudio->denominacion ,  //  tipo, denominacion,horas,creditos,  // opciones
                               'denominacion' => $lista_otro_estudio->nombre_estudio,
                              'hora' => $lista_otro_estudio->num_horas,
                              'credito' => $lista_otro_estudio->num_creditos
-
-
                          );
-
-        
         }
-        
         return response()->json([
               
             $matriz
@@ -224,54 +220,33 @@ $listar_estudios_superiores = EstudioSuperior::all();
         
         foreach($listar_estudios_superiores as $lista_estudio_superior){
         
-            $matriz[] = array('tipo' => $lista_estudio_superior->tipo_grado->nombre ,  //  tipo, denominacion,horas,creditos,  // opciones
+            $matriz[] = array('id_estudios_sup' => $lista_estudio_superior->id_estudios_sup, 
+                              'tipo' => $lista_estudio_superior->tipo_grado->nombre , //  tipo, denominacion,horas,creditos,  // opciones
                               'centro_estudios' => $lista_estudio_superior->centro_estudios,
-                             'nivel' => $lista_estudio_superior->nivel_estudio->nombre
-                             
-
-
+                              'nivel' => $lista_estudio_superior->nivel_estudio->nombre
                          );
-
-        
         }
-        
         return response()->json([
-              
             $matriz
-             
         ]);
 
 }
 
 
-
-
-
-
-
 public function listarproduccion(){
-
 $listar_producciones = ProduccionIntelectual::all();
-
  $matriz = array();
         
         foreach($listar_producciones as $listar_produccion){
         
-            $matriz[] = array('medio' => $listar_produccion->medio_produccion_intelectual->descripcion,  //  estos 3 se mandan a mainestudios
+            $matriz[] = array('id_prod_intele' => $listar_produccion->id_prod_intele, 
+                              'medio' => $listar_produccion->medio_produccion_intelectual->descripcion, //  estos 3 se mandan a mainestudios
                               'nombre_publicacion' => $listar_produccion->nombre,
                              'anio' => $listar_produccion->fecha_publicacion
-                            
-
-
                          );
-
-        
         }
-        
         return response()->json([
-              
             $matriz
-             
         ]);
 
 }
@@ -370,12 +345,11 @@ $listar_producciones = ProduccionIntelectual::all();
 
      }
 
+
+
         public function guardar_produccion_intelectual(Request $request){
 
-
- if($request->ajax()){
-           
-           
+ if($request->ajax()){    
         $produccion_intelectual = new ProduccionIntelectual;
         $produccion_intelectual->id_tipo_medio = $request->id_tipo_medio;
         $produccion_intelectual->id_medio = $request->id_medio;
@@ -389,8 +363,188 @@ $listar_producciones = ProduccionIntelectual::all();
        }
 
      }
-     
 
+// public function editar_modal_est_sup(Request $request){
+//        }
+
+        public function editar_modal_prod_intel(Request $request){
+
+//return $request->all();
+            $editarmodal_prod_intel = ProduccionIntelectual::where('id_prod_intele',$request->id)->get();  //id d ela base de datos(id_prod_intele)
+            $matriz = array();
+
+          foreach($editarmodal_prod_intel as $editar_prod_intel){
+        
+            $matriz[] = array('id' => $editar_prod_intel->id_prod_intele, //id_otro_estudio -> se trae de la base de datos
+                              'idtipomedio' => $editar_prod_intel->id_tipo_medio,
+                              'idmedio' => $editar_prod_intel->id_medio,
+                              'nombre' => $editar_prod_intel->nombre,
+                              'fechapublica' => $editar_prod_intel->fecha_publicacion
+                         
+                          );
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+        }
+
+
+
+     public function editar_modal_otros_estudios(Request $request){
+        $editarmodal_otros_estudios = OtroEstudio::where('id_otro_estudio',$request->id)->get();  //id d ela base de datos(id_otro_estudio)
+        $matriz = array();
+        
+        foreach($editarmodal_otros_estudios as $editarmodal_otro_Estudio){
+        
+            $matriz[] = array('id' => $editarmodal_otro_Estudio->id_otro_estudio, //id_otro_estudio -> se trae de la base de datos
+                              'tipoestudio' => $editarmodal_otro_Estudio->id_tipo_estudio,
+                              'nombreestudio' => $editarmodal_otro_Estudio->nombre_estudio,
+                              'centroestudio' => $editarmodal_otro_Estudio->centro_estudio,
+                              'participacion' => $editarmodal_otro_Estudio->participacion,
+                              'fechainicio' => $editarmodal_otro_Estudio->fecha_inicio,
+                              'fechatermino' => $editarmodal_otro_Estudio->fecha_termino,
+                              'numerohoras' => $editarmodal_otro_Estudio->num_horas,
+                              'numerocreditos' => $editarmodal_otro_Estudio->num_creditos,
+                              'tipodocumento' => $editarmodal_otro_Estudio->id_tipo_documento
+                              
+                          );
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+
+
+     public function editar_modal_estu_supe(Request $request){
+        $editarmodal_est_supe = EstudioSuperior::where('id_estudios_sup',$request->id)->get();  //id d ela base de datos(id_otro_estudio)
+        $matriz = array();
+        
+        foreach($editarmodal_est_supe as $editarmodal_superiores){
+        
+            $matriz[] = array('id' => $editarmodal_superiores->id_estudios_sup, //id_otro_estudio -> se trae de la base de datos
+                              'tiponivel' => $editarmodal_superiores->id_nivel,
+                              'tipoestado' => $editarmodal_superiores->id_estado,
+                              'modalidad' => $editarmodal_superiores->id_modalidad,
+                              //'participacion' => $editarmodal_superiores->ciclo,
+                              'centroestudio' => $editarmodal_superiores->centro_estudios,
+                              'tipogrado' => $editarmodal_superiores->id_tipo_grado,
+                              'carrera' => $editarmodal_superiores->carrera,
+                              'detallegrado' => $editarmodal_superiores->detall_grado,
+                              'fechaconsejo' => $editarmodal_superiores->fecha_consejo,
+                              'fechaemision' => $editarmodal_superiores->fecha_emision,
+                              'numeroregistro' => $editarmodal_superiores->num_registro,
+                              'entidad' => $editarmodal_superiores->entidad,
+                              'numerocolegiatura' => $editarmodal_superiores->num_colegiatura,
+                              'nombrecolegio' => $editarmodal_superiores->nom_colegio
+
+                              
+                          );
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+
+
+    //Para Ver Otros Estudios  al pulsar el boton ver
+    public function ver_otros_estudios(Request $request)
+    {
+        
+        $verOtrosEstudios = OtroEstudio::where('id_otro_estudio',$request->id)->get(); // id lo jala de la base de datos
+        
+        $matriz = array();
+        
+        foreach($verOtrosEstudios as $verOtroEstudio){
+        
+            $matriz[] = array('tipoestudio' => $verOtroEstudio->tipootroestudio->denominacion,
+                              'nombreestudio' => $verOtroEstudio->nombre_estudio,
+                              'centroestudio' => $verOtroEstudio->centro_estudio,
+                              'participacion' => $verOtroEstudio->participacion,
+                              'fechainicio' => $verOtroEstudio->fecha_inicio,
+                              'fechatermino' => $verOtroEstudio->fecha_termino,
+                              'numerohoras' => $verOtroEstudio->num_horas,
+                              'numerocreditos' => $verOtroEstudio->num_creditos,
+                              'tipodocumento' => $verOtroEstudio->tipootrodocumento->denominacion);
+        
+
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+
+
+//Para Ver Produccion intelectual  al pulsar el boton ver
+    public function ver_produccion_intelecual(Request $request)
+    {
+        $verProInt = ProduccionIntelectual::where('id_prod_intele',$request->id)->get(); // id lo jala de la base de datos
+        
+        $matriz = array();
+        
+        foreach($verProInt as $verProduccion){
+        
+            $matriz[] = array('tipomedio' => $verProduccion->produccion_intelectual1->descripcion,             
+                               'medio' => $verProduccion->medio_produccion_intelectual->descripcion,
+                              'nombre' => $verProduccion->nombre,
+                              'fechapu' => $verProduccion->fecha_publicacion);
+        
+
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+
+
+
+    public function destroyOTrosEStudios(Request $request, $id)
+    {
+                
+        if($request->ajax()){
+            
+            $borrar_otro_estudio = OtroEstudio::find($id);
+            $borrar_otro_estudio->delete();
+            
+            return response()->json([
+
+            ]);
+            
+        }
+    }
+
+     public function destroyProduccionIntelectual(Request $request, $id)
+    {
+                
+        if($request->ajax()){
+            
+            $borrar_Produccion = ProduccionIntelectual::find($id);
+            $borrar_Produccion->delete();
+            
+            return response()->json([
+
+            ]);
+            
+        }
+    }
+    
     /**
      * Display the specified resource.
      *
@@ -425,8 +579,55 @@ $listar_producciones = ProduccionIntelectual::all();
      */
     public function update(Request $request, $id)
     {
-        //
+        //se utilizar par acualizar
+
+        if($request->ajax()){
+
+        $otros_estudio = OtroEstudio::find($id);
+        $otros_estudio->update($request->all());
+
+            return response()->json([
+
+]);
+
+}
     }
+
+
+public function updateProduccionIntelectual(Request $request, $id)
+    {
+        //se utilizar par acualizar
+
+        if($request->ajax()){
+
+        $prod_inte = ProduccionIntelectual::find($id);
+        $prod_inte->update($request->all());
+
+            return response()->json([
+
+]);
+
+}
+    }
+
+
+    public function updateEstudiosSuperiores(Request $request, $id)
+    {
+        //se utilizar par acualizar
+return $request->all();
+        if($request->ajax()){
+
+        $est_supe = EstudioSuperior::find($id);
+        $est_supe->update($request->all());
+
+            return response()->json([
+
+]);
+
+}
+    }
+
+    
 
     /**
      * Remove the specified resource from storage.

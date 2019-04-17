@@ -58,6 +58,23 @@ Route::get('/listarestudiossuperiores', 'EstudiosController@listarestudiossuperi
 
 Route::get('/listartipogrados', 'EstudiosController@listartipogrados')->name('estudios.listartipogrados');
 
+Route::post('/editar_modal_otros_estudios', 'EstudiosController@editar_modal_otros_estudios')->name('estudios.editar_modal_otros_estudios');
+Route::post('/ver_otros_estudios', 'EstudiosController@ver_otros_estudios')->name('estudios.ver_otros_estudios');
+Route::DELETE('/destroyOTrosEStudios/{id}', 'EstudiosController@destroyOTrosEStudios')->name('estudios.destroyOTrosEStudios');
+//post porque voy a editar en la base de dato
+
+
+Route::post('/editar_modal_prod_intel', 'EstudiosController@editar_modal_prod_intel')->name('estudios.editar_modal_prod_intel');
+Route::post('/ver_produccion_intelecual', 'EstudiosController@ver_produccion_intelecual')->name('estudios.ver_produccion_intelecual');
+Route::DELETE('/destroyProduccionIntelectual/{id}', 'EstudiosController@destroyProduccionIntelectual')->name('estudios.destroyProduccionIntelectual');
+Route::put('/updateProduccionIntelectual/{id}','EstudiosController@updateProduccionIntelectual')->name('updateProduccionIntelectual');
+
+
+
+Route::post('/editar_modal_estu_supe', 'EstudiosController@editar_modal_estu_supe')->name('estudios.editar_modal_estu_supe');
+Route::put('/updateEstudiosSuperiores/{id}','EstudiosController@updateEstudiosSuperiores')->name('updateEstudiosSuperiores');
+
+
 
 
 /*

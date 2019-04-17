@@ -21,7 +21,7 @@ class ProduccionIntelectual extends Model
     
 
     public function produccion_intelectual1(){
-        return $this->belogsTo("App\TipoMedio","id_tipo_medio","id_tipo_medio");
+        return $this->belongsTo("App\TipoMedio","id_tipo_medio","id_tipo_medio");
 
     }
 

@@ -27,6 +27,11 @@ class OtroEstudio extends Model
 
     }
 
+ public function tipootrodocumento(){   // esta sentencia se usa en el estudioscontrolador
+
+        return $this->belongsTo('App\TipoDocumento','id_tipo_documento','id_tipo_documento');
+
+    }
 
    
 

@@ -240,7 +240,7 @@
                             </div>
 
                                 <caption>
-                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#modalEstudiosSuperiores">
+                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#modalEstudiosSuperiores" id="agregar_estudios_superiores">
                                         Agregar Nuevo <span><i class="material-icons">add</i></span>
                                     </button>
                                 </caption>
@@ -284,7 +284,7 @@
                                     </table>
                                 </div>
                                 <caption>
-                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#modalOtrosEstudios">
+                                    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalOtrosEstudios" id="agregar_otro_estudio">
                                         Agregar Nuevo <span><i class="material-icons">add</i></span>
                                     </button>
                                 </caption>
@@ -303,7 +303,7 @@
 
                             <div class="card-body p-1">
                                 <div id="div_produccion_intelectual">
-                                    
+
                                 <table class="table table-bordered table-sm">
                                     <thead>
                                         <tr>
@@ -318,9 +318,10 @@
                             </div>
 
                             <caption>
-                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#modalProduccionIntelectual">
+                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#modalProduccionIntelectual" id="agregar_produccion_intelectual">
                                         Agregar Nuevo <span><i class="material-icons">add</i></span>
                                     </button>
+
                                 </caption>
 
 
@@ -344,11 +345,11 @@
     
     <!-- Modal para Estudios Superiores nuevos -->
     
-    <div class="modal fade" id="modalEstudiosSuperiores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEstudiosSuperiores" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_estu_supe" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header py-2">
-                    <h5 class="modal-title" id="exampleModalLabel">Estudios Superiores</h5>
+                    <h5 class="modal-title" id="cerrar_modal_estu_supe">Estudios Superiores</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -360,7 +361,17 @@
                         <!-- Inicio Formulario -->
                         <form id="formularioestudiossuperiores">
                              <input type="hidden" name="_token" id="token_est_sup" value="{{ csrf_token() }}">
-                            <!--  I.E. Primaria  -->
+
+
+                             <div class="form-row my-2">
+                            <div class="col"> 
+                            <div class="form-group mb-1">
+                            <input type="hidden" id="id_ESTU_SUPE">
+                            </div>
+                            </div>
+                            </div>
+
+                            <!--    -->
                             <div class="form-row my-2">
                                 <div class="col">  
                                     <div class="form-group mb-1">
@@ -527,20 +538,43 @@
                                          
                 </div>
                 <div class="modal-footer py-1">
-                    <button type="button" class="btn btn-primary" id="guardarEstudiosSuperiores" data-dismiss="modal">Guardar</button>
+                   <!--  <button type="button" class="btn btn-primary" id="guardarEstudiosSuperiores" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> -->
+                    <button type="button" class="btn btn_estudios_superiores btn-primary"  data-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+
+
+
                 </div>
             </div>
         </div>
     </div>
     
+     <!--   al final del modal lo colocamos de estudios superiores   -->
+
+      <form action="/ProyEscalafon/public/destroyOTrosEStudios/:ESTUDIO_SUPERIOR_ID" method="post" id="form_deleteestudiossuperiores">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token9" id="token9" value="{{ csrf_token() }}">
+                                    </form>  
+
+                                    <form action="/ProyEscalafon/public/updateEstudiosSuperiores/:ESTUDIO_SUPERIOR_ID" method="post" id="form_updateestudiossuperiores">
+                                        <input type="hidden" name="_method2" value="PUT">
+                                        <input type="hidden" name="_token12" id="token12" value="{{ csrf_token() }}">
+                                    </form>
+
+                                     
+
+ <!--   al final del modal lo colocamos de estudios superiores -->
+
+
     <!-- Modal para Otros Estudios nuevos -->
     
-    <div class="modal fade" id="modalOtrosEstudios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalOtrosEstudios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelOtrosEstudios" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header py-2">
-                    <h5 class="modal-title" id="exampleModalLabel">Otros Estudios</h5>
+                    <h5 class="modal-title" id="exampleModalLabelOtrosEstudios">Otros Estudios</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -552,6 +586,16 @@
                         <!-- Inicio Formulario -->
                         <form id="formulariootrosestudios">
                             <input type="hidden" name="_token" id="token_otr_est" value="{{ csrf_token() }}">
+
+
+
+                            <div class="form-row my-2">
+                            <div class="col"> 
+                            <div class="form-group mb-1">
+                            <input type="hidden" id="id_OT_ES">
+                            </div>
+                            </div>
+                            </div>
 
                             <!--    -->
                             <div class="form-row my-2">
@@ -655,7 +699,7 @@
                                          
                 </div>
                 <div class="modal-footer py-1">
-                    <button type="button" class="btn btn-primary" id="guardarOtrosEstudios" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn_otros_estudios btn-primary"  data-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
 
@@ -667,14 +711,162 @@
         </div>
 
     </div>
+<!--   al final del modal lo colocamos de otros estudios    -->
+
+      <form action="/ProyEscalafon/public/destroyOTrosEStudios/:OTRO_ESTUDIO_ID" method="post" id="form_deleteotrosestudios">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token3" id="token3" value="{{ csrf_token() }}">
+                                    </form>  
+
+                                    <form action="/ProyEscalafon/public/Estudios/:OTRO_ESTUDIO_ID" method="post" id="form_updateotrosestudios">
+                                        <input type="hidden" name="_method2" value="PUT">
+                                        <input type="hidden" name="_token4" id="token4" value="{{ csrf_token() }}">
+                                    </form>
+
+
+
+
+
+ <!--   al final del modal lo colocamos de otros estudios  -->
+
+
+                    <!-- Modal para ver otros estudios 06/04/2019 -->
+    <div class="modal fade" id="modal_ver_otros_esudios" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_otros_estudios" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="cerrar_modal_otros_estudios">Ver Otros Estudios</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            
+            <div class="form-group row">
+                <label for="tipo_idiomaM2" class="col-sm-3 col-form-label">Tipo de Estudios:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="tipo_estudios2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="dominioM2" class="col-sm-3 col-form-label">Nombre de los Estudios:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="nom_estudios2" value="">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="centroEstudioM2" class="col-sm-3 col-form-label">Participación:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="participacion2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="tipo_docM2" class="col-sm-4 col-form-label">Centro de Estudios:</label>
+                <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="centro_estudio2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="horasM2" class="col-sm-3 col-form-label">Tipo de Documento:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="tipo_doc2" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="creditosM2" class="col-sm-3 col-form-label">Fecha de Inicio:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="fech_inicio_otros_estudios2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="creditosM2" class="col-sm-3 col-form-label">Fecha de Termino:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="fech_termino_otros_estudios2" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="creditosM2" class="col-sm-3 col-form-label">Horas:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="horas2" value="">
+                </div>
+            </div>
+
+                                        
+            <div class="form-group row">
+                <label for="creditosM2" class="col-sm-3 col-form-label">Creditos:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="creditos2" value="">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+
+  <!-- Fin del Modal ver otros estudios -->
+
+<!-- incio de Modal para eliminar otros estudios 06/04/2019 -->
+
+ <div class="modal fade" id="modal_eliminar_otros_estudios" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_otros_estudios2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="cerrar_modal_otros_estudios2">Eliminar Otros Estudios</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+
+            <div class="form-group mb-1">
+                <input type="hidden" id="id_modal_eliminar_otros">
+            </div>
+
+            <div class="form-group row">
+                <h5>¿Estas seguro de eliminar este registro?</h5>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn_eliminarOtrosEstudios btn-danger" data-dismiss="modal"><span><i class="fas fa-trash"></i></spna> Eliminar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+
+ <!-- Fin del Modal ver otros estudios -->
+
+
 
     <!-- Modal para Produccion intelectual -->
     
-    <div class="modal fade" id="modalProduccionIntelectual" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalProduccionIntelectual" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_prod_intel" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header py-2">
-                    <h5 class="modal-title" id="exampleModalLabel">Produccion Intelectual</h5>
+                    <h5 class="modal-title" id="cerrar_modal_prod_intel">Produccion Intelectual</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -686,6 +878,19 @@
                         <!-- Inicio Formulario -->
                         <form id="formularioproduccionintelectual">
                             <input type="hidden" name="_token" id="token_pro_int" value="{{ csrf_token() }}">
+
+                            <div class="form-row my-2">
+                            <div class="col"> 
+                            <div class="form-group mb-1">
+                            <input type="hidden" id="id_PROD_INTEL">
+                            </div>
+                            </div>
+                            </div>
+
+                            
+                            
+
+
 
                             <!--    -->
 
@@ -752,12 +957,121 @@
                                          
                 </div>
                 <div class="modal-footer py-1">
-                    <button type="button" class="btn btn-primary" id="guardarProduccionIntelectual" data-dismiss="modal">Guardar</button>
+                <!-- <button type="button" class="btn btn-primary" id="guardarProduccionIntelectual" data-dismiss="modal">Guardar</button>-->
+                    <button type="button" class="btn btn_produccion_intelectual btn-primary"  data-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!--   al final del modal lo colocamos de produccion intelectual    -->
+
+      <form action="/ProyEscalafon/public/destroyProduccionIntelectual/:PRODUCCION_INTELECTUAL_ID" method="post" id="form_deleteproduccionintelectual">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token6" id="token6" value="{{ csrf_token() }}">
+                                    </form>  
+
+                                    <form action="/ProyEscalafon/public/updateProduccionIntelectual/:PRODUCCION_INTELECTUAL_ID" method="post" id="form_updateproduccionintelectual">
+                                        <input type="hidden" name="_method2" value="PUT">
+                                        <input type="hidden" name="_token8" id="token8" value="{{ csrf_token() }}">
+                                    </form>
+
+                    <!-- Modal para VER produccion intelectual 14/04/2019 -->
+    <div class="modal fade" id="modal_ver_produccion_intelectual" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_prod_intel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="cerrar_modal_prod_intel">Ver Produccion Intelectual</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            
+            <div class="form-group row">
+                <label for="tipomedio2" class="col-sm-3 col-form-label">Tipo de Medio:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="tipomedio2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="medio2" class="col-sm-3 col-form-label">Medio:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="medio2" value="">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="nom_publicacion2" class="col-sm-3 col-form-label">Nombre:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="nom_publicacion2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="fech_publicacion2" class="col-sm-4 col-form-label">Fecha de Publicacion:</label>
+                <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="fech_publicacion2" value="">
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+
+  <!-- Fin del Modal ver Produccion Intelectual-->
+
+
+
+ <!--   al final del modal lo colocamos de produccion intelectual  -->
+
+
+<!-- incio de Modal para eliminar produccion intelectual 11/04/2019 -->
+
+ <div class="modal fade" id="modal_eliminar_produccion_intelectual" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_produccion_intelectual2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="cerrar_modal_produccion_intelectual2">Eliminar Produccion Intelectual</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+
+            <div class="form-group mb-1">
+                <input type="hidden" id="id_modal_eliminar_produccion">
+            </div>
+
+            <div class="form-group row">
+                <h5>¿Estas seguro de eliminar este registro?</h5>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn_eliminarProduccionIntelectual btn-danger" data-dismiss="modal"><span><i class="fas fa-trash"></i></spna> Eliminar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+
+ <!-- Fin del Modal ver otros estudios -->
 
 
 
