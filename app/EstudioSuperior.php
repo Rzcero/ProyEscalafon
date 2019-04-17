@@ -22,7 +22,9 @@ class EstudioSuperior extends Model
     "num_registro",
     "entidad",
     "pdf",
-    "id_persona"];
+    "id_persona",
+    "num_colegiatura",
+    "nom_colegio"];
 
      public function nivel_estudio(){
 

@@ -30,6 +30,8 @@ class EstudiosSuperiores extends Migration
             $table->string('entidad',70);
             $table->string('pdf',45);
             $table->integer('id_persona');
+            $table->string('num_colegiatura',150);
+            $table->string('nom_colegio',255);
             
             //$table->rememberToken();
             $table->timestamps();

@@ -614,7 +614,7 @@ public function updateProduccionIntelectual(Request $request, $id)
     public function updateEstudiosSuperiores(Request $request, $id)
     {
         //se utilizar par acualizar
-return $request->all();
+//return $request->all()
         if($request->ajax()){
 
         $est_supe = EstudioSuperior::find($id);
