@@ -513,6 +513,38 @@ $listar_producciones = ProduccionIntelectual::all();
         ]);
     }
 
+    //Para Ver Estudio Superior  al pulsar el boton ver
+    public function ver_EstudiosSuperiores(Request $request)
+    {
+        $verEstudSuperior = EstudioSuperior::where('id_estudios_sup',$request->id)->get(); // id lo jala de la base de datos
+        
+        $matriz = array();
+        
+        foreach($verEstudSuperior as $verSuperior){
+        
+            $matriz[] = array('tiponivel' => $verSuperior->nivel_estudio->nombre,
+                              'tiposestado' => $verSuperior->tipo_estado->denominacion,             
+                               'modalidad' => $verSuperior->modalidad->nombre,
+                              'centroestudio' => $verSuperior->centro_estudios,
+                              'tipogrado' => $verSuperior->tipo_grado->nombre,
+                              'carrera' => $verSuperior->carrera,
+                              'detallegrado' => $verSuperior->detall_grado,
+                              'fechaconsejo' => $verSuperior->fecha_consejo,
+                              'fechaemision' => $verSuperior->fecha_emision,
+                              'numeroregistro' => $verSuperior->num_registro,
+                              'entidad' => $verSuperior->entidad,
+                              'numerocolegiatura' => $verSuperior->num_colegiatura,
+                              'nombrecolegio' => $verSuperior->nom_colegio);
+
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
+    }
+
 
 
     public function destroyOTrosEStudios(Request $request, $id)
@@ -537,6 +569,21 @@ $listar_producciones = ProduccionIntelectual::all();
             
             $borrar_Produccion = ProduccionIntelectual::find($id);
             $borrar_Produccion->delete();
+            
+            return response()->json([
+
+            ]);
+            
+        }
+    }
+
+      public function destroyEstudiosSuperiores(Request $request, $id)
+    {
+                
+        if($request->ajax()){
+            
+            $borrar_EstuSuperior = EstudioSuperior::find($id);
+            $borrar_EstuSuperior->delete();
             
             return response()->json([
 

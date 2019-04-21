@@ -535,7 +535,7 @@
                     </div>
                          
                     <!--   ********************    -->
-                                         
+                                   
                 </div>
                 <div class="modal-footer py-1">
                    <!--  <button type="button" class="btn btn-primary" id="guardarEstudiosSuperiores" data-dismiss="modal">Guardar</button>
@@ -551,9 +551,145 @@
         </div>
     </div>
     
+
+  <!-- Modal para VER estudios superiores 18/04/2019 -->
+    <div class="modal fade" id="modal_ver_estudios_superiores" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_estudios_superiores" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="cerrar_modal_estudios_superiores">Ver Estudios uperiores</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            
+            <div class="form-group row">
+                <label for="tipo_idiomaM2" class="col-sm-3 col-form-label">Nivel de Estudio:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="nivel_estudio2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="estado2" class="col-sm-3 col-form-label">Estado de Estudio:</label>
+               <!-- <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="nom_estudios2" value="">
+                </div> -->
+
+                  <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="estado2" id="concluido2" value="1" checked>
+                                            <label class="form-check-label" for="concluido2">Concluidos</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="estado2" id="no_concluido2" value="2">
+                                            <label class="form-check-label" for="no_concluido2">No Concluidos</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="estado2" id="egresado2" value="3">
+                                            <label class="form-check-label" for="egresado2">Egresado</label>
+                                        </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="modalidad2" class="col-sm-3 col-form-label">Modalidad:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="modalidad2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="centro_estudio2" class="col-sm-4 col-form-label">Centro de Estudios:</label>
+                <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="centro_estudio2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="grado2" class="col-sm-3 col-form-label">Mencion de Grado o Titulo:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="grado2" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="carrera2" class="col-sm-3 col-form-label">Carrera:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="carrera2" value="">
+                </div>
+            </div>
+
+                 <div class="form-group row">
+                <label for="detalle2" class="col-sm-3 col-form-label">Detalle del Título:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="detalle2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="fech_consejo2" class="col-sm-3 col-form-label">Fecha de Consejo:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="fech_consejo2" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="creditosM2" class="col-sm-3 col-form-label">Fecha de Emisión:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="fech_emision2" value="">
+                </div>
+            </div>
+      
+                                        
+            <div class="form-group row">
+                <label for="num_reg_titulo2" class="col-sm-3 col-form-label">Número de Registro del Título:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="num_reg_titulo2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="EntidadRegist2" class="col-sm-3 col-form-label">Entidad del Registro del Título:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="EntidadRegist2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="nro_colegiatura2" class="col-sm-3 col-form-label">Número de Colegiatura:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="nro_colegiatura2" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="nom_colegio2" class="col-sm-3 col-form-label">Nombre del Colegio:</label>
+                <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext" id="nom_colegio2" value="">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+
+  <!-- Fin del Modal ver otros estudios -->
+
      <!--   al final del modal lo colocamos de estudios superiores   -->
 
-      <form action="/ProyEscalafon/public/destroyOTrosEStudios/:ESTUDIO_SUPERIOR_ID" method="post" id="form_deleteestudiossuperiores">
+      <form action="/ProyEscalafon/public/destroyEstudiosSuperiores/:ESTUDIO_SUPERIOR_ID" method="post" id="form_deleteestudiossuperiores">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token9" id="token9" value="{{ csrf_token() }}">
                                     </form>  
@@ -566,6 +702,39 @@
                                      
 
  <!--   al final del modal lo colocamos de estudios superiores -->
+
+
+ <!-- incio de Modal para eliminar estudios superiores 18/04/2019 -->
+
+ <div class="modal fade" id="modal_eliminar_estudios_superiores" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_estudios_superiores2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="cerrar_modal_estudios_superiores2">Eliminar Estudios Superiores</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+
+            <div class="form-group mb-1">
+                <input type="hidden" id="id_modal_eliminar_superiores">
+            </div>
+
+            <div class="form-group row">
+                <h5>¿Estas seguro de eliminar este registro?</h5>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn_eliminarEstudioSuperior btn-danger" data-dismiss="modal"><span><i class="fas fa-trash"></i></spna> Eliminar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
 
 
     <!-- Modal para Otros Estudios nuevos -->
@@ -886,11 +1055,6 @@
                             </div>
                             </div>
                             </div>
-
-                            
-                            
-
-
 
                             <!--    -->
 

@@ -73,7 +73,8 @@ Route::put('/updateProduccionIntelectual/{id}','EstudiosController@updateProducc
 
 Route::post('/editar_modal_estu_supe', 'EstudiosController@editar_modal_estu_supe')->name('estudios.editar_modal_estu_supe');
 Route::put('/updateEstudiosSuperiores/{id}','EstudiosController@updateEstudiosSuperiores')->name('updateEstudiosSuperiores');
-
+Route::post('/ver_EstudiosSuperiores', 'EstudiosController@ver_EstudiosSuperiores')->name('estudios.ver_EstudiosSuperiores');
+Route::DELETE('/destroyEstudiosSuperiores/{id}', 'EstudiosController@destroyEstudiosSuperiores')->name('estudios.destroyEstudiosSuperiores');
 
 
 

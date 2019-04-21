@@ -32,9 +32,9 @@ class EstudioSuperior extends Model
 
     }
 
-    public function estudiosuperior(){
+    public function modalidad(){
 
-        return $this->belongsTo('App\EstudioSuperior','id_modalidad','id_modalidad');
+        return $this->belongsTo('App\Modalidad','id_modalidad','id_modalidad');
 
     }
 
@@ -54,4 +54,10 @@ class EstudioSuperior extends Model
         return $this->belongsTo('App\TipoGrado','id_tipo_grado','id_tipo_grado');
 
     }
+
+    public function tipo_estado(){
+        return $this->belongsTo('App\EstadoEstudio','id_estado','id_estado');
+
+    }
+
 }

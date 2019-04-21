@@ -549,9 +549,9 @@ registro += `<tr>
 
 
 <td>
-<button class='ver_estudios_superiores btn btn-warning' data-toggle="modal" data-target="#modalIdioma2" value='${obj_json.id_estudios_sup}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
+<button class='ver_estudios_superiores btn btn-warning' data-toggle="modal" data-target="#modal_ver_estudios_superiores" value='${obj_json.id_estudios_sup}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
 <button class='update_estudios_superiores btn btn-success' data-toggle="modal" data-target="#modalEstudiosSuperiores" value='${obj_json.id_estudios_sup}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
-<button class='elim_estudios_superiores btn btn-danger' data-toggle="modal" data-target="#modalIdioma3" value='${obj_json.id_estudios_sup}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
+<button class='elim_estudios_superiores btn btn-danger' data-toggle="modal" data-target="#modal_eliminar_estudios_superiores" value='${obj_json.id_estudios_sup}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
 </td>
 </tr>`
 
@@ -1277,6 +1277,104 @@ function cambiartitulo_est_supe(titulo3){
         $(".btn_estudios_superiores").addClass('guardar');
         $(".btn_estudios_superiores").removeClass('actualizar3');
 
+    });
+
+
+
+//PARA VER ESTUDIOS SUPERIORES
+    $(document).on('click','.ver_estudios_superiores',function(){
+        
+        var id_EstudiosSuperiores2 = $(this).val();
+       // console.log(id_otro_estudio2 );
+        var ruta = "/ProyEscalafon/public/ver_EstudiosSuperiores";
+        var token3 = $("#token9").val();
+
+        $.ajax({
+            
+            url: ruta,
+            headers: {'X-CSRF-TOKEN': token3},
+            type: 'POST',
+            dateType: 'json',
+            data: {
+                id: id_EstudiosSuperiores2
+            },
+            success: function(respuesta){
+                            
+                respuesta.forEach(obj_json =>{
+                    obj_json.forEach(obj_json =>{
+                        
+                        $('#nivel_estudio2').val(obj_json.tiponivel);
+                        
+                        $('#estado2').val(obj_json.tiposestado);
+                        $('#modalidad2').val(obj_json.modalidad);
+                         $('#centro_estudio2').val(obj_json.centroestudio);
+                        $('#grado2').val(obj_json.tipogrado);
+                        $('#carrera2').val(obj_json.carrera);
+                        $('#detalle2').val(obj_json.detallegrado);
+                        $('#fech_fechaconsejo2').val(obj_json.fechaconsejo);
+                         $('#fech_emision2').val(obj_json.fechaemision);
+                        $('#num_reg_titulo2').val(obj_json.numeroregistro);
+                        $('#EntidadRegist2').val(obj_json.entidad);
+                        $('#nro_colegiatura2').val(obj_json.numerocolegiatura);
+                        $('#nom_colegio2').val(obj_json.nombrecolegio);
+                       
+
+                       if (obj_json.tiposestado == 1) {
+                            $('#concluido2').prop('checked',true);
+                        } else if (obj_json.tiposestado == 2) {
+                            $('#no_concluido2').prop('checked',true);
+                        } else if (obj_json.tiposestado == 3) {
+                            $('#egresado2').prop('checked',true);
+                        } else{
+                            $('#concluido2').prop('checked',true);
+                        }
+
+                    });
+                });
+            
+            }
+            
+        });
+        
+    });
+
+
+
+
+        //PARA ELIMINAR estudios superiores
+
+    $(document).on('click','.elim_estudios_superiores',function(){
+ 
+        var id = $(this).val();
+        $('#id_modal_eliminar_superiores').val(id);
+      
+    });
+
+    $('.btn_eliminarEstudioSuperior').click(function(){
+        
+        var id = $('#id_modal_eliminar_superiores').val();
+        var formulario = $('#form_deleteestudiossuperiores');
+        var ruta = formulario.attr('action').replace(':ESTUDIO_SUPERIOR_ID',id);
+         
+        var token3 = $("#token9").val();
+        var datos = formulario.serialize();
+             console.log(datos);                
+        $.ajax({
+            
+            url: ruta,
+            headers: {'X-CSRF-TOKEN': token3},
+            type: 'POST',
+            dateType: 'json',
+            data: datos,
+            success: function(respuesta){
+                                    
+                mostrarEstudiosSuperiores();
+               // mostrarHabientes();
+
+            }
+            
+        });
+        
     });
 
 
