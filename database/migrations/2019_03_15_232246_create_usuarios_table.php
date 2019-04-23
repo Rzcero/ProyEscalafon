@@ -21,6 +21,7 @@ class CreateUsuariosTable extends Migration
             $table->string('ape_materno',100);
             $table->string('email',100)->unique();
             $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

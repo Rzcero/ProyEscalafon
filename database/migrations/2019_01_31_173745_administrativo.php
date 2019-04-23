@@ -15,7 +15,7 @@ public function up()
     {
         Schema::create('administrativo', function (Blueprint $table) {
             //$table->increments('');
-            $table->integer('id_persona');
+            $table->integer('id_persona')->primary();
             $table->integer('id_categ_admi');
             $table->integer('id_condicion');
             //$table->rememberToken();

@@ -1,0 +1,9 @@
+@font-face{
+	font-family: LondrinaShadow;
+	src: url(../fuentes/LondrinaShadow-Regular.ttf);
+}
+
+.fuente_personalizada{
+	font-family: LondrinaShadow;
+	font-size: 50px;
+}

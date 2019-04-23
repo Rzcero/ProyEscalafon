@@ -15,7 +15,7 @@ public function up()
     {
         Schema::create('docente', function (Blueprint $table) {
             //$table->increments('');
-            $table->integer('id_persona');
+            $table->integer('id_persona')->primary();
             $table->integer('id_categ_doc');
             $table->integer('id_regimen');
             //$table->rememberToken();

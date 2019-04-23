@@ -14,8 +14,8 @@ class Nacionalidad extends Migration
  public function up()
     {
         Schema::create('nacionalidad', function (Blueprint $table) {
-            $table->increments('id_nacionalidad');
-            $table->string('denominacion',45);
+            $table->integer('id_persona')->primary();
+            $table->integer('id_tipo_nac')->nullable();
             //$table->rememberToken();
             $table->timestamps();
     });

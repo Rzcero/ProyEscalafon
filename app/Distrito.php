@@ -10,8 +10,13 @@ class Distrito extends Model
     protected $primaryKey = "id_dist";
     protected $fillable = ["id_dist",
                            "id_prov",
-                           "ubi_dist",
                            "nom_dist"];
+
+    public function residencia(){
+
+        return $this->hasMany('App\Residencia','id_dist','id_dist');
+
+    }
     
     public function provincia(){
 

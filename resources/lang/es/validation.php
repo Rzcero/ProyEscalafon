@@ -144,6 +144,19 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        //crear persona
+        't_legajo' => 'Tipo Legajo',
+        'n_doc' => 'Número',
+        'ape_pat' => 'Apellido paterno',
+        'ape_mat' => 'Apellido materno',
+        'nomb' => 'Nombres',
+
+        //update persona
+        'num_docIdentidad' => 'Número',
+        'apellidoPaterno' => 'Apellido paterno',
+        'apellidoMaterno' => 'Apellido materno',
+        'nomb' => 'Nombres'
+    ],
 
 ];

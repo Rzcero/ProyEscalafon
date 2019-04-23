@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Persona;
 
-class HomeController extends Controller
+class ModulosController extends Controller
 {
-    /**
+    
+	/**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
     {
-        $this->middleware('auth');  //solo podemos acceder a estos metodos si estamos autenticados
+        $this->middleware('auth');
     }
 
     /**
@@ -21,8 +23,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+
+    public function editar($id)
+    {   
+        $persona = Persona::find($id);
+        return view('modulos.inicio', compact('persona'));
+    
     }
+
+
 }

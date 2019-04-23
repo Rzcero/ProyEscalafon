@@ -11,6 +11,7 @@ class TipoIdioma extends Model
     protected $fillable = ["id_tipo_idioma",
                            "nombre"];
     
+	//Relacion 1 a muchos con la tabla Idioma    
     public function idioma(){
 
         return $this->hasMany('App\Idioma','id_tipo_idioma','id_tipo_idioma');

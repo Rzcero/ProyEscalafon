@@ -10,6 +10,7 @@ class Persona extends Model
     protected $primaryKey = "id_persona";
     protected $fillable = ["id_persona",
     "num_doc_identidad",
+    "pdf_doc_identidad",
     "ape_paterno",
     "ape_materno",
     "nombres",
@@ -23,7 +24,11 @@ class Persona extends Model
     "id_estado_civil",
     "id_tipo_via",
     "id_tipo_zona",
-    "pdf_partida_nacimiento"];
+    "id_tipo_personal",
+    "id_condi_leg",
+    "id_tipo_legajo",
+    "pdf_partida_nacimiento",
+    "foto"];
     
     //Relacion 1 a 1 con la tabla empleado
     //FOREIGN KEY(id_persona) REFERENCES PERSONA(id_persona),
@@ -42,14 +47,28 @@ class Persona extends Model
     //Relacion 1 a 1 con la tabla administrativo
     public function administrativo(){
 
-        return $this->hasOne('App/Administrativo','id_persona','id_persona');
+        return $this->hasOne('App\Administrativo','id_persona','id_persona');
 
     }
 
     //Relacion 1 a 1 con la tabla docente
     public function docente(){
 
-        return $this->hasOne('App/Docente','id_persona','id_persona');
+        return $this->hasOne('App\Docente','id_persona','id_persona');
+
+    }
+
+    //Relacion 1 a 1 con la tabla residencia
+    public function residencia(){
+
+        return $this->hasOne('App\Residencia','id_persona','id_persona');
+
+    }
+
+    //Relacion 1 a 1 con la tabla nacionalidad
+    public function nacionalidad(){
+
+        return $this->hasOne('App\Nacionalidad','id_persona','id_persona');
 
     }
 
@@ -184,4 +203,105 @@ class Persona extends Model
         return $this->hasMany("App\ProduccionIntelectual","id_persona","id_persona");
 
     }
+
+    public function tipodoc_identidad(){
+
+        return $this->belongsTo("App\TipoDocIdentidad","id_tipo_doc","id_tipo_doc");
+
+    }
+
+    public function tipopersonal(){
+
+        return $this->belongsTo("App\TipoPersonal","id_tipo_personal","id_tipo_personal");
+
+    }
+
+    public function condicionlegajo(){
+
+        return $this->belongsTo("App\CondicionLegajo","id_condi_leg","id_condi_leg");
+
+    }
+
+    public function tipolegajo(){
+
+        return $this->belongsTo("App\TipoLegajo","id_tipo_legajo","id_tipo_legajo");
+
+    }
+
+    public function estadocivil(){
+
+        return $this->belongsTo("App\EstadoCivil","id_estado_civil","id_estado_civil");
+
+    }
+
+    //QUERY SCOPE
+
+    //busqueda por nombres
+    public function scopeNombres($query, $name) {
+
+        if ($name)
+            
+            return $query->orWhere('nombres','LIKE', "$name");
+  
+    }
+
+    //busqueda por Apellido Paterno
+    public function scopePaterno($query, $apePaterno) {
+
+        if ($apePaterno)
+            
+            return $query->orWhere('ape_paterno','LIKE', "%$apePaterno%");
+        
+    }
+
+    //busqueda por Apellido Paterno
+    public function scopeMaterno($query, $apeMaterno) {
+
+        if ($apeMaterno)
+            
+            return $query->orWhere('ape_materno','LIKE', "%$apeMaterno%");
+
+    }
+
+    //busqueda por tipo de documento de identidad
+    public function scopeDocumentoidentidad($query, $docIdentidad) {
+
+        if ($docIdentidad)
+            
+            return $query->where('id_tipo_doc','LIKE', "%$docIdentidad%");
+
+    }
+
+    //busqueda por numero de documento
+    public function scopeNumero($query, $numer) {
+
+        if ($numer)
+
+            return $query->where('num_doc_identidad','LIKE',"%$numer%");
+    }
+
+    //busqueda por tipo de Legajo
+    public function scopeTiplegajo($query, $tipo_legajo) {
+
+        if ($tipo_legajo)
+
+            return $query->where('id_tipo_legajo','LIKE',"%$tipo_legajo%");
+    }
+
+    //busqueda por tipo de personal
+    public function scopeTipoPersonal($query, $tipo_pers) {
+
+        if ($tipo_pers)
+
+            return $query->where('id_tipo_personal','LIKE',"%$tipo_pers%");
+    }
+
+    //busqueda por condicion de legajo
+    public function scopeCondicionlegajo($query, $cond) {
+
+        if ($cond)
+
+            return $query->where('id_condi_leg','LIKE',"%$cond%");
+    }
+
 }

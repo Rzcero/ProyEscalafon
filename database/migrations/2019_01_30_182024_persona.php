@@ -19,12 +19,12 @@ class Persona extends Migration
             $table->string('ape_paterno',45);
             $table->string('ape_materno',45);
             $table->string('nombres',45);
-            $table->string('sexo',20);
-            $table->date('fecha_nacimiento');
-            $table->string('direccion',70);
-            $table->string('celular',15);
-            $table->string('telefono',15);
-            $table->string('email',55);
+            $table->string('sexo',20)->nullable();
+            $table->date('fecha_nacimiento')->nullable();
+            $table->string('direccion',70)->nullable();
+            $table->string('celular',15)->nullable();
+            $table->string('telefono',15)->nullable();
+            $table->string('email',55)->nullable();
 
 // foreing key 
             $table->integer('id_tipo_doc');
@@ -40,8 +40,13 @@ class Persona extends Migration
             //$table->foreign('id_tipo_zona')->references('id_tipo_zona')->on('tipo_zona');
 
             $table->integer('id_nacionalidad');
+            $table->integer('id_servidor');
+            $table->integer('id_condi_leg');
+            $table->integer('id_tipo_legajo');
 
-            $table->string('pdf_partida_nacimiento',25);
+            $table->string('pdf_partida_nacimiento',200);
+            $table->string('pdf_doc_identidad',200);
+            $table->string('foto',200)->default('default.gif');
             
             //$table->rememberToken();
             $table->timestamps();

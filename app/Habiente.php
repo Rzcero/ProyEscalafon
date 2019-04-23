@@ -29,5 +29,11 @@ class Habiente extends Model
         return $this->belongsTo("App\Parentesco","id_parentesco","id_parentesco");
 
     }
+
+    public function tipoDocIdentidad(){
+
+        return $this->belongsTo("App\TipoDocIdentidad","id_tipo_doc","id_tipo_doc");
+
+    }
     
 }

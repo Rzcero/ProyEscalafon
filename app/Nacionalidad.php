@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Nacionalidad extends Model
 {
     protected $table = "nacionalidad";
-    protected $primaryKey = "id_nacionalidad";
-    protected $fillable = ["id_nacionalidad","denominacion"];
+    protected $primaryKey = "id_persona";
+    protected $fillable = ["id_persona","id_tipo_nac"];
 
-    //Relacion 1 a muchos con la tabla persona
-    public function persona(){
+    public function tiponacionalidad(){
 
-        return $this->hasMany('App\Persona','id_nacionalidad','id_nacionalidad');
+        return $this->belongsTo("App\TipoNacionalidad","id_tipo_nac","id_tipo_nac");
 
     }
 
