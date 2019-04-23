@@ -1,5 +1,9 @@
 @extends('layouts.plantilla')
 
+@section('zona_js')
+<script src="{{ url('js/mainestudios.js') }}"></script>
+@endsection
+
 @section('contenedor')
 
     <div class="container">
@@ -12,13 +16,10 @@
                     <!--  Inicio contenedor del Formulario -->
                     <div class="container1 px-0" id="tabla1">
                         
-                        
                         <!-- Inicio Formulario -->
                         <form id="formularioestudiosbasicos">
                              <input type="hidden" name="_token" id="token_est_bas" value="{{ csrf_token() }}">
                             <!--  I.E. Primaria  -->
-
-
 
                             <div class="form-row my-2">
                                 <div class="col">
@@ -206,7 +207,7 @@
                         </form>
                         <!-- Fin Formulario -->
 
-                        </div>
+                    </div>
                     <!-- Fin del Contenedor del Formulario -->
                         
                         
@@ -220,18 +221,18 @@
 
                             <div class="card-body p-1">
                                 <div id="div_tabla_estudios_superiores">
-                                <table class="table table-bordered table-sm">
-                                    <thead>
-                                        <tr>
-                                            <td>Grado</td>
-                                            <td>Centro de Estudios</td>
-                                            <td>Nivel</td>
-                                            <td>Opciones</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="est_superiores"></tbody>
-                                </table>
-                            </div>
+                                    <table class="table table-bordered table-sm">
+                                        <thead>
+                                            <tr>
+                                                <td>Grado</td>
+                                                <td>Centro de Estudios</td>
+                                                <td>Nivel</td>
+                                                <td>Opciones</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="est_superiores"></tbody>
+                                    </table>
+                                </div>
 
                                 <caption>
                                     <button class="btn btn-primary"  data-toggle="modal" data-target="#modalEstudiosSuperiores" id="agregar_estudios_superiores">
@@ -298,20 +299,20 @@
                             <div class="card-body p-1">
                                 <div id="div_produccion_intelectual">
 
-                                <table class="table table-bordered table-sm">
-                                    <thead>
-                                        <tr>
-                                            <td>Medio</td>
-                                            <td>Nombre de la Publicación</td>
-                                            <td>Año</td>
-                                            <td>Opciones</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="pro_intelec"></tbody>
-                                </table>
-                            </div>
+                                    <table class="table table-bordered table-sm">
+                                        <thead>
+                                            <tr>
+                                                <td>Medio</td>
+                                                <td>Nombre de la Publicación</td>
+                                                <td>Año</td>
+                                                <td>Opciones</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="pro_intelec"></tbody>
+                                    </table>
+                                </div>
 
-                            <caption>
+                                <caption>
                                     <button class="btn btn-primary"  data-toggle="modal" data-target="#modalProduccionIntelectual" id="agregar_produccion_intelectual">
                                         Agregar Nuevo <span><i class="material-icons">add</i></span>
                                     </button>
@@ -319,7 +320,7 @@
                                 </caption>
 
 
-                             </div>
+                            </div>
                         </div>
                     </div>
 
@@ -332,13 +333,10 @@
         </div>
     
     </div>
+@endsection
 
-
-
-
-    
+@section('modales')
     <!-- Modal para Estudios Superiores nuevos -->
-    
     <div class="modal fade" id="modalEstudiosSuperiores" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_estu_supe" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -537,197 +535,184 @@
                     <button type="button" class="btn btn_estudios_superiores btn-primary"  data-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
-
-
-
                 </div>
             </div>
         </div>
     </div>
-    
-
-  <!-- Modal para VER estudios superiores 18/04/2019 -->
+   
+    <!-- Modal para VER estudios superiores 18/04/2019 -->
     <div class="modal fade" id="modal_ver_estudios_superiores" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_estudios_superiores" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="cerrar_modal_estudios_superiores">Ver Estudios uperiores</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        
-        <div class="modal-body">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cerrar_modal_estudios_superiores">Ver Estudios uperiores</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             
-            <div class="form-group row">
-                <label for="tipo_idiomaM2" class="col-sm-3 col-form-label">Nivel de Estudio:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="nivel_estudio2" value="">
-                </div>
-            </div>
+                <div class="modal-body">
+                    
+                    <div class="form-group row">
+                        <label for="tipo_idiomaM2" class="col-sm-3 col-form-label">Nivel de Estudio:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="nivel_estudio2" value="">
+                        </div>
+                    </div>
 
-            <div class="form-group row">
-                <label for="estado2" class="col-sm-3 col-form-label">Estado de Estudio:</label>
-               <!-- <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="nom_estudios2" value="">
-                </div> -->
+                    <div class="form-group row">
+                        <label for="estado2" class="col-sm-3 col-form-label">Estado de Estudio:</label>
+                    <!-- <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="nom_estudios2" value="">
+                        </div> -->
 
-                  <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="estado2" id="concluido2" value="1" checked>
-                                            <label class="form-check-label" for="concluido2">Concluidos</label>
-                                        </div>
+                        <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="estado2" id="concluido2" value="1" checked>
+                                                    <label class="form-check-label" for="concluido2">Concluidos</label>
+                                                </div>
 
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="estado2" id="no_concluido2" value="2">
-                                            <label class="form-check-label" for="no_concluido2">No Concluidos</label>
-                                        </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="estado2" id="no_concluido2" value="2">
+                                                    <label class="form-check-label" for="no_concluido2">No Concluidos</label>
+                                                </div>
 
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="estado2" id="egresado2" value="3">
-                                            <label class="form-check-label" for="egresado2">Egresado</label>
-                                        </div>
-            </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="estado2" id="egresado2" value="3">
+                                                    <label class="form-check-label" for="egresado2">Egresado</label>
+                                                </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="modalidad2" class="col-sm-3 col-form-label">Modalidad:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="modalidad2" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="centro_estudio2" class="col-sm-4 col-form-label">Centro de Estudios:</label>
+                        <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="centro_estudio2" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="grado2" class="col-sm-3 col-form-label">Mencion de Grado o Titulo:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="grado2" value="">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="carrera2" class="col-sm-3 col-form-label">Carrera:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="carrera2" value="">
+                        </div>
+                    </div>
+
+                        <div class="form-group row">
+                        <label for="detalle2" class="col-sm-3 col-form-label">Detalle del Título:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="detalle2" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="fech_consejo2" class="col-sm-3 col-form-label">Fecha de Consejo:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="fech_consejo2" value="">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="creditosM2" class="col-sm-3 col-form-label">Fecha de Emisión:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="fech_emision2" value="">
+                        </div>
+                    </div>
             
-            <div class="form-group row">
-                <label for="modalidad2" class="col-sm-3 col-form-label">Modalidad:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="modalidad2" value="">
+                                                
+                    <div class="form-group row">
+                        <label for="num_reg_titulo2" class="col-sm-3 col-form-label">Número de Registro del Título:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="num_reg_titulo2" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="EntidadRegist2" class="col-sm-3 col-form-label">Entidad del Registro del Título:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="EntidadRegist2" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="nro_colegiatura2" class="col-sm-3 col-form-label">Número de Colegiatura:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="nro_colegiatura2" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="nom_colegio2" class="col-sm-3 col-form-label">Nombre del Colegio:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="nom_colegio2" value="">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
-
-            <div class="form-group row">
-                <label for="centro_estudio2" class="col-sm-4 col-form-label">Centro de Estudios:</label>
-                <div class="col-sm-8">
-                <input type="text" readonly class="form-control-plaintext" id="centro_estudio2" value="">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="grado2" class="col-sm-3 col-form-label">Mencion de Grado o Titulo:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="grado2" value="">
-                </div>
-            </div>
-
-
-            <div class="form-group row">
-                <label for="carrera2" class="col-sm-3 col-form-label">Carrera:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="carrera2" value="">
-                </div>
-            </div>
-
-                 <div class="form-group row">
-                <label for="detalle2" class="col-sm-3 col-form-label">Detalle del Título:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="detalle2" value="">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="fech_consejo2" class="col-sm-3 col-form-label">Fecha de Consejo:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="fech_consejo2" value="">
-                </div>
-            </div>
-
-
-            <div class="form-group row">
-                <label for="creditosM2" class="col-sm-3 col-form-label">Fecha de Emisión:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="fech_emision2" value="">
-                </div>
-            </div>
-      
-                                        
-            <div class="form-group row">
-                <label for="num_reg_titulo2" class="col-sm-3 col-form-label">Número de Registro del Título:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="num_reg_titulo2" value="">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="EntidadRegist2" class="col-sm-3 col-form-label">Entidad del Registro del Título:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="EntidadRegist2" value="">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="nro_colegiatura2" class="col-sm-3 col-form-label">Número de Colegiatura:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="nro_colegiatura2" value="">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="nom_colegio2" class="col-sm-3 col-form-label">Nombre del Colegio:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="nom_colegio2" value="">
-                </div>
-            </div>
-
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
         </div>
     </div>
-    </div>
+    <!-- Fin del Modal ver otros estudios -->
 
+    <!--   al final del modal lo colocamos de estudios superiores   -->
+    <form action="/ProyEscalafon/public/destroyEstudiosSuperiores/:ESTUDIO_SUPERIOR_ID" method="post" id="form_deleteestudiossuperiores">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token9" id="token9" value="{{ csrf_token() }}">
+    </form>  
 
+    <form action="/ProyEscalafon/public/updateEstudiosSuperiores/:ESTUDIO_SUPERIOR_ID" method="post" id="form_updateestudiossuperiores">
+        <input type="hidden" name="_method2" value="PUT">
+        <input type="hidden" name="_token12" id="token12" value="{{ csrf_token() }}">
+    </form>
+    <!--   al final del modal lo colocamos de estudios superiores -->
 
-  <!-- Fin del Modal ver otros estudios -->
+    <!-- incio de Modal para eliminar estudios superiores 18/04/2019 -->
+    <div class="modal fade" id="modal_eliminar_estudios_superiores" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_estudios_superiores2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cerrar_modal_estudios_superiores2">Eliminar Estudios Superiores</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            
+                <div class="modal-body">
 
-     <!--   al final del modal lo colocamos de estudios superiores   -->
+                    <div class="form-group mb-1">
+                        <input type="hidden" id="id_modal_eliminar_superiores">
+                    </div>
 
-      <form action="/ProyEscalafon/public/destroyEstudiosSuperiores/:ESTUDIO_SUPERIOR_ID" method="post" id="form_deleteestudiossuperiores">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token9" id="token9" value="{{ csrf_token() }}">
-                                    </form>  
+                    <div class="form-group row">
+                        <h5>¿Estas seguro de eliminar este registro?</h5>
+                    </div>
 
-                                    <form action="/ProyEscalafon/public/updateEstudiosSuperiores/:ESTUDIO_SUPERIOR_ID" method="post" id="form_updateestudiossuperiores">
-                                        <input type="hidden" name="_method2" value="PUT">
-                                        <input type="hidden" name="_token12" id="token12" value="{{ csrf_token() }}">
-                                    </form>
+                </div>
 
-                                     
-
- <!--   al final del modal lo colocamos de estudios superiores -->
-
-
- <!-- incio de Modal para eliminar estudios superiores 18/04/2019 -->
-
- <div class="modal fade" id="modal_eliminar_estudios_superiores" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_estudios_superiores2" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="cerrar_modal_estudios_superiores2">Eliminar Estudios Superiores</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        
-        <div class="modal-body">
-
-            <div class="form-group mb-1">
-                <input type="hidden" id="id_modal_eliminar_superiores">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn_eliminarEstudioSuperior btn-danger" data-dismiss="modal"><span><i class="fas fa-trash"></i></spna> Eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
             </div>
-
-            <div class="form-group row">
-                <h5>¿Estas seguro de eliminar este registro?</h5>
-            </div>
-
         </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn_eliminarEstudioSuperior btn-danger" data-dismiss="modal"><span><i class="fas fa-trash"></i></spna> Eliminar</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
-        </div>
-    </div>
     </div>
 
 
@@ -750,14 +735,12 @@
                         <form id="formulariootrosestudios">
                             <input type="hidden" name="_token" id="token_otr_est" value="{{ csrf_token() }}">
 
-
-
                             <div class="form-row my-2">
-                            <div class="col"> 
-                            <div class="form-group mb-1">
-                            <input type="hidden" id="id_OT_ES">
-                            </div>
-                            </div>
+                                <div class="col"> 
+                                    <div class="form-group mb-1">
+                                        <input type="hidden" id="id_OT_ES">
+                                    </div>
+                                </div>
                             </div>
 
                             <!--    -->
@@ -857,174 +840,151 @@
 
                         </form>
                     </div>
-                         
                     <!--   ********************    -->
-                                         
                 </div>
+
                 <div class="modal-footer py-1">
                     <button type="button" class="btn btn_otros_estudios btn-primary"  data-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
-
-
-
             </div>
-
-
         </div>
-
     </div>
-<!--   al final del modal lo colocamos de otros estudios    -->
 
-      <form action="/ProyEscalafon/public/destroyOTrosEStudios/:OTRO_ESTUDIO_ID" method="post" id="form_deleteotrosestudios">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token3" id="token3" value="{{ csrf_token() }}">
-                                    </form>  
+    <!--   al final del modal lo colocamos de otros estudios    -->
+    <form action="/ProyEscalafon/public/destroyOTrosEStudios/:OTRO_ESTUDIO_ID" method="post" id="form_deleteotrosestudios">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token3" id="token3" value="{{ csrf_token() }}">
+    </form>  
 
-                                    <form action="/ProyEscalafon/public/Estudios/:OTRO_ESTUDIO_ID" method="post" id="form_updateotrosestudios">
-                                        <input type="hidden" name="_method2" value="PUT">
-                                        <input type="hidden" name="_token4" id="token4" value="{{ csrf_token() }}">
-                                    </form>
+    <form action="/ProyEscalafon/public/Estudios/:OTRO_ESTUDIO_ID" method="post" id="form_updateotrosestudios">
+        <input type="hidden" name="_method2" value="PUT">
+        <input type="hidden" name="_token4" id="token4" value="{{ csrf_token() }}">
+    </form>
+    <!--   al final del modal lo colocamos de otros estudios  -->
 
-
-
-
-
- <!--   al final del modal lo colocamos de otros estudios  -->
-
-
-                    <!-- Modal para ver otros estudios 06/04/2019 -->
+    <!-- Modal para ver otros estudios 06/04/2019 -->
     <div class="modal fade" id="modal_ver_otros_esudios" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_otros_estudios" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="cerrar_modal_otros_estudios">Ver Otros Estudios</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cerrar_modal_otros_estudios">Ver Otros Estudios</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    
+                    <div class="form-group row">
+                        <label for="tipo_idiomaM2" class="col-sm-3 col-form-label">Tipo de Estudios:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="tipo_estudios2" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="dominioM2" class="col-sm-3 col-form-label">Nombre de los Estudios:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="nom_estudios2" value="">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="centroEstudioM2" class="col-sm-3 col-form-label">Participación:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="participacion2" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="tipo_docM2" class="col-sm-4 col-form-label">Centro de Estudios:</label>
+                        <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="centro_estudio2" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="horasM2" class="col-sm-3 col-form-label">Tipo de Documento:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="tipo_doc2" value="">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="creditosM2" class="col-sm-3 col-form-label">Fecha de Inicio:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="fech_inicio_otros_estudios2" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="creditosM2" class="col-sm-3 col-form-label">Fecha de Termino:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="fech_termino_otros_estudios2" value="">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="creditosM2" class="col-sm-3 col-form-label">Horas:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="horas2" value="">
+                        </div>
+                    </div>
+
+                                                
+                    <div class="form-group row">
+                        <label for="creditosM2" class="col-sm-3 col-form-label">Creditos:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="creditos2" value="">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
         </div>
-        
-        <div class="modal-body">
+    </div>
+    <!-- Fin del Modal ver otros estudios -->
+
+    <!-- incio de Modal para eliminar otros estudios 06/04/2019 -->
+    <div class="modal fade" id="modal_eliminar_otros_estudios" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_otros_estudios2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cerrar_modal_otros_estudios2">Eliminar Otros Estudios</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             
-            <div class="form-group row">
-                <label for="tipo_idiomaM2" class="col-sm-3 col-form-label">Tipo de Estudios:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="tipo_estudios2" value="">
+                <div class="modal-body">
+
+                    <div class="form-group mb-1">
+                        <input type="hidden" id="id_modal_eliminar_otros">
+                    </div>
+
+                    <div class="form-group row">
+                        <h5>¿Estas seguro de eliminar este registro?</h5>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn_eliminarOtrosEstudios btn-danger" data-dismiss="modal"><span><i class="fas fa-trash"></i></spna> Eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
-
-            <div class="form-group row">
-                <label for="dominioM2" class="col-sm-3 col-form-label">Nombre de los Estudios:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="nom_estudios2" value="">
-                </div>
-            </div>
-            
-            <div class="form-group row">
-                <label for="centroEstudioM2" class="col-sm-3 col-form-label">Participación:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="participacion2" value="">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="tipo_docM2" class="col-sm-4 col-form-label">Centro de Estudios:</label>
-                <div class="col-sm-8">
-                <input type="text" readonly class="form-control-plaintext" id="centro_estudio2" value="">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="horasM2" class="col-sm-3 col-form-label">Tipo de Documento:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="tipo_doc2" value="">
-                </div>
-            </div>
-
-
-            <div class="form-group row">
-                <label for="creditosM2" class="col-sm-3 col-form-label">Fecha de Inicio:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="fech_inicio_otros_estudios2" value="">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="creditosM2" class="col-sm-3 col-form-label">Fecha de Termino:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="fech_termino_otros_estudios2" value="">
-                </div>
-            </div>
-
-
-            <div class="form-group row">
-                <label for="creditosM2" class="col-sm-3 col-form-label">Horas:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="horas2" value="">
-                </div>
-            </div>
-
-                                        
-            <div class="form-group row">
-                <label for="creditosM2" class="col-sm-3 col-form-label">Creditos:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="creditos2" value="">
-                </div>
-            </div>
-
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
         </div>
     </div>
-    </div>
-
-
-
-  <!-- Fin del Modal ver otros estudios -->
-
-<!-- incio de Modal para eliminar otros estudios 06/04/2019 -->
-
- <div class="modal fade" id="modal_eliminar_otros_estudios" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_otros_estudios2" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="cerrar_modal_otros_estudios2">Eliminar Otros Estudios</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        
-        <div class="modal-body">
-
-            <div class="form-group mb-1">
-                <input type="hidden" id="id_modal_eliminar_otros">
-            </div>
-
-            <div class="form-group row">
-                <h5>¿Estas seguro de eliminar este registro?</h5>
-            </div>
-
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn_eliminarOtrosEstudios btn-danger" data-dismiss="modal"><span><i class="fas fa-trash"></i></spna> Eliminar</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
-        </div>
-    </div>
-    </div>
-
-
-
- <!-- Fin del Modal ver otros estudios -->
-
-
+    <!-- Fin del Modal ver otros estudios -->
 
     <!-- Modal para Produccion intelectual -->
-    
     <div class="modal fade" id="modalProduccionIntelectual" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_prod_intel" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
@@ -1052,7 +1012,7 @@
 
                             <!--    -->
 
-                               <div class="form-row my-2">
+                            <div class="form-row my-2">
                                 <div class="col">  
                                     <div class="form-group mb-1">
                                         <label for="tipomedio">Tipo de Medio:</label>
@@ -1075,9 +1035,7 @@
 
                             </div>
 
-
-
-                       <div class="form-row my-2">
+                            <div class="form-row my-2">
                                 <div class="col">  
                                     <div class="form-group mb-1">
                                         <label for="nom_publicacion">Nombre de la Publicación:</label>
@@ -1124,114 +1082,98 @@
     </div>
 
     <!--   al final del modal lo colocamos de produccion intelectual    -->
+    <form action="/ProyEscalafon/public/destroyProduccionIntelectual/:PRODUCCION_INTELECTUAL_ID" method="post" id="form_deleteproduccionintelectual">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token6" id="token6" value="{{ csrf_token() }}">
+    </form>  
 
-      <form action="/ProyEscalafon/public/destroyProduccionIntelectual/:PRODUCCION_INTELECTUAL_ID" method="post" id="form_deleteproduccionintelectual">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token6" id="token6" value="{{ csrf_token() }}">
-                                    </form>  
+    <form action="/ProyEscalafon/public/updateProduccionIntelectual/:PRODUCCION_INTELECTUAL_ID" method="post" id="form_updateproduccionintelectual">
+        <input type="hidden" name="_method2" value="PUT">
+        <input type="hidden" name="_token8" id="token8" value="{{ csrf_token() }}">
+    </form>
+    <!--   al final del modal lo colocamos de produccion intelectual  -->
 
-                                    <form action="/ProyEscalafon/public/updateProduccionIntelectual/:PRODUCCION_INTELECTUAL_ID" method="post" id="form_updateproduccionintelectual">
-                                        <input type="hidden" name="_method2" value="PUT">
-                                        <input type="hidden" name="_token8" id="token8" value="{{ csrf_token() }}">
-                                    </form>
-
-                    <!-- Modal para VER produccion intelectual 14/04/2019 -->
+    <!-- Modal para VER produccion intelectual 14/04/2019 -->
     <div class="modal fade" id="modal_ver_produccion_intelectual" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_prod_intel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="cerrar_modal_prod_intel">Ver Produccion Intelectual</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        
-        <div class="modal-body">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cerrar_modal_prod_intel">Ver Produccion Intelectual</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             
-            <div class="form-group row">
-                <label for="tipomedio2" class="col-sm-3 col-form-label">Tipo de Medio:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="tipomedio2" value="">
-                </div>
-            </div>
+                <div class="modal-body">
+                    
+                    <div class="form-group row">
+                        <label for="tipomedio2" class="col-sm-3 col-form-label">Tipo de Medio:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="tipomedio2" value="">
+                        </div>
+                    </div>
 
-            <div class="form-group row">
-                <label for="medio2" class="col-sm-3 col-form-label">Medio:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="medio2" value="">
+                    <div class="form-group row">
+                        <label for="medio2" class="col-sm-3 col-form-label">Medio:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="medio2" value="">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="nom_publicacion2" class="col-sm-3 col-form-label">Nombre:</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control-plaintext" id="nom_publicacion2" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="fech_publicacion2" class="col-sm-4 col-form-label">Fecha de Publicacion:</label>
+                        <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="fech_publicacion2" value="">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- Fin del Modal ver Produccion Intelectual-->
+
+    <!-- incio de Modal para eliminar produccion intelectual 11/04/2019 -->
+    <div class="modal fade" id="modal_eliminar_produccion_intelectual" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_produccion_intelectual2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cerrar_modal_produccion_intelectual2">Eliminar Produccion Intelectual</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             
-            <div class="form-group row">
-                <label for="nom_publicacion2" class="col-sm-3 col-form-label">Nombre:</label>
-                <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="nom_publicacion2" value="">
+                <div class="modal-body">
+
+                    <div class="form-group mb-1">
+                        <input type="hidden" id="id_modal_eliminar_produccion">
+                    </div>
+
+                    <div class="form-group row">
+                        <h5>¿Estas seguro de eliminar este registro?</h5>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn_eliminarProduccionIntelectual btn-danger" data-dismiss="modal"><span><i class="fas fa-trash"></i></spna> Eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
-
-            <div class="form-group row">
-                <label for="fech_publicacion2" class="col-sm-4 col-form-label">Fecha de Publicacion:</label>
-                <div class="col-sm-8">
-                <input type="text" readonly class="form-control-plaintext" id="fech_publicacion2" value="">
-                </div>
-            </div>
-
-
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
         </div>
     </div>
-    </div>
+    <!-- Fin del Modal ver otros estudios -->
 
-
-
-  <!-- Fin del Modal ver Produccion Intelectual-->
-
-
-
- <!--   al final del modal lo colocamos de produccion intelectual  -->
-
-
-<!-- incio de Modal para eliminar produccion intelectual 11/04/2019 -->
-
- <div class="modal fade" id="modal_eliminar_produccion_intelectual" tabindex="-1" role="dialog" aria-labelledby="cerrar_modal_produccion_intelectual2" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="cerrar_modal_produccion_intelectual2">Eliminar Produccion Intelectual</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        
-        <div class="modal-body">
-
-            <div class="form-group mb-1">
-                <input type="hidden" id="id_modal_eliminar_produccion">
-            </div>
-
-            <div class="form-group row">
-                <h5>¿Estas seguro de eliminar este registro?</h5>
-            </div>
-
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn_eliminarProduccionIntelectual btn-danger" data-dismiss="modal"><span><i class="fas fa-trash"></i></spna> Eliminar</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
-        </div>
-    </div>
-    </div>
-
-
-
- <!-- Fin del Modal ver otros estudios -->
-
-
-
-
-    @endsection
+@endsection

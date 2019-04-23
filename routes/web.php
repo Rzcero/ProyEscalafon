@@ -82,7 +82,7 @@ Route::DELETE('/eliminarHabiente/{id}','DatosController@destroyHabiente')->name(
 
 
 //********************************* RUTAS MODULO II *********************************** */
-Route::resource('/Estudios','DatosController');
+Route::resource('/Estudios','EstudiosController');
 
 Route::get('/listarnivel', 'EstudiosController@listarnivel')->name('estudios.listarnivel');
 Route::get('/listarmodalidad', 'EstudiosController@listarmodalidad')->name('estudios.listarmodalidad');

@@ -34,6 +34,7 @@ class EstudiosController extends Controller
      */
     public function create()
     {
+        
         return view('Estudios.create');
 
     }

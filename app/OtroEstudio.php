@@ -33,7 +33,5 @@ class OtroEstudio extends Model
 
     }
 
-   
-
 }
 
