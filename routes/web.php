@@ -40,7 +40,7 @@ Route::post('/administracionLegajo', 'AdministracionLegajoController@store')->na
 Route::get('/moduloinicio/{id}/editar', 'ModulosController@editar')->name('moduloinicio.editar');
 
 
-//Para hacer busquedas
+//Para hacer busquedass
 //Route::get('/buscar','AdministracionLegajoController@busqueda')->name('buscapersonas');
 
 // Authentication Routes...
