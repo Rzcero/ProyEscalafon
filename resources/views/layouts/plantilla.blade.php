@@ -14,7 +14,8 @@
   <!-- Styles -->
   <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ url('css/estilos.css') }}" rel="stylesheet">
-  
+  <link href="{{ url('css/estilos2.css') }}" rel="stylesheet">  <!-- creado 26/03/2019 para redireccionar la plantilla de estilos creado-->
+
   <!-- Font Awesome -->
   <!-- <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"> -->
   <!-- Ionicons -->
@@ -46,7 +47,7 @@
   <script src="{{ url('plugins/jquery/jquery.min.js') }}"></script>
   
   @yield("zona_js")
-    
+
 </head>
 <body class="hold-transition sidebar-mini">
 

@@ -30,6 +30,7 @@ use App\Docente;
 use App\CategoriaDocente;
 use App\Regimen;
 
+
 class DatosController extends Controller
 {
 
@@ -316,6 +317,13 @@ class DatosController extends Controller
              
         ]);
     }
+
+
+
+
+
+
+
 
     //Para editar el Modal Idioma
     public function editarIdioma(Request $request)

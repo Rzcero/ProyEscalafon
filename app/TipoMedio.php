@@ -11,7 +11,7 @@ class TipoMedio extends Model
     protected $fillable = ["id_tipo_medio","descripcion"];
 
     //  1 tipo_medio puede estar contenido en la tabla produccion intelectual
-     public function produccion_intelectual(){
+     public function produccion_intelectual1(){
         return $this->hasMany("App\ProduccionIntelectual","id_tipo_medio","id_tipo_medio");
 
     }
