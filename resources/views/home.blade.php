@@ -13,11 +13,14 @@
                 <div class="card-body">
                                     
                     <!--  Inicio contenedor del Formulario -->
-                    <div class="container px-0" id="tabla1">
+                    <div class="container1 px-0" id="tabla1">
+                        
                         
                         <!-- Inicio Formulario -->
                         <form id="formulario1">
                             <!--  I.E. Primaria  -->
+
+
 
                             <div class="form-row my-2">
                                 <div class="col">
@@ -31,6 +34,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="col-2">
                                     <div class="card">
                                         <div class="card-body p-0">
@@ -628,5 +633,6 @@
             </div>
         </div>
     </div>
+
 
 @endsection
