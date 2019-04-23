@@ -6,13 +6,18 @@
   <title>Escalafon_UNPRG</title>
 
   <!-- CSRF Token -->
+
+  <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
+
    <meta name="csrf-token" content="{{ csrf_token() }}"> 
+
   
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Styles -->
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/estilos2.css') }}" rel="stylesheet">  <!-- creado 26/03/2019 para redireccionar la plantilla de estilos creado-->
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}">
@@ -38,10 +43,15 @@
 
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+
+    
+    <script src="{{ asset('js/mainestudios.js') }}"></script>
+
     <script src="{{ asset('js/main.js') }}"></script>
   
   <!-- Para Fuente Awesome -->
   <script defer src="{{ asset('js/all.js') }}"></script>
+
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -532,7 +542,12 @@
 <!-- ./wrapper -->
 
 
+<!-- jQuery -->
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+
+
         
+
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -572,7 +587,6 @@
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
-
 
 </body>
 </html>

@@ -17,6 +17,7 @@ use App\Provincia;
 use App\Distrito;
 
 
+
 class DatosController extends Controller
 {
     /**
@@ -252,6 +253,13 @@ class DatosController extends Controller
              
         ]);
     }
+
+
+
+
+
+
+
 
     //Para editar el Modal Idioma
     public function editarIdioma(Request $request)
