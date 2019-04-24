@@ -1067,7 +1067,7 @@
                   <div class="form-row mb-1">
                     <div class="col">
                       <select id="tipoDocIdent" name="tipoDocIdent" class="form-control form-control-sm">
-                        <option value=""></option>
+                        
                       </select>
                     </div>
                     <div class="col">
@@ -1177,70 +1177,119 @@
         </div>
 
         <div class="modal-body">
+          <form id="formVerHabiente">
+          <div class="col">
+            <div class="form-group row mb-1">
+              <div class="col-6">
+                <label for="parentescoM2" class="col-sm-12 col-form-label">Parentesco:</label>
+              </div>
+              
+              <div class="col-sm-6">
+                <input type="text" readonly class="form-control-plaintext" id="parentescoM2" value="">
+              </div>
+            </div>
 
-          <div class="form-group row">
-            <label for="tipo_idiomaM2" class="col-sm-3 col-form-label">Parentesco:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="tipo_idiomaM2" value="">
+            <div class="form-group row mb-1">
+              <div class="col-6">
+                <label for="partNacM2" class="col-sm-12 col-form-label">N° de Partida Nacimiento:</label> 
+              </div>
+              
+              <div class="col-sm-6">
+                <input type="text" readonly class="form-control-plaintext" id="partNacM2" value="">
+              </div>
+            </div>
+
+            <div class="form-group row mb-1">
+              <div class="col-6">
+                <label for="fechEmisionM2" class="col-sm-12 col-form-label">Fecha de Emisión:</label>
+              </div>
+              
+              <div class="col-sm-6">
+                <input type="text" readonly class="form-control-plaintext" id="fechEmisionM2" value="">
+              </div>
+            </div>
+
+            <div class="form-group row mb-1">
+              <div class="col-6">
+                <label for="expedidaM2" class="col-sm-12 col-form-label">Expedida por:</label>
+              </div>
+              
+              <div class="col-sm-6">
+                <textarea readonly class="form-control-plaintext" id="expedidaM2" cols="30" rows="2" value=""></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row mb-1">
+              <div class="col-6">
+                <label for="docIdentM2" class="col-sm-12 col-form-label">Tipo Doc. Identidad:</label>
+              </div>
+              
+              <div class="col-sm-6">
+                <textarea readonly class="form-control-plaintext" id="docIdentM2" cols="30" rows="2" value=""></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row mb-1">
+              <div class="col-6">
+                <label for="nroDocIdentM2" class="col-sm-12 col-form-label">N° Doc.:</label>
+              </div>
+              
+              <div class="col-sm-6">
+                <input type="text" readonly class="form-control-plaintext" id="nroDocIdentM2" value="">
+              </div>
+            </div>
+
+            <div class="form-group row mb-1">
+              <div class="col-6">
+                <label for="apeParernoM2" class="col-sm-12 col-form-label">Apell. Paterno:</label>
+              </div>
+              
+              <div class="col-sm-6">
+                <input type="text" readonly class="form-control-plaintext" id="apeParernoM2" value="">
+              </div>
+            </div>
+
+            <div class="form-group row mb-1">
+              <div class="col-6">
+                <label for="apeMaternoM2" class="col-sm-12 col-form-label">Apell. Materno:</label>
+              </div>
+              
+              <div class="col-sm-6">
+                <input type="text" readonly class="form-control-plaintext" id="apeMaternoM2" value="">
+              </div>
+            </div>
+
+            <div class="form-group row mb-1">
+              <div class="col-6">
+                <label for="nombresM2" class="col-sm-12 col-form-label">Nombres:</label>
+              </div>
+              
+              <div class="col-sm-6">
+                <input type="text" readonly class="form-control-plaintext" id="nombresM2" value="">
+              </div>
+            </div>
+
+            <div class="form-group row mb-1">
+              <div class="col-6">
+                <label for="fechNacimientoM2" class="col-sm-12 col-form-label">Fecha Nacimiento:</label>
+              </div>
+              
+              <div class="col-sm-6">
+                <input type="text" readonly class="form-control-plaintext" id="fechNacimientoM2" value="">
+              </div>
+            </div>
+
+            <div class="form-group row mb-1">
+              <div class="col-6">
+                <label for="sexoM2" class="col-sm-12 col-form-label">Sexo:</label>
+              </div>
+              
+              <div class="col-sm-6">
+                <input type="text" readonly class="form-control-plaintext" id="sexoM2" value="">
+              </div>
             </div>
           </div>
-
-          <div class="form-group row">
-            <label for="dominioM2" class="col-sm-3 col-form-label">N° de Partida Nacimiento:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="dominioM2" value="">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="centroEstudioM2" class="col-sm-3 col-form-label">Fecha de Emisión:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="centroEstudioM2" value="">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="tipo_docM2" class="col-sm-4 col-form-label">Expedida por:</label>
-            <div class="col-sm-8">
-              <input type="text" readonly class="form-control-plaintext" id="tipo_docM2" value="">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="horasM2" class="col-sm-3 col-form-label">Tipo Doc. Identidad:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="horasM2" value="">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="creditosM2" class="col-sm-3 col-form-label">Apell. Paterno:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="creditosM2" value="">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="creditosM2" class="col-sm-3 col-form-label">Apell. Materno:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="creditosM2" value="">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="creditosM2" class="col-sm-3 col-form-label">Nombres:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="creditosM2" value="">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="creditosM2" class="col-sm-3 col-form-label">Sexo:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="creditosM2" value="">
-            </div>
-          </div>
-
+          </form>
         </div>
 
         <div class="modal-footer">

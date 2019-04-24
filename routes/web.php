@@ -77,6 +77,7 @@ Route::get('/listarHabientes', 'DatosController@listarHabientes')->name('datos.l
 Route::post('/agregarHabiente', 'DatosController@agregarHabiente')->name('datos.agregarHabiente');
 Route::post('/editarHabiente', 'DatosController@editarHabiente')->name('datos.editarHabiente');
 Route::post('/updateHabiente/{id}','DatosController@updateHabiente')->name('updateHabiente');
+Route::post('/verHabiente', 'DatosController@verHabiente')->name('datos.verHabiente');
   //ruta eliminar idioma
 Route::DELETE('/eliminarHabiente/{id}','DatosController@destroyHabiente')->name('datos.destroyHabiente');
 

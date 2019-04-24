@@ -523,7 +523,16 @@ class DatosController extends Controller
             $habiente->fecha_emision = $request->fech_emision;
             $habiente->expedida = $request->expedida;
             $habiente->id_tipo_doc = $request->tipoDocIdent;
-            $habiente->num_doc_identidad = $request->numero;
+
+            if ($request->tipoDocIdent != 1) {
+                if ($request->numero && $request->tipoDocIdent) {
+                    $habiente->num_doc_identidad = $request->numero; 
+                }
+            } else{
+                $habiente->num_doc_identidad = ''; 
+            }
+            
+            
             $habiente->ape_paterno = $request->ape_pater;
             $habiente->ape_materno = $request->ape_mater;
             $habiente->nombres = $request->nombres;
@@ -637,6 +646,37 @@ class DatosController extends Controller
             
         }
 
+    }
+
+    //Para Ver los Habientes al pulsar el boton ver
+    public function verHabiente(Request $request)
+    {
+        
+        $verHabiente = Habiente::where('id_habiente',$request->id)->get();
+        // return $verHabiente;
+        $matriz = array();
+        
+        foreach($verHabiente as $verHab){
+        
+            $matriz[] = array('parentesco' => $verHab->parentesco->denominacion,
+                              'nroPartNac' => $verHab->nro_partida_nacimiento,
+                              'fechEmi' => $verHab->fecha_emision,
+                              'expedida' => $verHab->expedida,
+                              'docIdent' => $verHab->tipoDocIdentidad->denominacion,
+                              'nroDocIdent' => $verHab->num_doc_identidad,
+                              'apePater' => $verHab->ape_paterno,
+                              'apeMater' => $verHab->ape_materno,
+                              'nomb' => $verHab->nombres,
+                              'fechNac' => $verHab->fecha_nacimiento,
+                              'sexo' => $verHab->sexo);
+        
+        }
+        
+        return response()->json([
+              
+            $matriz
+             
+        ]);
     }
 
     //PARA ELIMINAR UN HABIENTE

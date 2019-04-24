@@ -8,8 +8,8 @@ class Habiente extends Model
 {
     protected $table = "habiente";
     protected $primaryKey = "id_habiente";
-    protected $fillable = ["id_habiente",
-                            "id_persona",
+    protected $fillable = ["id_persona",
+                            "id_habiente",                            
                             "id_parentesco",
                             "nro_partida_nacimiento",
                             "fecha_emision",

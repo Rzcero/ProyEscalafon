@@ -945,9 +945,33 @@ $(document).ready(function(){
         $('#pdf_docIdentHab').trigger('click');
     });
 
-    //MODAL AGREGAR NUEVO HABIENTE
-    
+    //************** MODAL AGREGAR NUEVO HABIENTE ***********/
+    //para ocultar el campo numero dependiendo del lo que selecciones en el
+    //select de tipo doc de identidad
+    $('#tipoDocIdent').change(function(){
+        
+        var dato = $(this).val();
+                
+        if (dato != 1 ) {
+            $('#numero').attr('disabled',false);
+        } else{
+            $('#numero').attr('disabled',true).val('');
+        }
+
+        //elimina mensajes de error
+        if ($('.msg_errorHab')) {
+			$('.msg_errorHab').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+    });
+
     $('#agregarNuevoHabiente').click(function(){
+
+       $('#numero').attr('disabled',true); 
 
         if ($('.msg_errorHab')) {
 			$('.msg_errorHab').remove();
@@ -998,7 +1022,16 @@ $(document).ready(function(){
         formData.append('pdf_partidaNacHab',$('input[name=pdf_partidaNacHab]')[0].files[0]);
         formData.append('expedida',$('#expedida').val());
         formData.append('tipoDocIdent',$('#tipoDocIdent').val());
-        formData.append('numero',$('#numero').val());
+
+        if ($('#tipoDocIdent').val() != 1) {
+            if ($('#numero').val() && $('#tipoDocIdent').val()) {
+                formData.append('numero',$('#numero').val()); 
+            }
+        } else{
+            formData.append('numero',$('#numero').val('')); //se pasa el valor vacio
+        }
+
+        // formData.append('numero',$('#numero').val());
         formData.append('pdf_docIdentHab',$('input[name=pdf_docIdentHab]')[0].files[0]);
         formData.append('ape_pater',$('#ape_pater').val());
         formData.append('ape_mater',$('#ape_mater').val());
@@ -1103,6 +1136,16 @@ $(document).ready(function(){
                         $('#fech_emision').val(obj_json.fechEmision);
                         $('#expedida').val(obj_json.expedida); 
                         $('#tipoDocIdent').val(obj_json.idTipoDoc);
+
+                        var idTipoDoc = obj_json.idTipoDoc;
+                        console.log(obj_json.idTipoDoc);
+                        
+                        if (idTipoDoc != 1 ) {
+                            $('#numero').attr('disabled',false);
+                        } else{
+                            $('#numero').attr('disabled',true).val('');
+                        }
+
                         $('#numero').val(obj_json.numDoc);
                         $('#ape_pater').val(obj_json.apellidoPaterno);
                         $('#ape_mater').val(obj_json.apellidoMaterno);
@@ -1210,6 +1253,51 @@ $(document).ready(function(){
             
         });
 
+    });
+
+    //PARA VER UN HABIENTE
+    $(document).on('click','.ver_parentesco',function(){
+        
+        //resetea el formulario
+        $('#formVerHabiente').trigger('reset');
+
+        var id_Habiente = $(this).val();
+        var ruta = "/ProyEscalafon/public/verHabiente";
+        var token3 = $("#token3").val();
+
+        $.ajax({
+            
+            url: ruta,
+            headers: {'X-CSRF-TOKEN': token3},
+            type: 'POST',
+            dateType: 'json',
+            data: {
+                id: id_Habiente
+            },
+            success: function(respuesta){
+                            
+                respuesta.forEach(obj_json =>{
+                    obj_json.forEach(obj_json =>{
+                        
+                        $('#parentescoM2').val(obj_json.parentesco);
+                        $('#partNacM2').val(obj_json.nroPartNac);
+                        $('#fechEmisionM2').val(obj_json.fechEmi);
+                        $('#expedidaM2').val(obj_json.expedida);
+                        $('#docIdentM2').val(obj_json.docIdent); 
+                        $('#nroDocIdentM2').val(obj_json.nroDocIdent);
+                        $('#apeParernoM2').val(obj_json.apePater);
+                        $('#apeMaternoM2').val(obj_json.apeMater);
+                        $('#nombresM2').val(obj_json.nomb);
+                        $('#fechNacimientoM2').val(obj_json.fechNac); 
+                        $('#sexoM2').val(obj_json.sexo);
+                                                
+                    });
+                });
+            
+            }
+            
+        });
+        
     });
 
     //PARA ELIMINAR UN HABIENTE
