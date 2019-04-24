@@ -38,10 +38,9 @@ class Persona extends Migration
 
             $table->integer('id_tipo_zona');
             //$table->foreign('id_tipo_zona')->references('id_tipo_zona')->on('tipo_zona');
-
-            $table->integer('id_nacionalidad');
-            $table->integer('id_servidor');
-            $table->integer('id_condi_leg');
+            
+            $table->integer('id_tipo_personal');
+            
             $table->integer('id_tipo_legajo');
 
             $table->string('pdf_partida_nacimiento',200);
