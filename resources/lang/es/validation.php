@@ -56,7 +56,7 @@ return [
         'array'   => 'El campo :attribute debe contener :value o más elementos.',
     ],
     'image'                => 'El campo :attribute debe ser una imagen.',
-    'in'                   => 'El campo :attribute es inválido.',
+    'in'                   => 'El campo :attribute es inválido escoja otro.',
     'in_array'             => 'El campo :attribute no existe en :other.',
     'integer'              => 'El campo :attribute debe ser un número entero.',
     'ip'                   => 'El campo :attribute debe ser una dirección IP válida.',
@@ -146,6 +146,8 @@ return [
 
     'attributes' => [
         //crear persona
+        't_personal' => 'Tipo Personal',
+        't_docIdent' => 'Doc. Identidad',
         't_legajo' => 'Tipo Legajo',
         'n_doc' => 'Número',
         'ape_pat' => 'Apellido paterno',
@@ -156,7 +158,11 @@ return [
         'num_docIdentidad' => 'Número',
         'apellidoPaterno' => 'Apellido paterno',
         'apellidoMaterno' => 'Apellido materno',
-        'nomb' => 'Nombres'
+        'nomb' => 'Nombres',
+
+        //update situacion labora
+        'selec1' => ' ',
+        'selec2' => ' '
     ],
 
 ];

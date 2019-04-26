@@ -353,7 +353,7 @@ class AdministracionLegajoController extends Controller
                                 
         $persona->save();
         
-        if ($request->t_personal == 1) {
+        if ($request->t_personal == 2) {
             
             //busco a la persona por el numero de documento de identidad
             $adminis = Persona::where('num_doc_identidad',$request->n_doc)->get();
@@ -367,7 +367,7 @@ class AdministracionLegajoController extends Controller
             $administrativo->id_condicion = $request->selec_condi;
             $administrativo->save();
 
-        } elseif($request->t_personal == 2) {
+        } elseif($request->t_personal == 3) {
             
             $docen = Persona::where('num_doc_identidad',$request->n_doc)->get();
             $id_personal = $docen[0]->id_persona;

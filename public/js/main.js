@@ -261,7 +261,7 @@ $(document).ready(function(){
 		var s1 = $('#selec1');
         var s2 = $('#selec2');
 
-		if ($(this).val() == 1) {
+		if ($(this).val() == 2) {
             
             $('#adm1 .card-header').text('G. Ocupacional');
             $('#adm2 .card-header').text('Condición');
@@ -270,12 +270,16 @@ $(document).ready(function(){
             selectCondicion(s2)
 						
 		} else {
+
+            if ($(this).val() == 3) {
+
+                $('#adm1 .card-header').text('Categoria');
+                $('#adm2 .card-header').text('Regimen');
+                
+                selectCategoria(s1);
+                selectRegimen(s2);
+            }
             
-            $('#adm1 .card-header').text('Categoria');
-            $('#adm2 .card-header').text('Regimen');
-            
-            selectCategoria(s1);
-            selectRegimen(s2);
 		}
 
 	});
@@ -651,7 +655,12 @@ $(document).ready(function(){
     var tipo_doc = $("#tipo_doc");
     selectTipoDocumento(tipo_doc);
 
-    //MODAL AGREGAR NUEVO IDIOMA
+    //*************** MODAL AGREGAR NUEVO IDIOMA *************/
+
+    //para el boton de subir pdf idioma
+    $('#btn_pdfIdioma').on('click', function(){
+        $('#pdf_Idioma').trigger('click');
+    });
     
     $('#agregarNuevoIdioma').click(function(){
 
@@ -662,39 +671,37 @@ $(document).ready(function(){
         $(".btn_idioma").removeClass('btn-success');
         $(".btn_idioma").addClass('guardar');
         $(".btn_idioma").removeClass('actualizar');
-
         
     });
     
     $(".modal-footer").on('click', '.guardar', function(){
        
-        var dato = $("#tipo_idioma").val();
         var btn_radio = $("#formularioModal1 input[name='dominio']:checked").val();
-        var dato3 = $("#centroEstudio").val();
-        var dato4 = $('#tipo_doc').val();
-        var dato5 = $('#horas').val();
-        var dato6 = $('#creditos').val();
-
+        
         var ruta = "/ProyEscalafon/public/agregarIdioma";
         var token2 = $("#token2").val();
         
+        var formData = new FormData();
+
+        formData.append('miID',myIDpersona);
+        formData.append('tipo_idioma',$("#tipo_idioma").val());
+        formData.append('dominio',btn_radio);
+        formData.append('centroEstudio',$("#centroEstudio").val());
+        formData.append('tipo_doc',$('#tipo_doc').val());
+        formData.append('pdf_Idioma',$('input[name=pdf_Idioma]')[0].files[0]);
+        formData.append('horas',$('#horas').val());
+        formData.append('creditos',$('#creditos').val());
+
         $.ajax({
             
             url: ruta,
             headers: {'X-CSRF-TOKEN': token2},
             type: 'POST',
             dataType: 'json',
-            data: {
-
-                id: myIDpersona,
-                idioma: dato,
-                dominio: btn_radio,
-                centro: dato3,
-                tipo_documento: dato4,
-                horas: dato5,
-                creditos: dato6
-                
-            },
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
             success: function(respuesta){
                                                 
                 mostrarIdiomas();
@@ -710,6 +717,7 @@ $(document).ready(function(){
     //PARA ACTUALIZAR EL MODAL IDIOMA
         //para mostrar los datos en el modal
     $(document).on('click','.update_idioma',function(e){
+
         $('#formularioModal1').trigger('reset');
 
         cambiarTitulo('Actualizar Idioma');
@@ -953,7 +961,7 @@ $(document).ready(function(){
         var dato = $(this).val();
                 
         if (dato != 1 ) {
-            $('#numero').attr('disabled',false);
+            $('#numero').attr('disabled',false).val('');
         } else{
             $('#numero').attr('disabled',true).val('');
         }
@@ -1058,6 +1066,7 @@ $(document).ready(function(){
 				$('.msj_exitoHabiente').css('display','block');
 
                 $('#formularioModal2').trigger('reset');
+                $('#numero').attr('disabled',true); 
                 mostrarHabientes();
             },
             error: function(respuesta){

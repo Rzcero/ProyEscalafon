@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UpdatePersonasRequest;
 use App\Http\Requests\CreateHabientesRequest;
 use App\Http\Requests\UpdateHabientesRequest;
+use App\Http\Requests\UpdateSitLaboralRequest;
 use App\Persona;
 use App\TipoPersonal;
 use App\Idioma;
@@ -318,12 +319,43 @@ class DatosController extends Controller
         ]);
     }
 
+    public function agregarIdioma(Request $request)
+    {
+        
+        if($request->ajax()){
+            
+            $idioma = new Idioma;
 
+            if ($request->hasFile('pdf_Idioma')) {
+            
+                $ruta_tempIdioma = $request->file('pdf_Idioma');
+    
+                $nombre_pdf_Idioma = time().$ruta_tempIdioma->getClientOriginalName();
+    
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_tempIdioma->move(public_path().'/images/',$nombre_pdf_Idioma);
+    
+                $idioma->pdf_idioma_persona = $nombre_pdf_Idioma;
+                
+            }
 
+            $idioma->id_persona = $request->miID;
+            $idioma->id_tipo_idioma = $request->tipo_idioma;
+            $idioma->dominio = $request->dominio;
+            $idioma->entidad = $request->centroEstudio;
+            $idioma->id_tipo_documento = $request->tipo_doc;
+            $idioma->num_horas = $request->horas;
+            $idioma->num_creditos = $request->creditos;
+                        
+            $idioma->save();
+            
+            return response()->json([
 
-
-
-
+            ]);
+            
+        }
+            
+    }
 
     //Para editar el Modal Idioma
     public function editarIdioma(Request $request)
@@ -432,30 +464,6 @@ class DatosController extends Controller
     
     }
     
-    public function agregarIdioma(Request $request)
-    {
-        
-        if($request->ajax()){
-            
-            $idioma = new Idioma;
-            $idioma->id_persona = $request->id;
-            $idioma->id_tipo_idioma = $request->idioma;
-            $idioma->dominio = $request->dominio;
-            $idioma->entidad = $request->centro;
-            $idioma->id_tipo_documento = $request->tipo_documento;
-            $idioma->num_horas = $request->horas;
-            $idioma->num_creditos = $request->creditos;
-                        
-            $idioma->save();
-            
-            return response()->json([
-
-            ]);
-            
-        }
-            
-    }
-
     public function listarHabientes(Request $request)
     {
         if($request->ajax()){
@@ -924,9 +932,9 @@ class DatosController extends Controller
 
     }
 
-    public function updateSituacionLaboral(Request $request, $id)
+    public function updateSituacionLaboral(UpdateSitLaboralRequest $request, $id)
     {
-        if ($request->t_personal == 1) {
+        if ($request->t_personal == 2) {
             //SI NO EXISTE un administrativo en la base con ese id de la persona
             if (!Administrativo::find($id)) {
                 
@@ -984,7 +992,7 @@ class DatosController extends Controller
 
         } else{
 
-            if ($request->t_personal == 2) {
+            if ($request->t_personal == 3) {
                 
                 //SI NO EXISTE un docente en la base con ese id de la persona
                 if (!Docente::find($id)) {

@@ -611,29 +611,186 @@ $(document).ready(function() {
 	var selec_categoria2 = $('#selec_categ');
 	var selec_regimen2 = $('#r_laboral');
 
+	$('#adm_grupo').hide();
+	$('#adm_condi').hide();
+
+	function eliminaMsjError(ident){
+			
+		if ($("select[name='" + ident + "'] .is-invalid")) {
+						
+			$("select[name='" + ident + "']").removeClass('is-invalid');
+			$("select[name='" + ident + "']").next().remove();
+			
+        }
+
+	}
+
+	function eliminaMsjErrorInput(ident){
+			
+		if ($("input[name='" + ident + "'] .is-invalid")) {
+						
+			$("input[name='" + ident + "']").removeClass('is-invalid');
+			$("input[name='" + ident + "']").next().remove();
+			
+        }
+
+	}
+
 	$('#t_personal').change(function() {
-		
-		if ($(this).val() == 1) {
 
-			$('#adm_grupo').show();
-			$('#adm_condi').show();
-			$('#doc_cate').hide();
-			$('#doc_reg').hide();
-		
-		} else {
+		//elimina mensajes de error
+		var valor1 = 't_personal';
+		var valor2 = 'selec_grupo';
+		var valor3 = 'selec_condi';
+		var valor4 = 'selec_categ';
+		var valor5 = 'r_laboral';
 
+		eliminaMsjError(valor1);
+		eliminaMsjError(valor2);
+		eliminaMsjError(valor3);
+		eliminaMsjError(valor4);
+		eliminaMsjError(valor5);
+               
+		if ($(this).val() != 1) {
+
+			if ($(this).val() == 2) {
+					
+				$('#adm_grupo').show();
+				$('#adm_condi').show();
+
+				$('#doc_cate').hide();
+				selec_categoria2.val($('option:first', selec_categoria2).val());
+
+				$('#doc_reg').hide();
+				selec_regimen2.val($('option:first', selec_regimen2).val());
+
+			}else{
+				$('#adm_grupo').hide();
+				//resetea los select de tipo personal y condicion 
+				selec_grupo2.val($('option:first', selec_grupo2).val());
+				
+				$('#adm_condi').hide();
+				selec_condi2.val($('option:first', selec_condi2).val());
+
+				$('#doc_cate').show();
+				$('#doc_reg').show();
+				
+				selectCategoria(selec_categoria2);
+				selectRegimen(selec_regimen2);
+			}
+		
+		} else{
+			
 			$('#adm_grupo').hide();
+			selec_grupo2.val($('option:first', selec_grupo2).val());
 			$('#adm_condi').hide();
-			$('#doc_cate').show();
-			$('#doc_reg').show();
-			
-			selectCategoria(selec_categoria2);
-			selectRegimen(selec_regimen2);
-			
+			selec_condi2.val($('option:first', selec_condi2).val());
+
+			$('#doc_cate').hide();
+			selec_categoria2.val($('option:first', selec_categoria2).val());
+			$('#doc_reg').hide();
+			selec_regimen2.val($('option:first', selec_regimen2).val());
 		}
 
 	});
 
+	$('#selec_grupo').change(function() {
+
+		//elimina mensajes de error
+
+        if ($("select[name='selec_grupo'] .is-invalid")) {
+			
+			$(this).removeClass('is-invalid');
+			$(this).next().remove();
+			
+        }
+
+	});
+
+	$('#selec_condi').change(function() {
+
+		//elimina mensajes de error
+
+        if ($("select[name='selec_condi'] .is-invalid")) {
+			
+			$(this).removeClass('is-invalid');
+			$(this).next().remove();
+			
+        }
+
+	});
+
+	$('#selec_categ').change(function() {
+
+		//elimina mensajes de error
+
+        if ($("select[name='selec_categ'] .is-invalid")) {
+			
+			$(this).removeClass('is-invalid');
+			$(this).next().remove();
+			
+        }
+
+	});
+
+	$('#r_laboral').change(function() {
+
+		//elimina mensajes de error
+
+        if ($("select[name='r_laboral'] .is-invalid")) {
+			
+			$(this).removeClass('is-invalid');
+			$(this).next().remove();
+			
+        }
+
+	});
+
+	$('#nuevoPersonal').click(function(){
+
+		if ($('.msg_error')) {
+			$('.msg_error').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+        
+        if ($('.msj_exito')) {
+            $('.msj_exito').css('display','none');
+		}
+		
+		$('#n_doc').attr('disables',true);
+		$('#formularioModalPersona').trigger('reset');
+
+	});
+
+	$('#n_doc').attr('disabled',true);
+	$('#t_docIdent').change(function(){
+
+		var valor1 = 't_docIdent';
+		var valor2 = 'n_doc';
+
+		if ($(this).val() != 1) {
+			$('#n_doc').attr('disabled',false).val('');
+			
+		}else{
+			$('#n_doc').attr('disabled',true).val('');
+			
+		}
+
+		eliminaMsjError(valor1);
+		eliminaMsjErrorInput(valor2);
+		//elimina mensajes de error
+        // if ($('.msg_errorHab')) {
+		// 	$('.msg_errorHab').remove();
+        // }
+        
+        // if ($('.is-invalid')) {
+        //     $('.is-invalid').removeClass('is-invalid');
+        // }
+
+	});
 	
 	$("#formularioModalPersona").submit(function(e){
 		
@@ -651,20 +808,61 @@ $(document).ready(function() {
 		var formData = new FormData();
 		
 		formData.append('t_legajo',$('#t_legajo').val());
-		formData.append('t_personal',$('#t_personal').val());
-        formData.append('t_docIdent',$('#t_docIdent').val());
-        formData.append('n_doc',$('#n_doc').val());
+		
+		// if ($('#t_personal').val() != 1) {
+		// 	formData.append('t_personal',$('#t_personal').val());
+		// }
+
+		if ($('#t_docIdent').val() != 1) {
+
+			formData.append('t_docIdent',$('#t_docIdent').val());
+
+			if ($('#n_doc').val() != 1) {
+				formData.append('n_doc',$('#n_doc').val());
+			}
+			
+		}else{
+			formData.append('n_doc',$('#n_doc').val('')); //se pasa el valor vacio
+		}
+		
+		// if ($('#n_doc').val() != 1) {
+		// 	formData.append('n_doc',$('#n_doc').val());
+		// }
+        
         formData.append('foto_trabajador',$('input[name=foto_trabajador]')[0].files[0]);
         formData.append('ape_pat',$('#ape_pat').val());
         formData.append('ape_mat',$('#ape_mat').val());
         formData.append('nomb',$('#nomb').val());
-		
-		if ($('#t_personal').val() == 1) {
-			formData.append('selec_grupo',$('#selec_grupo').val());
-        	formData.append('selec_condi',$('#selec_condi').val());
-		} else {
-			formData.append('selec_categ',$('#selec_categ').val());
-        	formData.append('r_laboral',$('#r_laboral').val());
+				
+		if ($('#t_personal').val() != 1) {
+
+			formData.append('t_personal',$('#t_personal').val());
+
+			if ($('#t_personal').val() == 2) {
+				if ($('#selec_grupo').val() !=1 ) {
+					formData.append('selec_grupo',$('#selec_grupo').val());
+        		}
+
+				if ($('#selec_condi').val() != 1) {
+					formData.append('selec_condi',$('#selec_condi').val());
+				}
+
+				formData.append('selec_categ',$('#selec_categ').val(1));
+				formData.append('r_laboral',$('#r_laboral').val(1));
+				
+			}else{
+				if ($('#selec_categ').val() != 1) {
+					formData.append('selec_categ',$('#selec_categ').val());
+        		}
+
+				if ($('#r_laboral').val() != 1) {
+					formData.append('r_laboral',$('#r_laboral').val());
+				}
+
+				formData.append('selec_grupo',$('#selec_grupo').val(''));
+				formData.append('selec_condi',$('#selec_condi').val(''));
+				
+			}
 		}
 
         // console.log($("#" + nombreForm + "")[0]);
@@ -702,8 +900,17 @@ $(document).ready(function() {
 					// console.log(index + ": "+val);
 					
 					$('input[name=' + index + ']').addClass('is-invalid');
-					
+					$('select[name=' + index + ']').addClass('is-invalid');
+
 					$('input[name=' + index + ']').after(`<span class='msg_error invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+					$('select[name=' + index + ']').after(`<span class='msg_error invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+					// if ($errors->has('n_doc')){
+
+					// 	<span class="invalid-feedback" role="alert">
+					// 		<strong>{{ $errors->first('n_doc') }}</strong>
+					// 	</span>
+					// }
 				});
 				
             }

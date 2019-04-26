@@ -24,6 +24,12 @@ class CreatePersonasRequest extends FormRequest
     public function rules()
     {
         return [
+            't_personal'=>'required',
+            'selec_grupo'=>'required',
+            'selec_condi'=>'required',
+            'selec_categ'=>'required',
+            'r_laboral'=>'required',
+            't_docIdent'=>'required',
             't_legajo'=>'required',
             'n_doc'=>'required',
             'ape_pat'=>'required',

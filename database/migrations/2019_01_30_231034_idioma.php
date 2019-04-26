@@ -18,7 +18,7 @@ class Idioma extends Migration
             $table->integer('id_persona');
             $table->integer('id_tipo_idioma');
             $table->string('dominio',45);
-            $table->string('entidad',225);
+            $table->string('entidad',225)->nullable();
             $table->integer('id_tipo_documento');
             $table->integer('num_horas')->nullable();
             $table->integer('num_creditos')->nullable();

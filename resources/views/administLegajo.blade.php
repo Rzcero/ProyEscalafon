@@ -228,7 +228,7 @@
                 <!--  Fin contenedor de tabla de legajos  -->
                 
                 <caption>
-                    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalLegajoPortada">
+                    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalLegajoPortada" id="nuevoPersonal">
                         Nuevo Personal <span><i class="fas fa-plus"></i></span>
                     </button>
                 </caption>
@@ -310,7 +310,7 @@
                                                 </div>
 
                                                 <div class="form-row my-1">
-                                                    <div class="col">  
+                                                    <div class="col-4">  
                                                         <div class="form-group mb-1">
                                                             <label for="t_personal">Tipo de Personal:</label>
                                                             <select id="t_personal" name="t_personal" class="form-control form-control-sm">
@@ -407,7 +407,7 @@
                                                 <div class="form-row">
                                                     <div class="col">  
                                                         <div class="form-group mb-1">
-                                                            <input type="text" class="form-control form-control-sm {{ $errors->has('ape_pat') ? ' is-invalid' : '' }}" id="ape_pat" name="ape_pat" placeholder="">
+                                                            <input type="text" class="form-control form-control-sm {{ $errors->has('ape_pat') ? ' is-invalid' : '' }}" id="ape_pat" name="ape_pat" placeholder="Paterno">
 
                                                             @if ($errors->has('ape_pat'))
                                                                 <span class="invalid-feedback" role="alert">
@@ -418,7 +418,7 @@
                                                     </div>
                                                     <div class="col">  
                                                         <div class="form-group mb-1">
-                                                            <input type="text" class="form-control form-control-sm {{ $errors->has('ape_mat') ? ' is-invalid' : '' }}" id="ape_mat" name="ape_mat" placeholder="">
+                                                            <input type="text" class="form-control form-control-sm {{ $errors->has('ape_mat') ? ' is-invalid' : '' }}" id="ape_mat" name="ape_mat" placeholder="Materno">
 
                                                             @if ($errors->has('ape_mat'))
                                                                 <span class="invalid-feedback" role="alert">

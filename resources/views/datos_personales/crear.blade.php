@@ -575,11 +575,23 @@
                             </div>
 
                             <div class="card-body p-1">
-                              <select id="t_personal" name="t_personal" class="form-control form-control-sm">
-                                @foreach($tipo_personal as $tipo_pers)
-                                  <option value="{{$tipo_pers->id_tipo_personal}}" @if($persona->id_tipo_personal == $tipo_pers->id_tipo_personal) selected @endif>{{$tipo_pers->nombre}}</option>
-                                @endforeach
+                              <select id="t_personal" name="t_personal" class="form-control form-control-sm {{ $errors->has('t_personal') ? ' is-invalid' : '' }}">
+                                @if(!$errors->has('t_personal'))  
+                                  @foreach($tipo_personal as $tipo_pers)
+                                    <option value="{{$tipo_pers->id_tipo_personal}}" @if($persona->id_tipo_personal == $tipo_pers->id_tipo_personal) selected @endif>{{$tipo_pers->nombre}}</option>
+                                  @endforeach
+                                @else
+                                  @foreach($tipo_personal as $tipo_pers)
+                                    <option value="{{$tipo_pers->id_tipo_personal}}">{{$tipo_pers->nombre}}</option>
+                                  @endforeach
+                                @endif
                               </select>
+
+                              @if ($errors->has('t_personal'))
+                                <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('t_personal') }}</strong>
+                                </span>
+                              @endif
                             </div>
                           </div>
                         </div>
@@ -591,21 +603,43 @@
                             <div class="col" id="adm1">
                               <div class="card">
                                 <div class="card-header p-0 text-center">
-                                  @if($persona->id_tipo_personal == 1) G. Ocupacional @else Categoria @endif
+                                  @if($persona->id_tipo_personal == 2) G. Ocupacional @elseif($persona->id_tipo_personal == 3) Categoria @endif
                                 </div>
                                 
                                 <div class="card-body p-1">
-                                  <select id="selec1" name="selec1" class="form-control form-control-sm">
-                                    @if($persona->id_tipo_personal == 1)
-                                      @foreach($categorias_administrativo as $cat_adm)
-                                        <option value="{{$cat_adm->id_categ_admi}}" @if($persona->administrativo->id_categ_admi == $cat_adm->id_categ_admi) selected @endif>{{$cat_adm->descripcion}}</option>
-                                      @endforeach
+                                  <select id="selec1" name="selec1" class="form-control form-control-sm {{ $errors->has('selec1') ? ' is-invalid' : '' }}">
+                                    @if(!$errors->has('selec1'))
+
+                                      @if($persona->id_tipo_personal == 2)
+                                        @foreach($categorias_administrativo as $cat_adm)
+                                          <option value="{{$cat_adm->id_categ_admi}}" @if($persona->administrativo->id_categ_admi == $cat_adm->id_categ_admi) selected @endif>{{$cat_adm->descripcion}}</option>
+                                        @endforeach
+                                      @elseif($persona->id_tipo_personal == 3)
+                                        @foreach($categorias_docente as $cat_doc)
+                                          <option value="{{$cat_doc->id_categ_doc}}" @if($persona->docente->id_categ_doc == $cat_doc->id_categ_doc) selected @endif>{{$cat_doc->descripcion}}</option>
+                                        @endforeach
+                                      @endif
+                                      
                                     @else
-                                      @foreach($categorias_docente as $cat_doc)
-                                        <option value="{{$cat_doc->id_categ_doc}}" @if($persona->docente->id_categ_doc == $cat_doc->id_categ_doc) selected @endif>{{$cat_doc->descripcion}}</option>
-                                      @endforeach
+
+                                      @if($persona->id_tipo_personal == 2)
+                                        @foreach($categorias_administrativo as $cat_adm)
+                                          <option value="{{$cat_adm->id_categ_admi}}">{{$cat_adm->descripcion}}</option>
+                                        @endforeach
+                                      @elseif($persona->id_tipo_personal == 3)
+                                        @foreach($categorias_docente as $cat_doc)
+                                          <option value="{{$cat_doc->id_categ_doc}}">{{$cat_doc->descripcion}}</option>
+                                        @endforeach
+                                      @endif
+
                                     @endif
                                   </select>
+
+                                  @if ($errors->has('selec1'))
+                                    <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('selec1') }}</strong>
+                                    </span>
+                                  @endif
                                 </div>
                               </div>
                             </div>
@@ -615,21 +649,42 @@
                             <div class="col" id="adm2">
                               <div class="card">
                                 <div class="card-header p-0 text-center">
-                                @if($persona->id_tipo_personal == 1) Condición @else Regimen @endif
+                                @if($persona->id_tipo_personal == 2) Condición @elseif($persona->id_tipo_personal == 3) Regimen @endif
                                 </div>
                                 
                                 <div class="card-body p-1">
-                                  <select id="selec2" name="selec2" class="form-control form-control-sm">
-                                    @if($persona->id_tipo_personal == 1)
+                                  <select id="selec2" name="selec2" class="form-control form-control-sm {{ $errors->has('selec2') ? ' is-invalid' : '' }}">
+                                  @if(!$errors->has('selec2'))
+
+                                    @if($persona->id_tipo_personal == 2)
                                       @foreach($condicion_administrativo as $cond_adm)
                                         <option value="{{$cond_adm->id_condicion}}" @if($persona->administrativo->id_condicion == $cond_adm->id_condicion) selected @endif>{{$cond_adm->descripcion}}</option>
                                       @endforeach
-                                    @else
+                                    @elseif($persona->id_tipo_personal == 3)
                                       @foreach($regimen_docente as $reg_doc)
                                         <option value="{{$reg_doc->id_regimen}}" @if($persona->docente->id_regimen == $reg_doc->id_regimen) selected @endif>{{$reg_doc->descripcion}}</option>
                                       @endforeach
                                     @endif
+
+                                  @else
+
+                                    @if($persona->id_tipo_personal == 2)
+                                        @foreach($condicion_administrativo as $cond_adm)
+                                          <option value="{{$cond_adm->id_condicion}}">{{$cond_adm->descripcion}}</option>
+                                        @endforeach
+                                      @elseif($persona->id_tipo_personal == 3)
+                                        @foreach($regimen_docente as $reg_doc)
+                                          <option value="{{$reg_doc->id_regimen}}">{{$reg_doc->descripcion}}</option>
+                                        @endforeach
+                                      @endif
+                                  @endif
                                   </select>
+
+                                  @if ($errors->has('selec2'))
+                                    <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('selec2') }}</strong>
+                                    </span>
+                                  @endif
                                 </div>
                               </div>
                             </div>
@@ -789,7 +844,13 @@
 
                   <fieldset class="form-group mb-1">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="dominio" id='basico' value="basico" checked>
+                      <input class="form-check-input" type="radio" name="dominio" id="ninguno"
+                        value="ninguno" checked>
+                      <label class="form-check-label" for="ninguno">Ninguno</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="dominio" id='basico' value="basico">
                       <label class="form-check-label" for="basico">Básico</label>
                     </div>
 
@@ -801,12 +862,6 @@
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="dominio" id="avanzado" value="avanzado">
                       <label class="form-check-label" for="avanzado">Avanzado</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="dominio" id="lengua_materna"
-                        value="lengua materna">
-                      <label class="form-check-label" for="lengua_materna">Lengua Materna</label>
                     </div>
                   </fieldset>
                 </div>
@@ -832,12 +887,15 @@
                   </div>
                 </div>
 
-                <div class="col-5">
+                <div class="col-2 my-auto">
                   <div class="form-group mb-1">
-                    <label for="pdf_otros_estudios">PDF</label>
-                    <input type="file" class="form-control-file" id="pdf_otros_estudios">
+
+                    <button type="button" class="btn btn-success m-auto info-box-icon" id='btn_pdfIdioma' title="Subir PDF de Idioma"><i class="far fa-file-pdf"></i></button>
+
+                    <input type="file" id="pdf_Idioma" name="pdf_Idioma" style="display:none;" />
                   </div>
                 </div>
+                
               </div>
 
               <div class="form-row my-2">
