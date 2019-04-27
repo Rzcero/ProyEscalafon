@@ -31,6 +31,7 @@ $(document).ready(function() {
 	            });
 	            
 	            identificador.append(registro);
+	         
 	            
 	        }
 	        
