@@ -348,6 +348,9 @@ class AdministracionLegajoController extends Controller
         $persona->ape_paterno = $request->ape_pat;
         $persona->ape_materno = $request->ape_mat;
         $persona->nombres = $request->nomb;
+        $persona->id_estado_civil = 1;
+        $persona->id_tipo_via = 1;
+        $persona->id_tipo_zona = 1;
         $persona->id_tipo_personal = $request->t_personal;
         $persona->id_tipo_legajo = $request->t_legajo;
                                 

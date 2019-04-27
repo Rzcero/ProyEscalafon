@@ -18,6 +18,46 @@ $(document).ready(function(){
         $('#foto_persona').trigger('click');
     });
 
+    function eliminaMsjError(ident){
+            
+        if ($("select[name='" + ident + "'] .is-invalid")) {
+                        
+            $("select[name='" + ident + "']").removeClass('is-invalid');
+            $("select[name='" + ident + "']").next().remove();
+            
+        }
+
+    }
+
+    function eliminaMsjErrorInput(ident){
+            
+        if ($("input[name='" + ident + "'] .is-invalid")) {
+                        
+            $("input[name='" + ident + "']").removeClass('is-invalid');
+            $("input[name='" + ident + "']").next().remove();
+            
+        }
+
+    }
+
+    //para update persona
+    $('#tipoDocIdentidad').change(function() {
+        
+        var valor1 = 'tipoDocIdentidad';
+        var valor2 = 'num_docIdentidad';
+        
+        if ($(this).val() != 1) {
+            $('#num_docIdentidad').attr('disabled', false);
+        } else{
+            $('#num_docIdentidad').attr('disabled', true).val('');
+
+        }
+
+        eliminaMsjError(valor1);
+        eliminaMsjErrorInput(valor2);
+
+    });
+
     //Para llenar los select de ubigeo
     	
     // $.ajax({
@@ -46,7 +86,7 @@ $(document).ready(function(){
 
         var id = $(this).val();
 
-        if (id == 1) {
+        if (id == 2) {
             $("#dpto").attr('disabled',false);
             $("#provinc").attr('disabled',false);
             $("#distri").attr('disabled',false);

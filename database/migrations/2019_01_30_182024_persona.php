@@ -43,8 +43,8 @@ class Persona extends Migration
             
             $table->integer('id_tipo_legajo');
 
-            $table->string('pdf_partida_nacimiento',200);
-            $table->string('pdf_doc_identidad',200);
+            $table->string('pdf_partida_nacimiento',200)->nullable();
+            $table->string('pdf_doc_identidad',200)->nullable();
             $table->string('foto',200)->default('default.gif');
             
             //$table->rememberToken();

@@ -11,7 +11,7 @@ class LicenciaVacacion extends Model
     protected $fillable = ["id_lic",
     "id_tipo_mov",
     "detalle",
-    "id_tipo_documento",
+    "id_tipo_docPrincipal",
     "numero",
     "pdf_archivo",
     "fecha_emision",
@@ -19,4 +19,11 @@ class LicenciaVacacion extends Model
     "fecha_termino",
     "dias_utiles",
     "id_persona"];
+
+    public function tipodocumentoprincipal(){
+
+        return $this->belongsTo("App\TipoDocumentoPrincipal","id_tipo_docPrincipal","id_tipo_docPrincipal");
+
+    }
+
 }

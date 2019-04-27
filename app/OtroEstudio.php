@@ -18,7 +18,7 @@ class OtroEstudio extends Model
     "num_horas",
     "num_creditos",
     "id_persona",
-    "id_tipo_documento",
+    "id_tipo_docEstudio",
     "pdf_estudio"];
 
     public function tipootroestudio(){   // esta sentencia se usa en el estudioscontrolador
@@ -27,9 +27,9 @@ class OtroEstudio extends Model
 
     }
 
- public function tipootrodocumento(){   // esta sentencia se usa en el estudioscontrolador
+ public function tipodocumentoestudio(){   // esta sentencia se usa en el estudioscontrolador
 
-        return $this->belongsTo('App\TipoDocumento','id_tipo_documento','id_tipo_documento');
+        return $this->belongsTo('App\TipoDocumentoEstudio','id_tipo_docEstudio','id_tipo_docEstudio');
 
     }
 

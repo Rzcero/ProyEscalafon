@@ -16,7 +16,7 @@ class OtrosDocumentos extends Migration
         Schema::create('otros_documentos', function (Blueprint $table) {
             $table->increments('id_otros_documentos');
             $table->integer('id_persona');
-            $table->integer('id_tipo_documento');
+            $table->integer('id_tipo_docPrincipal');
             $table->string('num_documento',100);
             $table->string('detalle',225);
             $table->date('fecha_emision');

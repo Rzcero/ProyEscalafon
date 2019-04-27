@@ -16,7 +16,7 @@ class ExperienciaLaboral extends Migration
         Schema::create('experiencia_laboral', function (Blueprint $table) {
             $table->increments('id_experiencia');
             $table->integer('id_persona');
-            $table->integer('id_tipo_documento');
+            $table->integer('id_tipo_docPrincipal');
             $table->string('nombre_entidad',225);
             $table->string('cargo_desempeñado',100);
             $table->date('fecha_inicio');

@@ -24,6 +24,7 @@ class CreatePersonasRequest extends FormRequest
     public function rules()
     {
         return [
+            'tipoDocIdentidad'=>'required',
             't_personal'=>'required',
             'selec_grupo'=>'required',
             'selec_condi'=>'required',

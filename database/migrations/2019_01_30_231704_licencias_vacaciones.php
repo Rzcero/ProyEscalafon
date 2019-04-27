@@ -17,7 +17,7 @@ public function up()
             $table->increments('id_lic');
             $table->integer('id_tipo_mov');
             $table->string('detalle',225);
-            $table->integer('id_tipo_documento');
+            $table->integer('id_tipo_docPrincipal');
             $table->string('numero',45);
             $table->string('pdf_archivo',45);
             $table->date('fecha_emision');

@@ -10,9 +10,16 @@ class OtroDocumento extends Model
     protected $primaryKey = "id_otros_documentos";
     protected $fillable = ["id_otros_documentos",
     "id_persona",
-    "id_tipo_documento",
+    "id_tipo_docPrincipal",
     "num_documento",
     "detalle",
     "fecha_emision",
     "pdf_otros_documentos"];
+
+    public function tipodocumentoprincipal(){
+
+        return $this->belongsTo("App\TipoDocumentoPrincipal","id_tipo_docPrincipal","id_tipo_docPrincipal");
+
+    }
+
 }

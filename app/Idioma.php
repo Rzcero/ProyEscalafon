@@ -14,7 +14,7 @@ class Idioma extends Model
                             "id_tipo_idioma",
                             "dominio",
                             "entidad",
-                            "id_tipo_documento",
+                            "id_tipo_docEstudio",
                             "num_horas",
                             "num_creditos",
                             "pdf_idioma_persona"];
@@ -25,9 +25,9 @@ class Idioma extends Model
 
     }
 
-    public function tipodocumento(){
+    public function tipodocumentoestudio(){
 
-        return $this->belongsTo("App\TipoDocumento","id_tipo_documento","id_tipo_documento");
+        return $this->belongsTo("App\TipoDocumentoEstudio","id_tipo_docEstudio","id_tipo_docEstudio");
 
     }
     

@@ -16,7 +16,7 @@ class Pagos extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->increments('id_pagos');
             $table->integer('id_persona');
-            $table->integer('id_tipo_documento');
+            $table->integer('id_tipo_docPrincipal');
             $table->string('num_documento',100);
             $table->string('motivo',225);
             $table->date('fecha_emision');

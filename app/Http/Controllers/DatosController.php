@@ -811,8 +811,11 @@ class DatosController extends Controller
             
         }
         
-        $persona->id_tipo_doc = $request->tipoDocIdentidad;
-        $persona->num_doc_identidad = $request->num_docIdentidad;
+        if ($request->tipoDocIdentidad != 1 && $request->num_docIdentidad != null) {
+            $persona->id_tipo_doc = $request->tipoDocIdentidad;
+            $persona->num_doc_identidad = $request->num_docIdentidad;
+        }
+                        
         $persona->ape_paterno = $request->apellidoPaterno;
         $persona->ape_materno = $request->apellidoMaterno;
         $persona->nombres = $request->nomb;
@@ -832,8 +835,8 @@ class DatosController extends Controller
         //si NO existe una nacionalidad con el id de esta persona
         if (!Nacionalidad::find($id)) {
 
-            //y eliges una nacionalidad q es diferente a 0
-            if ($request->nacionalidad != 0) {
+            //y eliges una nacionalidad q es diferente a 1(vacio)
+            if ($request->nacionalidad != 1) {
              
                 //entonces crea una nacionalidad para esta persona
                 $createNacionalidad = new Nacionalidad;
@@ -849,7 +852,7 @@ class DatosController extends Controller
                         
             //caso contrario si ya EXISTE una nacionalidad (peruana o extranjera) en la base y quieres 
             //actualizar la nacionalidad q ya existe
-            if ($request->nacionalidad != 0) {
+            if ($request->nacionalidad >= 2) {
                
                 // la actualiza
                 $updateNacionalidad = Nacionalidad::find($id);
@@ -874,10 +877,10 @@ class DatosController extends Controller
         if (!Residencia::find($id)) {
 
             //siempre y cuando la nacionalidad sea peruana
-            if ($request->nacionalidad == 1) {
+            if ($request->nacionalidad == 2) {
                 
                 //se crea la residencia siempre y cuando hayas escojido un dpto
-                if ($request->dpto) {
+                if ($request->dpto && $request->provinc && $request->distri) {
                     
                     $residencia = new Residencia();
 
@@ -896,10 +899,10 @@ class DatosController extends Controller
             
             //caso contrario si ya tienes una residencia en la base y quieres 
             //guardar una residencia de nacionalidad peruana q ya existe
-            if ($request->nacionalidad == 1) {
+            if ($request->nacionalidad == 2) {
                                 
                 // escoje un dpto y se actualiza
-                if ($request->dpto) {
+                if ($request->dpto && $request->provinc && $request->distri) {
                     $updateResidencia = Residencia::find($id);
                     
                     $updateResidencia->id_persona = $id;

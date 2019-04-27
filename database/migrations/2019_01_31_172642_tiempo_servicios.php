@@ -16,7 +16,7 @@ public function up()
         Schema::create('tiempo_servicios', function (Blueprint $table) {
             $table->increments('id_tiempo_serv');
             $table->integer('id_persona');
-            $table->integer('id_tipo_documento');
+            $table->integer('id_tipo_docPrincipal');
             $table->string('detalle',225);
             $table->date('fecha_emision');
             $table->integer('mes_servicio');

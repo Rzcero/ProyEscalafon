@@ -59,12 +59,28 @@
                         <div class="card-header p-0 text-center">Tipo de Documento</div>
 
                         <div class="card-body p-1">
-                          <select id="tipoDocIdentidad" name="tipoDocIdentidad" class="form-control form-control-sm">
+                          <select id="tipoDocIdentidad" name="tipoDocIdentidad" class="form-control form-control-sm {{ $errors->has('tipoDocIdentidad') ? ' is-invalid' : '' }}">
+                          
+                            @if(!$errors->has('tipoDocIdentidad'))
 
-                            @foreach ($tipo_docIdentidad as $tipo_docIdent)
-                              <option value="{{$tipo_docIdent->id_tipo_doc}}" @if($tipo_docIdent->id_tipo_doc == $persona->id_tipo_doc) selected @endif>{{$tipo_docIdent->denominacion}}</option>
-                            @endforeach
+                              @foreach ($tipo_docIdentidad as $tipo_docIdent)
+                                <option value="{{$tipo_docIdent->id_tipo_doc}}" @if($tipo_docIdent->id_tipo_doc == $persona->id_tipo_doc) selected @endif>{{$tipo_docIdent->denominacion}}</option>
+                              @endforeach
+
+                            @else
+
+                              @foreach ($tipo_docIdentidad as $tipo_docIdent)
+                                <option value="{{$tipo_docIdent->id_tipo_doc}}">{{$tipo_docIdent->denominacion}}</option>
+                              @endforeach
+                                
+                            @endif
                           </select>
+
+                          @if ($errors->has('tipoDocIdentidad'))
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $errors->first('tipoDocIdentidad') }}</strong>
+                            </span>
+                          @endif
                         </div>
                       </div>
                     </div>
@@ -75,7 +91,7 @@
                         </div>
 
                         <div class="card-body p-1">
-                          <input type="text" class="form-control form-control-sm {{ $errors->has('num_docIdentidad') ? ' is-invalid' : '' }}" id="num_docIdentidad" name="num_docIdentidad" placeholder="" value="@if(!$errors->has('num_docIdentidad')) {{ $persona->num_doc_identidad }} @endif">
+                          <input type="text" class="form-control form-control-sm {{ $errors->has('num_docIdentidad') ? ' is-invalid' : '' }}" id="num_docIdentidad" name="num_docIdentidad" placeholder="" value="@if(!$errors->has('num_docIdentidad') && !$errors->has('tipoDocIdentidad')) {{ $persona->num_doc_identidad }} @endif" @if($errors->has('tipoDocIdentidad')) disabled @endif>
 
                           @if ($errors->has('num_docIdentidad'))
                             <span class="invalid-feedback" role="alert">
@@ -225,8 +241,7 @@
                             </div>
                             <div class="card-body p-1">
                               <select id="est_civil" name="est_civil" class="form-control form-control-sm">
-                                <option value=""></option>
-
+                                
                                 @foreach ($estado_civil as $est_civil)
                                   <option value="{{$est_civil->id_estado_civil}}" @if($est_civil->id_estado_civil == $persona->id_estado_civil) selected @endif>{{$est_civil->denominacion}}</option>
                                 @endforeach
@@ -247,8 +262,7 @@
                             </div>
                             <div class="card-body p-1">
                               <select id="via" name="via" class="form-control form-control-sm">
-                                <option value=""></option>
-
+                                
                                 @foreach ($tipo_vias as $tipo_via)
                                   <option value="{{$tipo_via->id_tipo_via}}" @if($tipo_via->id_tipo_via == $persona->id_tipo_via) selected @endif>{{$tipo_via->denominacion}}</option>
                                 @endforeach
@@ -264,8 +278,7 @@
                             </div>
                             <div class="card-body p-1">
                               <select id="zona" name="zona" class="form-control form-control-sm">
-                                <option value=""></option>
-
+                                
                                 @foreach ($tipo_zonas as $tipo_zona)
                                   <option value="{{$tipo_zona->id_tipo_zona}}" @if($tipo_zona->id_tipo_zona == $persona->id_tipo_zona) selected @endif>{{$tipo_zona->denominacion}}</option>
                                 @endforeach
@@ -305,8 +318,7 @@
 
                         <div class="card-body p-1">
                           <select id="nacionalidad" name="nacionalidad" class="form-control form-control-sm">
-                            <option value=""></option>
-
+                            
                             @foreach ($tipo_nacionalidad as $tipo_nacionali)
                               <option value="{{$tipo_nacionali->id_tipo_nac}}" @if($nacionalidad) @if($nacionalidad->id_tipo_nac == $tipo_nacionali->id_tipo_nac) selected @endif
                               @endif>{{$tipo_nacionali->denominacion}}</option>
@@ -338,7 +350,7 @@
                         <div class="card-body p-1">
                           <div class="form-row">
                             <div class="col">
-                              <select id="dpto" name="dpto" class="form-control form-control-sm" @if($nacionalidad) @if($nacionalidad->id_tipo_nac != 1) disabled @endif @else disabled @endif>
+                              <select id="dpto" name="dpto" class="form-control form-control-sm" @if($nacionalidad) @if($nacionalidad->id_tipo_nac != 2) disabled @endif @else disabled @endif>
                                 <option value=""></option>
 
                                 @foreach ($departamentos as $departamento)
@@ -347,7 +359,7 @@
                               </select>
                             </div>
                             <div class="col">
-                              <select id="provinc" name="provinc" class="form-control form-control-sm" @if($nacionalidad) @if($nacionalidad->id_tipo_nac != 1) disabled @endif @else disabled @endif>
+                              <select id="provinc" name="provinc" class="form-control form-control-sm" @if($nacionalidad) @if($nacionalidad->id_tipo_nac != 2) disabled @endif @else disabled @endif>
 
                                 @if($residencia)
                                 <option value=""></option>
@@ -359,7 +371,7 @@
                               </select>
                             </div>
                             <div class="col">
-                              <select id="distri" name="distri" class="form-control form-control-sm" @if($nacionalidad) @if($nacionalidad->id_tipo_nac != 1) disabled @endif @else disabled @endif>
+                              <select id="distri" name="distri" class="form-control form-control-sm" @if($nacionalidad) @if($nacionalidad->id_tipo_nac != 2) disabled @endif @else disabled @endif>
 
                                 @if($residencia)
                                   <option value=""></option>
@@ -1051,7 +1063,7 @@
               <div class="form-row my-2">
                 <div class="col">
                   <div class="form-group mb-1">
-                    <input type="text" id="id_habiente">
+                    <input type="hidden" id="id_habiente">
                   </div>
                 </div>
               </div>

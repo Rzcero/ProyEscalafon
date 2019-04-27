@@ -16,7 +16,7 @@ public function up()
         Schema::create('meritos', function (Blueprint $table) {
             $table->increments('id_meritos');
             $table->integer('id_persona');
-            $table->integer('id_tipo_documento');
+            $table->integer('id_tipo_docPrincipal');
             $table->string('motivo',200);
             $table->string('entidad_otorga',100);
             $table->date('fecha_emision_documento');

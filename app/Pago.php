@@ -10,9 +10,16 @@ class Pago extends Model
     protected $primaryKey = "id_pago";
     protected $fillable = ["id_pagos",
     "id_persona",
-    "id_tipo_documento",
+    "TipoDocumentoPrincipal",
     "num_documento",
     "motivo",
     "fecha_emision",
     "pdf_pagos"];
+
+    public function tipodocumentoprincipal(){
+
+        return $this->belongsTo("App\TipoDocumentoPrincipal","id_tipo_docPrincipal","id_tipo_docPrincipal");
+
+    }
+
 }

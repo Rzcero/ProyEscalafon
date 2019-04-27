@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCondicionLegajoTable extends Migration
+class CreateTipoDocumentoPrincipal extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCondicionLegajoTable extends Migration
      */
     public function up()
     {
-        Schema::create('condicion_legajo', function (Blueprint $table) {
-            $table->increments('id_condi_leg');
-            $table->string('nombre',50);
+        Schema::create('tipo_documento_principal', function (Blueprint $table) {
+            $table->increments('id_tipo_docPrincipal');
+            $table->string('denominacion',50);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateCondicionLegajoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('condicion_legajo');
+        Schema::dropIfExists('tipo_documento_principal');
     }
 }

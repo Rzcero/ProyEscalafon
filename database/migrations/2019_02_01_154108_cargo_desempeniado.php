@@ -16,7 +16,7 @@ class CargoDesempeniado extends Migration
         Schema::create('cargos_desempeniado', function (Blueprint $table) {
             $table->increments('id_cargos_desempeniado');
             $table->integer('id_persona');
-            $table->integer('id_tipo_documento');
+            $table->integer('id_tipo_docPrincipal');
             $table->string('num_documento',25);
             $table->string('motivo',200);
             $table->string('lugar_servicio',100);

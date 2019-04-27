@@ -766,6 +766,7 @@ $(document).ready(function() {
 	});
 
 	$('#n_doc').attr('disabled',true);
+	
 	$('#t_docIdent').change(function(){
 
 		var valor1 = 't_docIdent';
