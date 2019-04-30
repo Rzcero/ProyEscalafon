@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePersonasRequest extends FormRequest
+class CreateIdiomasRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,10 @@ class CreatePersonasRequest extends FormRequest
     public function rules()
     {
         return [
-            't_personal'=>'required',
-            'selec_grupo'=>'required',
-            'selec_condi'=>'required',
-            'selec_categ'=>'required',
-            'r_laboral'=>'required',
-            't_docIdent'=>'required',
-            't_legajo'=>'required',
-            'n_doc'=>'required',
-            'ape_pat'=>'required',
-            'ape_mat'=>'required',
-            'nomb'=>'required'
+            'horas'=>'numeric|min:0',
+            'creditos'=>'numeric|min:0',
+            'tipo_idioma'=>'required',
+            'tipo_doc'=>'required'
         ];
     }
 

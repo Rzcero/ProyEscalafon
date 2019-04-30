@@ -24,6 +24,7 @@ class UpdateHabientesRequest extends FormRequest
     public function rules()
     {
         return [
+            'numero'=>'required',
             'ape_pater'=>'required',
             'ape_mater'=>'required',
             'nombres'=>'required'

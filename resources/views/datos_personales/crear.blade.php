@@ -501,7 +501,7 @@
                           <input type="hidden" name="_token3" id="token3" value="{{ csrf_token() }}">
                         </form>
 
-                        <form action="/ProyEscalafon/public/datos/:IDIOMA_ID" method="post" id="form_updateIdioma">
+                        <form action="/ProyEscalafon/public/updateIdioma/:IDIOMA_ID" method="post" id="form_updateIdioma">
                           <input type="hidden" name="_method2" value="PUT">
                           <input type="hidden" name="_token4" id="token4" value="{{ csrf_token() }}">
                         </form>
@@ -739,7 +739,7 @@
                 <div class="col-11"></div>
                 <div class="col-1">  
                  
-                  <a href="{{route('administLegajo',$persona->id_persona)}}" class="btn btn-primary" title="Siguiente Modulo"><span><i class="fas fa-arrow-right"></i></span></a>
+                  <a href="{{route('Estudios.show',$persona->id_persona)}}" class="btn btn-primary" title="Siguiente Modulo"><span><i class="fas fa-arrow-right"></i></span></a>
                   <!-- <button type="submit" class="btn btn-primary m-auto info-box-icon" title="Ingresar"><span><i class="fas fa-book-open"></i></span></button> -->
                     
                 </div>
@@ -758,57 +758,9 @@
 <!-- fin de la columna -->
 
 <!-- Inicio de la columna para botones de los modulos -->
-<div class="col-1 px-0" style="max-width:4%">
-  <!-- inicio del contenedor -->
-  <div class="container">
-    <div class="row">
-      <div class="col px-0">
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>I</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>II</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>III</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>IV</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>V</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>VI</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>VII</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>VIII</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>IX</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>X</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>XI</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>XII</span></button>
-        </div>
-        <div class="my-2">
-          <button class='btn btn-secondary' value='' style="width: 42px"><span>XIII</span></button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <!-- fin del contenedor -->
-</div>
+  @include('layouts.botones')
 <!-- fin de la columna -->
+
 @endsection
 
 @section('modales')
@@ -839,11 +791,18 @@
                 </div>
               </div>
 
+              <div class="form-row mt-2">
+                <div class="col">
+                    <div class="alert alert-primary msj_exitoIdioma" role="alert" style="display:none">
+                    </div>
+                </div>
+              </div>
+
               <div class="form-row my-2">
                 <div class="col">
                   <div class="form-group mb-1">
                     <label for="tipo_idioma">Idioma:</label>
-                    <select id="tipo_idioma" class="form-control form-control-sm">
+                    <select id="tipo_idioma" name="tipo_idioma" class="form-control form-control-sm">
 
                     </select>
                   </div>
@@ -884,7 +843,7 @@
                 <div class="col">
                   <div class="form-group mb-1">
                     <label for="centroEstudio">Centro de Estudios:</label>
-                    <input type="text" class="form-control form-control-sm" id="centroEstudio" placeholder="">
+                    <input type="text" class="form-control form-control-sm" id="centroEstudio" placeholder="Por ejemplo: Instituto Cultural Peruano Norteamericano">
                   </div>
                 </div>
               </div>
@@ -893,7 +852,7 @@
                 <div class="col">
                   <div class="form-group mb-1">
                     <label for="tipo_doc">Tipo de Documento:</label>
-                    <select id="tipo_doc" class="form-control form-control-sm">
+                    <select id="tipo_doc" name="tipo_doc" class="form-control form-control-sm">
 
                     </select>
                   </div>
@@ -915,14 +874,14 @@
                 <div class="col">
                   <div class="form-group mb-1">
                     <label for="horas">Horas:</label>
-                    <input type="text" class="form-control form-control-sm" id="horas" placeholder="">
+                    <input type="text" class="form-control form-control-sm" id="horas" name="horas" value="0" placeholder="">
                   </div>
                 </div>
 
                 <div class="col">
                   <div class="form-group mb-1">
                     <label for="creditos">Créditos:</label>
-                    <input type="text" class="form-control form-control-sm" id="creditos" placeholder="">
+                    <input type="text" class="form-control form-control-sm" id="creditos" name="creditos" value="0" placeholder="">
                   </div>
                 </div>
 
@@ -935,7 +894,7 @@
 
         </div>
         <div class="modal-footer py-1">
-          <button type="button" class="btn btn_idioma btn-primary" data-dismiss="modal"></button>
+          <button type="button" class="btn btn_idioma btn-primary"></button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
       </div>
@@ -954,49 +913,66 @@
         </div>
 
         <div class="modal-body">
+          <form id="formVerIdioma">
+            <div class="col">
+              <div class="form-group row mb-1">
+                <div class="col-5">
+                  <label for="tipo_idiomaM2" class="col-sm-12 col-form-label">Idioma:</label>
+                </div>
 
-          <div class="form-group row">
-            <label for="tipo_idiomaM2" class="col-sm-3 col-form-label">Idioma:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="tipo_idiomaM2" value="">
+                <div class="col-sm-7">
+                  <input type="text" readonly class="form-control-plaintext" id="tipo_idiomaM2" value="">
+                </div>
+              </div>
+
+              <div class="form-group row mb-1">
+                <div class="col-5">
+                  <label for="dominioM2" class="col-sm-12 col-form-label">Dominio:</label>
+                </div>
+
+                <div class="col-sm-7">
+                  <input type="text" readonly class="form-control-plaintext" id="dominioM2" value="">
+                </div>
+              </div>
+
+              <div class="form-group row mb-1">
+                <div class="col-5">
+                  <label for="centroEstudioM2" class="col-sm-12 col-form-label">Entidad:</label>
+                </div>
+
+                <div class="col-sm-7">
+                  <textarea readonly class="form-control-plaintext" id="centroEstudioM2" cols="30" rows="2" value=""></textarea>
+                </div>
+              </div>
+
+              <div class="form-group row mb-1">
+                <div class="col-5">
+                  <label for="tipo_docM2" class="col-sm-12 col-form-label">Tipo Documento:</label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" readonly class="form-control-plaintext" id="tipo_docM2" value="">
+                </div>
+              </div>
+
+              <div class="form-group row mb-1">
+                <div class="col-5">
+                  <label for="horasM2" class="col-sm-12 col-form-label">Horas:</label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" readonly class="form-control-plaintext" id="horasM2" value="">
+                </div>
+              </div>
+
+              <div class="form-group row mb-1">
+                <div class="col-5">
+                 <label for="creditosM2" class="col-sm-12 col-form-label">Creditos:</label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" readonly class="form-control-plaintext" id="creditosM2" value="">
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="dominioM2" class="col-sm-3 col-form-label">Dominio:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="dominioM2" value="">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="centroEstudioM2" class="col-sm-3 col-form-label">Entidad:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="centroEstudioM2" value="">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="tipo_docM2" class="col-sm-4 col-form-label">Tipo Documento:</label>
-            <div class="col-sm-8">
-              <input type="text" readonly class="form-control-plaintext" id="tipo_docM2" value="">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="horasM2" class="col-sm-3 col-form-label">Horas:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="horasM2" value="">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="creditosM2" class="col-sm-3 col-form-label">Creditos:</label>
-            <div class="col-sm-9">
-              <input type="text" readonly class="form-control-plaintext" id="creditosM2" value="">
-            </div>
-          </div>
-
+          </form>
         </div>
 
         <div class="modal-footer">
@@ -1170,17 +1146,17 @@
 
                       <div class="form-row">
                         <div class="col">
-                          <input type="text" class="form-control form-control-sm" id="ape_pater" name="ape_pater" placeholder="">
+                          <input type="text" class="form-control form-control-sm" id="ape_pater" name="ape_pater" placeholder="Ap. Paterno">
                         </div>
 
                         <div class="col">
-                          <input type="text" class="form-control form-control-sm" id="ape_mater" name="ape_mater" placeholder="">
+                          <input type="text" class="form-control form-control-sm" id="ape_mater" name="ape_mater" placeholder="Ap. Materno">
                         </div>
                       </div>
 
                       <div class="form-row mt-2">
                         <div class="col">
-                          <input type="text" class="form-control form-control-sm" id="nombres" name="nombres" placeholder="">
+                          <input type="text" class="form-control form-control-sm" id="nombres" name="nombres" placeholder="Nombres">
                         </div>
                       </div>
 
@@ -1248,117 +1224,117 @@
 
         <div class="modal-body">
           <form id="formVerHabiente">
-          <div class="col">
-            <div class="form-group row mb-1">
-              <div class="col-6">
-                <label for="parentescoM2" class="col-sm-12 col-form-label">Parentesco:</label>
+            <div class="col">
+              <div class="form-group row mb-1">
+                <div class="col-6">
+                  <label for="parentescoM2" class="col-sm-12 col-form-label">Parentesco:</label>
+                </div>
+                
+                <div class="col-sm-6">
+                  <input type="text" readonly class="form-control-plaintext" id="parentescoM2" value="">
+                </div>
               </div>
-              
-              <div class="col-sm-6">
-                <input type="text" readonly class="form-control-plaintext" id="parentescoM2" value="">
-              </div>
-            </div>
 
-            <div class="form-group row mb-1">
-              <div class="col-6">
-                <label for="partNacM2" class="col-sm-12 col-form-label">N° de Partida Nacimiento:</label> 
+              <div class="form-group row mb-1">
+                <div class="col-6">
+                  <label for="partNacM2" class="col-sm-12 col-form-label">N° de Partida Nacimiento:</label> 
+                </div>
+                
+                <div class="col-sm-6">
+                  <input type="text" readonly class="form-control-plaintext" id="partNacM2" value="">
+                </div>
               </div>
-              
-              <div class="col-sm-6">
-                <input type="text" readonly class="form-control-plaintext" id="partNacM2" value="">
-              </div>
-            </div>
 
-            <div class="form-group row mb-1">
-              <div class="col-6">
-                <label for="fechEmisionM2" class="col-sm-12 col-form-label">Fecha de Emisión:</label>
+              <div class="form-group row mb-1">
+                <div class="col-6">
+                  <label for="fechEmisionM2" class="col-sm-12 col-form-label">Fecha de Emisión:</label>
+                </div>
+                
+                <div class="col-sm-6">
+                  <input type="text" readonly class="form-control-plaintext" id="fechEmisionM2" value="">
+                </div>
               </div>
-              
-              <div class="col-sm-6">
-                <input type="text" readonly class="form-control-plaintext" id="fechEmisionM2" value="">
-              </div>
-            </div>
 
-            <div class="form-group row mb-1">
-              <div class="col-6">
-                <label for="expedidaM2" class="col-sm-12 col-form-label">Expedida por:</label>
+              <div class="form-group row mb-1">
+                <div class="col-6">
+                  <label for="expedidaM2" class="col-sm-12 col-form-label">Expedida por:</label>
+                </div>
+                
+                <div class="col-sm-6">
+                  <textarea readonly class="form-control-plaintext" id="expedidaM2" cols="30" rows="2" value=""></textarea>
+                </div>
               </div>
-              
-              <div class="col-sm-6">
-                <textarea readonly class="form-control-plaintext" id="expedidaM2" cols="30" rows="2" value=""></textarea>
-              </div>
-            </div>
 
-            <div class="form-group row mb-1">
-              <div class="col-6">
-                <label for="docIdentM2" class="col-sm-12 col-form-label">Tipo Doc. Identidad:</label>
+              <div class="form-group row mb-1">
+                <div class="col-6">
+                  <label for="docIdentM2" class="col-sm-12 col-form-label">Tipo Doc. Identidad:</label>
+                </div>
+                
+                <div class="col-sm-6">
+                  <textarea readonly class="form-control-plaintext" id="docIdentM2" cols="30" rows="2" value=""></textarea>
+                </div>
               </div>
-              
-              <div class="col-sm-6">
-                <textarea readonly class="form-control-plaintext" id="docIdentM2" cols="30" rows="2" value=""></textarea>
-              </div>
-            </div>
 
-            <div class="form-group row mb-1">
-              <div class="col-6">
-                <label for="nroDocIdentM2" class="col-sm-12 col-form-label">N° Doc.:</label>
+              <div class="form-group row mb-1">
+                <div class="col-6">
+                  <label for="nroDocIdentM2" class="col-sm-12 col-form-label">N° Doc.:</label>
+                </div>
+                
+                <div class="col-sm-6">
+                  <input type="text" readonly class="form-control-plaintext" id="nroDocIdentM2" value="">
+                </div>
               </div>
-              
-              <div class="col-sm-6">
-                <input type="text" readonly class="form-control-plaintext" id="nroDocIdentM2" value="">
-              </div>
-            </div>
 
-            <div class="form-group row mb-1">
-              <div class="col-6">
-                <label for="apeParernoM2" class="col-sm-12 col-form-label">Apell. Paterno:</label>
+              <div class="form-group row mb-1">
+                <div class="col-6">
+                  <label for="apeParernoM2" class="col-sm-12 col-form-label">Apell. Paterno:</label>
+                </div>
+                
+                <div class="col-sm-6">
+                  <input type="text" readonly class="form-control-plaintext" id="apeParernoM2" value="">
+                </div>
               </div>
-              
-              <div class="col-sm-6">
-                <input type="text" readonly class="form-control-plaintext" id="apeParernoM2" value="">
-              </div>
-            </div>
 
-            <div class="form-group row mb-1">
-              <div class="col-6">
-                <label for="apeMaternoM2" class="col-sm-12 col-form-label">Apell. Materno:</label>
+              <div class="form-group row mb-1">
+                <div class="col-6">
+                  <label for="apeMaternoM2" class="col-sm-12 col-form-label">Apell. Materno:</label>
+                </div>
+                
+                <div class="col-sm-6">
+                  <input type="text" readonly class="form-control-plaintext" id="apeMaternoM2" value="">
+                </div>
               </div>
-              
-              <div class="col-sm-6">
-                <input type="text" readonly class="form-control-plaintext" id="apeMaternoM2" value="">
-              </div>
-            </div>
 
-            <div class="form-group row mb-1">
-              <div class="col-6">
-                <label for="nombresM2" class="col-sm-12 col-form-label">Nombres:</label>
+              <div class="form-group row mb-1">
+                <div class="col-6">
+                  <label for="nombresM2" class="col-sm-12 col-form-label">Nombres:</label>
+                </div>
+                
+                <div class="col-sm-6">
+                  <input type="text" readonly class="form-control-plaintext" id="nombresM2" value="">
+                </div>
               </div>
-              
-              <div class="col-sm-6">
-                <input type="text" readonly class="form-control-plaintext" id="nombresM2" value="">
-              </div>
-            </div>
 
-            <div class="form-group row mb-1">
-              <div class="col-6">
-                <label for="fechNacimientoM2" class="col-sm-12 col-form-label">Fecha Nacimiento:</label>
+              <div class="form-group row mb-1">
+                <div class="col-6">
+                  <label for="fechNacimientoM2" class="col-sm-12 col-form-label">Fecha Nacimiento:</label>
+                </div>
+                
+                <div class="col-sm-6">
+                  <input type="text" readonly class="form-control-plaintext" id="fechNacimientoM2" value="">
+                </div>
               </div>
-              
-              <div class="col-sm-6">
-                <input type="text" readonly class="form-control-plaintext" id="fechNacimientoM2" value="">
-              </div>
-            </div>
 
-            <div class="form-group row mb-1">
-              <div class="col-6">
-                <label for="sexoM2" class="col-sm-12 col-form-label">Sexo:</label>
-              </div>
-              
-              <div class="col-sm-6">
-                <input type="text" readonly class="form-control-plaintext" id="sexoM2" value="">
+              <div class="form-group row mb-1">
+                <div class="col-6">
+                  <label for="sexoM2" class="col-sm-12 col-form-label">Sexo:</label>
+                </div>
+                
+                <div class="col-sm-6">
+                  <input type="text" readonly class="form-control-plaintext" id="sexoM2" value="">
+                </div>
               </div>
             </div>
-          </div>
           </form>
         </div>
 

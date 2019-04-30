@@ -783,15 +783,7 @@ $(document).ready(function() {
 
 		eliminaMsjError(valor1);
 		eliminaMsjErrorInput(valor2);
-		//elimina mensajes de error
-        // if ($('.msg_errorHab')) {
-		// 	$('.msg_errorHab').remove();
-        // }
-        
-        // if ($('.is-invalid')) {
-        //     $('.is-invalid').removeClass('is-invalid');
-        // }
-
+		
 	});
 	
 	$("#formularioModalPersona").submit(function(e){

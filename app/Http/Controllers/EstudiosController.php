@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateOtroEstudioRequest;
+use App\Persona;
 use App\NivelEstudio;
 use App\EstudioBasico;
 use App\EstudioSuperior;
 use App\OtroEstudio;
 use App\Modalidad;
 use App\TipoEstudio;
-use App\TipoDocumento;
+use App\TipoDocumentoPrincipal;
+use App\TipoDocumentoEstudio;
 use App\TipoMedio;
 use App\Medio;
 use App\ProduccionIntelectual;
@@ -17,6 +20,13 @@ use App\TipoGrado;
 
 class EstudiosController extends Controller
 {
+
+    public function __construct(){
+
+        $this->middleware('auth');
+  
+      }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +45,7 @@ class EstudiosController extends Controller
     public function create()
     {
         
-        return view('Estudios.create');
+        // return view('Estudios.create');
 
     }
 
@@ -107,13 +117,13 @@ class EstudiosController extends Controller
 
     public function listartipodocumentos(){
                 
-        $tipodocumentos = TipoDocumento::all();
+        $tipodocumentos = TipoDocumentoEstudio::all();
         
         $matriz = array();
         
         foreach($tipodocumentos as $tipodocumento){
         
-            $matriz[] = array('id_tipo_documento' => $tipodocumento->id_tipo_documento,  // 'id_modalidad' -> se puede coloar diferente al nombre de la tabla 
+            $matriz[] = array('id_tipo_documento' => $tipodocumento->id_tipo_docEstudio,  // 'id_modalidad' -> se puede coloar diferente al nombre de la tabla 
                             'denominacion' => $tipodocumento->denominacion);
         
         }
@@ -255,32 +265,123 @@ class EstudiosController extends Controller
     public function store(Request $request)
     {
 
-        if($request->ajax()){
+//         if($request->ajax()){
            
-            //Persona::create($request->all());
+//             //Persona::create($request->all());
+//             $estudio_basico = new EstudioBasico;
+//             $estudio_basico->ie_primaria = $request->ie_primaria;
+//             $estudio_basico->anio_egreso_primaria = $request->anio_egreso_primaria;
+//             $estudio_basico->pais_primaria=$request->pais_primaria;
+//             $estudio_basico->ubi_primaria=$request->ubi_primaria;
+//             $estudio_basico->dep_primaria=$request->dep_primaria;
+//             $estudio_basico->prov_primaria=$request->prov_primaria;
+//             $estudio_basico->dist_primaria=$request->dist_primaria;
+            
+//             $estudio_basico->ie_secundaria=$request->ie_secundaria;
+//             $estudio_basico->anio_egreso_secundaria=$request->anio_egreso_secundaria;
+//             $estudio_basico->pais_secundaria=$request->pais_secundaria;
+//             $estudio_basico->ubi_secundaria=$request->ubi_secundaria;
+//             $estudio_basico->dep_secundaria=$request->dep_secundaria;
+//             $estudio_basico->prov_secundaria=$request->prov_secundaria;
+//             $estudio_basico->dist_secundaria=$request->dist_secundaria;
+           
+//            $estudio_basico->save();
+           
+// //            return response()->json([
+// //                "mensaje" => $request->all()
+// //            ]);
+//        }
+
+    }
+
+    public function updateEstudiosBasicos(Request $request, $id)
+    {
+
+        //Si NO existe una estudio basico con el id de esta persona
+        if (!EstudioBasico::find($id)) {
+            
             $estudio_basico = new EstudioBasico;
+
+            if ($request->hasFile('pdf_primaria')) {
+            
+                $ruta_temporal = $request->file('pdf_primaria');
+    
+                $nombre_pdfPrimaria = time().$ruta_temporal->getClientOriginalName();
+    
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_temporal->move(public_path().'/images/',$nombre_pdfPrimaria);
+    
+                $estudio_basico->pdf_primaria = $nombre_pdfPrimaria;
+                
+            }
+
+            if ($request->hasFile('pdf_secundaria')) {
+            
+                $ruta_temporal2 = $request->file('pdf_secundaria');
+    
+                $nombre_pdfSecundaria = time().$ruta_temporal2->getClientOriginalName();
+    
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_temporal2->move(public_path().'/images/',$nombre_pdfSecundaria);
+    
+                $estudio_basico->pdf_secundaria = $nombre_pdfSecundaria;
+                
+            }
+
+            $estudio_basico->id_persona = $id;
             $estudio_basico->ie_primaria = $request->ie_primaria;
             $estudio_basico->anio_egreso_primaria = $request->anio_egreso_primaria;
-            $estudio_basico->pais_primaria=$request->pais_primaria;
-            $estudio_basico->ubi_primaria=$request->ubi_primaria;
-            $estudio_basico->dep_primaria=$request->dep_primaria;
-            $estudio_basico->prov_primaria=$request->prov_primaria;
-            $estudio_basico->dist_primaria=$request->dist_primaria;
-            
+
             $estudio_basico->ie_secundaria=$request->ie_secundaria;
             $estudio_basico->anio_egreso_secundaria=$request->anio_egreso_secundaria;
-            $estudio_basico->pais_secundaria=$request->pais_secundaria;
-            $estudio_basico->ubi_secundaria=$request->ubi_secundaria;
-            $estudio_basico->dep_secundaria=$request->dep_secundaria;
-            $estudio_basico->prov_secundaria=$request->prov_secundaria;
-            $estudio_basico->dist_secundaria=$request->dist_secundaria;
-           
-           $estudio_basico->save();
-           
-//            return response()->json([
-//                "mensaje" => $request->all()
-//            ]);
-       }
+
+            $estudio_basico->save();
+
+        } else {
+
+            //caso contrario si ya EXISTE el estudio basico(primario o secundario) en la base y quieres
+            //actualizar los estudios basicos
+
+            $up_estudio_basico = EstudioBasico::find($id);
+
+            if ($request->hasFile('pdf_primaria')) {
+            
+                $ruta_temporal = $request->file('pdf_primaria');
+    
+                $nombre_pdfPrimaria = time().$ruta_temporal->getClientOriginalName();
+    
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_temporal->move(public_path().'/images/',$nombre_pdfPrimaria);
+    
+                $up_estudio_basico->pdf_primaria = $nombre_pdfPrimaria;
+                
+            }
+
+            if ($request->hasFile('pdf_secundaria')) {
+            
+                $ruta_temporal2 = $request->file('pdf_secundaria');
+    
+                $nombre_pdfSecundaria = time().$ruta_temporal2->getClientOriginalName();
+    
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_temporal2->move(public_path().'/images/',$nombre_pdfSecundaria);
+    
+                $up_estudio_basico->pdf_secundaria = $nombre_pdfSecundaria;
+                
+            }
+
+            $up_estudio_basico->id_persona = $id;
+            $up_estudio_basico->ie_primaria = $request->ie_primaria;
+            $up_estudio_basico->anio_egreso_primaria = $request->anio_egreso_primaria;
+            
+            $up_estudio_basico->ie_secundaria=$request->ie_secundaria;
+            $up_estudio_basico->anio_egreso_secundaria=$request->anio_egreso_secundaria;
+
+            $up_estudio_basico->save();
+
+        }
+
+        return back();
 
     }
 
@@ -312,24 +413,43 @@ class EstudiosController extends Controller
 
     }
 
-     public function guardar_otros_estudios(Request $request){
+     public function guardar_otros_estudios(CreateOtroEstudioRequest $request){
 
         if($request->ajax()){
                 
             $otros_estudio = new OtroEstudio;
-            $otros_estudio->id_tipo_estudio = $request->id_tipo_estudio;
-            $otros_estudio->nombre_estudio = $request->nombre_estudio;
+            
+            //para agregar un pdf
+            if ($request->hasFile('pdf_otroEstudio')) {
+            
+                $ruta_tempOtroEstadio = $request->file('pdf_otroEstudio');
+    
+                $nombre_pdf_otroEstudio = time().$ruta_tempOtroEstadio->getClientOriginalName();
+    
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_tempOtroEstadio->move(public_path().'/images/',$nombre_pdf_otroEstudio);
+    
+                $otros_estudio->pdf_estudio = $nombre_pdf_otroEstudio;
+                
+            }
+
+            $otros_estudio->id_persona = $request->miID;
+            $otros_estudio->id_tipo_estudio = $request->tipo_estudios;
+            $otros_estudio->nombre_estudio = $request->nom_estudios;
             $otros_estudio->participacion=$request->participacion;
             $otros_estudio->centro_estudio=$request->centro_estudio;
-            $otros_estudio->id_tipo_documento=$request->id_tipo_documento;
-            $otros_estudio->fecha_inicio=$request->fecha_inicio;
-            $otros_estudio->fecha_termino=$request->fecha_termino;
-            $otros_estudio->num_horas=$request->num_horas;
-            $otros_estudio->num_creditos=$request->num_creditos;
+            $otros_estudio->id_tipo_docEstudio=$request->tipo_doc;
+            $otros_estudio->fecha_inicio=$request->fech_inicio_otros_estudios;
+            $otros_estudio->fecha_termino=$request->fech_termino_otros_estudios;
+            $otros_estudio->num_horas=$request->horas;
+            $otros_estudio->num_creditos=$request->creditos;
            
-           $otros_estudio->save();
+            $otros_estudio->save();
 
-           return response()->json(["mensaje"=>"creado"]);
+            return response()->json([
+                "mensaje"=>"Estudio creado con exito"
+            ]);
+
         }
 
      }
@@ -396,7 +516,7 @@ class EstudiosController extends Controller
                               'fechatermino' => $editarmodal_otro_Estudio->fecha_termino,
                               'numerohoras' => $editarmodal_otro_Estudio->num_horas,
                               'numerocreditos' => $editarmodal_otro_Estudio->num_creditos,
-                              'tipodocumento' => $editarmodal_otro_Estudio->id_tipo_documento
+                              'tipodocumento' => $editarmodal_otro_Estudio->id_tipo_docEstudio
                               
                             );
         
@@ -462,9 +582,8 @@ class EstudiosController extends Controller
                               'fechatermino' => $verOtroEstudio->fecha_termino,
                               'numerohoras' => $verOtroEstudio->num_horas,
                               'numerocreditos' => $verOtroEstudio->num_creditos,
-                              'tipodocumento' => $verOtroEstudio->tipootrodocumento->denominacion);
-        
-
+                              'tipodocumento' => $verOtroEstudio->tipodocumentoestudio->denominacion);
+     
         }
         
         return response()->json([
@@ -586,7 +705,11 @@ class EstudiosController extends Controller
      */
     public function show($id)
     {
-        //
+        $persona = Persona::find($id);
+        $estudios_basicos = EstudioBasico::find($id);
+
+        return view('Estudios.create', compact('persona','estudios_basicos'));
+
     }
 
     /**
@@ -609,20 +732,53 @@ class EstudiosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //se utilizar par acualizar
+        
+    }
 
+    //ACTUALIZA OTROS ESTUDIOS
+    public function updateOtrosEstudios(CreateOtroEstudioRequest $request, $id)
+    {
+        
         if($request->ajax()){
-
+            //encuentro al usuario
             $otros_estudio = OtroEstudio::find($id);
-            $otros_estudio->update($request->all());
+           
+            //si del formulario estamos recibiendo un archivo pdf de idioma
+        
+            if ($request->hasFile('pdf_otroEstudio')) {
+                
+                $ruta_temp = $request->file('pdf_otroEstudio');
 
+                $up_nombre_pdfOtroEstudio = time().$ruta_temp->getClientOriginalName();
+
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_temp->move(public_path().'/images/',$up_nombre_pdfOtroEstudio);
+
+                $otros_estudio->pdf_estudio = $up_nombre_pdfOtroEstudio;
+                
+            }
+
+            $otros_estudio->id_tipo_estudio = $request->tipo_estudios;
+            $otros_estudio->nombre_estudio = $request->nom_estudios;
+            $otros_estudio->centro_estudio = $request->centro_estudio;
+            $otros_estudio->participacion = $request->participacion;
+            $otros_estudio->fecha_inicio = $request->fech_inicio_otros_estudios;
+            $otros_estudio->fecha_termino = $request->fech_termino_otros_estudios;
+            $otros_estudio->num_horas = $request->horas;
+            $otros_estudio->num_creditos = $request->creditos;
+            $otros_estudio->id_tipo_docEstudio = $request->tipo_doc;
+            
+            $otros_estudio->save();
+
+            // $idioma->update($request->all());
+            
             return response()->json([
-
+                "mensaje"=>"Estudio Actualizado con exito"
             ]);
 
         }
-    }
 
+    }
 
     public function updateProduccionIntelectual(Request $request, $id)
     {

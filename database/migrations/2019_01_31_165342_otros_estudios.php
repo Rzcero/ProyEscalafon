@@ -16,16 +16,16 @@ public function up()
         Schema::create('otros_estudios', function (Blueprint $table) {
             $table->increments('id_otro_estudio');
             $table->integer('id_tipo_estudio');
-            $table->string('nombre_estudio',225);
-            $table->string('centro_estudio',225);
-            $table->string('participacion',45);
-            $table->date('fecha_inicio');
-            $table->date('fecha_termino');
-            $table->integer('num_horas');
-            $table->integer('num_creditos');
+            $table->string('nombre_estudio',225)->nullable();
+            $table->string('centro_estudio',225)->nullable();
+            $table->string('participacion',45)->nullable();
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_termino')->nullable();
+            $table->integer('num_horas')->nullable();
+            $table->integer('num_creditos')->nullable();
             $table->integer('id_persona');
-            $table->integer('id_tipo_documento');
-            $table->string('pdf_estudio',45);
+            $table->integer('id_tipo_docEstudio');
+            $table->string('pdf_estudio',45)->nullable();
             
             //$table->rememberToken();
             $table->timestamps();

@@ -62,11 +62,12 @@ Route::get('/listarTipoVia', 'DatosController@listarTipoVia')->name('datos.lista
 Route::get('/listarTipoZona', 'DatosController@listarTipoZona')->name('datos.listarTipoZona');
 Route::get('/listarNacionalidad', 'DatosController@listarNacionalidad')->name('datos.listarNacionalidad');
 Route::get('/listarTipoIdioma', 'DatosController@listarTipoIdiomas')->name('datos.listarTipoIdiomas');
-Route::get('/listarTipoDocumento', 'DatosController@listarTipoDocumento')->name('datos.listarTipoDocumento');
+Route::get('/listarTipoDocumentoEstudios', 'DatosController@listarTipoDocumentoEstudios')->name('datos.listarTipoDocumentoEstudios');
 Route::get('/listarDepartamentoUbigeo', 'DatosController@listarDepartamentoUbigeo')->name('datos.listarDepartamentoUbigeo');
 Route::get('/listarProvinciaUbigeo', 'DatosController@listarProvinciaUbigeo')->name('datos.listarProvinciaUbigeo');
 Route::get('/listarDistritoUbigeo', 'DatosController@listarDistritoUbigeo')->name('datos.listarDistritoUbigeo');
 Route::post('/editarIdioma', 'DatosController@editarIdioma')->name('datos.editarIdioma');
+Route::post('/updateIdioma/{id}','DatosController@updateIdioma')->name('updateIdioma');
 Route::post('/agregarIdioma', 'DatosController@agregarIdioma')->name('datos.agregarIdioma');
 Route::post('/verIdioma', 'DatosController@verIdioma')->name('datos.verIdioma');
   //ruta eliminar idioma
@@ -84,6 +85,8 @@ Route::DELETE('/eliminarHabiente/{id}','DatosController@destroyHabiente')->name(
 
 //********************************* RUTAS MODULO II *********************************** */
 Route::resource('/Estudios','EstudiosController');
+
+Route::put('/updateEstudiosBasicos/{id}','EstudiosController@updateEstudiosBasicos')->name('updateEstudiosBasicos');
 
 Route::get('/listarnivel', 'EstudiosController@listarnivel')->name('estudios.listarnivel');
 Route::get('/listarmodalidad', 'EstudiosController@listarmodalidad')->name('estudios.listarmodalidad');
@@ -106,6 +109,7 @@ Route::get('/listartipogrados', 'EstudiosController@listartipogrados')->name('es
 
 Route::post('/editar_modal_otros_estudios', 'EstudiosController@editar_modal_otros_estudios')->name('estudios.editar_modal_otros_estudios');
 Route::post('/ver_otros_estudios', 'EstudiosController@ver_otros_estudios')->name('estudios.ver_otros_estudios');
+Route::post('/updateOtrosEstudios/{id}','EstudiosController@updateOtrosEstudios')->name('updateOtrosEstudios');
 Route::DELETE('/destroyOTrosEStudios/{id}', 'EstudiosController@destroyOTrosEStudios')->name('estudios.destroyOTrosEStudios');
 //post porque voy a editar en la base de dato
 

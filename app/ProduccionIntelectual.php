@@ -11,7 +11,8 @@ class ProduccionIntelectual extends Model
     protected $fillable = ["id_prod_intele",
     "id_persona",
     "id_tipo_medio",
-    "id_medio",
+    "id_medioEscrito",
+    "id_medioMultimedia",
     "nombre",
     "fecha_publicacion",
     "pdf_prod_intele"];
@@ -21,9 +22,14 @@ class ProduccionIntelectual extends Model
 
     }
 
-     public function medio_produccion_intelectual(){
-         return $this->belongsTo('App\Medio','id_medio','id_medio');
+    public function medio_escrito(){
+         return $this->belongsTo('App\MedioEscrito','id_medioEscrito','id_medioEscrito');
 
     }
+
+    public function medio_multimedia(){
+        return $this->belongsTo('App\MedioMultimedia','id_medioMultimedia','id_medioMultimedia');
+
+   }
 
 }

@@ -162,7 +162,11 @@ return [
 
         //update situacion labora
         'selec1' => ' ',
-        'selec2' => ' '
+        'selec2' => ' ',
+
+        //update situacion labora
+        'tipo_idioma' => 'Idioma',
+        'tipo_doc' => 'Documento'
     ],
 
 ];

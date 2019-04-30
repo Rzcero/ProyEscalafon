@@ -7,11 +7,12 @@ use App\Http\Requests\UpdatePersonasRequest;
 use App\Http\Requests\CreateHabientesRequest;
 use App\Http\Requests\UpdateHabientesRequest;
 use App\Http\Requests\UpdateSitLaboralRequest;
+use App\Http\Requests\CreateIdiomasRequest;
 use App\Persona;
 use App\TipoPersonal;
 use App\Idioma;
 use App\TipoIdioma;
-use App\TipoDocumento;
+use App\TipoDocumentoEstudio;
 use App\Habiente;
 use App\TipoDocIdentidad;
 use App\Parentesco;
@@ -48,7 +49,7 @@ class DatosController extends Controller
      */
     public function index()
     {
-        return view('datos_personales.crear');
+        
         
     }
     
@@ -298,17 +299,17 @@ class DatosController extends Controller
     }
 
     //Para mostrarlo en el Modal
-    public function listarTipoDocumento()
+    public function listarTipoDocumentoEstudios()
     {
         
-        $tipodocumentos = TipoDocumento::all();
+        $tipodocumentoestudios = TipoDocumentoEstudio::all();
         
         $matriz = array();
         
-        foreach($tipodocumentos as $tipodocumento){
+        foreach($tipodocumentoestudios as $tipodocumentoest){
         
-            $matriz[] = array('id' => $tipodocumento->id_tipo_documento,
-                              'tipoDoc' => $tipodocumento->denominacion);
+            $matriz[] = array('id' => $tipodocumentoest->id_tipo_docEstudio,
+                              'tipoDoc' => $tipodocumentoest->denominacion);
         
         }
         
@@ -319,7 +320,7 @@ class DatosController extends Controller
         ]);
     }
 
-    public function agregarIdioma(Request $request)
+    public function agregarIdioma(CreateIdiomasRequest $request)
     {
         
         if($request->ajax()){
@@ -343,14 +344,14 @@ class DatosController extends Controller
             $idioma->id_tipo_idioma = $request->tipo_idioma;
             $idioma->dominio = $request->dominio;
             $idioma->entidad = $request->centroEstudio;
-            $idioma->id_tipo_documento = $request->tipo_doc;
+            $idioma->id_tipo_docEstudio = $request->tipo_doc;
             $idioma->num_horas = $request->horas;
             $idioma->num_creditos = $request->creditos;
                         
             $idioma->save();
             
             return response()->json([
-
+                "mensaje"=>"Idioma creado con exito"
             ]);
             
         }
@@ -371,7 +372,7 @@ class DatosController extends Controller
                               'idioma' => $editarIdioma->id_tipo_idioma,
                               'dominio' => $editarIdioma->dominio,
                               'entidad' => $editarIdioma->entidad,
-                              'tipo_documento' => $editarIdioma->id_tipo_documento,
+                              'tipo_documento' => $editarIdioma->id_tipo_docEstudio,
                               'horas' => $editarIdioma->num_horas,
                               'creditos' => $editarIdioma->num_creditos);
         
@@ -382,6 +383,48 @@ class DatosController extends Controller
             $matriz
              
         ]);
+    }
+
+    //ACTUALIZA UN IDIOMA
+    public function updateIdioma(CreateIdiomasRequest $request, $id)
+    {
+        
+        if($request->ajax()){
+            //encuentro al usuario
+            $idioma = Idioma::find($id);
+           
+            //si del formulario estamos recibiendo un archivo pdf de idioma
+        
+            if ($request->hasFile('pdf_Idioma')) {
+                
+                $ruta_temp = $request->file('pdf_Idioma');
+
+                $up_nombre_pdfIdioma = time().$ruta_temp->getClientOriginalName();
+
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_temp->move(public_path().'/images/',$up_nombre_pdfIdioma);
+
+                $idioma->pdf_idioma_persona = $up_nombre_pdfIdioma;
+                
+            }
+
+            $idioma->id_tipo_idioma = $request->tipo_idioma;
+            $idioma->dominio = $request->dominio;
+            $idioma->entidad = $request->centroEstudio;
+            $idioma->id_tipo_docEstudio = $request->tipo_doc;
+            $idioma->num_horas = $request->horas;
+            $idioma->num_creditos = $request->creditos;
+
+            $idioma->save();
+
+            // $idioma->update($request->all());
+            
+            return response()->json([
+                "mensaje"=>"Idioma Actualizado con exito"
+            ]);
+
+        }
+
     }
 
     //Para Ver los Idiomas al pulsar el boton ver
@@ -397,7 +440,7 @@ class DatosController extends Controller
             $matriz[] = array('idioma' => $ver->tipoidioma->nombre,
                               'dominio' => $ver->dominio,
                               'entidad' => $ver->entidad,
-                              'tipo_documento' => $ver->tipodocumento->denominacion,
+                              'tipo_documento' => $ver->tipodocumentoestudio->denominacion,
                               'horas' => $ver->num_horas,
                               'creditos' => $ver->num_creditos);
         
@@ -429,7 +472,7 @@ class DatosController extends Controller
     public function store(Request $request)
     {
         
-        if($request->ajax()){
+        // if($request->ajax()){
             
             //Persona::create($request->all());
             /*$persona = new Persona;
@@ -451,7 +494,7 @@ class DatosController extends Controller
 //                "mensaje" => $request->all()
 //            ]);
             
-        }
+        // }
         // return view('datos_personales.insertar');
 //        $persona = new Persona;
 //
@@ -539,8 +582,7 @@ class DatosController extends Controller
             } else{
                 $habiente->num_doc_identidad = ''; 
             }
-            
-            
+                        
             $habiente->ape_paterno = $request->ape_pater;
             $habiente->ape_materno = $request->ape_mater;
             $habiente->nombres = $request->nombres;
@@ -631,7 +673,15 @@ class DatosController extends Controller
             $habiente->fecha_emision = $request->fech_emision;
             $habiente->expedida = $request->expedida;
             $habiente->id_tipo_doc = $request->tipoDocIdent;
-            $habiente->num_doc_identidad = $request->numero;
+
+            if ($request->tipoDocIdent != 1) {
+                if ($request->numero && $request->tipoDocIdent) {
+                    $habiente->num_doc_identidad = $request->numero; 
+                }
+            } else{
+                $habiente->num_doc_identidad = ''; 
+            }
+           
             $habiente->ape_paterno = $request->ape_pater;
             $habiente->ape_materno = $request->ape_mater;
             $habiente->nombres = $request->nombres;
@@ -1067,17 +1117,17 @@ class DatosController extends Controller
     public function update(Request $request, $id)
     {
         
-        if($request->ajax()){
+        // if($request->ajax()){
             //encuentro al usuario
-            $idioma = Idioma::find($id);
-            //luego actualizo
-            $idioma->update($request->all());
+            // $idioma = Idioma::find($id);
+                   
+            // $idioma->update($request->all());
             
-            return response()->json([
-                
-            ]);
+            // return response()->json([
+            //     "mensaje"=>"Idioma Actualizado con exito"
+            // ]);
 
-        }
+        // }
 
     }
 

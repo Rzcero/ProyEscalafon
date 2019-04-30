@@ -1,8 +1,9 @@
 // JavaScript Document
 
-$(document).ready(function(){
+$(document).ready(function() {
     
     var myIDpersona = $('#myID').val();
+    
     mostrarIdiomas();
     mostrarHabientes();
     
@@ -18,6 +19,7 @@ $(document).ready(function(){
         $('#foto_persona').trigger('click');
     });
 
+    //funcion para eliminar los mensajes de error de los select
     function eliminaMsjError(ident){
             
         if ($("select[name='" + ident + "'] .is-invalid")) {
@@ -29,6 +31,7 @@ $(document).ready(function(){
 
     }
 
+    //funcion para eliminar los mensajes de error de los input
     function eliminaMsjErrorInput(ident){
             
         if ($("input[name='" + ident + "'] .is-invalid")) {
@@ -57,31 +60,7 @@ $(document).ready(function(){
         eliminaMsjErrorInput(valor2);
 
     });
-
-    //Para llenar los select de ubigeo
-    	
-    // $.ajax({
-        
-    //     url: '/ProyEscalafon/public/listarDepartamentoUbigeo',
-    //     type: 'GET',
-    //     success: function(respuesta){
-                                
-    //         let registro = '';
-            
-    //         respuesta.forEach(obj_json =>{
-    //             obj_json.forEach(obj_json => {
-
-    //                 registro += `<option value='${obj_json.id}'>${obj_json.nombre}</option>`
-
-    //             });
-    //         });
-            
-    //         $("#depart").html(registro);
-            
-    //     }
-        
-    // });
-
+    
     $("#nacionalidad").change(function(){
 
         var id = $(this).val();
@@ -645,7 +624,7 @@ $(document).ready(function(){
         type: 'GET',
         success: function(respuesta){
                              
-            let registro = '';
+            let registro = "<option value=''></option>"
             
             respuesta.forEach(obj_json =>{
                 obj_json.forEach(obj_json => {
@@ -662,14 +641,14 @@ $(document).ready(function(){
     });
 
     //Para llenar el Select de tipo de Documento
-    function selectTipoDocumento(identificador){    
+    function selectTipoDocumentoEstudio(identificador){    
         $.ajax({
             
-            url: '/ProyEscalafon/public/listarTipoDocumento',
+            url: '/ProyEscalafon/public/listarTipoDocumentoEstudios',
             type: 'GET',
             success: function(respuesta){
                                         
-                let registro = '';
+                let registro = "<option value=''></option>";
                 
                 respuesta.forEach(obj_json =>{
                     obj_json.forEach(obj_json => {
@@ -693,9 +672,27 @@ $(document).ready(function(){
     }
 
     var tipo_doc = $("#tipo_doc");
-    selectTipoDocumento(tipo_doc);
-
+    selectTipoDocumentoEstudio(tipo_doc);
+   
     //*************** MODAL AGREGAR NUEVO IDIOMA *************/
+
+    //elimina los errores sel select idioma
+    $('#tipo_idioma').change(function(){
+
+        var valor1 = 'tipo_idioma';
+                
+        eliminaMsjError(valor1);
+
+    });
+
+    //elimina los errores sel select Tipo de Documento
+    $('#tipo_doc').change(function(){
+
+        var valor1 = 'tipo_doc';
+                
+        eliminaMsjError(valor1);
+
+    });
 
     //para el boton de subir pdf idioma
     $('#btn_pdfIdioma').on('click', function(){
@@ -704,8 +701,22 @@ $(document).ready(function(){
     
     $('#agregarNuevoIdioma').click(function(){
 
+        if ($('.msg_errorHab')) {
+			$('.msg_errorHab').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        if ($('.msj_exitoIdioma')) {
+            $('.msj_exitoIdioma').css('display','none');
+        }
+        
         $("#formularioModal1").trigger('reset');
+
         cambiarTitulo('Agregar Idioma');
+
         $(".btn_idioma").html('<span><i class="far fa-save"></i></span> Guardar');
         $(".btn_idioma").addClass('btn-primary');
         $(".btn_idioma").removeClass('btn-success');
@@ -715,6 +726,14 @@ $(document).ready(function(){
     });
     
     $(".modal-footer").on('click', '.guardar', function(){
+
+        if ($('.msg_errorIdioma')) {
+			$('.msg_errorIdioma').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
        
         var btn_radio = $("#formularioModal1 input[name='dominio']:checked").val();
         
@@ -743,11 +762,31 @@ $(document).ready(function(){
             contentType: false,
             processData: false,
             success: function(respuesta){
-                                                
-                mostrarIdiomas();
-                                                
+                
+                $('.msj_exitoIdioma').html(respuesta.mensaje);
+                $('.msj_exitoIdioma').css('display','block');
+                
                 $("#formularioModal1").trigger('reset');
                 
+                mostrarIdiomas();
+
+            },
+            error: function(respuesta){
+
+                $('.msj_exitoIdioma').css('display','none');
+
+                $.each(respuesta.responseJSON.errors, function(index, val){
+                    
+                    $('select[name=' + index + ']').addClass('is-invalid');
+					
+                    $('select[name=' + index + ']').after(`<span class='msg_errorIdioma invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                    $('input[name=' + index + ']').addClass('is-invalid');
+					
+                    $('input[name=' + index + ']').after(`<span class='msg_errorIdioma invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                });
+
             }
             
         });
@@ -760,7 +799,26 @@ $(document).ready(function(){
 
         $('#formularioModal1').trigger('reset');
 
+        //si hay mensaje de error
+        if ($('.msg_errorIdioma')) {
+            //entonces elimina la clase del error
+			$('.msg_errorIdioma').remove();
+        }
+        
+        //si hay input en rojo con error
+        if ($('.is-invalid')) {
+            //entonces remueve la clase del error
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        //si hay un mensaje de exito
+        if ($('.msj_exitoIdioma')) {
+            //entonces ocultalo
+            $('.msj_exitoIdioma').css('display','none');
+        }
+
         cambiarTitulo('Actualizar Idioma');
+
         $(".btn_idioma").html('<span><i class="far fa-edit"></i></span>Actualizar');
 
         $(".btn_idioma").addClass('btn-success');
@@ -793,16 +851,14 @@ $(document).ready(function(){
                         $('#horas').val(obj_json.horas); 
                         $('#creditos').val(obj_json.creditos);
 
-                        if (obj_json.dominio == 'basico') {
+                        if (obj_json.dominio == 'ninguno') {
+                            $('#ninguno').prop('checked',true);
+                        } else if (obj_json.dominio == 'basico') {
                             $('#basico').prop('checked',true);
                         } else if (obj_json.dominio == 'intermedio') {
                             $('#intermedio').prop('checked',true);
                         } else if (obj_json.dominio == 'avanzado') {
                             $('#avanzado').prop('checked',true);
-                        } else if (obj_json.dominio == 'lengua materna') {
-                            $('#lengua_materna').prop('checked',true);
-                        } else{
-                            $('#basico').prop('checked',true);
                         }
                         
                     });
@@ -817,86 +873,81 @@ $(document).ready(function(){
         //Para actualizar los datos de Idiomas
     $(".modal-footer").on('click', '.actualizar', function(){
 
+        if ($('.msg_errorIdioma')) {
+			$('.msg_errorIdioma').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        if ($('.msj_exitoIdioma')) {
+            $('.msj_exitoIdioma').css('display','none');
+        }
+
         var id = $('#id_idioma').val();
         var formulario = $('#form_updateIdioma');
         var ruta = formulario.attr('action').replace(':IDIOMA_ID',id);
         var token4 = $("#token4").val();
-               
-        var dato = $("#tipo_idioma").val();
+
         var btn_radio = $("#formularioModal1 input[name='dominio']:checked").val();
-        var dato2 = $("#centroEstudio").val();
-        var dato3 = $('#tipo_doc').val();
-        var dato4 = $('#horas').val();
-        var dato5 = $('#creditos').val();
-        
-        console.log(dato);
-        
+             
+        var formData2 = new FormData();
+            
+        formData2.append('tipo_idioma',$("#tipo_idioma").val());
+        formData2.append('dominio',btn_radio);
+        formData2.append('centroEstudio',$("#centroEstudio").val());
+        formData2.append('tipo_doc',$('#tipo_doc').val());
+        formData2.append('pdf_Idioma',$('input[name=pdf_Idioma]')[0].files[0]);
+        formData2.append('horas',$('#horas').val());
+        formData2.append('creditos',$('#creditos').val());
+                
         $.ajax({
             
             url: ruta,
             headers: {'X-CSRF-TOKEN': token4},
-            type: 'PUT',
+            type: 'post',
             dataType: 'json',
-            data: {
+            data: formData2,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(respuesta){
                 
-                id_tipo_idioma: dato,
-                dominio: btn_radio,
-                entidad: dato2,
-                id_tipo_documento: dato3,
-                num_horas: dato4,
-                num_creditos: dato5
+                $('.msj_exitoIdioma').html(respuesta.mensaje);
+				$('.msj_exitoIdioma').css('display','block');
+
+                mostrarIdiomas();
                 
             },
-            success: function(respuesta){
-                                                
-                mostrarIdiomas();
-                                                
-                $("#formularioModal1").trigger('reset');
-                
+            error: function(respuesta){
+				
+				$('.msj_exitoIdioma').css('display','none');
+				
+				$.each(respuesta.responseJSON.errors, function(index, val) {
+					// console.log(index + ": "+val);
+					
+					$('select[name=' + index + ']').addClass('is-invalid');
+					
+                    $('select[name=' + index + ']').after(`<span class='msg_errorIdioma invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                    $('input[name=' + index + ']').addClass('is-invalid');
+					
+                    $('input[name=' + index + ']').after(`<span class='msg_errorIdioma invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+                    
+				});
+				
             }
             
         });
 
     });
     
-    //PARA ELIMINAR UN IDIOMA
-
-    $(document).on('click','.delete_idioma',function(){
- 
-        var id = $(this).val();
-        $('#id_modal2').val(id);
-        
-    });
-
-    $('.btn_eliminarIdioma').click(function(){
-        
-        var id = $('#id_modal2').val();
-        var formulario = $('#form_deleteIdioma');
-        var ruta = formulario.attr('action').replace(':IDIOMA_ID',id);
-        
-        var token3 = $("#token3").val();
-        var datos = formulario.serialize();
-        console.log(datos);
-                        
-        $.ajax({
-            
-            url: ruta,
-            headers: {'X-CSRF-TOKEN': token3},
-            type: 'POST',
-            dateType: 'json',
-            data: datos,
-            success: function(respuesta){
-                                    
-                mostrarIdiomas();
-                
-            }
-            
-        });
-        
-    });
-
     //PARA VER UN IDIOMA
     $(document).on('click','.ver_idioma',function(){
+
+        //resetea el formulario
+        $('#formVerHabiente').trigger('reset');
         
         var id_Idioma = $(this).val();
         var ruta = "/ProyEscalafon/public/verIdioma";
@@ -926,6 +977,41 @@ $(document).ready(function(){
                     });
                 });
             
+            }
+            
+        });
+        
+    });
+
+    //PARA ELIMINAR UN IDIOMA
+
+    $(document).on('click','.delete_idioma',function(){
+ 
+        var id = $(this).val();
+        $('#id_modal2').val(id);
+        
+    });
+
+    $('.btn_eliminarIdioma').click(function(){
+        
+        var id = $('#id_modal2').val();
+        var formulario = $('#form_deleteIdioma');
+        var ruta = formulario.attr('action').replace(':IDIOMA_ID',id);
+        
+        var token3 = $("#token3").val();
+        var datos = formulario.serialize();
+                                
+        $.ajax({
+            
+            url: ruta,
+            headers: {'X-CSRF-TOKEN': token3},
+            type: 'POST',
+            dateType: 'json',
+            data: datos,
+            success: function(respuesta){
+                                    
+                mostrarIdiomas();
+                
             }
             
         });
@@ -1006,14 +1092,8 @@ $(document).ready(function(){
             $('#numero').attr('disabled',true).val('');
         }
 
-        //elimina mensajes de error
-        if ($('.msg_errorHab')) {
-			$('.msg_errorHab').remove();
-        }
-        
-        if ($('.is-invalid')) {
-            $('.is-invalid').removeClass('is-invalid');
-        }
+        var valor1 = 'numero';
+        eliminaMsjErrorInput(valor1);
 
     });
 
@@ -1078,8 +1158,7 @@ $(document).ready(function(){
         } else{
             formData.append('numero',$('#numero').val('')); //se pasa el valor vacio
         }
-
-        // formData.append('numero',$('#numero').val());
+        
         formData.append('pdf_docIdentHab',$('input[name=pdf_docIdentHab]')[0].files[0]);
         formData.append('ape_pater',$('#ape_pater').val());
         formData.append('ape_mater',$('#ape_mater').val());
@@ -1244,18 +1323,22 @@ $(document).ready(function(){
         var btn_radio = $("#formularioModal2 input[name='generoHab']:checked").val();
         
         var formData2 = new FormData();
-        var d1 = $('#parentesco').val();
-        console.log(d1);
-        var d2 = $('#n_partida').val();
-        console.log(d2);
-        // formData2.append('id',$('#id_habiente').val());
+            
         formData2.append('parentesco',$('#parentesco').val());
         formData2.append('n_partida',$('#n_partida').val());
         formData2.append('fech_emision',$('#fech_emision').val());
         formData2.append('pdf_partidaNacHab',$('input[name=pdf_partidaNacHab]')[0].files[0]);
         formData2.append('expedida',$('#expedida').val());
         formData2.append('tipoDocIdent',$('#tipoDocIdent').val());
-        formData2.append('numero',$('#numero').val());
+
+        if ($('#tipoDocIdent').val() != 1) {
+            if ($('#numero').val() && $('#tipoDocIdent').val()) {
+                formData2.append('numero',$('#numero').val()); 
+            }
+        } else{
+            formData2.append('numero',$('#numero').val('')); //se pasa el valor vacio
+        }
+        
         formData2.append('pdf_docIdentHab',$('input[name=pdf_docIdentHab]')[0].files[0]);
         formData2.append('ape_pater',$('#ape_pater').val());
         formData2.append('ape_mater',$('#ape_mater').val());
@@ -1265,8 +1348,7 @@ $(document).ready(function(){
         if (btn_radio) {
             formData2.append('generoHab',btn_radio);
         }
-        console.log(formData2);
-
+        
         $.ajax({
                       
             url: ruta,

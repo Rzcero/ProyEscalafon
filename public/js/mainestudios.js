@@ -1,79 +1,140 @@
-$(document).ready(function() 
-   {
+$(document).ready(function() {
 
+    var myIDpersona = $('#myID').val();
 
     mostrarOtrosEstudios();
     mostrarProduccionIntelectual();
     mostrarEstudiosSuperiores();
 
-// tabla de estudios basicos
- $("#formularioestudiosbasicos").submit(function(e){
-                
-        var dato = $("#ie_primaria").val();  // # se recepcionan de create.blade -> formulario
-        var dato2 = $("#anio_egreso_primaria").val();
-        var dato3 = $("#pais_primaria").val();  // # se recepcionan de create.blade -> formulario
-        var dato4 = $("#ubi_primaria").val();
-        var dato5= $("#dep_primaria").val();  // # se recepcionan de create.blade -> formulario
-        var dato6 = $("#prov_primaria").val();
-        var dato7 = $("#dist_primaria").val();  // # se recepcionan de create.blade -> formulario
-        var dato8 = $("#ie_secundaria").val();
-        var dato9 = $("#anio_egreso_secundaria").val();  // # se recepcionan de create.blade -> formulario
-        var dato10 = $("#pais_secundaria").val();
-        var dato11 = $("#ubi_secundaria").val();  // # se recepcionan de create.blade -> formulario
-        var dato12 = $("#dep_secundaria").val();
-        var dato13 = $("#prov_secundaria").val();  // # se recepcionan de create.blade -> formulario
-        var dato14 = $("#dist_secundaria").val();
-
-
-
-
-        var route = "/ProyEscalafon/public/Estudios";
-        var token = $("#token_est_bas").val();
-        
-        $.ajax({
-            
-            url: route,
-            headers: {'X-CSRF-TOKEN': token},
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                ie_primaria: dato,
-                anio_egreso_primaria: dato2,
-                pais_primaria: dato3,
-                ubi_primaria: dato4,
-                dep_primaria: dato5,
-                prov_primaria: dato6,
-                dist_primaria: dato7,
-                ie_secundaria: dato8,
-                anio_egreso_secundaria: dato9,
-                pais_secundaria: dato10,
-                ubi_secundaria: dato11,
-                dep_secundaria: dato12,
-                prov_secundaria: dato13,
-                dist_secundaria: dato14
-
-
-
-            }
-            
-        });         
-        
-        e.preventDefault();
-    
+    $('#btn_pdfPrimaria').on('click', function(){
+        $('#pdf_primaria').trigger('click');
     });
 
+    $('#btn_pdfSecundaria').on('click', function(){
+        $('#pdf_secundaria').trigger('click');
+    });
 
+// tabla de estudios basicos
+//  $("#formularioestudiosbasicos").submit(function(e){
+                
+        // var dato = $("#ie_primaria").val();  // # se recepcionan de create.blade -> formulario
+        // var dato2 = $("#anio_egreso_primaria").val();
+        // var dato3 = $("#pais_primaria").val();  // # se recepcionan de create.blade -> formulario
+        // var dato4 = $("#ubi_primaria").val();
+        // var dato5= $("#dep_primaria").val();  // # se recepcionan de create.blade -> formulario
+        // var dato6 = $("#prov_primaria").val();
+        // var dato7 = $("#dist_primaria").val();  // # se recepcionan de create.blade -> formulario
+        // var dato8 = $("#ie_secundaria").val();
+        // var dato9 = $("#anio_egreso_secundaria").val();  // # se recepcionan de create.blade -> formulario
+        // var dato10 = $("#pais_secundaria").val();
+        // var dato11 = $("#ubi_secundaria").val();  // # se recepcionan de create.blade -> formulario
+        // var dato12 = $("#dep_secundaria").val();
+        // var dato13 = $("#prov_secundaria").val();  // # se recepcionan de create.blade -> formulario
+        // var dato14 = $("#dist_secundaria").val();
 
-//MODAL AGREGAR NUEVO otros estudios -> es para cambiar el boton verde a azul y el titulo
-  // paso 1  
+        // var route = "/ProyEscalafon/public/Estudios";
+        // var token = $("#token_est_bas").val();
+        
+        // $.ajax({
+            
+        //     url: route,
+        //     headers: {'X-CSRF-TOKEN': token},
+        //     type: 'POST',
+        //     dataType: 'json',
+        //     data: {
+        //         ie_primaria: dato,
+        //         anio_egreso_primaria: dato2,
+        //         pais_primaria: dato3,
+        //         ubi_primaria: dato4,
+        //         dep_primaria: dato5,
+        //         prov_primaria: dato6,
+        //         dist_primaria: dato7,
+        //         ie_secundaria: dato8,
+        //         anio_egreso_secundaria: dato9,
+        //         pais_secundaria: dato10,
+        //         ubi_secundaria: dato11,
+        //         dep_secundaria: dato12,
+        //         prov_secundaria: dato13,
+        //         dist_secundaria: dato14
 
+        //     }
+            
+        // });         
+        
+        // e.preventDefault();
+    
+    // });
 
+    //funcion para eliminar los mensajes de error de los select
+    function eliminaMsjError(ident){
+            
+        if ($("select[name='" + ident + "'] .is-invalid")) {
+                        
+            $("select[name='" + ident + "']").removeClass('is-invalid');
+            $("select[name='" + ident + "']").next().remove();
+            
+        }
+
+    }
+
+    //funcion para eliminar los mensajes de error de los input
+    function eliminaMsjErrorInput(ident){
+            
+        if ($("input[name='" + ident + "'] .is-invalid")) {
+                        
+            $("input[name='" + ident + "']").removeClass('is-invalid');
+            $("input[name='" + ident + "']").next().remove();
+            
+        }
+
+    }
+
+    //MODAL AGREGAR NUEVO otros estudios -> es para cambiar el boton verde a azul y el titulo
+
+    //elimina los errores sel select Tipo de Estudios
+    $('#tipo_estudios').change(function(){
+
+        var valor1 = 'tipo_estudios';
+                
+        eliminaMsjError(valor1);
+
+    });
+
+    //elimina los errores sel select Tipo de Documento
+    $('#tipo_doc').change(function(){
+
+        var valor1 = 'tipo_doc';
+                
+        eliminaMsjError(valor1);
+
+    });
+
+    //para el boton de subir pdf otros estudios
+    $('#btn_pdfOtroEstudio').on('click', function(){
+        $('#pdf_otroEstudio').trigger('click');
+    });
+
+    // paso 1  
 
     $('#agregar_otro_estudio').click(function(){
 
-//alert("hora loca");
+        //para eliminar los mensajes de error al momento de darle click al boton agregar_otro_estudio
+        if ($('.msg_errorOtroEstudio')) {
+			$('.msg_errorOtroEstudio').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        if ($('.msj_exitoOtroEstudio')) {
+            $('.msj_exitoOtroEstudio').css('display','none');
+        }
+
         $("#formulariootrosestudios").trigger('reset');
+
         cambiartitulo_otros_estudios('Agregar Otros Estudios');
+
         $(".btn_otros_estudios").html('<span><i class="far fa-save"></i></span> Guardar');
         $(".btn_otros_estudios").addClass('btn-primary');
         $(".btn_otros_estudios").removeClass('btn-success');
@@ -82,65 +143,81 @@ $(document).ready(function()
 
     });
 
-
-
-
-// tabla de otros estudios
-//$("#guardarOtrosEstudios").click(function(e){
+    // tabla de otros estudios
+    //$("#guardarOtrosEstudios").click(function(e){
       $(".modal-footer").on('click', '.guardar', function(){
-                
-        var dato = $("#tipo_estudios").val();  // # se recepcionan de create.blade -> formulario
-        var dato2 = $("#nom_estudios").val();
-        var dato3 = $("#participacion").val();  // # se recepcionan de create.blade -> formulario
-        var dato4 = $("#centro_estudio").val();
-        var dato5= $("#tipo_doc").val();  // # se recepcionan de create.blade -> formulario
-        var dato6 = $("#fech_inicio_otros_estudios").val();
-        var dato7 = $("#fech_termino_otros_estudios").val();  // # se recepcionan de create.blade -> formulario
-        var dato8 = $("#horas").val();
-        var dato9 = $("#creditos").val();  // # se recepcionan de create.blade -> formulario
-       
+        
+        //Elimina los mensajes de error cuando le das click al boton guardar
 
-/*
-console.log(dato);  para ver por consola los datos que estas recibiendo
-console.log(dato2);*/
-        var route = "/ProyEscalafon/public/guardar_otros_estudios";
+        if ($('.msg_errorOtroEstudio')) {
+			$('.msg_errorOtroEstudio').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        /*
+        console.log(dato);  para ver por consola los datos que estas recibiendo
+        console.log(dato2);*/
+        var ruta = "/ProyEscalafon/public/guardar_otros_estudios";
         var token = $("#token_otr_est").val();
         
+        var formData = new FormData();
+
+        formData.append('miID',myIDpersona);
+        formData.append('tipo_estudios',$("#tipo_estudios").val());
+        formData.append('nom_estudios',$("#nom_estudios").val());
+        formData.append('participacion',$("#participacion").val());
+        formData.append('pdf_otroEstudio',$('input[name=pdf_otroEstudio]')[0].files[0]);
+        formData.append('centro_estudio',$("#centro_estudio").val());
+        formData.append('tipo_doc',$("#tipo_doc").val());
+        formData.append('fech_inicio_otros_estudios',$("#fech_inicio_otros_estudios").val());
+        formData.append('fech_termino_otros_estudios',$("#fech_termino_otros_estudios").val());
+        formData.append('horas',$("#horas").val());
+        formData.append('creditos',$("#creditos").val());
+
         $.ajax({
             
-            url: route,
+            url: ruta,
             headers: {'X-CSRF-TOKEN': token},
             type: 'POST',
             dataType: 'json',
-            data: {
-                id_tipo_estudio: dato,
-                nombre_estudio: dato2,
-                participacion: dato3,
-                centro_estudio: dato4,
-                id_tipo_documento: dato5,
-                 fecha_inicio: dato6,
-                fecha_termino: dato7,
-                num_horas: dato8,
-                num_creditos: dato9
-              
-
-
-            }, //paso2 se modifica
-
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false, 
+            //paso2 se modifica
             success: function(respuesta){
 
-mostrarOtrosEstudios();
+                $('.msj_exitoOtroEstudio').html(respuesta.mensaje);
+                $('.msj_exitoOtroEstudio').css('display','block');
 
-// 
-$("#formulariootrosestudios").trigger('reset');
+                $("#formulariootrosestudios").trigger('reset');
 
-}
+                mostrarOtrosEstudios();
+
+            },
+            error: function(respuesta){
+
+                $('.msj_exitoOtroEstudio').css('display','none');
+
+                $.each(respuesta.responseJSON.errors, function(index, val){
+                    
+                    $('select[name=' + index + ']').addClass('is-invalid');
+					
+                    $('select[name=' + index + ']').after(`<span class='msg_errorOtroEstudio invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                    $('input[name=' + index + ']').addClass('is-invalid');
+					
+                    $('input[name=' + index + ']').after(`<span class='msg_errorOtroEstudio invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                });
+
+            }
             
         });         
-        
-      
     
-
     });
 
 
@@ -335,7 +412,7 @@ $("#formularioproduccionintelectual").trigger('reset');
         type: 'GET',
         success: function(respuesta){
                                     
-            let registro = '';
+            let registro = "<option value=''></option>";
             
             respuesta.forEach(obj_json =>{
                 obj_json.forEach(obj_json => {
@@ -361,7 +438,7 @@ $("#formularioproduccionintelectual").trigger('reset');
         type: 'GET',
         success: function(respuesta){
                                     
-            let registro = '';
+            let registro = "<option value=''></option>";
             
             respuesta.forEach(obj_json =>{
                 obj_json.forEach(obj_json => {
@@ -468,7 +545,9 @@ registro += `<tr>
 <td>
 
 <button class='ver_otros_estudios btn btn-warning' data-toggle="modal" data-target="#modal_ver_otros_esudios" value='${obj_json.id_otro_estudio}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
+
 <button class='update_otros_estudios btn btn-success' data-toggle="modal" data-target="#modalOtrosEstudios" value='${obj_json.id_otro_estudio}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
+
 <button class='elim_otros_estudios btn btn-danger' data-toggle="modal" data-target="#modal_eliminar_otros_estudios" value='${obj_json.id_otro_estudio}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
 </td>
 </tr>`
@@ -714,8 +793,29 @@ function cambiartitulo_otros_estudios(titulo){
     //PARA ACTUALIZAR EL MODAL otros estudios
         //para mostrar los datos en el modal -> RECUPERAR LOS DATOS DE LA BASE DE DATOS
     $(document).on('click','.update_otros_estudios',function(e){
+
+        $("#formulariootrosestudios").trigger('reset');
+
+        //si hay mensaje de error
+        if ($('.msg_errorOtroEstudio')) {
+            //entonces elimina la clase del error
+			$('.msg_errorOtroEstudio').remove();
+        }
+        
+        //si hay input en rojo con error
+        if ($('.is-invalid')) {
+            //entonces remueve la clase del error
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        //si hay un mensaje de exito
+        if ($('.msj_exitoOtroEstudio')) {
+            //entonces ocultalo
+            $('.msj_exitoOtroEstudio').css('display','none');
+        }
         
         cambiartitulo_otros_estudios('Actualizar Otros Estudios'); //cambiamos el ititulo y creamos una funcion
+
         $(".btn_otros_estudios").html('<span><i class="far fa-edit"></i></span>Actualizar'); // vamod al modal del create de otros estudios y creamos el btn_otros estudios
 
         $(".btn_otros_estudios").addClass('btn-success');
@@ -727,7 +827,7 @@ function cambiartitulo_otros_estudios(titulo){
 //segundo le colocamos el id en el conroler, luego en los botones y lo comprobamos con console.log si es que da el numero del boton
 //tercero crear una ruta en web
         var id_OtroEstudio = $(this).val();
-        console.log(id_OtroEstudio);
+        
         var ruta = "/ProyEscalafon/public/editar_modal_otros_estudios";
         var token1 = $("#token_otr_est").val();
 
@@ -758,19 +858,6 @@ function cambiartitulo_otros_estudios(titulo){
                         $('#horas').val(obj_json.numerohoras);
                         $('#creditos').val(obj_json.numerocreditos);
                         $('#tipo_doc').val(obj_json.tipodocumento);
-                       
-/*
-                        if (obj_json.dominio == 'basico') {
-                            $('#basico').prop('checked',true);
-                        } else if (obj_json.dominio == 'intermedio') {
-                            $('#intermedio').prop('checked',true);
-                        } else if (obj_json.dominio == 'avanzado') {
-                            $('#avanzado').prop('checked',true);
-                        } else if (obj_json.dominio == 'lengua materna') {
-                            $('#lengua_materna').prop('checked',true);
-                        } else{
-                            $('#basico').prop('checked',true);
-                        }*/
                         
                     });
                 });
@@ -783,63 +870,84 @@ function cambiartitulo_otros_estudios(titulo){
     
         //Para actualizar los datos de otros estudios ->UPDATE
     $(".modal-footer").on('click', '.actualizar', function(){
+        
+        if ($('.msg_errorOtroEstudio')) {
+			$('.msg_errorOtroEstudio').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        if ($('.msj_exitoOtroEstudio')) {
+            $('.msj_exitoOtroEstudio').css('display','none');
+        }
 
         var id = $('#id_OT_ES').val();
         var formulario = $('#form_updateotrosestudios');
         var ruta = formulario.attr('action').replace(':OTRO_ESTUDIO_ID',id);
         var token4 = $("#token4").val();
-               
-        var dato = $("#tipo_estudio").val();
-       // var btn_radio = $("#formularioModal1 input[name='dominio']:checked").val();
-        var dato2 = $("#nom_estudios").val();
-        var dato3 = $('#participacion').val();
-        var dato4 = $('#centro_estudio').val();
-        var dato5 = $('#tipo_doc').val();
-        var dato6 = $('#fech_inicio_otros_estudios').val();
-         var dato7 = $('#fech_termino_otros_estudios').val();
-         var dato8 = $('#horas').val();
-         var dato9 = $('#creditos').val();
         
-      //  console.log(dato);
+        var formData2 = new FormData();
+            
+        formData2.append('tipo_estudios',$("#tipo_estudios").val());
+        formData2.append('nom_estudios',$("#nom_estudios").val());
+        formData2.append('participacion',$('#participacion').val());
+        formData2.append('centro_estudio',$('#centro_estudio').val());
+        formData2.append('tipo_doc',$('#tipo_doc').val());
+        formData2.append('pdf_otroEstudio',$('input[name=pdf_otroEstudio]')[0].files[0]);
+        formData2.append('fech_inicio_otros_estudios',$('#fech_inicio_otros_estudios').val());
+        formData2.append('fech_termino_otros_estudios',$('#fech_termino_otros_estudios').val());
+        formData2.append('horas',$('#horas').val());
+        formData2.append('creditos',$('#creditos').val());
         
         $.ajax({
             
             url: ruta,
             headers: {'X-CSRF-TOKEN': token4},
-            type: 'PUT',
+            type: 'post',
             dataType: 'json',
-            data: {
-                
-                  id_tipo_estudio: dato,
-                nombre_estudio: dato2,
-                participacion: dato3,
-                centro_estudio: dato4,
-                id_tipo_documento: dato5,
-                 fecha_inicio: dato6,
-                fecha_termino: dato7,
-                num_horas: dato8,
-                num_creditos: dato9
-                
-            },
+            data: formData2,
+            cache: false,
+            contentType: false,
+            processData: false,
             success: function(respuesta){
-                                                
-                mostrarOtrosEstudios();
-                //mostrarHabientes();
-                                
-                $("#formularioModal1").trigger('reset');
                 
+                $('.msj_exitoOtroEstudio').html(respuesta.mensaje);
+                $('.msj_exitoOtroEstudio').css('display','block');
+                
+                mostrarOtrosEstudios();
+                               
+            },
+            error: function(respuesta){
+				
+				$('.msj_exitoOtroEstudio').css('display','none');
+				
+				$.each(respuesta.responseJSON.errors, function(index, val) {
+					// console.log(index + ": "+val);
+					
+					$('select[name=' + index + ']').addClass('is-invalid');
+					
+                    $('select[name=' + index + ']').after(`<span class='msg_errorOtroEstudio invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                    $('input[name=' + index + ']').addClass('is-invalid');
+					
+                    $('input[name=' + index + ']').after(`<span class='msg_errorOtroEstudio invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+                    
+				});
+				
             }
             
         });
 
     });
 
-
-
-
     //PARA VER OTROS ESTUDIOS
     $(document).on('click','.ver_otros_estudios',function(){
         
+        //resetea el formulario
+        $('#formVerOtrosEstudios').trigger('reset');
+
         var id_otro_estudio2 = $(this).val();
        // console.log(id_otro_estudio2 );
         var ruta = "/ProyEscalafon/public/ver_otros_estudios";
@@ -878,7 +986,7 @@ function cambiartitulo_otros_estudios(titulo){
         
     });
 
-//PARA ELIMINAR  OTROS ESTUDIOS
+    //PARA ELIMINAR  OTROS ESTUDIOS
 
     $(document).on('click','.elim_otros_estudios',function(){
  
@@ -895,7 +1003,7 @@ function cambiartitulo_otros_estudios(titulo){
          
         var token3 = $("#token3").val();
         var datos = formulario.serialize();
-             console.log(datos);                
+                       
         $.ajax({
             
             url: ruta,
@@ -906,26 +1014,19 @@ function cambiartitulo_otros_estudios(titulo){
             success: function(respuesta){
                                     
                 mostrarOtrosEstudios();
-               // mostrarHabientes();
-
+               
             }
             
         });
         
     });
 
+    /*PRODUCCION INTELECTUAL*/
 
+    function cambiartitulo_prod_intel(titulo2){
 
-/*PRODUCCION INTELECTUAL*/
-
-
-
-
-
-function cambiartitulo_prod_intel(titulo2){
-
-    $("#cerrar_modal_prod_intel").text(titulo2)  
-}
+        $("#cerrar_modal_prod_intel").text(titulo2)  
+    }
 
     $(document).on('click','.update_produccion_intelectual',function(e){
         
@@ -937,9 +1038,10 @@ function cambiartitulo_prod_intel(titulo2){
         $(".btn_produccion_intelectual").addClass('actualizar2');
         $(".btn_produccion_intelectual").removeClass('guardar');
 
-//primero creamos un campo oculto del identificador de la tabla otros estudios
-//segundo le colocamos el id en el conroler, luego en los botones y lo comprobamos con console.log si es que da el numero del boton
-//tercero crear una ruta en web
+        //primero creamos un campo oculto del identificador de la tabla otros estudios
+        //segundo le colocamos el id en el conroler, luego en los botones y lo comprobamos con console.log si es que da el numero del boton
+        //tercero crear una ruta en web
+
         var id_ProduccionIntelectual = $(this).val();
         console.log(id_ProduccionIntelectual);
         var ruta = "/ProyEscalafon/public/editar_modal_prod_intel";
@@ -961,24 +1063,11 @@ function cambiartitulo_prod_intel(titulo2){
                // cuarto creamos la funcion en el controlador  editar_modal_otros_estudios, luego 
                // quinto ir a create y crear un campo oculto       
 
-
                         $('#id_PROD_INTEL').val(obj_json.id);  // lo creamos en el create
                         $('#tipomedio').val(obj_json.idtipomedio);
                         $('#medio').val(obj_json.idmedio);
                         $('#nom_publicacion').val(obj_json.nombre);
                         $('#fech_publicacion').val(obj_json.fechapublica); 
-/*
-                        if (obj_json.dominio == 'basico') {
-                            $('#basico').prop('checked',true);
-                        } else if (obj_json.dominio == 'intermedio') {
-                            $('#intermedio').prop('checked',true);
-                        } else if (obj_json.dominio == 'avanzado') {
-                            $('#avanzado').prop('checked',true);
-                        } else if (obj_json.dominio == 'lengua materna') {
-                            $('#lengua_materna').prop('checked',true);
-                        } else{
-                            $('#basico').prop('checked',true);
-                        }*/
                         
                     });
                 });
@@ -986,12 +1075,10 @@ function cambiartitulo_prod_intel(titulo2){
             }
             
         });
-                });  
-  
-    
 
-
-        //Para actualizar los datos de  produccion intelectual ->UPDATE
+    });  
+      
+    //Para actualizar los datos de  produccion intelectual ->UPDATE
     $(".modal-footer").on('click', '.actualizar2', function(){
 
         var id = $('#id_PROD_INTEL').val();
@@ -999,14 +1086,14 @@ function cambiartitulo_prod_intel(titulo2){
         var ruta = formulario.attr('action').replace(':PRODUCCION_INTELECTUAL_ID',id);
         var token4 = $("#token8").val();
                
-      //  var dato = $("#tipo_estudio").val();
-       // var btn_radio = $("#formularioModal1 input[name='dominio']:checked").val();
+        //  var dato = $("#tipo_estudio").val();
+        // var btn_radio = $("#formularioModal1 input[name='dominio']:checked").val();
         var dato2= $("#tipomedio").val();
         var dato3 = $('#medio').val();
         var dato4 = $('#nom_publicacion').val();
         var dato5 = $('#fech_publicacion').val();
      
-       // console.log(dato3);
+        // console.log(dato3);
         
         $.ajax({
             
@@ -1015,13 +1102,11 @@ function cambiartitulo_prod_intel(titulo2){
             type: 'PUT',
             dataType: 'json',
             data: {
-                
-                  
+                                  
                 id_tipo_medio: dato2,
                 id_medio: dato3,
                 nombre: dato4,
                 fecha_publicacion: dato5
-                
                 
             },
             success: function(respuesta){
@@ -1037,9 +1122,10 @@ function cambiartitulo_prod_intel(titulo2){
 
     });
 
-        $('#agregar_produccion_intelectual').click(function(){
+    //********* MODAL AGREGAR NUEVO PRODUCCION INTELECTUAL *********/
 
-//alert("hora loca");
+    $('#agregar_produccion_intelectual').click(function(){
+    
         $("#formularioproduccionintelectual").trigger('reset');
         cambiartitulo_prod_intel('Produccion Intelectual');
         $(".btn_produccion_intelectual").html('<span><i class="far fa-save"></i></span> Guardar');
@@ -1049,11 +1135,12 @@ function cambiartitulo_prod_intel(titulo2){
         $(".btn_produccion_intelectual").removeClass('actualizar2');
 
     });
-//PARA VER PRODUCCION INTELECTUAL
+
+    //PARA VER PRODUCCION INTELECTUAL
     $(document).on('click','.ver_produccion_intelectual',function(){
         
         var id_prod_intele2 = $(this).val();
-       // console.log(id_otro_estudio2 );
+        // console.log(id_otro_estudio2 );
         var ruta = "/ProyEscalafon/public/ver_produccion_intelecual";
         var token3 = $("#token6").val();
 
@@ -1086,9 +1173,7 @@ function cambiartitulo_prod_intel(titulo2){
         
     });
 
-   
-
-//PARA ELIMINAR produccion intelectual
+    //PARA ELIMINAR produccion intelectual
 
     $(document).on('click','.elim_produccion_intelectual',function(){
  
@@ -1125,12 +1210,13 @@ function cambiartitulo_prod_intel(titulo2){
     });
 
 
-/*ESTUDIOS SUPERIORES*/
+    /*ESTUDIOS SUPERIORES*/
 
-function cambiartitulo_est_supe(titulo3){
+    function cambiartitulo_est_supe(titulo3){
 
-    $("#cerrar_modal_estu_supe").text(titulo3)  
-}
+        $("#cerrar_modal_estu_supe").text(titulo3)  
+    }
+
     $(document).on('click','.update_estudios_superiores',function(e){
         cambiartitulo_est_supe('Actualizar Estudios Superiores'); //cambiamos el ititulo y creamos una funcion
         $(".btn_estudios_superiores").html('<span><i class="far fa-edit"></i></span>Actualizar'); // vamod al modal del create de otros estudios y creamos el btn_otros estudios

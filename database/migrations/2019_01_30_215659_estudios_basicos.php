@@ -14,25 +14,15 @@ class EstudiosBasicos extends Migration
     public function up()
     {
         Schema::create('estudios_basicos', function (Blueprint $table) {
-            $table->increments('id_estudios_bas');
-            $table->string('ie_primaria',100);
-            $table->integer('anio_egreso_primaria');
-            $table->string('pdf_primaria',45);
-            $table->string('pais_primaria',45);
-            $table->string('ubi_primaria',45);
-            $table->string('dep_primaria',45);
-            $table->string('prov_primaria',45);
-            $table->string('dist_primaria',45);
-            $table->string('ie_secundaria',100);
-            $table->integer('anio_egreso_secundaria');
-            $table->string('pdf_secundaria',45);
-            $table->string('pais_secundaria',45);
-            $table->string('ubi_secundaria',45);
-            $table->string('dep_secundaria',45);
-            $table->string('prov_secundaria',45);
-            $table->string('dist_secundaria',45);
-            $table->integer('id_persona');
-
+            $table->integer('id_persona')->primary();
+            $table->string('ie_primaria',150)->nullable();
+            $table->integer('anio_egreso_primaria')->nullable();
+            $table->string('pdf_primaria',50)->nullable();
+            
+            $table->string('ie_secundaria',150)->nullable();
+            $table->integer('anio_egreso_secundaria')->nullable();
+            $table->string('pdf_secundaria',50)->nullable();
+                       
             //$table->rememberToken();
             $table->timestamps();
  });
