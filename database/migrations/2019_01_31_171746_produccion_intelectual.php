@@ -17,10 +17,11 @@ public function up()
             $table->increments('id_prod_intele');
             $table->integer('id_persona');
             $table->integer('id_tipo_medio');
-            $table->integer('id_medio');
+            $table->integer('id_medioEscrito');
+            $table->integer('id_medioMultimedia');
             $table->string('nombre',225);
-            $table->date('fecha_publicacion');
-            $table->string('pdf_prod_intele',25);
+            $table->date('fecha_publicacion')->nullable();
+            $table->string('pdf_prod_intele',50)->nullable();
             //$table->rememberToken();
             $table->timestamps();
     });
