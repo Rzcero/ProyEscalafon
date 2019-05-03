@@ -10,15 +10,15 @@ class Merito extends Model
     protected $primaryKey = "id_meritos";
     protected $fillable = ["id_meritos",
     "id_persona",
-    "id_tipo_docPrincipal",
+    "id_tipo_docVarios",
     "motivo",
     "entidad_otorga",
     "fecha_emision_documento",
     "pdf_cargos_desempeniados"];
 
-    public function tipodocumentoprincipal(){
+    public function tipodocumentovarios(){
 
-        return $this->belongsTo("App\TipoDocumentoPrincipal","id_tipo_docPrincipal","id_tipo_docPrincipal");
+        return $this->belongsTo("App\TipoDocumentoVarios","id_tipo_docVarios","id_tipo_docVarios");
 
     }
     

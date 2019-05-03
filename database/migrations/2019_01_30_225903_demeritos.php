@@ -16,7 +16,7 @@ class Demeritos extends Migration
         Schema::create('demeritos', function (Blueprint $table) {
             $table->increments('id_demeritos');
             $table->integer('id_persona');
-            $table->integer('id_tipo_docPrincipal');
+            $table->integer('id_tipo_docVarios');
             $table->string('motivo',100);
             $table->date('fecha_emision_documento');
             $table->string('pdf_cargos_desempeñados',25);

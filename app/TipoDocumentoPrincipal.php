@@ -18,20 +18,6 @@ class TipoDocumentoPrincipal extends Model
 
     }
 
-    //Relacion 1 a muchos con la tabla demeritos
-    public function demerito(){
-
-        return $this->hasMany('App\Demerito','id_tipo_docPrincipal','id_tipo_docPrincipal');
-
-    }
-
-    //Relacion 1 a muchos con la tabla meritos
-    public function merito(){
-
-        return $this->hasMany('App\Merito','id_tipo_docPrincipal','id_tipo_docPrincipal');
-
-    }
-
     //Relacion 1 a muchos con la tabla pagos
     public function pago(){
 
