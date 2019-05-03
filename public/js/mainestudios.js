@@ -14,57 +14,6 @@ $(document).ready(function() {
         $('#pdf_secundaria').trigger('click');
     });
 
-// tabla de estudios basicos
-//  $("#formularioestudiosbasicos").submit(function(e){
-                
-        // var dato = $("#ie_primaria").val();  // # se recepcionan de create.blade -> formulario
-        // var dato2 = $("#anio_egreso_primaria").val();
-        // var dato3 = $("#pais_primaria").val();  // # se recepcionan de create.blade -> formulario
-        // var dato4 = $("#ubi_primaria").val();
-        // var dato5= $("#dep_primaria").val();  // # se recepcionan de create.blade -> formulario
-        // var dato6 = $("#prov_primaria").val();
-        // var dato7 = $("#dist_primaria").val();  // # se recepcionan de create.blade -> formulario
-        // var dato8 = $("#ie_secundaria").val();
-        // var dato9 = $("#anio_egreso_secundaria").val();  // # se recepcionan de create.blade -> formulario
-        // var dato10 = $("#pais_secundaria").val();
-        // var dato11 = $("#ubi_secundaria").val();  // # se recepcionan de create.blade -> formulario
-        // var dato12 = $("#dep_secundaria").val();
-        // var dato13 = $("#prov_secundaria").val();  // # se recepcionan de create.blade -> formulario
-        // var dato14 = $("#dist_secundaria").val();
-
-        // var route = "/ProyEscalafon/public/Estudios";
-        // var token = $("#token_est_bas").val();
-        
-        // $.ajax({
-            
-        //     url: route,
-        //     headers: {'X-CSRF-TOKEN': token},
-        //     type: 'POST',
-        //     dataType: 'json',
-        //     data: {
-        //         ie_primaria: dato,
-        //         anio_egreso_primaria: dato2,
-        //         pais_primaria: dato3,
-        //         ubi_primaria: dato4,
-        //         dep_primaria: dato5,
-        //         prov_primaria: dato6,
-        //         dist_primaria: dato7,
-        //         ie_secundaria: dato8,
-        //         anio_egreso_secundaria: dato9,
-        //         pais_secundaria: dato10,
-        //         ubi_secundaria: dato11,
-        //         dep_secundaria: dato12,
-        //         prov_secundaria: dato13,
-        //         dist_secundaria: dato14
-
-        //     }
-            
-        // });         
-        
-        // e.preventDefault();
-    
-    // });
-
     //funcion para eliminar los mensajes de error de los select
     function eliminaMsjError(ident){
             
@@ -145,7 +94,7 @@ $(document).ready(function() {
 
     // tabla de otros estudios
     //$("#guardarOtrosEstudios").click(function(e){
-      $(".modal-footer").on('click', '.guardar', function(){
+    $(".modal-footer").on('click', '.guardar', function(){
         
         //Elimina los mensajes de error cuando le das click al boton guardar
 
@@ -156,10 +105,7 @@ $(document).ready(function() {
         if ($('.is-invalid')) {
             $('.is-invalid').removeClass('is-invalid');
         }
-
-        /*
-        console.log(dato);  para ver por consola los datos que estas recibiendo
-        console.log(dato2);*/
+        
         var ruta = "/ProyEscalafon/public/guardar_otros_estudios";
         var token = $("#token_otr_est").val();
         
@@ -219,143 +165,8 @@ $(document).ready(function() {
         });         
     
     });
-
-
- /*   //botones tipo ratio del formulario 1
-    $("#formularioestudiossuperiores :radio").click(function(){
-        
-        //dato3 = $(this).val();
-            console.log(dato3);
-    });*/
-
-// tabla de estudios superiores
-//$("#guardarEstudiosSuperiores").click(function(e){
-                $(".modal-footer").on('click', '.guardar', function(){
-
-        var dato = $("#nivel_estudio").val();  // # se recepcionan de create.blade -> formulario
-      // var dato3 = 1;
-       var dato3 = $("#formularioestudiossuperiores input[name='estado']:checked").val();
-
-        var dato4 = $("#modalidad").val();  // # se recepcionan de create.blade -> formulario
-        var dato5 = $("#centro_estudio_superior").val();
-        var dato6= $("#grado").val();  // # se recepcionan de create.blade -> formulario
-        var dato7 = $("#carrera").val();
-        var dato8 = $("#detalle").val();  // # se recepcionan de create.blade -> formulario
-        var dato9 = $("#fech_consejo").val();
-        var dato10 = $("#fech_emision").val();  // # se recepcionan de create.blade -> formulario
-       var dato11 = $("#num_reg_titulo").val(); 
-       var dato12 = $("#EntidadRegist").val(); 
-         var dato13 = $("#nro_colegiatura").val(); 
-         var dato14 = $("#nom_colegio").val(); 
-
-
-//console.log(dato);  para ver por consola los datos que estas recibiendo
-//console.log(dato2);
-        var route = "/ProyEscalafon/public/guardar_estudios_superiores";
-        var token = $("#token_est_sup").val();
-        
-        $.ajax({
-            
-            url: route,
-            headers: {'X-CSRF-TOKEN': token},
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                id_nivel: dato,
-           
-                id_estado: dato3,
-                id_modalidad: dato4,
-                centro_estudios: dato5,
-                 id_tipo_grado: dato6,
-                carrera: dato7,
-                detall_grado: dato8,
-                fecha_consejo: dato9,
-                fecha_emision: dato10,
-                num_registro: dato11,
-                entidad: dato12,
-                num_colegiatura:dato13,
-                nom_colegio:dato14
-
-               
-              
-
-
-            }, //paso2 se modifica
-
-         success: function(respuesta){
-
-mostrarEstudiosSuperiores();
-
-
-$("#formularioestudiossuperiores").trigger('reset');
-
-
-}
-
- //e.preventDefault();
-            
-        });         
-
-    });
-
-
-
-
-// tabla de produccion intelectual
- $(".modal-footer").on('click', '.guardar', function(){
-//$("#guardarProduccionIntelectual").click(function(e){
-                
-        var dato = $("#tipomedio").val();  // # se recepcionan de create.blade -> formulario
-        var dato2 = $("#medio").val();
-        var dato3 = $("#nom_publicacion").val();  // # se recepcionan de create.blade -> formulario
-        var dato4 = $("#fech_publicacion").val();
-        
-       
-
-
-//console.log(dato);  
-//console.log(dato2);
-//console.log(dato3);
-
-        var route = "/ProyEscalafon/public/guardar_produccion_intelectual";
-        var token = $("#token_pro_int").val();
-        
-        $.ajax({
-            
-            url: route,
-            headers: {'X-CSRF-TOKEN': token},
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                id_tipo_medio: dato,
-                id_medio: dato2,
-                nombre: dato3,
-                fecha_publicacion: dato4
-                
-
-            },
-
-         //paso2 se modifica
-
-            success: function(respuesta){
-
-mostrarProduccionIntelectual();
-
-// 
-$("#formularioproduccionintelectual").trigger('reset');
-
-}
-            
-        });         
-        
-        //e.preventDefault(); // para no llevar a otra pagina etiquetas tipo submit y <a> ya no se usa porque se imprime en el formulario para que se vea
     
-    });
-
-
-
-
-//Para llenar el Select de listar nivel
+    //Para llenar el Select de listar nivel
         
     $.ajax({
         
@@ -378,7 +189,6 @@ $("#formularioproduccionintelectual").trigger('reset');
             
         }
    });
-
 
     //Para llenar el Select de listar modalidad
         
@@ -404,7 +214,7 @@ $("#formularioproduccionintelectual").trigger('reset');
         }
    });
 
-        //Para llenar el Select de listar tipo de estudio
+    //Para llenar el Select de listar tipo de estudio
         
     $.ajax({
         
@@ -427,10 +237,9 @@ $("#formularioproduccionintelectual").trigger('reset');
             
         }
    });
-        
-         
+       
 
-                //Para llenar el Select de listar tipo de documento
+    //Para llenar el Select de listar tipo de documento
         
     $.ajax({
         
@@ -454,344 +263,343 @@ $("#formularioproduccionintelectual").trigger('reset');
         }
    });
 
-
-               //Para llenar el Select de listar tipo de grado
-        
-    $.ajax({
-        
-        url: '/ProyEscalafon/public/listartipogrados',
-        type: 'GET',
-        success: function(respuesta){
-                                    
-            let registro = '';
+    //Para llenar el Select de listar tipo de grado
+    function listarTipoGrados(){ 
+        $.ajax({
             
-            console.log(respuesta);
-            respuesta.forEach(obj_json =>{
-                obj_json.forEach(obj_json => {
+            url: '/ProyEscalafon/public/listartipogrados',
+            type: 'GET',
+            success: function(respuesta){
+                                        
+                let registro = '';
+                
+                respuesta.forEach(obj_json =>{
+                    obj_json.forEach(obj_json => {
+                    
+                        registro += `<option value='${obj_json.id_grado}'>${obj_json.tipogrado}</option>`
 
-                  
-                    registro += `<option value='${obj_json.id_grado}'>${obj_json.tipogrado}</option>`
-
+                    });
                 });
-            });
-            
-            $("#grado").append(registro);
-            
+                
+                $("#grado").html(registro);
+    
+            }
+        });
+    }
 
-        }
-   });
+    function selectTipoMedio(identificador){
 
-      $.ajax({
-        
-        url: '/ProyEscalafon/public/listartipomedio',
-        type: 'GET',
-        success: function(respuesta){
+        $.ajax({
+            
+            url: '/ProyEscalafon/public/listartipomedio',
+            type: 'GET',
+            success: function(respuesta){
                                     
-            let registro = '';
-            
-            respuesta.forEach(obj_json =>{
-                obj_json.forEach(obj_json => {
+                let registro = '';
 
-                  
-                    registro += `<option value='${obj_json.id_tipo_medio}'>${obj_json.descripcion}</option>`
+                respuesta.forEach(obj_json =>{
+                    obj_json.forEach(obj_json => {
 
+                        
+                        registro += `<option value='${obj_json.id_tipo_medio}'>${obj_json.descripcion}</option>`
+
+                    });
                 });
-            });
-            
-            $("#tipomedio").append(registro);
-            
-        }
-   });
 
-            $.ajax({
-        
-        url: '/ProyEscalafon/public/listarmedio',
-        type: 'GET',
-        success: function(respuesta){
+               identificador.append(registro);
+
+            }
+        });
+    }
+
+    function selectMedioEscrito(identificador){
+
+        $.ajax({
+            
+            url: '/ProyEscalafon/public/listarmedioescrito',
+            type: 'GET',
+            success: function(respuesta){
                                     
-            let registro = '';
-            
-            respuesta.forEach(obj_json =>{
-                obj_json.forEach(obj_json => {
+                let registro = '';
 
-                  
-                    registro += `<option value='${obj_json.id_medio}'>${obj_json.descripcion}</option>`
+                respuesta.forEach(obj_json =>{
+                    obj_json.forEach(obj_json => {
 
+                        
+                        registro += `<option value='${obj_json.id}'>${obj_json.denominacion}</option>`
+
+                    });
                 });
-            });
+
+               identificador.html(registro);
+
+            }
+        });
+    }
+
+    function selectMedioMultimedia(identificador){
+
+        $.ajax({
             
-            $("#medio").append(registro);
+            url: '/ProyEscalafon/public/listarmediomultimedia',
+            type: 'GET',
+            success: function(respuesta){
+                                    
+                let registro = '';
+
+                respuesta.forEach(obj_json =>{
+                    obj_json.forEach(obj_json => {
+
+                        
+                        registro += `<option value='${obj_json.id}'>${obj_json.denominacion}</option>`
+
+                    });
+                });
+
+               identificador.html(registro);
+
+            }
+        });
+    }
             
-        }
-   });
+    //para mostrar otros estudios en el formulario
+    function mostrarOtrosEstudios(){   //paso1 se crea mostrar y se coloca al inicio
+        $.ajax({
+            url: '/ProyEscalafon/public/listarotrosestudios',
+            type: 'GET',
+            success: function(respuesta){
+                //console.log(respuesta);
+                let registro = '';
+
+                respuesta.forEach(obj_json =>{
+                    obj_json.forEach(obj_json =>{
+                        registro += `<tr>
+                                        <td>${obj_json.tipo}</td>  
+                                        <td>${obj_json.denominacion}</td>
+                                        <td>${obj_json.hora}</td>
+                                        <td>${obj_json.credito}</td>
+                                        <td>
+                                            <button class='ver_otros_estudios btn btn-warning' data-toggle="modal" data-target="#modal_ver_otros_esudios" value='${obj_json.id_otro_estudio}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
+
+                                            <button class='update_otros_estudios btn btn-success' data-toggle="modal" data-target="#modalOtrosEstudios" value='${obj_json.id_otro_estudio}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
+
+                                            <button class='elim_otros_estudios btn btn-danger' data-toggle="modal" data-target="#modal_eliminar_otros_estudios" value='${obj_json.id_otro_estudio}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
+                                        </td>
+                                    </tr>`
+
+                    });
+                });
+
+                // console.log(registro);
+                $("#otros_estudios").html(registro); // se jala del create  <tbody id=otros_estudios></tbody>
+            }
+        });
+    }
+
+    //para mostrar produccion intelectual   
+    function mostrarProduccionIntelectual(){
+
+        var ruta = '/ProyEscalafon/public/listarproduccion';
+        $.ajax({
+
+            url: ruta,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+
+                id: myIDpersona
+                
+            },
+            success: function(respuesta){
+
+                let registro = '';
+
+                respuesta.forEach(obj_json =>{
+                    obj_json.forEach(obj_json =>{
+                        registro += `<tr>
+                                        <td>${obj_json.medioEscrito}${obj_json.medioMultimedia}</td>  
+                                        <td>${obj_json.nombre_publicacion}</td>
+                                        <td>${obj_json.anio}</td>
+                                        <td>
+                                            <button class='ver_produccion_intelectual btn btn-warning' data-toggle="modal" data-target="#modal_ver_produccion_intelectual" value='${obj_json.id_prod_intele}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
+
+                                            <button class='update_produccion_intelectual btn btn-success' data-toggle="modal" data-target="#modalProduccionIntelectual" value='${obj_json.id_prod_intele}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
+
+                                            <button class='elim_produccion_intelectual btn btn-danger' data-toggle="modal" data-target="#modal_eliminar_produccion_intelectual" value='${obj_json.id_prod_intele}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
+                                        </td>
+                                    </tr>`
+
+                    });
+                });
+
+                // console.log(registro);
+                $("#pro_intelec").html(registro); // se jala del create  <tbody id=otros_estudios></tbody>
+
+            }
+
+        });
+
+    }
+
+    function mostrarEstudiosSuperiores(){
+
+        $.ajax({
+
+            url: '/ProyEscalafon/public/listarestudiossuperiores',
+            type: 'GET',
+            success: function(respuesta){
         
-       //para mostrar otros estudios en el formulario
-function mostrarOtrosEstudios(){   //paso1 se crea mostrar y se coloca al inicio
-$.ajax({
-url: '/ProyEscalafon/public/listarotrosestudios',
-type: 'GET',
-success: function(respuesta){
-//console.log(respuesta);
-let registro = '';
+                let registro = '';
 
-respuesta.forEach(obj_json =>{
-obj_json.forEach(obj_json =>{
-registro += `<tr>
-<td>${obj_json.tipo}</td>  
-<td>${obj_json.denominacion}</td>
-<td>${obj_json.hora}</td>
-<td>${obj_json.credito}</td>
+                respuesta.forEach(obj_json =>{
+                    obj_json.forEach(obj_json =>{
+                        registro += `<tr>
+                                        <td>${obj_json.tipo}</td>  
+                                        <td>${obj_json.centro_estudios}</td>
+                                        <td>${obj_json.nivel}</td>
+                                        <td>
+                                            <button class='ver_estudios_superiores btn btn-warning' data-toggle="modal" data-target="#modal_ver_estudios_superiores" value='${obj_json.id_estudios_sup}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
+                                            <button class='update_estudios_superiores btn btn-success' data-toggle="modal" data-target="#modalEstudiosSuperiores" value='${obj_json.id_estudios_sup}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
+                                            <button class='elim_estudios_superiores btn btn-danger' data-toggle="modal" data-target="#modal_eliminar_estudios_superiores" value='${obj_json.id_estudios_sup}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
+                                        </td>
+                                    </tr>`
 
-<td>
+                    });
+                });
 
-<button class='ver_otros_estudios btn btn-warning' data-toggle="modal" data-target="#modal_ver_otros_esudios" value='${obj_json.id_otro_estudio}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
+                // console.log(registro);
+                $("#est_superiores").html(registro); // se jala del create  <tbody id=otros_estudios></tbody>
 
-<button class='update_otros_estudios btn btn-success' data-toggle="modal" data-target="#modalOtrosEstudios" value='${obj_json.id_otro_estudio}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
+            }
 
-<button class='elim_otros_estudios btn btn-danger' data-toggle="modal" data-target="#modal_eliminar_otros_estudios" value='${obj_json.id_otro_estudio}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
-</td>
-</tr>`
+        });
 
-});
-});
+    }
 
-// console.log(registro);
-$("#otros_estudios").html(registro); // se jala del create  <tbody id=otros_estudios></tbody>
-}
-});
-}
+    // para oculatr alguno select del formulario de estudios superiores 29/03/2019
 
+    // $("#no_concluido").click(function(){
 
+    //     var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
 
-//para mostrar produccion intelectual   
-function mostrarProduccionIntelectual(){
-$.ajax({
-url: '/ProyEscalafon/public/listarproduccion',
-type: 'GET',
-success: function(respuesta){
+    //     //alert(btn_radio);
+    //     if(btn_radio == "2"){
 
-//console.log(respuesta);
+    //         $("#archivo_grado_titulo").attr("hidden",true);
+    //         $("#lblarchivo_grado_titulo").attr("hidden",true);
 
-let registro = '';
+    //         $("#grado").attr("hidden",true);
+    //         $("#lblgrado").attr("hidden",true);
 
-respuesta.forEach(obj_json =>{
-obj_json.forEach(obj_json =>{
-registro += `<tr>
-<td>${obj_json.medio}</td>  
-<td>${obj_json.nombre_publicacion}</td>
-<td>${obj_json.anio}</td>
+    //         $("#lbldetalle").attr("hidden",true);
+    //         $("#detalle").attr("hidden",true);
 
+    //         $("#fech_consejo").attr("hidden",true);
+    //         $("#lblfech_consejo").attr("hidden",true);
 
-<td>
-<button class='ver_produccion_intelectual btn btn-warning' data-toggle="modal" data-target="#modal_ver_produccion_intelectual" value='${obj_json.id_prod_intele}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
+    //         $("#lblfech_emision").attr("hidden",true);
+    //         $("#fech_emision").attr("hidden",true);
+    //         //$("#nom_reg_titulo").text("");
+    //         $("#lblnum_reg_titulo").attr("hidden",true);
+    //         $("#num_reg_titulo").attr("hidden",true);
 
-<button class='update_produccion_intelectual btn btn-success' data-toggle="modal" data-target="#modalProduccionIntelectual" value='${obj_json.id_prod_intele}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
+    //         $("#lblnom_colegio").attr("hidden",true);
+    //         $("#nom_colegio").attr("hidden",true);
 
-<button class='elim_produccion_intelectual btn btn-danger' data-toggle="modal" data-target="#modal_eliminar_produccion_intelectual" value='${obj_json.id_prod_intele}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
-</td>
-</tr>`
+    //         $("#lblnro_colegiatura").attr("hidden",true);
+    //         $("#nro_colegiatura").attr("hidden",true);
 
-});
-});
+    //         $("#lblEntidadRegist").attr("hidden",true);
+    //         $("#EntidadRegist").attr("hidden",true);
 
-// console.log(registro);
-$("#pro_intelec").html(registro); // se jala del create  <tbody id=otros_estudios></tbody>
+    //     } 
 
-}
+    // });
 
-});
+    // $("#concluido").click(function(){
 
-}
+    //     var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
 
+    //     //alert(btn_radio);
+    //     if(btn_radio == "1"){
 
+    //         $("#archivo_grado_titulo").attr("hidden",false);
+    //         $("#lblarchivo_grado_titulo").attr("hidden",false);
 
+    //         $("#grado").attr("hidden",false);
+    //         $("#lblgrado").attr("hidden",false);
 
+    //         $("#lbldetalle").attr("hidden",false);
+    //         $("#detalle").attr("hidden",false);
 
-function mostrarEstudiosSuperiores(){
+    //         $("#fech_consejo").attr("hidden",false);
+    //         $("#lblfech_consejo").attr("hidden",false);
 
-$.ajax({
+    //         $("#lblfech_emision").attr("hidden",false);
+    //         $("#fech_emision").attr("hidden",false);
+    //         //$("#nom_reg_titulo").text("");
+    //         $("#lblnum_reg_titulo").attr("hidden",false);
+    //         $("#num_reg_titulo").attr("hidden",false);
 
-url: '/ProyEscalafon/public/listarestudiossuperiores',
-type: 'GET',
-success: function(respuesta){
+    //         $("#lblnom_colegio").attr("hidden",false);
+    //         $("#nom_colegio").attr("hidden",false);
 
-console.log(respuesta);
+    //         $("#lblnro_colegiatura").attr("hidden",false);
+    //         $("#nro_colegiatura").attr("hidden",false);
 
-let registro = '';
+    //         $("#lblEntidadRegist").attr("hidden",false);
+    //         $("#EntidadRegist").attr("hidden",false);
+    //     } 
 
-respuesta.forEach(obj_json =>{
-obj_json.forEach(obj_json =>{
-registro += `<tr>
-<td>${obj_json.tipo}</td>  
-<td>${obj_json.centro_estudios}</td>
-<td>${obj_json.nivel}</td>
+    // });
 
+    // $("#egresado").click(function(){
 
-<td>
-<button class='ver_estudios_superiores btn btn-warning' data-toggle="modal" data-target="#modal_ver_estudios_superiores" value='${obj_json.id_estudios_sup}' title='Ver'><span><i class="fas fa-eye"></i></span></button>
-<button class='update_estudios_superiores btn btn-success' data-toggle="modal" data-target="#modalEstudiosSuperiores" value='${obj_json.id_estudios_sup}' title='Editar'><span><i class="fas fa-pencil-alt"></i></span></button>
-<button class='elim_estudios_superiores btn btn-danger' data-toggle="modal" data-target="#modal_eliminar_estudios_superiores" value='${obj_json.id_estudios_sup}' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
-</td>
-</tr>`
+    //     var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
 
-});
-});
+    //     //alert(btn_radio);
+    //     if(btn_radio == "3"){
 
-// console.log(registro);
-$("#est_superiores").html(registro); // se jala del create  <tbody id=otros_estudios></tbody>
+    //         $("#archivo_grado_titulo").attr("hidden",true);
+    //         $("#lblarchivo_grado_titulo").attr("hidden",true);
 
-}
+    //         $("#grado").attr("hidden",true);
+    //         $("#lblgrado").attr("hidden",true);
 
-});
+    //         $("#lbldetalle").attr("hidden",true);
+    //         $("#detalle").attr("hidden",true);
 
-}
+    //         $("#fech_consejo").attr("hidden",true);
+    //         $("#lblfech_consejo").attr("hidden",true);
 
+    //         $("#lblfech_emision").attr("hidden",true);
+    //         $("#fech_emision").attr("hidden",true);
+    //         //$("#nom_reg_titulo").text("");
+    //         $("#lblnum_reg_titulo").attr("hidden",true);
+    //         $("#num_reg_titulo").attr("hidden",true);
 
+    //         $("#lblnom_colegio").attr("hidden",true);
+    //         $("#nom_colegio").attr("hidden",true);
 
+    //         $("#lblnro_colegiatura").attr("hidden",true);
+    //         $("#nro_colegiatura").attr("hidden",true);
 
+    //         $("#lblEntidadRegist").attr("hidden",true);
+    //         $("#EntidadRegist").attr("hidden",true);
 
-// para oculatr alguno select del formulario de estudios superiores 29/03/2019
+    //     } 
 
-$("#no_concluido").click(function(){
+    // });
 
-var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
+    /*OTROS ESTUDIOS*/
 
-//alert(btn_radio);
-if(btn_radio == "2"){
+    function cambiartitulo_otros_estudios(titulo){
 
-
-
-$("#archivo_grado_titulo").attr("hidden",true);
-$("#lblarchivo_grado_titulo").attr("hidden",true);
-
-$("#grado").attr("hidden",true);
-$("#lblgrado").attr("hidden",true);
-
-$("#lbldetalle").attr("hidden",true);
-$("#detalle").attr("hidden",true);
-
-$("#fech_consejo").attr("hidden",true);
-$("#lblfech_consejo").attr("hidden",true);
-
-$("#lblfech_emision").attr("hidden",true);
-$("#fech_emision").attr("hidden",true);
-//$("#nom_reg_titulo").text("");
-$("#lblnum_reg_titulo").attr("hidden",true);
-$("#num_reg_titulo").attr("hidden",true);
-
-$("#lblnom_colegio").attr("hidden",true);
-$("#nom_colegio").attr("hidden",true);
-
-$("#lblnro_colegiatura").attr("hidden",true);
-$("#nro_colegiatura").attr("hidden",true);
-
-$("#lblEntidadRegist").attr("hidden",true);
-$("#EntidadRegist").attr("hidden",true);
-
-} 
-
-});
-
-$("#concluido").click(function(){
-
-var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
-
-//alert(btn_radio);
-if(btn_radio == "1"){
-
-
-
-$("#archivo_grado_titulo").attr("hidden",false);
-$("#lblarchivo_grado_titulo").attr("hidden",false);
-
-$("#grado").attr("hidden",false);
-$("#lblgrado").attr("hidden",false);
-
-$("#lbldetalle").attr("hidden",false);
-$("#detalle").attr("hidden",false);
-
-$("#fech_consejo").attr("hidden",false);
-$("#lblfech_consejo").attr("hidden",false);
-
-$("#lblfech_emision").attr("hidden",false);
-$("#fech_emision").attr("hidden",false);
-//$("#nom_reg_titulo").text("");
-$("#lblnum_reg_titulo").attr("hidden",false);
-$("#num_reg_titulo").attr("hidden",false);
-
-$("#lblnom_colegio").attr("hidden",false);
-$("#nom_colegio").attr("hidden",false);
-
-$("#lblnro_colegiatura").attr("hidden",false);
-$("#nro_colegiatura").attr("hidden",false);
-
-$("#lblEntidadRegist").attr("hidden",false);
-$("#EntidadRegist").attr("hidden",false);
-} 
-
-});
-
-$("#egresado").click(function(){
-
-var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
-
-//alert(btn_radio);
-if(btn_radio == "3"){
-
-
-
-$("#archivo_grado_titulo").attr("hidden",true);
-$("#lblarchivo_grado_titulo").attr("hidden",true);
-
-$("#grado").attr("hidden",true);
-$("#lblgrado").attr("hidden",true);
-
-$("#lbldetalle").attr("hidden",true);
-$("#detalle").attr("hidden",true);
-
-$("#fech_consejo").attr("hidden",true);
-$("#lblfech_consejo").attr("hidden",true);
-
-$("#lblfech_emision").attr("hidden",true);
-$("#fech_emision").attr("hidden",true);
-//$("#nom_reg_titulo").text("");
-$("#lblnum_reg_titulo").attr("hidden",true);
-$("#num_reg_titulo").attr("hidden",true);
-
-$("#lblnom_colegio").attr("hidden",true);
-$("#nom_colegio").attr("hidden",true);
-
-$("#lblnro_colegiatura").attr("hidden",true);
-$("#nro_colegiatura").attr("hidden",true);
-
-$("#lblEntidadRegist").attr("hidden",true);
-$("#EntidadRegist").attr("hidden",true);
-
-
-} 
-
-
-});
-
-
-
-
-
-
-
-/*OTROS ESTUDIOS*/
-
-
-
-
-function cambiartitulo_otros_estudios(titulo){
-
-    $("#exampleModalLabelOtrosEstudios").text(titulo)  // buscar el <h5 id="exampleModalLabelOtrosEstudios y cambiar tambien en aria-labelledby="exampleModalLabelOtrosEstudios"
-}
-
+        $("#exampleModalLabelOtrosEstudios").text(titulo)  // buscar el <h5 id="exampleModalLabelOtrosEstudios y cambiar tambien en aria-labelledby="exampleModalLabelOtrosEstudios"
+    }
 
     //PARA ACTUALIZAR EL MODAL otros estudios
-        //para mostrar los datos en el modal -> RECUPERAR LOS DATOS DE LA BASE DE DATOS
+    //para mostrar los datos en el modal -> RECUPERAR LOS DATOS DE LA BASE DE DATOS
     $(document).on('click','.update_otros_estudios',function(e){
 
         $("#formulariootrosestudios").trigger('reset');
@@ -823,9 +631,9 @@ function cambiartitulo_otros_estudios(titulo){
         $(".btn_otros_estudios").addClass('actualizar');
         $(".btn_otros_estudios").removeClass('guardar');
 
-//primero creamos un campo oculto del identificador de la tabla otros estudios
-//segundo le colocamos el id en el conroler, luego en los botones y lo comprobamos con console.log si es que da el numero del boton
-//tercero crear una ruta en web
+        //primero creamos un campo oculto del identificador de la tabla otros estudios
+        //segundo le colocamos el id en el conroler, luego en los botones y lo comprobamos con console.log si es que da el numero del boton
+        //tercero crear una ruta en web
         var id_OtroEstudio = $(this).val();
         
         var ruta = "/ProyEscalafon/public/editar_modal_otros_estudios";
@@ -847,7 +655,6 @@ function cambiartitulo_otros_estudios(titulo){
                // cuarto creamos la funcion en el controlador  editar_modal_otros_estudios, luego 
                // quinto ir a create y crear un campo oculto       
 
-
                         $('#id_OT_ES').val(obj_json.id);  // lo creamos en el create
                         $('#tipo_estudios').val(obj_json.tipoestudio);
                         $('#nom_estudios').val(obj_json.nombreestudio);
@@ -868,7 +675,7 @@ function cambiartitulo_otros_estudios(titulo){
                 
     });   
     
-        //Para actualizar los datos de otros estudios ->UPDATE
+    //Para actualizar los datos de otros estudios ->UPDATE
     $(".modal-footer").on('click', '.actualizar', function(){
         
         if ($('.msg_errorOtroEstudio')) {
@@ -1025,25 +832,241 @@ function cambiartitulo_otros_estudios(titulo){
 
     function cambiartitulo_prod_intel(titulo2){
 
-        $("#cerrar_modal_prod_intel").text(titulo2)  
-    }
+        $("#cerrar_modal_prod_intel").text(titulo2);
 
+    }
+    
+    //********* MODAL AGREGAR NUEVO PRODUCCION INTELECTUAL *********/
+
+    var selec_tipoMedio = $('#tipomedio');
+    var selec_medioEscrito = $('#medio_escrito');
+    var selec_medioMultimedia = $('#medio_multimedia');
+
+    selectTipoMedio(selec_tipoMedio);
+    selectMedioEscrito(selec_medioEscrito);
+    selectMedioMultimedia(selec_medioMultimedia);
+    
+    $('#tipomedio').change(function() {
+
+		//elimina mensajes de error
+		var valor1 = 'tipomedio';
+		var valor2 = 'medio_escrito';
+		var valor3 = 'medio_multimedia';
+		
+		eliminaMsjError(valor1);
+		eliminaMsjError(valor2);
+		eliminaMsjError(valor3);
+	               
+		if ($(this).val() != 1) {
+            
+			if ($(this).val() == 2) {
+			
+				$('#m_escrito').show();
+                selectMedioEscrito(selec_medioEscrito);
+                
+				$('#m_multimedia').hide();
+				selec_medioMultimedia.val($('option:first', selec_medioMultimedia).val());
+
+			}else{
+				$('#m_escrito').hide();
+				//resetea los select de medio
+				selec_medioEscrito.val($('option:first', selec_medioEscrito).val());
+				
+				$('#m_multimedia').show();
+								
+				selectMedioMultimedia(selec_medioMultimedia);
+				
+			}
+		
+		} else{
+			
+			$('#m_escrito').hide();
+			selec_medioEscrito.val($('option:first', selec_medioEscrito).val());
+			
+			$('#m_multimedia').hide();
+			selec_medioMultimedia.val($('option:first', selec_medioMultimedia).val());
+
+        }
+
+    });
+    
+    //elimina los errores sel select medio escrito
+    $('#medio_escrito').change(function() {
+
+        var valor1 = 'medio_escrito';
+        
+        eliminaMsjError(valor1);
+
+	});
+
+    //elimina los errores sel select medio multimedia
+	$('#medio_multimedia').change(function() {
+
+		var valor1 = 'medio_multimedia';
+        
+        eliminaMsjError(valor1);
+
+    });
+    
+    //para el boton de subir pdf produccion intelectual
+    $('#btn_pdf_prodIntelectual').on('click', function(){
+        $('#pdf_prodIntelectual').trigger('click');
+    });
+
+    $('#agregar_produccion_intelectual').click(function(){
+
+        if ($('.msg_errorProdIntelec')) {
+			$('.msg_errorProdIntelec').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        if ($('.msj_exitoProdIntelec')) {
+            $('.msj_exitoProdIntelec').css('display','none');
+        }
+        
+        $('#m_escrito').hide();
+        $('#m_multimedia').hide();
+
+        $("#formularioproduccionintelectual").trigger('reset');
+
+        cambiartitulo_prod_intel('Publicaciones');
+        
+        $(".btn_produccion_intelectual").html('<span><i class="far fa-save"></i></span> Guardar');
+        $(".btn_produccion_intelectual").addClass('btn-primary');
+        $(".btn_produccion_intelectual").removeClass('btn-success');
+        $(".btn_produccion_intelectual").addClass('guardar2');
+        $(".btn_produccion_intelectual").removeClass('actualizar2');
+
+    });
+
+    // tabla de produccion intelectual
+    $(".modal-footer").on('click', '.guardar2', function(){
+
+        if ($('.msg_errorProdIntelec')) {
+			$('.msg_errorProdIntelec').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+         
+        var route = "/ProyEscalafon/public/guardar_produccion_intelectual";
+        var token = $("#token_pro_int").val();
+        
+        var formData = new FormData();
+
+        formData.append('miID',myIDpersona);
+        
+        if ($("#tipomedio").val() != 1) {
+
+            formData.append('tipomedio',$("#tipomedio").val());
+
+            if ($("#tipomedio").val() == 2) {
+                
+                if ($("#medio_escrito").val() != 1) {
+                    formData.append('medio_escrito',$("#medio_escrito").val());
+                }
+
+                formData.append('medio_multimedia',$("#medio_multimedia").val(1));
+    
+            } else{
+
+                if ($("#medio_multimedia").val() != 1) {
+                    formData.append('medio_multimedia',$("#medio_multimedia").val());
+                }
+
+                formData.append('medio_escrito',$("#medio_escrito").val(1));
+
+            }
+        }
+                
+        formData.append('pdf_prodIntelectual',$('input[name=pdf_prodIntelectual]')[0].files[0]);
+        formData.append('nom_publicacion',$("#nom_publicacion").val());
+        formData.append('fech_publicacion',$("#fech_publicacion").val());
+
+        $.ajax({
+            
+            url: route,
+            headers: {'X-CSRF-TOKEN': token},
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            //paso2 se modifica    
+            success: function(respuesta){
+
+                $('.msj_exitoProdIntelec').html(respuesta.mensaje);
+                $('.msj_exitoProdIntelec').css('display','block');
+
+                $("#formularioproduccionintelectual").trigger('reset');
+
+                mostrarProduccionIntelectual();
+
+            },
+            error: function(respuesta){
+
+                $('.msj_exitoProdIntelec').css('display','none');
+
+                $.each(respuesta.responseJSON.errors, function(index, val){
+                    
+                    $('select[name=' + index + ']').addClass('is-invalid');
+					
+                    $('select[name=' + index + ']').after(`<span class='msg_errorProdIntelec invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                    $('input[name=' + index + ']').addClass('is-invalid');
+					
+                    $('input[name=' + index + ']').after(`<span class='msg_errorProdIntelec invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                });
+
+            }
+            
+        });         
+                    
+    });
+
+    //PARA ACTUALIZAR EL MODAL DE PRODUCCION INTELECTUAL
+    //para mostrar los datos en el modal
     $(document).on('click','.update_produccion_intelectual',function(e){
         
-        cambiartitulo_prod_intel('Actualizar Produccion Intelectual'); //cambiamos el ititulo y creamos una funcion
+        $('#formularioproduccionintelectual').trigger('reset');
+
+        //si hay mensaje de error
+        if ($('.msg_errorProdIntelec')) {
+            //entonces elimina la clase del error
+			$('.msg_errorProdIntelec').remove();
+        }
+        
+        //si hay input en rojo con error
+        if ($('.is-invalid')) {
+            //entonces remueve la clase del error
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        //si hay un mensaje de exito
+        if ($('.msj_exitoProdIntelec')) {
+            //entonces ocultalo
+            $('.msj_exitoProdIntelec').css('display','none');
+        }
+
+        cambiartitulo_prod_intel('Actualizar Publicaciones'); //cambiamos el ititulo y creamos una funcion
         $(".btn_produccion_intelectual").html('<span><i class="far fa-edit"></i></span>Actualizar'); // vamod al modal del create de otros estudios y creamos el btn_otros estudios
 
-        $(".btn_estudios_superiores").addClass('btn-success');
+        $(".btn_produccion_intelectual").addClass('btn-success');
         $(".btn_produccion_intelectual").removeClass('btn-primary');
         $(".btn_produccion_intelectual").addClass('actualizar2');
-        $(".btn_produccion_intelectual").removeClass('guardar');
+        $(".btn_produccion_intelectual").removeClass('guardar2');
 
         //primero creamos un campo oculto del identificador de la tabla otros estudios
         //segundo le colocamos el id en el conroler, luego en los botones y lo comprobamos con console.log si es que da el numero del boton
         //tercero crear una ruta en web
 
         var id_ProduccionIntelectual = $(this).val();
-        console.log(id_ProduccionIntelectual);
         var ruta = "/ProyEscalafon/public/editar_modal_prod_intel";
         var token1 = $("#token_pro_int").val();
 
@@ -1060,12 +1083,28 @@ function cambiartitulo_otros_estudios(titulo){
                             
                 respuesta.forEach(obj_json =>{
                     obj_json.forEach(obj_json =>{
-               // cuarto creamos la funcion en el controlador  editar_modal_otros_estudios, luego 
-               // quinto ir a create y crear un campo oculto       
+                        // cuarto creamos la funcion en el controlador  editar_modal_otros_estudios, luego 
+                        // quinto ir a create y crear un campo oculto       
 
                         $('#id_PROD_INTEL').val(obj_json.id);  // lo creamos en el create
                         $('#tipomedio').val(obj_json.idtipomedio);
-                        $('#medio').val(obj_json.idmedio);
+
+                        if (obj_json.idmedioEscrito != 1) {
+
+                            $('#m_escrito').show();
+                            $('#m_multimedia').hide();
+                            $('#medio_escrito').val(obj_json.idmedioEscrito);
+
+                        }
+                        
+                        if (obj_json.idmedioMultimedia != 1) {
+
+                            $('#m_escrito').hide();
+                            $('#m_multimedia').show();
+                            $('#medio_multimedia').val(obj_json.idmedioMultimedia);
+
+                        }
+                        
                         $('#nom_publicacion').val(obj_json.nombre);
                         $('#fech_publicacion').val(obj_json.fechapublica); 
                         
@@ -1077,70 +1116,104 @@ function cambiartitulo_otros_estudios(titulo){
         });
 
     });  
-      
+
     //Para actualizar los datos de  produccion intelectual ->UPDATE
     $(".modal-footer").on('click', '.actualizar2', function(){
+
+        if ($('.msg_errorProdIntelec')) {
+			$('.msg_errorProdIntelec').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        if ($('.msj_exitoProdIntelec')) {
+            $('.msj_exitoProdIntelec').css('display','none');
+        }
 
         var id = $('#id_PROD_INTEL').val();
         var formulario = $('#form_updateproduccionintelectual');
         var ruta = formulario.attr('action').replace(':PRODUCCION_INTELECTUAL_ID',id);
         var token4 = $("#token8").val();
-               
-        //  var dato = $("#tipo_estudio").val();
-        // var btn_radio = $("#formularioModal1 input[name='dominio']:checked").val();
-        var dato2= $("#tipomedio").val();
-        var dato3 = $('#medio').val();
-        var dato4 = $('#nom_publicacion').val();
-        var dato5 = $('#fech_publicacion').val();
-     
-        // console.log(dato3);
+        
+        var formData2 = new FormData();
+                 
+        if ($("#tipomedio").val() != 1) {
+
+            formData2.append('tipomedio',$("#tipomedio").val());
+
+            if ($("#tipomedio").val() == 2) {
+                
+                if ($("#medio_escrito").val() != 1) {
+                    formData2.append('medio_escrito',$("#medio_escrito").val());
+                }
+
+                formData2.append('medio_multimedia',$("#medio_multimedia").val(1));
+    
+            } else{
+
+                if ($("#medio_multimedia").val() != 1) {
+                    formData2.append('medio_multimedia',$("#medio_multimedia").val());
+                }
+
+                formData2.append('medio_escrito',$("#medio_escrito").val(1));
+
+            }
+        }
+
+        formData2.append('pdf_prodIntelectual',$('input[name=pdf_prodIntelectual]')[0].files[0]);
+        formData2.append('nom_publicacion',$('#nom_publicacion').val());
+        formData2.append('fech_publicacion',$('#fech_publicacion').val());
         
         $.ajax({
             
             url: ruta,
             headers: {'X-CSRF-TOKEN': token4},
-            type: 'PUT',
+            type: 'post',
             dataType: 'json',
-            data: {
-                                  
-                id_tipo_medio: dato2,
-                id_medio: dato3,
-                nombre: dato4,
-                fecha_publicacion: dato5
+            data: formData2,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(respuesta){
+                
+                $('.msj_exitoProdIntelec').html(respuesta.mensaje);
+				$('.msj_exitoProdIntelec').css('display','block');
+                
+                mostrarProduccionIntelectual();
                 
             },
-            success: function(respuesta){
-                                                
-                mostrarProduccionIntelectual();
-                //mostrarHabientes();
-                                
-                $("#formularioproduccionintelectual").trigger('reset');
-                
+            error: function(respuesta){
+				
+				$('.msj_exitoProdIntelec').css('display','none');
+				
+				$.each(respuesta.responseJSON.errors, function(index, val) {
+					// console.log(index + ": "+val);
+					
+					$('select[name=' + index + ']').addClass('is-invalid');
+					
+                    $('select[name=' + index + ']').after(`<span class='msg_errorProdIntelec invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                    $('input[name=' + index + ']').addClass('is-invalid');
+					
+                    $('input[name=' + index + ']').after(`<span class='msg_errorProdIntelec invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+                    
+				});
+				
             }
             
         });
 
     });
 
-    //********* MODAL AGREGAR NUEVO PRODUCCION INTELECTUAL *********/
-
-    $('#agregar_produccion_intelectual').click(function(){
-    
-        $("#formularioproduccionintelectual").trigger('reset');
-        cambiartitulo_prod_intel('Produccion Intelectual');
-        $(".btn_produccion_intelectual").html('<span><i class="far fa-save"></i></span> Guardar');
-        $(".btn_produccion_intelectual").addClass('btn-primary');
-        $(".btn_produccion_intelectual").removeClass('btn-success');
-        $(".btn_produccion_intelectual").addClass('guardar');
-        $(".btn_produccion_intelectual").removeClass('actualizar2');
-
-    });
-
     //PARA VER PRODUCCION INTELECTUAL
     $(document).on('click','.ver_produccion_intelectual',function(){
         
+        //resetea el formulario
+        $('#formVerProducIntelectual').trigger('reset');
+
         var id_prod_intele2 = $(this).val();
-        // console.log(id_otro_estudio2 );
         var ruta = "/ProyEscalafon/public/ver_produccion_intelecual";
         var token3 = $("#token6").val();
 
@@ -1159,11 +1232,18 @@ function cambiartitulo_otros_estudios(titulo){
                     obj_json.forEach(obj_json =>{
                         
                         $('#tipomedio2').val(obj_json.tipomedio);
-                        $('#medio2').val(obj_json.medio);
+
+                        if (obj_json.medioEscrito) {
+                            $('#medio2').val(obj_json.medioEscrito);
+                        }
+
+                        if (obj_json.medioMultimedia) {
+                            $('#medio2').val(obj_json.medioMultimedia);
+                        }
+                        
                         $('#nom_publicacion2').val(obj_json.nombre);
                         $('#fech_publicacion2').val(obj_json.fechapu);
-                       
-
+                     
                     });
                 });
             
@@ -1190,7 +1270,7 @@ function cambiartitulo_otros_estudios(titulo){
          
         var token3 = $("#token6").val();
         var datos = formulario.serialize();
-             console.log(datos);                
+                  
         $.ajax({
             
             url: ruta,
@@ -1201,14 +1281,12 @@ function cambiartitulo_otros_estudios(titulo){
             success: function(respuesta){
                                     
                 mostrarProduccionIntelectual();
-               // mostrarHabientes();
-
+              
             }
             
         });
         
     });
-
 
     /*ESTUDIOS SUPERIORES*/
 
@@ -1217,18 +1295,238 @@ function cambiartitulo_otros_estudios(titulo){
         $("#cerrar_modal_estu_supe").text(titulo3)  
     }
 
+    //*************** MODAL AGREGAR NUEVO ESTUDIOS SUPERIORES *************/
+    
+    listarTipoGrados();
+
+    $('#concluido').click(function(){
+        console.log('gggg');
+        $('#grado').attr('disabled',false);
+
+    });
+    
+
+    $('#no_concluido').click(function(){
+
+        $('#grado').attr('disabled',true).val(1);
+        $('#detalle').attr('disabled',true).val('');
+        
+        $('#fech_consejo').attr('disabled',true).val('');
+        
+        $('#fech_emision').attr('disabled',true).val('');
+        $('#num_reg_titulo').attr('disabled',true).val('');
+        $('#EntidadRegist').attr('disabled',true).val('');
+        $('#nro_colegiatura').attr('disabled',true).val('');
+        $('#nom_colegio').attr('disabled',true).val('');
+
+    });
+
+    $('#egresado').click(function(){
+
+        $('#grado').attr('disabled',true).val(1);
+        $('#detalle').attr('disabled',true).val('');
+        $('#fech_consejo').attr('disabled',true).val('');
+        $('#fech_emision').attr('disabled',true).val('');
+        $('#num_reg_titulo').attr('disabled',true).val('');
+        $('#EntidadRegist').attr('disabled',true).val('');
+        $('#nro_colegiatura').attr('disabled',true).val('');
+        $('#nom_colegio').attr('disabled',true).val('');
+
+    });
+    
+    
+    $('#grado').change(function(){
+        
+        if ($(this).val() == 1) {
+            $('#detalle').attr('disabled',true).val('');
+            $('#fech_consejo').attr('disabled',true).val('');
+            $('#fech_emision').attr('disabled',true).val('');
+            $('#num_reg_titulo').attr('disabled',true).val('');
+            $('#EntidadRegist').attr('disabled',true).val('');
+            $('#nro_colegiatura').attr('disabled',true).val('');
+            $('#nom_colegio').attr('disabled',true).val('');
+        } else{
+            if ($(this).val() == 2) {
+                $('#detalle').attr('disabled',false);
+                $('#fech_consejo').attr('disabled',false);
+                $('#fech_emision').attr('disabled',false);
+                $('#num_reg_titulo').attr('disabled',false);
+                $('#EntidadRegist').attr('disabled',false);
+
+                $('#nro_colegiatura').attr('disabled',true).val('');
+                $('#nom_colegio').attr('disabled',true).val('');
+            } else{
+
+                $('#detalle').attr('disabled',false);
+                $('#fech_consejo').attr('disabled',false);
+                $('#fech_emision').attr('disabled',false);
+                $('#num_reg_titulo').attr('disabled',false);
+                $('#EntidadRegist').attr('disabled',false);
+                $('#nro_colegiatura').attr('disabled',false);
+                $('#nom_colegio').attr('disabled',false);
+
+            }
+            
+        }
+
+    });
+
+    //para el boton de subir pdf idioma
+    $('#btn_pdfEstudioSuperior').on('click', function(){
+        $('#pdf_estudioSuperior').trigger('click');
+    });
+
+    $('#agregar_estudios_superiores').click(function(){
+        
+        if ($('.msg_errorEstSuperior')) {
+			$('.msg_errorEstSuperior').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        if ($('.msj_exitoIdrEstSuperior')) {
+            $('.msj_exitoIdrEstSuperior').css('display','none');
+        }
+
+        if ( $('#grado').val() == 1 ) {
+            
+            $('#detalle').attr('disabled',true);
+            $('#fech_consejo').attr('disabled',true);
+            $('#fech_emision').attr('disabled',true);
+            $('#num_reg_titulo').attr('disabled',true);
+            $('#EntidadRegist').attr('disabled',true);
+            $('#nro_colegiatura').attr('disabled',true);
+            $('#nom_colegio').attr('disabled',true);
+
+        }
+
+        $("#formularioestudiossuperiores").trigger('reset');
+
+        cambiartitulo_est_supe('Estudios Superiores');
+
+        $(".btn_estudios_superiores").html('<span><i class="far fa-save"></i></span> Guardar');
+        $(".btn_estudios_superiores").addClass('btn-primary');
+        $(".btn_estudios_superiores").removeClass('btn-success');
+        $(".btn_estudios_superiores").addClass('guardar3');
+        $(".btn_estudios_superiores").removeClass('actualizar3');
+
+    });
+
+    // tabla de estudios superiores
+    
+    $(".modal-footer").on('click', '.guardar3', function(){
+
+        if ($('.msg_errorEstSuperior')) {
+			$('.msg_errorEstSuperior').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
+
+        //console.log(dato);  para ver por consola los datos que estas recibiendo
+        var ruta = "/ProyEscalafon/public/guardar_estudios_superiores";
+        var token = $("#token_est_sup").val();
+        
+        var formData3 = new FormData();
+
+        formData3.append('miID',myIDpersona);
+        formData3.append('nivel_estudio',$("#nivel_estudio").val());
+        formData3.append('estado',btn_radio);
+        formData3.append('modalidad',$("#modalidad").val());
+        formData3.append('centro_estudio_superior',$("#centro_estudio_superior").val());
+        formData3.append('grado',$("#grado").val());
+        formData3.append('carrera',$("#carrera").val());
+        formData3.append('detalle',$("#detalle").val());
+        formData3.append('fech_consejo',$("#fech_consejo").val());
+        formData3.append('pdf_estudioSuperior',$('input[name=pdf_estudioSuperior]')[0].files[0]);
+        formData3.append('fech_emision',$("#fech_emision").val());
+        formData3.append('num_reg_titulo',$("#num_reg_titulo").val());
+        formData3.append('EntidadRegist',$("#EntidadRegist").val());
+        formData3.append('nro_colegiatura',$("#nro_colegiatura").val());
+        formData3.append('nom_colegio',$("#nom_colegio").val());
+
+        $.ajax({
+            
+            url: ruta,
+            headers: {'X-CSRF-TOKEN': token},
+            type: 'POST',
+            dataType: 'json',
+            data: formData3, //paso2 se modifica
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(respuesta){
+                
+                $('.msj_exitoEstSuperior').html(respuesta.mensaje);
+                $('.msj_exitoEstSuperior').css('display','block');
+
+                $("#formularioestudiossuperiores").trigger('reset');
+
+                mostrarEstudiosSuperiores();
+
+            },
+            error: function(respuesta){
+
+                $('.msj_exitoEstSuperior').css('display','none');
+
+                $.each(respuesta.responseJSON.errors, function(index, val){
+                    
+                    $('select[name=' + index + ']').addClass('is-invalid');
+					
+                    $('select[name=' + index + ']').after(`<span class='msg_errorEstSuperior invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                    $('input[name=' + index + ']').addClass('is-invalid');
+					
+                    $('input[name=' + index + ']').after(`<span class='msg_errorEstSuperior invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                });
+
+            }
+                       
+        });         
+
+    });
+
+    //PARA ACTUALIZAR EL MODAL DE ESTUDIOS SUPERIORES
+        //para mostrar los datos en el modal
     $(document).on('click','.update_estudios_superiores',function(e){
+
+        $('#formularioestudiossuperiores').trigger('reset');
+
+        //si hay mensaje de error
+        if ($('.msg_errorEstSuperior')) {
+            //entonces elimina la clase del error
+			$('.msg_errorEstSuperior').remove();
+        }
+        
+        //si hay input en rojo con error
+        if ($('.is-invalid')) {
+            //entonces remueve la clase del error
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        //si hay un mensaje de exito
+        if ($('.msj_exitoEstSuperior')) {
+            //entonces ocultalo
+            $('.msj_exitoEstSuperior').css('display','none');
+        }
+
         cambiartitulo_est_supe('Actualizar Estudios Superiores'); //cambiamos el ititulo y creamos una funcion
         $(".btn_estudios_superiores").html('<span><i class="far fa-edit"></i></span>Actualizar'); // vamod al modal del create de otros estudios y creamos el btn_otros estudios
 
         $(".btn_estudios_superiores").addClass('btn-success');
         $(".btn_estudios_superiores").removeClass('btn-primary');
         $(".btn_estudios_superiores").addClass('actualizar3');
-        $(".btn_estudios_superiores").removeClass('guardar');
+        $(".btn_estudios_superiores").removeClass('guardar3');
 
-//primero creamos un campo oculto del identificador de la tabla otros estudios
-//segundo le colocamos el id en el conroler, luego en los botones y lo comprobamos con console.log si es que da el numero del boton
-//tercero crear una ruta en web
+        //primero creamos un campo oculto del identificador de la tabla otros estudios
+        //segundo le colocamos el id en el conroler, luego en los botones y lo comprobamos con console.log si es que da el numero del boton
+        //tercero crear una ruta en web
         var id_EstudiosSuperiores = $(this).val();
         console.log(id_EstudiosSuperiores);
         var ruta = "/ProyEscalafon/public/editar_modal_estu_supe";
@@ -1247,16 +1545,58 @@ function cambiartitulo_otros_estudios(titulo){
                             
                 respuesta.forEach(obj_json =>{
                     obj_json.forEach(obj_json =>{
-               // cuarto creamos la funcion en el controlador  editar_modal_otros_estudios, luego 
-               // quinto ir a create y crear un campo oculto       
+                        // cuarto creamos la funcion en el controlador  editar_modal_otros_estudios, luego 
+                        // quinto ir a create y crear un campo oculto       
 
-/*aquivoy 15/04/2019*/
+                        /*aquivoy 15/04/2019*/
                         $('#id_ESTU_SUPE').val(obj_json.id);  // lo creamos en el create
                         $('#nivel_estudio').val(obj_json.tiponivel);
                         $('#estado').val(obj_json.tipoestado);
                         $('#modalidad').val(obj_json.modalidad);
                         $('#centro_estudio_superior').val(obj_json.centroestudio); 
-                        $('#grado').val(obj_json.tipogrado);
+                        // $('#grado').val(obj_json.tipogrado);
+
+                        if (obj_json.tipogrado == 1) {
+
+                            $('#grado').val(obj_json.tipogrado);
+
+                            $('#detalle').attr('disabled',true);
+                            $('#fech_consejo').attr('disabled',true);
+                            $('#fech_emision').attr('disabled',true);
+                            $('#num_reg_titulo').attr('disabled',true);
+                            $('#EntidadRegist').attr('disabled',true);
+                            $('#nro_colegiatura').attr('disabled',true);
+                            $('#nom_colegio').attr('disabled',true);
+
+                        } else{
+                            if (obj_json.tipogrado == 2) {
+
+                                $('#grado').val(obj_json.tipogrado);
+
+                                $('#detalle').attr('disabled',false);
+                                $('#fech_consejo').attr('disabled',false);
+                                $('#fech_emision').attr('disabled',false);
+                                $('#num_reg_titulo').attr('disabled',false);
+                                $('#EntidadRegist').attr('disabled',false);
+                
+                                $('#nro_colegiatura').attr('disabled',true);
+                                $('#nom_colegio').attr('disabled',true);
+                            } else{
+                                
+                                $('#grado').val(obj_json.tipogrado);
+
+                                $('#detalle').attr('disabled',false);
+                                $('#fech_consejo').attr('disabled',false);
+                                $('#fech_emision').attr('disabled',false);
+                                $('#num_reg_titulo').attr('disabled',false);
+                                $('#EntidadRegist').attr('disabled',false);
+                                $('#nro_colegiatura').attr('disabled',false);
+                                $('#nom_colegio').attr('disabled',false);
+                
+                            }
+                            
+                        }
+
                         $('#carrera').val(obj_json.carrera);
                         $('#detalle').val(obj_json.detallegrado);
                         $('#fech_consejo').val(obj_json.fechaconsejo);
@@ -1268,10 +1608,13 @@ function cambiartitulo_otros_estudios(titulo){
 
                         if (obj_json.tipoestado == 1) {
                             $('#concluido').prop('checked',true);
+                            $('#grado').attr('disabled',false);
                         } else if (obj_json.tipoestado == 2) {
                             $('#no_concluido').prop('checked',true);
+                            $('#grado').attr('disabled',true);
                         } else if (obj_json.tipoestado == 3) {
                             $('#egresado').prop('checked',true);
+                            $('#grado').attr('disabled',true);
                         } else{
                             $('#concluido').prop('checked',true);
                         }
@@ -1282,96 +1625,97 @@ function cambiartitulo_otros_estudios(titulo){
             }
             
         });
-                });  
-
+    });  
 
     //Para actualizar los datos estudios superiores ->UPDATE
     $(".modal-footer").on('click', '.actualizar3', function(){
+
+        if ($('.msg_errorEstSuperior')) {
+			$('.msg_errorEstSuperior').remove();
+        }
+        
+        if ($('.is-invalid')) {
+            $('.is-invalid').removeClass('is-invalid');
+        }
+
+        if ($('.msj_exitoEstSuperior')) {
+            $('.msj_exitoEstSuperior').css('display','none');
+        }
 
         var id = $('#id_ESTU_SUPE').val();
         var formulario = $('#form_updateestudiossuperiores');
         var ruta = formulario.attr('action').replace(':ESTUDIO_SUPERIOR_ID',id);
         var token4 = $("#token12").val();
-               
-      //  var dato = $("#tipo_estudio").val();
-       
         
-                        var dato =$('#nivel_estudio').val();
-                        //var dato2 = $('#estado').val();
-                        var dato2 = $("#formularioestudiossuperiores input[name='estado']:checked").val();
-                        var dato3 = $('#modalidad').val();
-                        var dato4 = $('#centro_estudio_superior').val();
-                        var dato5 = $('#grado').val();
-                        var dato6 = $('#carrera').val();
-                        var dato7 = $('#detalle').val();
-                        var dato8 = $('#fech_consejo').val();
-                        var dato9 = $('#fech_emision').val();
-                        var dato10 = $('#num_reg_titulo').val();
-                        var dato11 = $('#EntidadRegist').val();
-                        var dato20 = $('#nro_colegiatura').val();
-                        var dato21 = $('#nom_colegio').val();
-
-
-        console.log(dato7);
+        var btn_radio = $("#formularioestudiossuperiores input[name='estado']:checked").val();
         
+
+        var formData3 = new FormData();
+
+        formData3.append('nivel_estudio',$("#nivel_estudio").val());
+        formData3.append('estado',btn_radio);
+        formData3.append('modalidad',$("#modalidad").val());
+        formData3.append('centro_estudio_superior',$("#centro_estudio_superior").val());
+        formData3.append('grado',$("#grado").val());
+        formData3.append('carrera',$("#carrera").val());
+        formData3.append('detalle',$("#detalle").val());
+        formData3.append('fech_consejo',$("#fech_consejo").val());
+        formData3.append('pdf_estudioSuperior',$('input[name=pdf_estudioSuperior]')[0].files[0]);
+        formData3.append('fech_emision',$("#fech_emision").val());
+        formData3.append('num_reg_titulo',$("#num_reg_titulo").val());
+        formData3.append('EntidadRegist',$("#EntidadRegist").val());
+        formData3.append('nro_colegiatura',$("#nro_colegiatura").val());
+        formData3.append('nom_colegio',$("#nom_colegio").val());
+
         $.ajax({
             
             url: ruta,
             headers: {'X-CSRF-TOKEN': token4},
-            type: 'PUT',
+            type: 'post',
             dataType: 'json',
-            data: {
-                
-                  //  tiponivel, tipoestado -> se va n al controlee
-                id_nivel: dato,
-                id_estado: dato2,
-                id_modalidad: dato3,
-                centro_estudios: dato4,
-                id_tipo_grado: dato5,
-                carrera: dato6,
-                detall_grado: dato7,
-                fecha_consejo: dato8,
-                fecha_emision: dato9,
-                num_registro: dato10,
-                entidad: dato11,
-                num_colegiatura: dato20,
-                nom_colegio: dato21
-                
-
-            },
+            data: formData3,
+            cache: false,
+            contentType: false,
+            processData: false,
             success: function(respuesta){
-                                                
-                mostrarEstudiosSuperiores();
-                //mostrarHabientes();
-                                
-                $("#formularioestudiossuperiores").trigger('reset');
                 
+                $('.msj_exitoEstSuperior').html(respuesta.mensaje);
+                $('.msj_exitoEstSuperior').css('display','block');
+                
+                mostrarEstudiosSuperiores();
+                
+            },
+            error: function(respuesta){
+				
+				$('.msj_exitoEstSuperior').css('display','none');
+				
+				$.each(respuesta.responseJSON.errors, function(index, val) {
+					// console.log(index + ": "+val);
+					
+					$('select[name=' + index + ']').addClass('is-invalid');
+					
+                    $('select[name=' + index + ']').after(`<span class='msg_errorEstSuperior invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+
+                    $('input[name=' + index + ']').addClass('is-invalid');
+					
+                    $('input[name=' + index + ']').after(`<span class='msg_errorEstSuperior invalid-feedback' role='alert'><strong>${val}</strong></span>`);
+                    
+				});
+				
             }
             
         });
 
     });
 
-        $('#agregar_estudios_superiores').click(function(){
-
-//alert("hora loca");|
-        $("#formularioestudiossuperiores").trigger('reset');
-        cambiartitulo_est_supe('Estudios Superiores');
-        $(".btn_estudios_superiores").html('<span><i class="far fa-save"></i></span> Guardar');
-        $(".btn_estudios_superiores").addClass('btn-primary');
-        $(".btn_estudios_superiores").removeClass('btn-success');
-        $(".btn_estudios_superiores").addClass('guardar');
-        $(".btn_estudios_superiores").removeClass('actualizar3');
-
-    });
-
-
-
-//PARA VER ESTUDIOS SUPERIORES
+    //PARA VER ESTUDIOS SUPERIORES
     $(document).on('click','.ver_estudios_superiores',function(){
         
+        //resetea el formulario
+        $('#formVerEstSuperior').trigger('reset');
+
         var id_EstudiosSuperiores2 = $(this).val();
-       // console.log(id_otro_estudio2 );
+        // console.log(id_otro_estudio2 );
         var ruta = "/ProyEscalafon/public/ver_EstudiosSuperiores";
         var token3 = $("#token9").val();
 
@@ -1390,30 +1734,40 @@ function cambiartitulo_otros_estudios(titulo){
                     obj_json.forEach(obj_json =>{
                         
                         $('#nivel_estudio2').val(obj_json.tiponivel);
-                        
-                        $('#estado2').val(obj_json.tiposestado);
+                       
+                        if (obj_json.tiposestado == 'CONCLUIDOS') {
+                            $('#estado2').val(obj_json.tiposestado);
+                            $('#men_gra').show();
+                            $('#det_titu').show();
+                            $('#f_con').show();
+                            $('#f_emi').show();
+                            $('#num_reg').show();
+                            $('#ent_reg').show();
+                            $('#n_coleg').show();
+                            $('#nom_col').show();
+                        } else{
+                            $('#estado2').val(obj_json.tiposestado);
+                            $('#men_gra').hide();
+                            $('#det_titu').hide();
+                            $('#f_con').hide();
+                            $('#f_emi').hide();
+                            $('#num_reg').hide();
+                            $('#ent_reg').hide();
+                            $('#n_coleg').hide();
+                            $('#nom_col').hide();
+                        }
+
                         $('#modalidad2').val(obj_json.modalidad);
-                         $('#centro_estudio2').val(obj_json.centroestudio);
+                        $('#centro_estudio2').val(obj_json.centroestudio);
                         $('#grado2').val(obj_json.tipogrado);
                         $('#carrera2').val(obj_json.carrera);
                         $('#detalle2').val(obj_json.detallegrado);
-                        $('#fech_fechaconsejo2').val(obj_json.fechaconsejo);
-                         $('#fech_emision2').val(obj_json.fechaemision);
+                        $('#fech_consejo2').val(obj_json.fechaconsejo);
+                        $('#fech_emision2').val(obj_json.fechaemision);
                         $('#num_reg_titulo2').val(obj_json.numeroregistro);
                         $('#EntidadRegist2').val(obj_json.entidad);
                         $('#nro_colegiatura2').val(obj_json.numerocolegiatura);
                         $('#nom_colegio2').val(obj_json.nombrecolegio);
-                       
-
-                       if (obj_json.tiposestado == 1) {
-                            $('#concluido2').prop('checked',true);
-                        } else if (obj_json.tiposestado == 2) {
-                            $('#no_concluido2').prop('checked',true);
-                        } else if (obj_json.tiposestado == 3) {
-                            $('#egresado2').prop('checked',true);
-                        } else{
-                            $('#concluido2').prop('checked',true);
-                        }
 
                     });
                 });
@@ -1424,10 +1778,7 @@ function cambiartitulo_otros_estudios(titulo){
         
     });
 
-
-
-
-        //PARA ELIMINAR estudios superiores
+    //PARA ELIMINAR estudios superiores
 
     $(document).on('click','.elim_estudios_superiores',function(){
  
@@ -1444,7 +1795,7 @@ function cambiartitulo_otros_estudios(titulo){
          
         var token3 = $("#token9").val();
         var datos = formulario.serialize();
-             console.log(datos);                
+                           
         $.ajax({
             
             url: ruta,
@@ -1455,19 +1806,12 @@ function cambiartitulo_otros_estudios(titulo){
             success: function(respuesta){
                                     
                 mostrarEstudiosSuperiores();
-               // mostrarHabientes();
-
+             
             }
             
         });
         
     });
-
-
-        
-
-   })
-
-
-
+    
+});
 

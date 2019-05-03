@@ -351,7 +351,7 @@ class DatosController extends Controller
             $idioma->save();
             
             return response()->json([
-                "mensaje"=>"Idioma creado con exito"
+                "mensaje"=>"Idioma creado con exito."
             ]);
             
         }
@@ -420,7 +420,7 @@ class DatosController extends Controller
             // $idioma->update($request->all());
             
             return response()->json([
-                "mensaje"=>"Idioma Actualizado con exito"
+                "mensaje"=>"Idioma actualizado con exito"
             ]);
 
         }

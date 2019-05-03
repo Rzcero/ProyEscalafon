@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateOtroEstudioRequest;
+use App\Http\Requests\CreateProdIntelectualRequest;
+use App\Http\Requests\CreateEstSuperiorRequest;
 use App\Persona;
 use App\NivelEstudio;
 use App\EstudioBasico;
@@ -14,7 +16,8 @@ use App\TipoEstudio;
 use App\TipoDocumentoPrincipal;
 use App\TipoDocumentoEstudio;
 use App\TipoMedio;
-use App\Medio;
+use App\MedioEscrito;
+use App\MedioMultimedia;
 use App\ProduccionIntelectual;
 use App\TipoGrado;
 
@@ -155,6 +158,46 @@ class EstudiosController extends Controller
         ]);
     }
 
+    public function listarmedioescrito(){
+                
+        $medioEscritos = MedioEscrito::all();
+        
+        $matriz = array();
+        
+        foreach($medioEscritos as $medioescrito){
+        
+            $matriz[] = array('id' => $medioescrito->id_medioEscrito,  // 
+                            'denominacion' => $medioescrito->denominacion);
+        
+        }
+        
+        return response()->json([
+            
+            $matriz
+            
+        ]);
+    }
+
+    public function listarmediomultimedia(){
+                
+        $medioMulti = MedioMultimedia::all();
+        
+        $matriz = array();
+        
+        foreach($medioMulti as $mediomultimedia){
+        
+            $matriz[] = array('id' => $mediomultimedia->id_medioMultimedia,  // 
+                            'denominacion' => $mediomultimedia->denominacion);
+        
+        }
+        
+        return response()->json([
+            
+            $matriz
+            
+        ]);
+    }
+
     //Para mostrarlo en el Modal tipogrado
     public function listartipogrados()
     {
@@ -241,25 +284,28 @@ class EstudiosController extends Controller
 
     }
 
-    public function listarproduccion(){
+    public function listarproduccion(Request $request){
 
-        $listar_producciones = ProduccionIntelectual::all();
-        
-        $matriz = array();
+        if($request->ajax()){
+
+            $listar_producciones = ProduccionIntelectual::where('id_persona',$request->id)->get();
             
-        foreach($listar_producciones as $listar_produccion){
-        
-            $matriz[] = array('id_prod_intele' => $listar_produccion->id_prod_intele, 
-                                'medio' => $listar_produccion->medio_produccion_intelectual->descripcion, //  estos 3 se mandan a mainestudios
-                                'nombre_publicacion' => $listar_produccion->nombre,
-                                'anio' => $listar_produccion->fecha_publicacion
-                            );
+            $matriz = array();
+                
+            foreach($listar_producciones as $listar_produccion){
+            
+                $matriz[] = array('id_prod_intele' => $listar_produccion->id_prod_intele, 
+                                    'medioEscrito' => $listar_produccion->medio_escrito->denominacion,
+                                    'medioMultimedia' => $listar_produccion->medio_multimedia->denominacion, //  estos 3 se mandan a mainestudios
+                                    'nombre_publicacion' => $listar_produccion->nombre,
+                                    'anio' => $listar_produccion->fecha_publicacion
+                                );
+            }
+
+            return response()->json([
+                $matriz
+            ]);
         }
-
-        return response()->json([
-            $matriz
-        ]);
-
     }
 
     public function store(Request $request)
@@ -385,29 +431,46 @@ class EstudiosController extends Controller
 
     }
 
-    public function guardar_estudios_superiores(Request $request){ // despues del @
+    public function guardar_estudios_superiores(CreateEstSuperiorRequest $request){ // despues del @
 
         if($request->ajax()){
             
             $estudio_superior = new EstudioSuperior;
-            $estudio_superior->id_nivel = $request->id_nivel;   //  $estudio_superior->id_nivel(base) = $request->id_nivel(main);
-            $estudio_superior->id_estado = $request->id_estado;
-            $estudio_superior->id_modalidad=$request->id_modalidad;
+
+            if ($request->hasFile('pdf_estudioSuperior')) {
+            
+                $ruta_tempEstSuperior = $request->file('pdf_estudioSuperior');
+    
+                $nombre_pdf_estSuperior = time().$ruta_tempEstSuperior->getClientOriginalName();
+    
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_tempEstSuperior->move(public_path().'/images/',$nombre_pdf_estSuperior);
+    
+                $estudio_superior->pdf = $nombre_pdf_estSuperior;
+                
+            }
+
+            $estudio_superior->id_persona = $request->miID;
+            $estudio_superior->id_nivel = $request->nivel_estudio; //  $estudio_superior->id_nivel(base) = $request->id_nivel(main);
+            $estudio_superior->id_estado = $request->estado;
+            $estudio_superior->id_modalidad=$request->modalidad;
             //$estudio_superior->ciclo=$request->ciclo;
-            $estudio_superior->centro_estudios=$request->centro_estudios;
-            $estudio_superior->id_tipo_grado=$request->id_tipo_grado;
+            $estudio_superior->centro_estudios=$request->centro_estudio_superior;
+            $estudio_superior->id_tipo_grado=$request->grado;
             $estudio_superior->carrera=$request->carrera;
-            $estudio_superior->detall_grado=$request->detall_grado;
-            $estudio_superior->fecha_consejo=$request->fecha_consejo;
-            $estudio_superior->fecha_emision=$request->fecha_emision;
-            $estudio_superior->num_registro=$request->num_registro;
-            $estudio_superior->entidad=$request->entidad;
-            $estudio_superior->num_colegiatura=$request->num_colegiatura;
+            $estudio_superior->detall_grado=$request->detalle;
+            $estudio_superior->fecha_consejo=$request->fech_consejo;
+            $estudio_superior->fecha_emision=$request->fech_emision;
+            $estudio_superior->num_registro=$request->num_reg_titulo;
+            $estudio_superior->entidad=$request->EntidadRegist;
+            $estudio_superior->num_colegiatura=$request->nro_colegiatura;
             $estudio_superior->nom_colegio=$request->nom_colegio;
 
             $estudio_superior->save();
 
-            return response()->json(["mensaje"=>"creado"]);
+            return response()->json([
+                "mensaje"=>"Estudio Superior creado con exito."
+                ]);
             
         }
 
@@ -454,26 +517,48 @@ class EstudiosController extends Controller
 
      }
 
-    public function guardar_produccion_intelectual(Request $request){
+    public function guardar_produccion_intelectual(CreateProdIntelectualRequest $request){
 
         if($request->ajax()){   
 
             $produccion_intelectual = new ProduccionIntelectual;
-            $produccion_intelectual->id_tipo_medio = $request->id_tipo_medio;
-            $produccion_intelectual->id_medio = $request->id_medio;
-            $produccion_intelectual->nombre=$request->nombre;
-            $produccion_intelectual->fecha_publicacion=$request->fecha_publicacion;
+
+            if ($request->hasFile('pdf_prodIntelectual')) {
+            
+                $ruta_tempProdIntele = $request->file('pdf_prodIntelectual');
+    
+                $nombre_pdf_prodIntele = time().$ruta_tempProdIntele->getClientOriginalName();
+    
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_tempProdIntele->move(public_path().'/images/',$nombre_pdf_prodIntele);
+    
+                $produccion_intelectual->pdf_prod_intele = $nombre_pdf_prodIntele;
+                
+            }
+
+            $produccion_intelectual->id_persona = $request->miID;
+            $produccion_intelectual->id_tipo_medio = $request->tipomedio;
+
+            if ($request->tipomedio == 2) {
+                $produccion_intelectual->id_medioEscrito = $request->medio_escrito;
+                $produccion_intelectual->id_medioMultimedia = 1;
+            } else{
+                $produccion_intelectual->id_medioMultimedia = $request->medio_multimedia;
+                $produccion_intelectual->id_medioEscrito = 1;
+            }
+                        
+            $produccion_intelectual->nombre=$request->nom_publicacion;
+            $produccion_intelectual->fecha_publicacion=$request->fech_publicacion;
             
             $produccion_intelectual->save();
 
-            return response()->json(["mensaje"=>"creado"]);
+            return response()->json([
+                "mensaje"=>"Producción Intelectual creada con exito."
+            ]);
            
        }
 
     }
-
-// public function editar_modal_est_sup(Request $request){
-//        }
 
     public function editar_modal_prod_intel(Request $request){
 
@@ -483,15 +568,16 @@ class EstudiosController extends Controller
 
         foreach($editarmodal_prod_intel as $editar_prod_intel){
     
-        $matriz[] = array('id' => $editar_prod_intel->id_prod_intele, //id_otro_estudio -> se trae de la base de datos
+            $matriz[] = array('id' => $editar_prod_intel->id_prod_intele, //id_otro_estudio -> se trae de la base de datos
                             'idtipomedio' => $editar_prod_intel->id_tipo_medio,
-                            'idmedio' => $editar_prod_intel->id_medio,
+                            'idmedioEscrito' => $editar_prod_intel->id_medioEscrito,
+                            'idmedioMultimedia' => $editar_prod_intel->id_medioMultimedia,
                             'nombre' => $editar_prod_intel->nombre,
                             'fechapublica' => $editar_prod_intel->fecha_publicacion
                         
                         );
     
-    }
+        }
     
         return response()->json([
                 
@@ -551,8 +637,7 @@ class EstudiosController extends Controller
                               'entidad' => $editarmodal_superiores->entidad,
                               'numerocolegiatura' => $editarmodal_superiores->num_colegiatura,
                               'nombrecolegio' => $editarmodal_superiores->nom_colegio
-
-                              
+      
                           );
         
         }
@@ -603,12 +688,12 @@ class EstudiosController extends Controller
         
         foreach($verProInt as $verProduccion){
         
-            $matriz[] = array('tipomedio' => $verProduccion->produccion_intelectual1->descripcion,             
-                               'medio' => $verProduccion->medio_produccion_intelectual->descripcion,
+            $matriz[] = array('tipomedio' => $verProduccion->tipo_medio->descripcion,             
+                               'medioEscrito' => $verProduccion->medio_escrito->denominacion,
+                               'medioMultimedia' => $verProduccion->medio_multimedia->denominacion,
                               'nombre' => $verProduccion->nombre,
                               'fechapu' => $verProduccion->fecha_publicacion);
         
-
         }
         
         return response()->json([
@@ -649,8 +734,6 @@ class EstudiosController extends Controller
              
         ]);
     }
-
-
 
     public function destroyOTrosEStudios(Request $request, $id)
     {
@@ -780,41 +863,94 @@ class EstudiosController extends Controller
 
     }
 
-    public function updateProduccionIntelectual(Request $request, $id)
+    public function updateProduccionIntelectual(CreateProdIntelectualRequest $request, $id)
     {
             //se utilizar par acualizar
 
         if($request->ajax()){
 
             $prod_inte = ProduccionIntelectual::find($id);
-            $prod_inte->update($request->all());
+            
+            if ($request->hasFile('pdf_prodIntelectual')) {
+            
+                $ruta_tempProdIntele = $request->file('pdf_prodIntelectual');
+    
+                $nombre_pdf_prodIntele = time().$ruta_tempProdIntele->getClientOriginalName();
+    
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_tempProdIntele->move(public_path().'/images/',$nombre_pdf_prodIntele);
+    
+                $prod_inte->pdf_prod_intele = $nombre_pdf_prodIntele;
+                
+            }
+
+            $prod_inte->id_tipo_medio = $request->tipomedio;
+
+            if ($request->tipomedio == 2) {
+                $prod_inte->id_medioEscrito = $request->medio_escrito;
+                $prod_inte->id_medioMultimedia = 1;
+            } else{
+                $prod_inte->id_medioMultimedia = $request->medio_multimedia;
+                $prod_inte->id_medioEscrito = 1;
+            }
+                        
+            $prod_inte->nombre=$request->nom_publicacion;
+            $prod_inte->fecha_publicacion=$request->fech_publicacion;
+            
+            $prod_inte->save();
 
             return response()->json([
-
+                "mensaje"=>"Producción Intelectual actualizado con exito."
             ]);
 
         }
     }
 
 
-    public function updateEstudiosSuperiores(Request $request, $id)
+    public function updateEstudiosSuperiores(CreateEstSuperiorRequest $request, $id)
     {
         //se utilizar par acualizar
         //return $request->all()
         if($request->ajax()){
 
             $est_supe = EstudioSuperior::find($id);
-            $est_supe->update($request->all());
+           
+            if ($request->hasFile('pdf_estudioSuperior')) {
+                
+                $ruta_temp = $request->file('pdf_estudioSuperior');
+
+                $up_nombre_pdfEstSuperior = time().$ruta_temp->getClientOriginalName();
+
+                //muevo la foto de la ruta temporal hacia la carpeta public del servidor
+                $ruta_temp->move(public_path().'/images/',$up_nombre_pdfEstSuperior);
+
+                $est_supe->pdf = $up_nombre_pdfEstSuperior;
+                
+            }
+
+            $est_supe->id_nivel = $request->nivel_estudio; 
+            $est_supe->id_estado = $request->estado;
+            $est_supe->id_modalidad=$request->modalidad;
+            $est_supe->centro_estudios=$request->centro_estudio_superior;
+            $est_supe->id_tipo_grado=$request->grado;
+            $est_supe->carrera=$request->carrera;
+            $est_supe->detall_grado=$request->detalle;
+            $est_supe->fecha_consejo=$request->fech_consejo;
+            $est_supe->fecha_emision=$request->fech_emision;
+            $est_supe->num_registro=$request->num_reg_titulo;
+            $est_supe->entidad=$request->EntidadRegist;
+            $est_supe->num_colegiatura=$request->nro_colegiatura;
+            $est_supe->nom_colegio=$request->nom_colegio;
+
+            $est_supe->save();
 
             return response()->json([
-
+                "mensaje"=>"Estudio Superior actualizado con exito"
             ]);
 
         }
 
     }
-
-    
 
     /**
      * Remove the specified resource from storage.

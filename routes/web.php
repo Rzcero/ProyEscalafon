@@ -93,7 +93,8 @@ Route::get('/listarmodalidad', 'EstudiosController@listarmodalidad')->name('estu
 Route::get('/listartipoestudios', 'EstudiosController@listartipoestudios')->name('estudios.listartipoestudios');
 Route::get('/listartipodocumentos', 'EstudiosController@listartipodocumentos')->name('estudios.listartipodocumentos');
 Route::get('/listartipomedio', 'EstudiosController@listartipomedio')->name('estudios.listartipomedio');
-Route::get('/listarmedio', 'EstudiosController@listarmedio')->name('estudios.listarmedio');
+Route::get('/listarmedioescrito', 'EstudiosController@listarmedioescrito')->name('estudios.listarmedioescrito');
+Route::get('/listarmediomultimedia', 'EstudiosController@listarmediomultimedia')->name('estudios.listarmediomultimedia');
 
 Route::post('/guardar_otros_estudios','EstudiosController@guardar_otros_estudios')->name('estudios.guardar_otros_estudios');
 Route::post('/guardar_produccion_intelectual','EstudiosController@guardar_produccion_intelectual')->name('estudios.guardar_produccion_intelectual');
@@ -116,10 +117,10 @@ Route::DELETE('/destroyOTrosEStudios/{id}', 'EstudiosController@destroyOTrosEStu
 Route::post('/editar_modal_prod_intel', 'EstudiosController@editar_modal_prod_intel')->name('estudios.editar_modal_prod_intel');
 Route::post('/ver_produccion_intelecual', 'EstudiosController@ver_produccion_intelecual')->name('estudios.ver_produccion_intelecual');
 Route::DELETE('/destroyProduccionIntelectual/{id}', 'EstudiosController@destroyProduccionIntelectual')->name('estudios.destroyProduccionIntelectual');
-Route::put('/updateProduccionIntelectual/{id}','EstudiosController@updateProduccionIntelectual')->name('updateProduccionIntelectual');
+Route::post('/updateProduccionIntelectual/{id}','EstudiosController@updateProduccionIntelectual')->name('updateProduccionIntelectual');
 
 Route::post('/editar_modal_estu_supe', 'EstudiosController@editar_modal_estu_supe')->name('estudios.editar_modal_estu_supe');
-Route::put('/updateEstudiosSuperiores/{id}','EstudiosController@updateEstudiosSuperiores')->name('updateEstudiosSuperiores');
+Route::post('/updateEstudiosSuperiores/{id}','EstudiosController@updateEstudiosSuperiores')->name('updateEstudiosSuperiores');
 Route::post('/ver_EstudiosSuperiores', 'EstudiosController@ver_EstudiosSuperiores')->name('estudios.ver_EstudiosSuperiores');
 Route::DELETE('/destroyEstudiosSuperiores/{id}', 'EstudiosController@destroyEstudiosSuperiores')->name('estudios.destroyEstudiosSuperiores');
 

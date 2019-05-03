@@ -12,7 +12,6 @@ class EstudioSuperior extends Model
     "id_nivel",
     "id_estado",
     "id_modalidad",
-    "ciclo",
     "centro_estudios",
     "id_tipo_grado",
     "carrera",

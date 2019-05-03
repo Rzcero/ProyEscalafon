@@ -601,20 +601,18 @@ $(document).ready(function() {
 	var select2_tipoDocIdent = $('#t_docIdent');
 	selectTipoDocIdentidad(select2_tipoDocIdent);
 
-	$('#doc_cate').hide();
-	$('#doc_reg').hide();
-
 	var selec_grupo2 = $('#selec_grupo');
 	var selec_condi2 = $('#selec_condi');
 	selectGrupo(selec_grupo2);
 	selectCondicion(selec_condi2);
-
-	var selec_categoria2 = $('#selec_categ');
-	var selec_regimen2 = $('#r_laboral');
-
 	$('#adm_grupo').hide();
 	$('#adm_condi').hide();
 
+	var selec_categoria2 = $('#selec_categ');
+	var selec_regimen2 = $('#r_laboral');
+	$('#doc_cate').hide();
+	$('#doc_reg').hide();
+	
 	function eliminaMsjError(ident){
 			
 		if ($("select[name='" + ident + "'] .is-invalid")) {
@@ -899,12 +897,6 @@ $(document).ready(function() {
 					$('input[name=' + index + ']').after(`<span class='msg_error invalid-feedback' role='alert'><strong>${val}</strong></span>`);
 					$('select[name=' + index + ']').after(`<span class='msg_error invalid-feedback' role='alert'><strong>${val}</strong></span>`);
 
-					// if ($errors->has('n_doc')){
-
-					// 	<span class="invalid-feedback" role="alert">
-					// 		<strong>{{ $errors->first('n_doc') }}</strong>
-					// 	</span>
-					// }
 				});
 				
             }

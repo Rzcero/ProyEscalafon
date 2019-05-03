@@ -18,20 +18,18 @@ class EstudiosSuperiores extends Migration
             $table->integer('id_nivel');
             $table->integer('id_estado');
             $table->integer('id_modalidad');
-
-            $table->string('ciclo',45);
             $table->string('centro_estudios',45);
             $table->integer('id_tipo_grado');
             $table->string('carrera',45);
-            $table->string('detall_grado',225);
-            $table->date('fecha_consejo',45);
-            $table->date('fecha_emision',45);
-            $table->string('num_registro',45);
-            $table->string('entidad',70);
-            $table->string('pdf',45);
+            $table->string('detall_grado',225)->nullable();
+            $table->date('fecha_consejo',45)->nullable();
+            $table->date('fecha_emision',45)->nullable();
+            $table->string('num_registro',45)->nullable();
+            $table->string('entidad',70)->nullable();
+            $table->string('pdf',45)->nullable();
             $table->integer('id_persona');
-            $table->string('num_colegiatura',150);
-            $table->string('nom_colegio',255);
+            $table->string('num_colegiatura',150)->nullable();
+            $table->string('nom_colegio',255)->nullable();
             
             //$table->rememberToken();
             $table->timestamps();

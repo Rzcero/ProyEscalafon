@@ -17,7 +17,7 @@ class ProduccionIntelectual extends Model
     "fecha_publicacion",
     "pdf_prod_intele"];
 
-    public function produccion_intelectual1(){
+    public function tipo_medio(){
         return $this->belongsTo("App\TipoMedio","id_tipo_medio","id_tipo_medio");
 
     }

@@ -208,8 +208,7 @@
                                                 <td>
                                                     <div class="">
                                                         <a href="{{route('moduloinicio.editar',$persona->id_persona)}}" class="btn btn-success" title='Modificar'><span><i class="fas fa-pencil-alt"></i></span></a>
-                                                        <!--<button type="button" class='update_parentesco btn btn-success' title='Modificar'><span><i class="fas fa-pencil-alt"></i></span></button> -->
-                                                                                                        
+                                                       
                                                         <button type="button" class='delete_parentesco btn btn-danger' title='Eliminar'><span><i class="fas fa-trash-alt"></i></span></button>
                                                     </div>
                                                 </td>
