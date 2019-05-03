@@ -591,7 +591,7 @@ $(document).ready(function() {
 
     // });
 
-    /*OTROS ESTUDIOS*/
+    /*OTROS ESTUDIOS               */
 
     function cambiartitulo_otros_estudios(titulo){
 
